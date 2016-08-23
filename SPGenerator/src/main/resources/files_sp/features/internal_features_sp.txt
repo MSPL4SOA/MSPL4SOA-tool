@@ -1,0 +1,8 @@
+ServiceState
+StatefulService
+StateRepository
+TemporaryMemory
+Reliability
+Transactional
+PersistentDelivery
+Acknowledgement

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.emf.common.ui_2.7.0.v20130125-0826.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.emf.ecore.change_2.8.0.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.xtext.common.types.edit_2.4.0.v201303201134.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.xtext.common.types.ui_2.4.0.v201303201134.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.xtext.common.types_2.4.0.v201303201134.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.eclipse.xtext_2.4.0.v201303201134.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.sat4j.core_2.3.0.v20110329.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.sat4j.core_2.jar"/>
+	<classpathentry kind="lib" path="/home/akram/workspace/SPGenerator/lib/org.sat4j.core.jar"/>
+	<classpathentry kind="lib" path="lib/ca.uwaterloo.gp.fmp_0.6.6.jar"/>
+	<classpathentry kind="lib" path="lib/FML-basic-1.1.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

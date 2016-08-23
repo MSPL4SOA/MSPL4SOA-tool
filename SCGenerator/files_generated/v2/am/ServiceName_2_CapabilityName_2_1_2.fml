@@ -1,0 +1,5 @@
+Root : Service_2 ServiceName_2=ServiceName_2 Capability_2_1;Capability_2_1:Authentification_2_1 
+InputValue_2_1_2=815 SOAP_2_1 InputValue_2_1_1=488 CommunicationTechnologie_2_1 
+InputName_2_1_1=InputName_2_1_1 InputType_2_1_2=String InputName_2_1_2=InputName_2_1_2
+CapabilityName_2_1=CapabilityName_2_1 Username_2_1=admin Password_2_1=odnbkgqtgmbtsdco 
+InputData_2_1_2 InputData_2_1_1 InputType_2_1_1=Float InputDataClassName_2_1=InputDataClassName_2_1;

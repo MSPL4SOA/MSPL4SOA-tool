@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+                    <jms-queue name="in_queue_ServiceName_1_CapabilityName_1_1">
+                <entry name="in_queue_ServiceName_1_CapabilityName_1_1"/>
+                <entry name="java:jboss/exported/jms/in_queue_ServiceName_1_CapabilityName_1_1"/>
+            </jms-queue>
+            <jms-queue name="out_queue_ServiceName_1_CapabilityName_1_1">
+                <entry name="out_queue_ServiceName_1_CapabilityName_1_1"/>
+                <entry name="java:jboss/exported/jms/out_queue_ServiceName_1_CapabilityName_1_1"/>
+            </jms-queue>
+                    <jms-queue name="in_queue_ServiceName_1_CapabilityName_1_2">
+                <entry name="in_queue_ServiceName_1_CapabilityName_1_2"/>
+                <entry name="java:jboss/exported/jms/in_queue_ServiceName_1_CapabilityName_1_2"/>
+            </jms-queue>
+            <jms-queue name="out_queue_ServiceName_1_CapabilityName_1_2">
+                <entry name="out_queue_ServiceName_1_CapabilityName_1_2"/>
+                <entry name="java:jboss/exported/jms/out_queue_ServiceName_1_CapabilityName_1_2"/>
+            </jms-queue>
+                    <jms-queue name="in_queue_ServiceName_1_CapabilityName_1_5">
+                <entry name="in_queue_ServiceName_1_CapabilityName_1_5"/>
+                <entry name="java:jboss/exported/jms/in_queue_ServiceName_1_CapabilityName_1_5"/>
+            </jms-queue>
+            <jms-queue name="out_queue_ServiceName_1_CapabilityName_1_5">
+                <entry name="out_queue_ServiceName_1_CapabilityName_1_5"/>
+                <entry name="java:jboss/exported/jms/out_queue_ServiceName_1_CapabilityName_1_5"/>
+            </jms-queue>
+                    <jms-queue name="in_queue_ServiceName_1_CapabilityName_1_6">
+                <entry name="in_queue_ServiceName_1_CapabilityName_1_6"/>
+                <entry name="java:jboss/exported/jms/in_queue_ServiceName_1_CapabilityName_1_6"/>
+            </jms-queue>
+            <jms-queue name="out_queue_ServiceName_1_CapabilityName_1_6">
+                <entry name="out_queue_ServiceName_1_CapabilityName_1_6"/>
+                <entry name="java:jboss/exported/jms/out_queue_ServiceName_1_CapabilityName_1_6"/>
+            </jms-queue>
+                                    <jms-topic name="topic_ServiceName_1_CapabilityName_1_1">
+                <entry name="topic_ServiceName_1_CapabilityName_1_1"/>
+                <entry name="java:jboss/exported/jms/topic_ServiceName_1_CapabilityName_1_1"/>
+            </jms-topic>
+                                    <jms-topic name="topic_ServiceName_1_CapabilityName_1_2">
+                <entry name="topic_ServiceName_1_CapabilityName_1_2"/>
+                <entry name="java:jboss/exported/jms/topic_ServiceName_1_CapabilityName_1_2"/>
+            </jms-topic>
+                                    <jms-topic name="topic_ServiceName_1_CapabilityName_1_5">
+                <entry name="topic_ServiceName_1_CapabilityName_1_5"/>
+                <entry name="java:jboss/exported/jms/topic_ServiceName_1_CapabilityName_1_5"/>
+            </jms-topic>
+                                        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>

@@ -1,0 +1,56 @@
+package $composerPkg;
+
+import javax.naming.InitialContext;
+
+import org.switchyard.Context;
+import org.switchyard.Exchange;
+import org.switchyard.Scope;
+import org.switchyard.component.soap.composer.SOAPBindingData;
+import org.switchyard.component.soap.composer.SOAPMessageComposer;
+
+#foreach($capability in $service.capabilities)
+#if($capability.serviceState == true)
+import $statePkg#[[.]]#$capability.stateClassName;
+#end
+#end
+
+public class $composerFileName extends SOAPMessageComposer {
+	#set ($stateInstance = "instance")
+
+#foreach($capability in $service.capabilities)
+#if($capability.stateMessaging == true)
+	$capability.stateClassName $stateInstance$capability.stateClassName;
+#end
+#end
+	
+	@Override
+	public SOAPBindingData decompose(Exchange exchange, SOAPBindingData target) throws Exception {
+	
+	Context context = exchange.getContext();
+	InitialContext ctx = new InitialContext();
+	String opName = exchange.getContract().getProviderOperation().getName();
+	
+	final String key = "{http://service.redcad.com/webservices}$STATE_HEADER_NAME";
+	
+	#foreach($capability in $service.capabilities)
+	#if($capability.stateMessaging == true)
+	#set ($stateCapabilityInstance = $stateInstance + $capability.stateClassName)
+	
+	
+	
+		if#[[(]]#opName.equals#[[(]]#"$capability.name"))
+		{
+		$stateCapabilityInstance = ($capability.stateClassName) ctx
+					.lookup("java:global/$artifactId/$capability.stateClassName");
+		context.setProperty(key, $stateCapabilityInstance#[[.]]#getState#[[(]]#), Scope.EXCHANGE);	
+		}
+		
+		#if($capability.statefullService == false)
+		$stateCapabilityInstance#[[.]]#setState#[[(]]#null);
+		#end
+	#end
+	#end
+	
+		return super.decompose(exchange, target);
+	}
+}

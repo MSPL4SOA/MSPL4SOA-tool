@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_1_2</name>
+    <number>2</number>
+    <serviceName>ServiceName_1</serviceName>
+    <dataInputClassName></dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_1_2</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>true</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>false</rest>
+    <restMethod>Get</restMethod>
+    <soap>false</soap>
+    <broker>
+        <brokerName>HornetQ</brokerName>
+        <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+        <providerUrl>remote://localhost:4447</providerUrl>
+        <securityPrincipal>guest</securityPrincipal>
+        <securityCredentials>jboss@dmin88</securityCredentials>
+        <connectionFactory>#ConnectionFactory</connectionFactory>
+        <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+        <queueError>net implemented</queueError>
+        <queueIn>v2_in_queue_ServiceName_1_CapabilityName_1_2</queueIn>
+        <queueOut>v2_out_queue_ServiceName_1_CapabilityName_1_2</queueOut>
+        <topic>v2_topic_ServiceName_1_CapabilityName_1_2</topic>
+        <transactional>true</transactional>
+        <acknowledgement>false</acknowledgement>
+        <persistentDelivery>false</persistentDelivery>
+        <publishSubscribe>true</publishSubscribe>
+        <durable>true</durable>
+    </broker>
+    <authentification>false</authentification>
+    <jms>true</jms>
+    <synchronous>true</synchronous>
+    <asynchronous>false</asynchronous>
+    <output>
+        <name>OutputName_1_2_1</name>
+        <type>Float</type>
+        <number>1</number>
+    </output>
+    <output>
+        <name>OutputName_1_2_2</name>
+        <type>Float</type>
+        <number>2</number>
+    </output>
+    <output>
+        <name>OutputName_1_2_3</name>
+        <type>Integer</type>
+        <number>3</number>
+    </output>
+</capability>
