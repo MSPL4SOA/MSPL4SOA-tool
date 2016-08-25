@@ -10,7 +10,7 @@ public class MyFMP {
 		
 //		fmpEditPlugin fmpEditPlugin = new fmpEditPlugin();
 		
-		
+		//test
 		FmpModelWizard fmpModelWizard = new FmpModelWizard();
 		System.out.println("end");
 
