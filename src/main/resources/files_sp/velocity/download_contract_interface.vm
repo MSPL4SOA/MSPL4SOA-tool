@@ -1,7 +1,0 @@
-package $servicePkg;
-
-public interface DownloadContract {
-	
-	public String downloadFile(String fileIn);
-
-}

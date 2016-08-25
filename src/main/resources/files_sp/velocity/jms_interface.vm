@@ -1,7 +1,0 @@
-package $servicePkg;
-
-public interface $camelRouterInterfaceName {
-	
-	public String $INVOKE_METHOD#[[(]]#Object in);
-
-}
