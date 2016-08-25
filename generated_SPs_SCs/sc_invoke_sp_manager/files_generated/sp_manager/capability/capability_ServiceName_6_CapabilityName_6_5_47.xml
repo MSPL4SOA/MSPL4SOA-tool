@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_6_5</name>
+    <number>5</number>
+    <serviceName>ServiceName_6</serviceName>
+    <dataInputClassName>InputDataClassName_6_5</dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_6_5</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>true</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>false</rest>
+    <restMethod>Get</restMethod>
+    <soap>false</soap>
+    <broker>
+        <brokerName>HornetQ</brokerName>
+        <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+        <providerUrl>remote://localhost:4447</providerUrl>
+        <securityPrincipal>guest</securityPrincipal>
+        <securityCredentials>jboss@dmin88</securityCredentials>
+        <connectionFactory>#ConnectionFactory</connectionFactory>
+        <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+        <queueError>net implemented</queueError>
+        <queueIn>sp_manager_in_queue_ServiceName_6_CapabilityName_6_5</queueIn>
+        <queueOut>sp_manager_out_queue_ServiceName_6_CapabilityName_6_5</queueOut>
+        <topic>sp_manager_topic_ServiceName_6_CapabilityName_6_5</topic>
+        <transactional>true</transactional>
+        <acknowledgement>false</acknowledgement>
+        <persistentDelivery>true</persistentDelivery>
+        <publishSubscribe>true</publishSubscribe>
+        <durable>false</durable>
+    </broker>
+    <authentification>false</authentification>
+    <jms>true</jms>
+    <synchronous>true</synchronous>
+    <asynchronous>false</asynchronous>
+    <input>
+        <name>InputName_6_5_1</name>
+        <type>Float</type>
+        <number>1</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">154</value>
+    </input>
+    <input>
+        <name>InputName_6_5_2</name>
+        <type>Integer</type>
+        <number>2</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">342</value>
+    </input>
+    <input>
+        <name>InputName_6_5_3</name>
+        <type>Integer</type>
+        <number>3</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">11</value>
+    </input>
+    <output>
+        <name>OutputName_6_5_1</name>
+        <type>Integer</type>
+        <number>1</number>
+    </output>
+    <output>
+        <name>OutputName_6_5_2</name>
+        <type>Float</type>
+        <number>2</number>
+    </output>
+</capability>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_4_1</name>
+    <number>1</number>
+    <serviceName>ServiceName_4</serviceName>
+    <dataInputClassName></dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_4_1</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>true</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>false</rest>
+    <restMethod>Get</restMethod>
+    <soap>false</soap>
+    <broker>
+        <brokerName>HornetQ</brokerName>
+        <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+        <providerUrl>remote://localhost:4447</providerUrl>
+        <securityPrincipal>guest</securityPrincipal>
+        <securityCredentials>jboss@dmin88</securityCredentials>
+        <connectionFactory>#ConnectionFactory</connectionFactory>
+        <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+        <queueError>net implemented</queueError>
+        <queueIn>sp_manager_in_queue_ServiceName_4_CapabilityName_4_1</queueIn>
+        <queueOut>sp_manager_out_queue_ServiceName_4_CapabilityName_4_1</queueOut>
+        <topic>sp_manager_topic_ServiceName_4_CapabilityName_4_1</topic>
+        <transactional>true</transactional>
+        <acknowledgement>false</acknowledgement>
+        <persistentDelivery>false</persistentDelivery>
+        <publishSubscribe>true</publishSubscribe>
+        <durable>false</durable>
+    </broker>
+    <authentification>true</authentification>
+    <jms>true</jms>
+    <synchronous>false</synchronous>
+    <asynchronous>true</asynchronous>
+    <usernameValue>admin</usernameValue>
+    <passwordValue>pass</passwordValue>
+    <output>
+        <name>OutputName_4_1_1</name>
+        <type>Float</type>
+        <number>1</number>
+    </output>
+</capability>

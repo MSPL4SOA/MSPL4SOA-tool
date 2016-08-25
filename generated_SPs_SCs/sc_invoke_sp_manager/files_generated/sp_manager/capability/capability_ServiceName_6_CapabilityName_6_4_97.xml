@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_6_4</name>
+    <number>4</number>
+    <serviceName>ServiceName_6</serviceName>
+    <dataInputClassName>InputDataClassName_6_4</dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_6_4</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>false</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>true</rest>
+    <restMethod>Get</restMethod>
+    <soap>false</soap>
+    <authentification>false</authentification>
+    <jms>false</jms>
+    <synchronous>true</synchronous>
+    <asynchronous>false</asynchronous>
+    <input>
+        <name>InputName_6_4_1</name>
+        <type>Float</type>
+        <number>1</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">19</value>
+    </input>
+    <input>
+        <name>InputName_6_4_2</name>
+        <type>Integer</type>
+        <number>2</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">885</value>
+    </input>
+    <output>
+        <name>OutputName_6_4_1</name>
+        <type>String</type>
+        <number>1</number>
+    </output>
+</capability>

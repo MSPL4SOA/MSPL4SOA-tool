@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_4_1</name>
+    <number>1</number>
+    <serviceName>ServiceName_4</serviceName>
+    <dataInputClassName></dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_4_1</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>true</stateRepository>
+    <temporaryMemory>false</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>false</rest>
+    <restMethod>Get</restMethod>
+    <soap>true</soap>
+    <authentification>true</authentification>
+    <jms>false</jms>
+    <synchronous>true</synchronous>
+    <asynchronous>false</asynchronous>
+    <usernameValue>admin</usernameValue>
+    <passwordValue>hpkrpnnabbdlceep</passwordValue>
+    <output>
+        <name>OutputName_4_1_1</name>
+        <type>Float</type>
+        <number>1</number>
+    </output>
+</capability>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_7_4</name>
+    <number>4</number>
+    <serviceName>ServiceName_7</serviceName>
+    <dataInputClassName>InputDataClassName_7_4</dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_7_4</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>true</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>true</rest>
+    <restMethod>Get</restMethod>
+    <soap>false</soap>
+    <authentification>true</authentification>
+    <jms>false</jms>
+    <synchronous>false</synchronous>
+    <asynchronous>true</asynchronous>
+    <usernameValue>paparirgefhr</usernameValue>
+    <passwordValue>kkkiahaoqdsoeqtj</passwordValue>
+    <input>
+        <name>InputName_7_4_1</name>
+        <type>Float</type>
+        <number>1</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">761</value>
+    </input>
+    <output>
+        <name>OutputName_7_4_1</name>
+        <type>String</type>
+        <number>1</number>
+    </output>
+    <output>
+        <name>OutputName_7_4_2</name>
+        <type>Float</type>
+        <number>2</number>
+    </output>
+</capability>

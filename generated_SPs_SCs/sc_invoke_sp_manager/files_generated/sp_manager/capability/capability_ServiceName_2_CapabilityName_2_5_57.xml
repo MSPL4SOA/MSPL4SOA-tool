@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_2_5</name>
+    <number>5</number>
+    <serviceName>ServiceName_2</serviceName>
+    <dataInputClassName></dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_2_5</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>true</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>false</rest>
+    <soap>true</soap>
+    <authentification>true</authentification>
+    <jms>false</jms>
+    <synchronous>false</synchronous>
+    <asynchronous>true</asynchronous>
+    <usernameValue>admin</usernameValue>
+    <passwordValue>kbcgmncefmoskdkh</passwordValue>
+    <output>
+        <name>OutputName_2_5_1</name>
+        <type>Float</type>
+        <number>1</number>
+    </output>
+</capability>

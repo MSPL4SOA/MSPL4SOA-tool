@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_7_5</name>
+    <number>5</number>
+    <serviceName>ServiceName_7</serviceName>
+    <dataInputClassName>InputDataClassName_7_5</dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_7_5</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>false</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>false</rest>
+    <restMethod>Get</restMethod>
+    <soap>true</soap>
+    <authentification>false</authentification>
+    <jms>false</jms>
+    <synchronous>false</synchronous>
+    <asynchronous>true</asynchronous>
+    <input>
+        <name>InputName_7_5_1</name>
+        <type>Float</type>
+        <number>1</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">253</value>
+    </input>
+    <input>
+        <name>InputName_7_5_2</name>
+        <type>Integer</type>
+        <number>2</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">877</value>
+    </input>
+    <output>
+        <name>OutputName_7_5_1</name>
+        <type>Float</type>
+        <number>1</number>
+    </output>
+</capability>

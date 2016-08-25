@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_4_3</name>
+    <number>3</number>
+    <serviceName>ServiceName_4</serviceName>
+    <dataInputClassName>InputDataClassName_4_3</dataInputClassName>
+    <dataOutputClassName></dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>false</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>false</stateRepository>
+    <temporaryMemory>false</temporaryMemory>
+    <twoWayState>false</twoWayState>
+    <rest>false</rest>
+    <restMethod>Post</restMethod>
+    <soap>true</soap>
+    <authentification>true</authentification>
+    <jms>false</jms>
+    <synchronous>true</synchronous>
+    <asynchronous>false</asynchronous>
+    <usernameValue>tcnrhioiimaj</usernameValue>
+    <passwordValue>pass</passwordValue>
+    <input>
+        <name>InputName_4_3_1</name>
+        <type>Integer</type>
+        <number>1</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">301</value>
+    </input>
+    <input>
+        <name>InputName_4_3_2</name>
+        <type>Integer</type>
+        <number>2</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">824</value>
+    </input>
+</capability>

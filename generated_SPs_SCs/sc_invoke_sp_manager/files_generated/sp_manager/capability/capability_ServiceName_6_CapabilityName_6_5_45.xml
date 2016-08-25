@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_6_5</name>
+    <number>5</number>
+    <serviceName>ServiceName_6</serviceName>
+    <dataInputClassName>InputDataClassName_6_5</dataInputClassName>
+    <dataOutputClassName>OutputDataClassName_6_5</dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>true</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>false</stateRepository>
+    <temporaryMemory>true</temporaryMemory>
+    <twoWayState>true</twoWayState>
+    <rest>true</rest>
+    <restMethod>Get</restMethod>
+    <soap>false</soap>
+    <authentification>true</authentification>
+    <jms>false</jms>
+    <synchronous>false</synchronous>
+    <asynchronous>true</asynchronous>
+    <usernameValue>admin</usernameValue>
+    <passwordValue>gerplorbnlpobtih</passwordValue>
+    <input>
+        <name>InputName_6_5_1</name>
+        <type>Float</type>
+        <number>1</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">546</value>
+    </input>
+    <input>
+        <name>InputName_6_5_2</name>
+        <type>Integer</type>
+        <number>2</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">806</value>
+    </input>
+    <input>
+        <name>InputName_6_5_3</name>
+        <type>Integer</type>
+        <number>3</number>
+        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">793</value>
+    </input>
+    <output>
+        <name>OutputName_6_5_1</name>
+        <type>Integer</type>
+        <number>1</number>
+    </output>
+    <output>
+        <name>OutputName_6_5_2</name>
+        <type>Float</type>
+        <number>2</number>
+    </output>
+</capability>
