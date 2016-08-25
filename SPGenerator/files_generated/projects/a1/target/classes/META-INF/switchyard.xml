@@ -117,10 +117,10 @@
         </sca:component>
     </sca:composite>
     <transforms>
-        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="a1.transformer.TransformersServiceName_2" from="java:a1.output.OutputDataClassName_2_1" to="{urn:a1:a1:1.0}CapabilityName_2_1Response"/>
-        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="a1.transformer.TransformersServiceName_2" from="{urn:a1:a1:1.0}CapabilityName_2_1" to="java:a1.input.InputDataClassName_2_1"/>
         <transform.java xmlns="urn:switchyard-config:transform:2.0" class="a1.transformer.TransformersServiceName_1" from="java:a1.output.OutputDataClassName_1_2" to="{urn:a1:a1:1.0}CapabilityName_1_2Response"/>
         <transform.java xmlns="urn:switchyard-config:transform:2.0" class="a1.transformer.TransformersServiceName_1" from="{urn:a1:a1:1.0}CapabilityName_1_1" to="java:a1.input.InputDataClassName_1_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="a1.transformer.TransformersServiceName_2" from="java:a1.output.OutputDataClassName_2_1" to="{urn:a1:a1:1.0}CapabilityName_2_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="a1.transformer.TransformersServiceName_2" from="{urn:a1:a1:1.0}CapabilityName_2_1" to="java:a1.input.InputDataClassName_2_1"/>
     </transforms>
     <sy:domain>
         <sy:properties/>
