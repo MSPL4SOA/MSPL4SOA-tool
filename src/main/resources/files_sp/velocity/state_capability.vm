@@ -1,0 +1,20 @@
+package $statePkg;
+
+import javax.ejb.Stateless;
+import javax.inject.Named;
+
+#if($capability.stateRepository == true)
+import org.jboss.annotation.ejb.cache.simple.CacheConfig;
+#end
+
+import $utilPkg#[[.]]#$STATE_FILE_NAME;
+
+@Stateless
+#if($capability.stateRepository == true)
+@CacheConfig (maxSize=100000, idleTimeoutSeconds=300, removalTimeoutSeconds=0)
+#end
+@Named("$capability.stateClassName")
+public class $capability.stateClassName extends $STATE_FILE_NAME
+{
+
+}

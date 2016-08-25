@@ -1,0 +1,35 @@
+package $outputDataPkg;
+
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "$capability.dataOutputClassName.substring(0,1).toLowerCase()$capability.dataOutputClassName.substring(1)")
+public class $capability.dataOutputClassName implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+    	#foreach($output in $capability.outputs)
+    		@XmlElement(name = "$output.name.substring(0,1).toLowerCase()$output.name.substring(1)")	
+    		protected $output.type $output.name;
+    	#end
+
+		#foreach($output in $capability.outputs)
+    		public $output.type get$output.name.substring(0,1).toUpperCase()$output.name.substring(1)()
+    		{
+    			return $output.name;
+    		}
+    	#end
+    	
+    	#foreach($output in $capability.outputs)
+    		public void set$output.name.substring(0,1).toUpperCase()$output.name.substring(1)($output.type value)
+    		{
+    			this.$output.name = value;
+    		}
+    	#end
+
+}

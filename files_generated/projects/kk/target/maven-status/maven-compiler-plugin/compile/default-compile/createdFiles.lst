@@ -1,0 +1,11 @@
+kk/state/State_ServiceName_1_CapabilityName_1_1.class
+kk/input/InputDataClassName_1_1.class
+kk/util/StateBase.class
+kk/service/ServiceName_1Bean.class
+kk/output/OutputDataClassName_1_1.class
+kk/service/ServiceName_1.class
+kk/resource/ResourceDownloadContract.class
+kk/service/DownloadContract.class
+kk/service/DownloadContractBean.class
+kk/util/ConsumerHeader.class
+kk/util/XMLSOAPTransformers.class
