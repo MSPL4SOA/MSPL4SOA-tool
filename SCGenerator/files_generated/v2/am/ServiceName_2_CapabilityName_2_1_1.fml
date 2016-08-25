@@ -1,0 +1,6 @@
+Root : Service_2 ServiceName_2=ServiceName_2 Capability_2_1;Capability_2_1: 
+CapabilityName_2_1=CapabilityName_2_1 InputData_2_1_2 InputValue_2_1_2=534 
+Password_2_1=pass REST_2_1 Authentification_2_1 InputData_2_1_1 Username_2_1=frfqntgpalfb 
+InputType_2_1_1=Float InputDataClassName_2_1=InputDataClassName_2_1 Post_2_1 
+InputValue_2_1_1=136 CommunicationTechnologie_2_1 InputName_2_1_2=InputName_2_1_2 
+InputType_2_1_2=String InputName_2_1_1=InputName_2_1_1;

@@ -1,0 +1,8 @@
+Root : Service_1 ServiceName_1=ServiceName_1 Capability_1_2;Capability_1_2:PublishSubscribe_1_2 
+AsynchronousQueue_1_2 OutputData_1_2_3 Transactional_1_2 OutputType_1_2_1=Float 
+OutputType_1_2_2=Float OutputType_1_2_3=Integer StateMessaging_1_2 
+OutputDataClassName_1_2=OutputDataClassName_1_2 ResponseHandler_1_2 
+OutputName_1_2_1=OutputName_1_2_1 TwoWayState_1_2 OutputName_1_2_2=OutputName_1_2_2 
+OutputData_1_2_2 MOM_1_2 CommunicationTechnologie_1_2 Durable_1_2 StateRepository_1_2 
+Synchronous_1_2 CapabilityName_1_2=CapabilityName_1_2 TemporaryMemory_1_2
+OutputData_1_2_1 OutputName_1_2_3=OutputName_1_2_3;
