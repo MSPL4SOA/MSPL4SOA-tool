@@ -1,0 +1,5 @@
+Root : Service_1 ServiceName_1=ServiceName_1 Capability_1_1;Capability_1_1:InputValue_1_1_2=766 
+Post_1_1  CapabilityName_1_1=CapabilityName_1_1 InputName_1_1_1=InputName_1_1_1 
+InputData_1_1_1 InputDataClassName_1_1=InputDataClassName_1_1 InputName_1_1_2=InputName_1_1_2 
+InputData_1_1_2 CommunicationTechnologie_1_1 InputType_1_1_2=String InputType_1_1_1=String 
+InputValue_1_1_1=66 REST_1_1;

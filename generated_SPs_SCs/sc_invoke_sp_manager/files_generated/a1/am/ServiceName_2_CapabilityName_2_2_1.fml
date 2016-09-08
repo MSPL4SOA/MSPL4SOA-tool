@@ -1,0 +1,4 @@
+Root : Service_2 ServiceName_2=ServiceName_2 Capability_2_2;
+Capability_2_2:CapabilityName_2_2=CapabilityName_2_2 Password_2_2=pass Reliability_2_2 
+Acknowledgement_2_2 MOM_2_2 Username_2_2=admin AsynchronousQueue_2_2 PublishSubcribe_2_2 Durable_2_2 
+CommunicationTechnologie_2_2 PersistentDelivery_2_2 Authentification_2_2;

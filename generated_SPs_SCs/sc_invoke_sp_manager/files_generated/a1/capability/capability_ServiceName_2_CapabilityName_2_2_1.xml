@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<capability>
+    <name>CapabilityName_2_2</name>
+    <number>2</number>
+    <serviceName>ServiceName_2</serviceName>
+    <dataInputClassName></dataInputClassName>
+    <dataOutputClassName></dataOutputClassName>
+    <serviceState>false</serviceState>
+    <stateMessaging>false</stateMessaging>
+    <statefullService>false</statefullService>
+    <stateRepository>false</stateRepository>
+    <temporaryMemory>false</temporaryMemory>
+    <twoWayState>false</twoWayState>
+    <rest>false</rest>
+    <restMethod>Post</restMethod>
+    <soap>false</soap>
+    <broker>
+        <brokerName>HornetQ</brokerName>
+        <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+        <providerUrl>remote://localhost:4447</providerUrl>
+        <securityPrincipal>guest</securityPrincipal>
+        <securityCredentials>jboss@dmin88</securityCredentials>
+        <connectionFactory>#ConnectionFactory</connectionFactory>
+        <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+        <queueError>net implemented</queueError>
+        <queueIn>a1_in_queue_ServiceName_2_CapabilityName_2_2</queueIn>
+        <queueOut>a1_out_queue_ServiceName_2_CapabilityName_2_2</queueOut>
+        <topic>a1_topic_ServiceName_2_CapabilityName_2_2</topic>
+        <transactional>false</transactional>
+        <acknowledgement>true</acknowledgement>
+        <persistentDelivery>true</persistentDelivery>
+        <publishSubscribe>false</publishSubscribe>
+        <durable>true</durable>
+    </broker>
+    <authentification>true</authentification>
+    <jms>true</jms>
+    <synchronous>true</synchronous>
+    <asynchronous>false</asynchronous>
+    <usernameValue>admin</usernameValue>
+    <passwordValue>pass</passwordValue>
+</capability>

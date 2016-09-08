@@ -11,6 +11,8 @@
 		<switchyard.version>2.0.0.Final</switchyard.version>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
+		<integration.version></integration.version>
+		<kie.version></kie.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -24,6 +26,48 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+
+		<dependency>
+			<groupId>hornetq</groupId>
+			<artifactId>hornetq</artifactId>
+			<version>2.7.0.v20130125-0826</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/hornetq-core-2.2.21.Final.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-bom</artifactId>
+			<version>6.4.0.Final</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-bom</artifactId>
+			<version>6.4.0.Final</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.switchyard.components</groupId>
 			<artifactId>switchyard-component-bean</artifactId>
@@ -72,9 +116,33 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.switchyard.components</groupId>
+			<artifactId>switchyard-component-rules</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard</groupId>
+			<artifactId>switchyard-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard.components</groupId>
+			<artifactId>switchyard-component-test-mixin-cdi</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Dependencies>hornetq</Dependencies>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.switchyard</groupId>
 				<artifactId>switchyard-plugin</artifactId>

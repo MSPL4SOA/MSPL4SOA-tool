@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fmprimitives:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fmprimitives="http://lero.ie/spl/fmprimitives.ecore" id="am_sc_update" name="am_sc_update">
+  <features id="Root" name="Root" featureHasSubfeature="//@primitives.6 //@primitives.10 //@primitives.11"/>
+  <features id="CapabilityName_2_2=CapabilityName_2_2" name="CapabilityName_2_2=CapabilityName_2_2" featureHasParent="//@primitives.7"/>
+  <features id="Reliability_2_2" name="Reliability_2_2" featureHasParent="//@primitives.4"/>
+  <features id="Service_2" name="Service_2" featureHasParent="//@primitives.6"/>
+  <features id="MOM_2_2" name="MOM_2_2" featureHasParent="//@primitives.1"/>
+  <features id="Authentification_2_2" name="Authentification_2_2" featureHasParent="//@primitives.9"/>
+  <features id="Username_2_2=admin" name="Username_2_2=admin" featureHasParent="//@primitives.2"/>
+  <features id="Acknowledgement_2_2" name="Acknowledgement_2_2" featureHasParent="//@primitives.5"/>
+  <features id="CommunicationTechnologie_2_2" name="CommunicationTechnologie_2_2" featureHasParent="//@primitives.3"/>
+  <features id="PersistentDelivery_2_2" name="PersistentDelivery_2_2" featureHasParent="//@primitives.0"/>
+  <features id="Capability_2_2" name="Capability_2_2" featureHasParent="//@primitives.10" featureHasSubfeature="//@primitives.0 //@primitives.1 //@primitives.2 //@primitives.3 //@primitives.4 //@primitives.5 //@primitives.7 //@primitives.8 //@primitives.9 //@primitives.12"/>
+  <features id="Password_2_2=pass" name="Password_2_2=pass" featureHasParent="//@primitives.12"/>
+  <features id="ServiceName_2=ServiceName_2" name="ServiceName_2=ServiceName_2" featureHasParent="//@primitives.11"/>
+  <features id="AsynchronousQueue_2_2" name="AsynchronousQueue_2_2" featureHasParent="//@primitives.8"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge0" name="edge0" parent="//@features.10" subfeature="//@features.9"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge1" name="edge1" parent="//@features.10" subfeature="//@features.4"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge2" name="edge2" parent="//@features.10" subfeature="//@features.6"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge3" name="edge3" parent="//@features.10" subfeature="//@features.8"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge4" name="edge4" parent="//@features.10" subfeature="//@features.2"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge5" name="edge5" parent="//@features.10" subfeature="//@features.7"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge6" name="edge6" parent="//@features.0" subfeature="//@features.3"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge7" name="edge7" parent="//@features.10" subfeature="//@features.1"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge8" name="edge8" parent="//@features.10" subfeature="//@features.13"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge9" name="edge9" parent="//@features.10" subfeature="//@features.5"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge10" name="edge10" parent="//@features.0" subfeature="//@features.10"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge11" name="edge11" parent="//@features.0" subfeature="//@features.12"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge12" name="edge12" parent="//@features.10" subfeature="//@features.11"/>
+</fmprimitives:FeatureModel>

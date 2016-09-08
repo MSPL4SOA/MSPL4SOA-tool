@@ -14,6 +14,8 @@ public final class TransformersServiceName_1 {
 	@Transformer(from = "{urn:a1:a1:1.0}CapabilityName_1_1")
 	public InputDataClassName_1_1 transformCapabilityName_1_1ToInputDataClassName_1_1(
 			Element from) {
+		
+		System.out.println("Transformer\n" + from);
 
 		InputDataClassName_1_1 in = new InputDataClassName_1_1();
 
