@@ -140,7 +140,7 @@ public class SCProject {
 
 		fmSCUpdateFML = responseString.replaceAll(";", ";\n");
 
-		fmSCUpdateFML_eq_ = fmSCUpdateFML.replaceAll("=", "_eq_");
+		fmSCUpdateFML_eq_ = fmSCUpdateFML;
 
 		try {
 			contract = FMFactory.convertFMSCUpdateToContractXML(fmSCUpdateFML_eq_);
@@ -191,8 +191,7 @@ public class SCProject {
 		// ----------------------//
 
 		// Functions.stringToFile(
-		// fmBDD.FM("fm_sc_update", responseString.replaceAll("=",
-		// "_eq_")).toString().replaceAll("_eq_", "="),
+		// fmBDD.FM("fm_sc_update", responseString).toString(),
 		// fmSCUpdateFMLPath, false);
 
 		// ----------------------//

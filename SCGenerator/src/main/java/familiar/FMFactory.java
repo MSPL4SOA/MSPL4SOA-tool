@@ -42,7 +42,7 @@ public class FMFactory {
 
 	// public String error = "";
 
-	public static final String EQ_ATTRIBUTE = "_eq_";
+	public static final String EQ_ATTRIBUTE = "=";
 
 	// SP
 	// we avoid a different name (ServiceProvider) to accelarate the reasoning
@@ -548,7 +548,7 @@ public class FMFactory {
 	// try {
 	// fmSPFMV = fmUpdateBDD.FM("fmSP", fm);
 	//
-	// result = fm.replaceAll("\"", "");
+	// result = fm;
 	//
 	// SetVariable fmSPFMVFeatures = fmSPFMV.features();
 	// ArrayList<String> reduceFeaturesStringList = util.Functions
@@ -1514,8 +1514,7 @@ public class FMFactory {
 	// SliceMode.EXCLUDING);
 	//
 	// // System.out.println("\n\n" +
-	// // capabilityFMSCFMVUpdatedPrimFMV.toString().replaceAll("\"",
-	// // "") + "\n\n");
+	// // capabilityFMSCFMVUpdatedPrimFMV.toString() + "\n\n");
 	//
 	// System.out.println("Delete ommited shared features");
 	// // FeatureModelVariable capabilityFMSCFMVUpdatedFMV =
@@ -1683,7 +1682,7 @@ public class FMFactory {
 				if (fmFMV.features().names().contains((String) pair.getKey())) {
 					String oldFeatureName = (String) pair.getKey();
 
-					String newFeatureName = addQuote(oldFeatureName + EQ_ATTRIBUTE + pair.getValue());
+					String newFeatureName = oldFeatureName + EQ_ATTRIBUTE + pair.getValue();
 
 					fmFMV.renameFeature(oldFeatureName, newFeatureName);
 				}

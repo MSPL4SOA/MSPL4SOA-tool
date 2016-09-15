@@ -1,0 +1,3 @@
+ServiceContract: "Service_1" "HostName=http://localhost:8080/testeq3" "ProjectName=testeq3" ; 
+"Service_1": "ServiceName_1=ServiceName_1" "Capability_1_2" ; 
+"Capability_1_2": "OutputName_1_2_1=OutputName_1_2_1" "Get_1_2" "CapabilityName_1_2=CapabilityName_1_2" "InputData_1_2_1" "OutputData_1_2_1" "TemporaryMemory_1_2" "StateMessaging_1_2" "InputName_1_2_2=InputName_1_2_2" "InputValue_1_2_2=96" "REST_1_2" "OutputType_1_2_1=String" "TwoWayState_1_2" "InputType_1_2_2=Float" "InputType_1_2_1=String" "ResponseHandler_1_2" "InputDataClassName_1_2=InputDataClassName_1_2" "StateRepository_1_2" "CommunicationTechnologie_1_2" "InputValue_1_2_1=304" "InputName_1_2_1=InputName_1_2_1" "OutputDataClassName_1_2=OutputDataClassName_1_2" "Synchronous_1_2" "InputData_1_2_2" ;

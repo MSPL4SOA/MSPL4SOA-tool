@@ -55,8 +55,6 @@ public class SCGenerator {
 
 	public String capabilityId;
 
-	public static final String EQ_ATTRIBUTE = "_eq_";
-
 	public String projectPath;
 	public String fmFilePath;
 
@@ -351,7 +349,7 @@ public class SCGenerator {
 		for (String feature : fmv.features().names()) {
 
 			if (feature.matches(".*" + featureToSearch + ".*")) {
-				return feature.split(EQ_ATTRIBUTE)[1];
+				return feature.split(FMFactory.EQ_ATTRIBUTE)[1];
 			}
 		}
 		return "";
@@ -364,7 +362,7 @@ public class SCGenerator {
 
 			if (feature.matches(".*" + featureToSearch + ".*")) {
 
-				return feature.split(EQ_ATTRIBUTE)[0];
+				return feature.split(FMFactory.EQ_ATTRIBUTE)[0];
 			}
 		}
 		return "";
@@ -426,7 +424,7 @@ public class SCGenerator {
 		// this.host = contract.hostName;
 
 		try {
-			fmvAM = fmbdd.FM("am", Functions.fileToString(amFilePath).replaceAll("=", "_eq_"));
+			fmvAM = fmbdd.FM("am", Functions.fileToString(amFilePath));
 
 			convertAMToContractXML(fmvAM);
 			// load capability
@@ -472,10 +470,10 @@ public class SCGenerator {
 			String error = "";
 
 			FeatureModelVariable fmvFM = FMBDD.getInstance().FM("fm",
-					Functions.fileToString(fmFilePath).replaceAll("=", EQ_ATTRIBUTE));
+					Functions.fileToString(fmFilePath));
 
 			FeatureModelVariable fmvAM = FMBDD.getInstance().FM("am",
-					Functions.fileToString(amFilePath).replaceAll("=", EQ_ATTRIBUTE));
+					Functions.fileToString(amFilePath));
 
 			error += TextEditor.checkAttributesValue(fmvAM);
 			error += TextEditor.checkConformConfiguration(fmvAM, fmvFM);

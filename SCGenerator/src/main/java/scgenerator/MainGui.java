@@ -32,11 +32,11 @@ import fr.unice.polytech.modalis.familiar.operations.CountingStrategy;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
 import gsd.synthesis.FeatureModel;
+import mock.MockData;
 import scfactory.SCGenerator;
 import scfactory.FMBDD;
 import scfactory.SCProject;
 import util.Functions;
-import util.MockData;
 
 public class MainGui {
 
@@ -234,7 +234,7 @@ public class MainGui {
 							FeatureModelVariable fmvSC;
 							try {
 								fmvSC = FMBDD.getInstance().FM("fm", util.Functions
-										.fileToString(scProject.fmSCUpdateFMLPath).replaceAll("=", "_eq_"));
+										.fileToString(scProject.fmSCUpdateFMLPath));
 								// System.out.println("GO!!");
 								// int amsCount = fmvSC.configsBDD().size();
 
@@ -273,7 +273,7 @@ public class MainGui {
 				FeatureModelVariable fmvSC;
 				try {
 					fmvSC = FMBDD.getInstance().FM("fm",
-							util.Functions.fileToString(scProject.fmSCUpdateFMLPath).replaceAll("=", "_eq_"));
+							util.Functions.fileToString(scProject.fmSCUpdateFMLPath));
 					// System.out.println("GO!!");
 
 					ArrayList<Variable> configsList = new ArrayList<Variable>(fmvSC.configs());
@@ -302,19 +302,16 @@ public class MainGui {
 
 						String confResult = MockData.setAttributes(conf);
 
-						// confResult = confResult.replaceAll(EQ_ATTRIBUTE,
-						// "=");
-
 						AMSC amsc = new AMSC(frame, scProject, FMBDD.getInstance());
 						amsc.createSCAM();
 
 						amsc.valid = true;
-						amsc.am = confResult.replaceAll(FMFactory.EQ_ATTRIBUTE, "=");
+						amsc.am = confResult;
 
 						// FeatureModelVariable fmvAM = amsc.fmbdd.FM("am",
 						// confResult);
 
-						FeatureModelVariable fmvAM = amsc.fmbdd.FM("am", confResult.replaceAll("=", AMSC.EQ_ATTRIBUTE));
+						FeatureModelVariable fmvAM = amsc.fmbdd.FM("am", confResult);
 
 						String amID = SCGenerator.getFeatureValue(fmvAM, "ServiceName") + "_"
 								+ SCGenerator.getFeatureValue(fmvAM, "CapabilityName") + "_" + AMSC.amSCValidNumber++;
@@ -328,8 +325,7 @@ public class MainGui {
 						S2T2Converter s2t2Converter = new S2T2Converter();
 
 						String xmiS2T2 = s2t2Converter
-								.fmlToS2T2XMI(FMBDD.getInstance().FM("am_sc_update", amsc.am.replaceAll("=", "_eq_")))
-								.replaceAll("_eq_", "=");
+								.fmlToS2T2XMI(FMBDD.getInstance().FM("am_sc_update", amsc.am));
 
 						amsc.amS2T2FilePath = SCProject.AM_S2T2_DIR + amID + ".fmprimitives";
 

@@ -100,13 +100,15 @@ public class TextEditor {
 
 					textPane.setText(textPane.getText());
 
-					fmFactory.specializedAttributedFMSP = textPane.getText().replaceAll("=", "_eq_");
+					fmFactory.specializedAttributedFMSP = textPane.getText();
 
 					// System.out.println(fmFactory.specializedAttributedFMSP);
 
 					fmFactory.specializedFMSP = FMFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
 
-//					fmFactory.attributes = FMFactory.extractAttributesValues(fmFactory.specializedAttributedFMSP);// mandatory
+					// fmFactory.attributes =
+					// FMFactory.extractAttributesValues(fmFactory.specializedAttributedFMSP);//
+					// mandatory
 
 					// boolean checkSpec = true;
 					error += FMFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.specializedFMSP);
@@ -135,10 +137,9 @@ public class TextEditor {
 
 						fmFactory.updatedAttributedFMSC = FMFactory.updateAndDelete2(fmFactory._fmSC,
 								fmFactory.specializedAttributedFMSP, omittedSharedFeatures, true, featureSetToSlice);
-						
+
 						fmFactory.updatedFMSC = FMFactory.deleteAttributesValues(fmFactory.updatedAttributedFMSC);
 
-						
 						// insert hidden features to fm_sp_spec and fm_sc_update
 						//
 						HiddenFeatures hiddenSharedFeatures = (HiddenFeatures) util.JAXBUtil
@@ -155,45 +156,43 @@ public class TextEditor {
 						options.add(MainGui.PROJECT_NAME);
 						options.add(SwitchyardProject.HOST_NAME);
 
-						fmFactory.specializedAttributedFMSP = FMFactory
-								.insertFeatureFromXML(fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, options);
+						fmFactory.specializedAttributedFMSP = FMFactory.insertFeatureFromXML(
+								fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, options);
 
-						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(fmFactory.updatedAttributedFMSC,
-								hiddenSharedFeatures.featureInserts, options);
+						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(
+								fmFactory.updatedAttributedFMSC, hiddenSharedFeatures.featureInserts, options);
 						//
 						//////////////////////////
-						
+
 						// fmFactory.updateAndDelete(fmFactory.specializedFMSP,
 						// fmFactory._fmSC);
 
 						// specialized
-						util.Functions.stringToFile(
-								fmFactory.specializedAttributedFMSP.replaceAll("_eq_", "="),
+						util.Functions.stringToFile(fmFactory.specializedAttributedFMSP,
 								spSpecializedFMFamiliarFilePath, false);
 						// util.Functions.stringToFile(
-						// fmFactory.specializedAttributedFMSP.replaceAll("_eq_",
-						// "=").replaceAll("\"", ""),
+						// fmFactory.specializedAttributedFMSP,
 						// spSpecializedFMS2T2FilePath, false);
 
-						xmiS2T2 = s2t2Converter
-								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec", fmFactory.specializedAttributedFMSP));
+						xmiS2T2 = s2t2Converter.fmlToS2T2XMI(
+								FMBDD.getInstance().FM("fm_sp_spec", fmFactory.specializedAttributedFMSP));
 						util.Functions.stringToFile(xmiS2T2, spSpecializedFMS2T2FilePath, false);
 
 						// util.Functions.stringToFile(
 						// fmFactory.fmUpdateBDD.FM("fm_sp_spec",
 						// fmFactory.specializedAttributedFMSP).toString(),
 						// "./fm_familiar_generated/fm_sp_spec.fml", false);
-						util.Functions.stringToFile(fmFactory.updatedAttributedFMSC.replaceAll("_eq_", "="),
-								scUpdatedFMFamiliarFilePath, false);
-						
-						System.out.println();
-						
-						System.out.println(fmFactory.updatedAttributedFMSC);
-						
+						util.Functions.stringToFile(fmFactory.updatedAttributedFMSC, scUpdatedFMFamiliarFilePath,
+								false);
+
 						System.out.println();
 
-						xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update",
-								fmFactory.updatedAttributedFMSC));
+						System.out.println(fmFactory.updatedAttributedFMSC);
+
+						System.out.println();
+
+						xmiS2T2 = s2t2Converter
+								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update", fmFactory.updatedAttributedFMSC));
 						util.Functions.stringToFile(xmiS2T2, scUpdatedFMS2T2FilePath, false);
 
 						lblScUpdatedFm.setVisible(true);

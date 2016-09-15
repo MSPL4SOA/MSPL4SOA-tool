@@ -12,7 +12,7 @@ public class GenerateConfigTest {
 	public static void main(String[] args) throws Exception {
 
 		String fmSCPath = "/home/akram/Desktop/fm3.fml";
-		String fmSCString = util.Functions.fileToString(fmSCPath).replaceAll("=", "_eq_");
+		String fmSCString = util.Functions.fileToString(fmSCPath);
 
 		
 		FeatureModelVariable fm1 = FMBDD.getInstance().FM("fm1",fmSCString);

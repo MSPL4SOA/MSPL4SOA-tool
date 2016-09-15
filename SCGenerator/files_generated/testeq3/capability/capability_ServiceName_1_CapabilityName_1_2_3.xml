@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_1</interfaceName>
+        <beanName>ServiceName_1Bean</beanName>
+        <number>1</number>
+        <capability>
+            <name>CapabilityName_1_2</name>
+            <number>2</number>
+            <serviceName>ServiceName_1</serviceName>
+            <dataInputClassName>InputDataClassName_1_2</dataInputClassName>
+            <dataOutputClassName>OutputDataClassName_1_2</dataOutputClassName>
+            <stateClassName>State_ServiceName_1_CapabilityName_1_2</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>true</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>true</twoWayState>
+            <rest>false</rest>
+            <soap>false</soap>
+            <broker>
+                <brokerName>HornetQ</brokerName>
+                <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+                <providerUrl>remote://localhost:4447</providerUrl>
+                <securityPrincipal>guest</securityPrincipal>
+                <securityCredentials>jboss@dmin88</securityCredentials>
+                <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+                <queueError>net implemented</queueError>
+                <queueIn>testeq3_in_queue_1_2</queueIn>
+                <queueOut>testeq3_out_queue_1_2</queueOut>
+                <topic>testeq3_topic_1_2</topic>
+                <transactional>false</transactional>
+                <acknowledgement>true</acknowledgement>
+                <persistentDelivery>false</persistentDelivery>
+                <publishSubscribe>true</publishSubscribe>
+                <durable>false</durable>
+                <serviceName>ServiceName_1</serviceName>
+                <capabilityName>CapabilityName_1_2</capabilityName>
+            </broker>
+            <authentification>true</authentification>
+            <jms>true</jms>
+            <input>
+                <name>InputName_1_2_1</name>
+                <type>String</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">892</value>
+            </input>
+            <input>
+                <name>InputName_1_2_2</name>
+                <type>Float</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">892</value>
+            </input>
+            <output>
+                <name>OutputName_1_2_1</name>
+                <type>String</type>
+                <number>1</number>
+            </output>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>true</synchronous>
+            <asynchronous>false</asynchronous>
+            <username>admin</username>
+            <password>ocknisgjkpoenifd</password>
+        </capability>
+    </service>
+    <projectName>testeq3</projectName>
+    <hostName>http://localhost:8080/testeq3</hostName>
+    <dataInputPkg>testeq3.input</dataInputPkg>
+    <dataOutputPkg>testeq3.output</dataOutputPkg>
+</contract>

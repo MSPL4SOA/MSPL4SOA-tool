@@ -11,8 +11,6 @@ import util.Functions;
 
 public class FMStatistics2 {
 
-	public static final String EQ_ATTRIBUTE = "_eq_";
-
 	public static int fmStatistics(String fmFilePath, String featureFilePath) {
 		FeatureModelVariable fmSPFMV;
 
@@ -23,7 +21,7 @@ public class FMStatistics2 {
 			// fmSPFMV = FMBDD.getInstance().FM("fm",
 			// util.Functions.fileToString(fmFilePath));
 
-			String fm = util.Functions.fileToString(fmFilePath).replaceAll("=", EQ_ATTRIBUTE);
+			String fm = util.Functions.fileToString(fmFilePath);
 
 			fmSPFMV = FMBDD.getInstance().FM("fm", deleteAttributesValues(fm));
 
@@ -60,9 +58,9 @@ public class FMStatistics2 {
 
 			for (String featureName : fmSPFMVFeatures.names()) {
 
-				if (featureName.matches(".+" + EQ_ATTRIBUTE + ".*")) {
+				if (featureName.matches(".+" + FMFactory.EQ_ATTRIBUTE + ".*")) {
 
-					fmFMV.renameFeature(featureName, featureName.substring(0, featureName.indexOf(EQ_ATTRIBUTE)));
+					fmFMV.renameFeature(featureName, featureName.substring(0, featureName.indexOf(FMFactory.EQ_ATTRIBUTE)));
 
 				}
 			}
@@ -150,12 +148,11 @@ public class FMStatistics2 {
 		// // "AMs :: " + FMBDD.getInstance()
 		// // .FM("fm_sp_spec",
 		// // deleteAttributesValues(Functions.fileToString(fmSPSpecializePath)
-		// // .replaceAll("=", EQ_ATTRIBUTE)))
+		// // ))
 		// // .counting(CountingStrategy.SAT_FML) / 2);
 		// System.out.println("AMs :: " + FMBDD.getInstance()
 		// .FM("fm_sp",
-		// Functions.fileToString(fmSPSpecializePath).replaceAll("=",
-		// EQ_ATTRIBUTE))
+		// Functions.fileToString(fmSPSpecializePath))
 		// .counting(CountingStrategy.SAT_FML) / 2);
 		// System.out.println("-------------------------");
 		//
@@ -180,7 +177,7 @@ public class FMStatistics2 {
 		System.out.println("Specialized Features :: " + fmStatistics(fmSCUpdatePath, specializedFeaturesPath));
 
 		String fmSPspecReduceComplexity = FMFactory.reduceComplexitySP(
-				deleteAttributesValues(Functions.fileToString(fmSCUpdatePath).replaceAll("=", EQ_ATTRIBUTE)));
+				deleteAttributesValues(Functions.fileToString(fmSCUpdatePath)));
 		;
 		System.out.println("AMs :: "
 				+ FMBDD.getInstance().FM("fm_sc_update", fmSPspecReduceComplexity).counting(CountingStrategy.SAT_FML)

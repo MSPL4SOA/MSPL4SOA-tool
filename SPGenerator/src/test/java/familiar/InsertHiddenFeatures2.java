@@ -20,7 +20,7 @@ public class InsertHiddenFeatures2 {
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
 		String fmSCPath = projectDir + "fm_sc_update.fml";
-		String fmSCString = util.Functions.fileToString(fmSCPath).replaceAll("=", "_eq_");
+		String fmSCString = util.Functions.fileToString(fmSCPath);
 
 		// FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fmsc",
 		// fmSCString);

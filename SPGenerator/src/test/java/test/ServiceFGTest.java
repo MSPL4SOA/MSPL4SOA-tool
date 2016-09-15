@@ -37,19 +37,19 @@ public class ServiceFGTest {
 		String fmSPPath = projectDir + "fm_sp_spec.fml";
 		String fmSPString = util.Functions.fileToString(fmSPPath);
 
-		FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fm1", fmSCString.replaceAll("=", "_eq_"));
+		FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fm1", fmSCString);
 
 //		System.out.println(FMFactory.getSharedFeatures(fmSCFMV));
 
-		ContractFG contractFG = FMFactory.extractContractFG(fmSPString.replaceAll("=", "_eq_"));
+		ContractFG contractFG = FMFactory.extractContractFG(fmSPString);
 		// System.out.println(FMFactory.buildFMV(contractFG));
 
 		// FMUpdateBDD fmUpdateBDD = new FMUpdateBDD();
 		//
 		// FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fm1",
-		// fmSCString.replaceAll("=", "_eq_"));
+		// fmSCString);
 		// FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fm2",
-		// fmSPString.replaceAll("=", "_eq_"));
+		// fmSPString);
 		//
 		// System.out.println("begin2");
 		// System.out.println(fmUpdateBDD.updateFM(fmSCFMV, fmSPFMV,

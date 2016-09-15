@@ -16,12 +16,12 @@ import fr.unice.polytech.modalis.familiar.fm.FMLUtils;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
 import gsd.synthesis.FeatureModel;
+import mock.MockData;
 import scfactory.FMBDD;
 import scfactory.SCGenerator;
 import scfactory.SCProject;
 import spc1.soap.ServiceName1;
 import util.Functions;
-import util.MockData;
 
 public class AMSC {
 
@@ -48,8 +48,6 @@ public class AMSC {
 	TextEditor textEditor;
 
 	public SCGenerator amGenerator;
-
-	public static final String EQ_ATTRIBUTE = "_eq_";
 
 	// public Capability capability;
 	// public String capabilityPath;
@@ -208,8 +206,6 @@ public class AMSC {
 
 		String confResult = MockData.setAttributes(conf);
 
-		confResult = confResult.replaceAll("_eq_", "=");
-
 		return confResult;
 	}
 
@@ -283,8 +279,7 @@ public class AMSC {
 	// FeatureModelVariable fmvSC;
 	// try {
 	// fmvSC = FMBDD.getInstance().FM("fm",
-	// Functions.fileToString(SCProject.FM_SC_UPDATE_FML_PATH).replaceAll("=",
-	// "_eq_"));
+	// Functions.fileToString(SCProject.FM_SC_UPDATE_FML_PATH));
 	// // System.out.println("GO!!");
 	//
 	// ArrayList<Variable> configsList = new
@@ -299,7 +294,6 @@ public class AMSC {
 	//
 	// String confResult = MockData.setAttributes(conf, FMBDD.getInstance());
 	//
-	// // confResult = confResult.replaceAll(EQ_ATTRIBUTE, "=");
 	//
 	// AMSC amsc = new AMSC(null, null, FMBDD.getInstance());
 	//
@@ -309,7 +303,7 @@ public class AMSC {
 	// FeatureModelVariable fmvAM = amsc.fmbdd.FM("am", confResult);
 	//
 	// // FeatureModelVariable fmvAM = amsc.fmbdd.FM("am",
-	// // confResult.replaceAll("=", EQ_ATTRIBUTE));
+	// // confResult);
 	//
 	// String amID = AMGenerator.getFeatureValue(fmvAM, "ServiceName") + "_"
 	// + AMGenerator.getFeatureValue(fmvAM, "CapabilityName") + "_" +

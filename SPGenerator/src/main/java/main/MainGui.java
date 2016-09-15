@@ -485,7 +485,7 @@ public class MainGui {
 							"configuration");
 					//
 					// Contract is exported above
-					util.Functions.stringToFile(fmFactory.updatedAttributedFMSC.replaceAll("_eq_", "="),
+					util.Functions.stringToFile(fmFactory.updatedAttributedFMSC,
 							switchyardProject.contractDirPath + "fm_sc_update.fml", false);
 
 					S2T2Converter s2t2Converter = new S2T2Converter();
@@ -516,7 +516,7 @@ public class MainGui {
 					fmFactory.specializedAttributedFMSP = fmFactory.specializedFMSP = mock.MockData
 							.setAttributes(fmFactory.mockSPSpec);
 
-					util.Functions.stringToFile(fmFactory.specializedAttributedFMSP.replaceAll("_eq_", "="),
+					util.Functions.stringToFile(fmFactory.specializedAttributedFMSP,
 							filesFMLPath + fmSPSpecFileName + ".fml", false);
 
 					///// put fms s2t2 in files
@@ -525,8 +525,7 @@ public class MainGui {
 					String xmiS2T2;
 					xmiS2T2 = s2t2Converter
 							.fmlToS2T2XMI(FMBDD.getInstance().FM(fmSPSpecFileName,
-									fmFactory.specializedAttributedFMSP.replaceAll("=", "_eq_")))
-							.replaceAll("_eq_", "=");
+									fmFactory.specializedAttributedFMSP));
 
 					util.Functions.stringToFile(xmiS2T2, filesS2T2Path + fmSPSpecFileName + ".fmprimitives", false);
 

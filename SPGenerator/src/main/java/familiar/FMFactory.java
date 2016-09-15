@@ -19,6 +19,7 @@ import features.bean.Service;
 import fr.unice.polytech.modalis.familiar.parser.MyExpressionParser;
 import fr.unice.polytech.modalis.familiar.variable.Comparison;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
+import fr.unice.polytech.modalis.familiar.variable.FeatureVariable;
 import fr.unice.polytech.modalis.familiar.variable.SetVariable;
 import generating.SwitchyardProject;
 import gsd.synthesis.Expression;
@@ -42,7 +43,7 @@ public class FMFactory {
 
 	// public String error = "";
 
-	public static final String EQ_ATTRIBUTE = "_eq_";
+	public static final String EQ_ATTRIBUTE = "=";
 
 	// SP
 	// we avoid a different name (ServiceProvider) to accelarate the reasoning
@@ -501,6 +502,11 @@ public class FMFactory {
 		this.mockSPSpec = this.mockSPSpec.replaceAll(";", ";\n");
 		//////////////
 
+		// add quotes
+		this._fmSP = FMBDD.getInstance().FM("fmsp", this._fmSP).toString();
+		this._fmSC = FMBDD.getInstance().FM("fmsC", this._fmSC).toString();
+		this.mockSPSpec = FMBDD.getInstance().FM("fmsppecmoc", this.mockSPSpec).toString();
+
 		// this.fmSPReduceComplexity = this._fmSP;
 		this.specializedFMSP = this._fmSP;
 		////////////////
@@ -548,7 +554,7 @@ public class FMFactory {
 	// try {
 	// fmSPFMV = fmUpdateBDD.FM("fmSP", fm);
 	//
-	// result = fm.replaceAll("\"", "");
+	// result = fm;
 	//
 	// SetVariable fmSPFMVFeatures = fmSPFMV.features();
 	// ArrayList<String> reduceFeaturesStringList = util.Functions
@@ -1082,8 +1088,10 @@ public class FMFactory {
 						capabilityFGToUpdateFMVDelAttributeFMV.toString());
 
 				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = capabilityFGToUpdateFMVDelAttributeFMV;
-//				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = FMBDD.getInstance().FM("fmSPSpec",
-//						removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(), featuresReducedToUpdate));
+				// FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced
+				// = FMBDD.getInstance().FM("fmSPSpec",
+				// removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(),
+				// featuresReducedToUpdate));
 
 				Set<String> featureSetToSliceCapability = com.google.common.collect.Sets.intersection(featureSetToSlice,
 						capabilityFGToUpdateFMVComplexityReduced.features().names());
@@ -1098,7 +1106,7 @@ public class FMFactory {
 					capabilitySliced = FMBDD.getSlicerInstance().sliceFM(capabilityFGToUpdateFMVComplexityReduced,
 							featureSetToSliceCapability, sliceMode);
 				}
-				
+
 				capabilitySliced.cleanup2();
 
 				// for (Expression<String> constraint :
@@ -1332,21 +1340,23 @@ public class FMFactory {
 													.replaceAll("@@", capabilityFGToUpdate.id));
 
 									capabilityUpdatedFMV.addConstraint(constraint);
-									
+
 									constraint = MyExpressionParser
-											.parseString("(Acknowledgement@@ -> !Transactional@@)"
-													.replaceAll("@@", capabilityFGToUpdate.id));
-									
+											.parseString("(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@",
+													capabilityFGToUpdate.id));
+
 									capabilityUpdatedFMV.addConstraint(constraint);
 
 									// cst += "(Acknowledgement@@ ->
 									// !Transactional@@)".replaceAll("@@",
 									// capabilityFGToUpdate.id) + ";\n";
 
-//									capabilityUpdatedFMV.addConstraint(
-//											new Expression<String>("(Acknowledgement@@ -> !Transactional@@)"
-//													.replaceAll("@@", capabilityFGToUpdate.id)));
-
+									// capabilityUpdatedFMV.addConstraint(
+									// new
+									// Expression<String>("(Acknowledgement@@ ->
+									// !Transactional@@)"
+									// .replaceAll("@@",
+									// capabilityFGToUpdate.id)));
 
 								}
 
@@ -1365,8 +1375,8 @@ public class FMFactory {
 
 								// capabilityFGResult.capabilityFM =
 								// capabilityUpdatedFMV.toString();
-								
-//								capabilityUpdatedFMV.cleanup2();
+
+								// capabilityUpdatedFMV.cleanup2();
 
 								capabilityFGResult.capabilityFM = insertFeatures(capabilityUpdatedFMV.toString(),
 										featuresReducedToUpdate);
@@ -1514,8 +1524,7 @@ public class FMFactory {
 	// SliceMode.EXCLUDING);
 	//
 	// // System.out.println("\n\n" +
-	// // capabilityFMSCFMVUpdatedPrimFMV.toString().replaceAll("\"",
-	// // "") + "\n\n");
+	// // capabilityFMSCFMVUpdatedPrimFMV.toString() + "\n\n");
 	//
 	// System.out.println("Delete ommited shared features");
 	// // FeatureModelVariable capabilityFMSCFMVUpdatedFMV =
@@ -1683,7 +1692,10 @@ public class FMFactory {
 				if (fmFMV.features().names().contains((String) pair.getKey())) {
 					String oldFeatureName = (String) pair.getKey();
 
-					String newFeatureName = addQuote(oldFeatureName + EQ_ATTRIBUTE + pair.getValue());
+					// String newFeatureName = addQuote(oldFeatureName +
+					// EQ_ATTRIBUTE + pair.getValue());
+
+					String newFeatureName = oldFeatureName + EQ_ATTRIBUTE + pair.getValue();
 
 					fmFMV.renameFeature(oldFeatureName, newFeatureName);
 				}
@@ -2160,6 +2172,7 @@ public class FMFactory {
 				operator = FeatureEdgeKind.MANDATORY;
 			else if (FeatureEdgeKind.OPTIONAL.toString().equals(featureInsertForXML.featureEdgeKind))
 				operator = FeatureEdgeKind.OPTIONAL;
+			
 
 			fmv.insert(featureToInsertFMV, featureInsertForXML.featureParent.replaceAll("@@1", capabilityFG.id),
 					operator);

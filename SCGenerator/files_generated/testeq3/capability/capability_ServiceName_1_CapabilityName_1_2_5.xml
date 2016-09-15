@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_1</interfaceName>
+        <beanName>ServiceName_1Bean</beanName>
+        <number>1</number>
+        <capability>
+            <name>CapabilityName_1_2</name>
+            <number>2</number>
+            <serviceName>ServiceName_1</serviceName>
+            <dataInputClassName>InputDataClassName_1_2</dataInputClassName>
+            <dataOutputClassName>OutputDataClassName_1_2</dataOutputClassName>
+            <stateClassName>State_ServiceName_1_CapabilityName_1_2</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>true</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>true</stateRepository>
+            <twoWayState>true</twoWayState>
+            <rest>true</rest>
+            <restMethod>Get</restMethod>
+            <soap>false</soap>
+            <authentification>false</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_1_2_1</name>
+                <type>String</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">304</value>
+            </input>
+            <input>
+                <name>InputName_1_2_2</name>
+                <type>Float</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">96</value>
+            </input>
+            <output>
+                <name>OutputName_1_2_1</name>
+                <type>String</type>
+                <number>1</number>
+            </output>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>true</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>testeq3</projectName>
+    <hostName>http://localhost:8080/testeq3</hostName>
+    <dataInputPkg>testeq3.input</dataInputPkg>
+    <dataOutputPkg>testeq3.output</dataOutputPkg>
+</contract>

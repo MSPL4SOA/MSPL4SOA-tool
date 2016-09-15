@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import familiar.FMFactory;
 import features.bean.Capability;
 import features.bean.Input;
 import features.bean.Service;
@@ -48,8 +49,6 @@ public class TextEditor {
 
 	String error = "";
 	public AMSC amsc;
-
-	public static final String EQ_ATTRIBUTE = "_eq_";
 
 	/**
 	 * Launch the application.
@@ -102,13 +101,13 @@ public class TextEditor {
 				// System.out.println(am);
 				try {
 
-//					System.out.println(scProject.fmSCUpdateFML.replaceAll("=", EQ_ATTRIBUTE) + "\n");
-//					System.out.println(am.replaceAll("=", EQ_ATTRIBUTE));
+//					System.out.println(scProject.fmSCUpdateFML + "\n");
+//					System.out.println(am);
 					
 					FeatureModelVariable fmvFM = FMBDD.getInstance().FM("fm",
-							scProject.fmSCUpdateFML.replaceAll("=", EQ_ATTRIBUTE));
+							scProject.fmSCUpdateFML);
 
-					FeatureModelVariable fmvAM = FMBDD.getInstance().FM("am", am.replaceAll("=", EQ_ATTRIBUTE));
+					FeatureModelVariable fmvAM = FMBDD.getInstance().FM("am", am);
 
 					error += checkAttributesValue(fmvAM);
 					error += checkConformConfiguration(fmvAM, fmvFM);
@@ -131,10 +130,9 @@ public class TextEditor {
 
 						S2T2Converter s2t2Converter = new S2T2Converter();
 
-						System.out.println(amsc.am.replaceAll("=", EQ_ATTRIBUTE));
+						System.out.println(amsc.am);
 						String xmiS2T2 = s2t2Converter
-								.fmlToS2T2XMI(FMBDD.getInstance().FM("am_sc_update", amsc.am.replaceAll("=", EQ_ATTRIBUTE)))
-								.replaceAll(EQ_ATTRIBUTE, "=");
+								.fmlToS2T2XMI(FMBDD.getInstance().FM("am_sc_update", amsc.am));
 						
 
 						amsc.amS2T2FilePath = SCProject.AM_S2T2_DIR + amID + ".fmprimitives";
@@ -243,11 +241,11 @@ public class TextEditor {
 
 		ArrayList<String> attributeFeaturesStringList = util.Functions.StringToList(SCProject.SC_ATTRIBUTES_CONTENT,
 				"\n");
-		String regexFeaturesString = regexFeatures(attributeFeaturesStringList);
+		String regexFeaturesString = FMFactory.regexFeatures(attributeFeaturesStringList);
 
 		for (String feature : fmv.features().names()) {
 
-			if (feature.matches(regexFeaturesString) && !feature.contains(EQ_ATTRIBUTE)) {
+			if (feature.matches(regexFeaturesString) && !feature.contains(FMFactory.EQ_ATTRIBUTE)) {
 //				result = false;
 				error += "The feature " + feature + " is an attribute and must be valued by =.\n";
 			}
@@ -268,8 +266,8 @@ public class TextEditor {
 				error += "All features of AM SC update must be mandatory.\n";
 
 			} else {
-				amTemp = FMBDD.getInstance().FM("am", deleteAttributesValues(am.toString()));
-				fmTemp = FMBDD.getInstance().FM("fm1", deleteAttributesValues(fm.toString()));
+				amTemp = FMBDD.getInstance().FM("am", FMFactory.deleteAttributesValues(am.toString()));
+				fmTemp = FMBDD.getInstance().FM("fm1", FMFactory.deleteAttributesValues(fm.toString()));
 
 				String capabilityName = getFeatureName(amTemp, "Capability_.*");
 
@@ -300,7 +298,7 @@ public class TextEditor {
 
 			if (feature.matches(".*" + featureToSearch + ".*")) {
 
-				return feature.split(EQ_ATTRIBUTE)[0];
+				return feature.split(FMFactory.EQ_ATTRIBUTE)[0];
 			}
 		}
 		return "";
@@ -319,53 +317,53 @@ public class TextEditor {
 
 	}
 
-	public static String deleteAttributesValues(String fm) {
-
-		FeatureModelVariable fmFMV = null;
-		try {
-			fmFMV = FMBDD.getInstance().FM("fm", fm);
-
-			SetVariable fmSPFMVFeatures = fmFMV.features();
-
-			for (String featureName : fmSPFMVFeatures.names()) {
-
-				if (featureName.matches(".+" + EQ_ATTRIBUTE + ".*")) {
-
-					fmFMV.renameFeature(featureName, featureName.substring(0, featureName.indexOf(EQ_ATTRIBUTE)));
-
-				}
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return fmFMV.toString();
-	}
-	
-
-	public static String regexFeatures(ArrayList<String> inFeatures) {
-
-		// a
-		// b
-		// => (a|b).*
-
-		String result = "(";
-
-		if (inFeatures.size() == 1)
-			return inFeatures.get(0) + ".*";
-
-		for (int i = 0; i < inFeatures.size(); i++) {
-
-			result += inFeatures.get(i);
-
-			if (inFeatures.size() - 1 != i)
-				result += "|";
-
-		}
-
-		result += ").*";
-
-		return result;
-	}
+//	public static String deleteAttributesValues(String fm) {
+//
+//		FeatureModelVariable fmFMV = null;
+//		try {
+//			fmFMV = FMBDD.getInstance().FM("fm", fm);
+//
+//			SetVariable fmSPFMVFeatures = fmFMV.features();
+//
+//			for (String featureName : fmSPFMVFeatures.names()) {
+//
+//				if (featureName.matches(".+" + FMFactory.EQ_ATTRIBUTE + ".*")) {
+//
+//					fmFMV.renameFeature(featureName, featureName.substring(0, featureName.indexOf(FMFactory.EQ_ATTRIBUTE)));
+//
+//				}
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return fmFMV.toString();
+//	}
+//	
+//
+//	public static String regexFeatures(ArrayList<String> inFeatures) {
+//
+//		// a
+//		// b
+//		// => (a|b).*
+//
+//		String result = "(";
+//
+//		if (inFeatures.size() == 1)
+//			return inFeatures.get(0) + ".*";
+//
+//		for (int i = 0; i < inFeatures.size(); i++) {
+//
+//			result += inFeatures.get(i);
+//
+//			if (inFeatures.size() - 1 != i)
+//				result += "|";
+//
+//		}
+//
+//		result += ").*";
+//
+//		return result;
+//	}
 
 }

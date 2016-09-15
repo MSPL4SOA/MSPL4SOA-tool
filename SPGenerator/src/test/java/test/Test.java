@@ -16,7 +16,7 @@ public class Test {
 		
 		
 		FMBDD.getInstance().FM("fm_sc_update",
-				util.Functions.fileToString("/home/akram/Desktop/fm2.fml").replaceAll("_eq_", "="));
+				util.Functions.fileToString("/home/akram/Desktop/fm2.fml"));
 
 		
 		System.exit(-1);

@@ -25,7 +25,6 @@ public class FMLDeleteTest extends FMLTest {
 		//prime
 		
 		String fm = "Capability_1_1: StateMessaging_1_1 CapabilityName_1_1 CommunicationTechnologie_1_1 [Authentification_1_1] OutputData_1_1_1 ;StateMessaging_1_1: TwoWayState_1_1 [StateRepository_1_1] [TemporaryMemory_1_1] ;CommunicationTechnologie_1_1: (SOAP_1_1|REST_1_1|MOM_1_1) ResponseHandler_1_1 ;Authentification_1_1: Username_1_1 Password_1_1 ;OutputData_1_1_1: OutputType_1_1_1 OutputName_1_1_1 ;ResponseHandler_1_1: (Synchronous_1_1|Asynchronous_1_1) ;REST_1_1: Get_1_1 ;MOM_1_1: AsynchronousQueue_1_1 [PublishSubscribe_1_1] ;PublishSubscribe_1_1: [Durable_1_1] ;";
-		fm = fm.replaceAll("=", "_eq_");
 		fmToDelete = FM("m1",fm);
 
 		

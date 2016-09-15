@@ -17,10 +17,10 @@ public class FMLSliceTest {
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
 		String fmSCPath = projectDir + "fm_sc.fml";
-		String fmSCString = util.Functions.fileToString(fmSCPath).replaceAll("=", "_eq_");
+		String fmSCString = util.Functions.fileToString(fmSCPath);
 
 		String fmSPPath = projectDir + "fm_sp_spec.fml";
-		String fmSPString = util.Functions.fileToString(fmSPPath).replaceAll("=", "_eq_");
+		String fmSPString = util.Functions.fileToString(fmSPPath);
 
 		// fmSCString = FMFactory.setAttributesValues(fmSCString,
 		// FMFactory.extractAttributesValues(fmSPString));

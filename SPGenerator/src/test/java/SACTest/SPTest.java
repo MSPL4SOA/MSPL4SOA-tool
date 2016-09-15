@@ -44,7 +44,7 @@ public class SPTest {
 		String fmSPHiddenPath = projectDir + "fm_sp.fml";
 		String fmSPHiddenStr = util.Functions.fileToString(fmSPHiddenPath);
 		FeatureModelVariable fmSPHiddenFMV = FMBDD.getInstance().FM("zae", fmSPHiddenStr);
-		String fmSPHiddenDAStr = FMFactory.deleteAttributesValues(fmSPHiddenStr.replaceAll("=", "_eq_"));
+		String fmSPHiddenDAStr = FMFactory.deleteAttributesValues(fmSPHiddenStr);
 		FeatureModelVariable fmSPHiddenDAFMV = FMBDD.getInstance().FM("zae", fmSPHiddenDAStr);
 
 		//
@@ -57,7 +57,7 @@ public class SPTest {
 		String fmSPSpecializePath = projectDir + "fm_sp_spec.fml";
 		String fmSPSpecializeStr = util.Functions.fileToString(fmSPSpecializePath);
 		FeatureModelVariable fmSPSpecializeFMV = FMBDD.getInstance().FM("zae", fmSPSpecializeStr);
-		String fmSPSpecializeDAStr = FMFactory.deleteAttributesValues(fmSPSpecializeStr.replaceAll("=", "_eq_"));
+		String fmSPSpecializeDAStr = FMFactory.deleteAttributesValues(fmSPSpecializeStr);
 		FeatureModelVariable fmSPSpecializeDAFMV = FMBDD.getInstance().FM("zae", fmSPSpecializeDAStr);
 
 		
@@ -75,7 +75,7 @@ public class SPTest {
 		Set<String> fmSPSpecUpdateDAInternalFeatures = FMFactory.getCorrespondingFeatures(
 				fmSPSpecUpdateDAFMV.features().names(), SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT);
 
-		Map<String, String> fmSPSpecUpdateAFs = FMFactory.extractAttributesValues(fmSPSpecUpdateStr.replaceAll("=", "_eq_"));
+		Map<String, String> fmSPSpecUpdateAFs = FMFactory.extractAttributesValues(fmSPSpecUpdateStr);
 		String fmSPSpecUpdateDAWIStr = FMFactory.slice(fmSPSpecUpdateDAStr, fmSPSpecUpdateDAInternalFeatures, SliceMode.EXCLUDING);
 //		
 		

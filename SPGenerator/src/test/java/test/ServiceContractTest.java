@@ -14,7 +14,7 @@ public class ServiceContractTest {
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
 		String fmSCPath = projectDir + "fm_sc_update.fml";
-		String fmSCString = util.Functions.fileToString(fmSCPath).replaceAll("=", "_eq_");
+		String fmSCString = util.Functions.fileToString(fmSCPath);
 		
 		
 		Contract contract = FMFactory.convertFMSCUpdateToContractXML(fmSCString);

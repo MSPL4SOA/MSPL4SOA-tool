@@ -60,8 +60,7 @@ public class MainTest {
 		// System.out.println(fmvSPSpec);
 
 		// FeatureModelVariable fmvSC =
-		// fmbdd.FM("fm",Functions.fileToString("./files/fm_sc_update.fml").replaceAll("=",
-		// "_eq_"));
+		// fmbdd.FM("fm",Functions.fileToString("./files/fm_sc_update.fml"));
 		//
 		// System.out.println("GO!!");
 		// System.out.println(fmvSC.configsBDD().size());
@@ -112,7 +111,7 @@ public class MainTest {
 		// Durable_1_1 ;Reliability_1_1: Acknowledgement_1_1
 		// PersistentDelivery_1_1 ;");
 		//
-		//// fmvFM = fmbdd.FM("fm",in.replaceAll("=", "_eq_"));
+		//// fmvFM = fmbdd.FM("fm",in);
 		//
 		//// System.out.println(fmvFM.extract("Capability_1_1"));
 		//

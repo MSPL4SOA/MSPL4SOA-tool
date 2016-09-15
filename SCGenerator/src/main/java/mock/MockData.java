@@ -1,13 +1,15 @@
-package util;
+package mock;
 
 import java.util.ArrayList;
 
 import org.apache.commons.lang.RandomStringUtils;
 
+import familiar.FMFactory;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.SetVariable;
 import scfactory.FMBDD;
 import scfactory.SCProject;
+import util.Functions;
 
 public class MockData {
 
@@ -17,7 +19,7 @@ public class MockData {
 
 		ArrayList<String> attributeFeaturesStringList = util.Functions.StringToList(SCProject.SC_ATTRIBUTES_CONTENT, "\n");
 
-		String regexFeaturesString = regexFeatures(attributeFeaturesStringList);
+		String regexFeaturesString = FMFactory.regexFeatures(attributeFeaturesStringList);
 
 		// System.out.println(regexFeaturesString);
 
@@ -66,36 +68,38 @@ public class MockData {
 					value = data;
 				}
 
-				fm = fm.replaceFirst(featureName, featureName + "=" + value);
+//				fm = fm.replaceFirst(featureName, FMFactory.addQuote(featureName + "=" + value));
+				
+				fmFMV.renameFeature(featureName, featureName + "=" + value);
 			}
 		}
 
-		return fm;
+		return fmFMV.toString();
 	}
-
-	private static String regexFeatures(ArrayList<String> inFeatures) {
-
-		// a
-		// b
-		// => (a|b).*
-
-		String result = "(";
-
-		if (inFeatures.size() == 1)
-			return inFeatures.get(0) + ".*";
-
-		for (int i = 0; i < inFeatures.size(); i++) {
-
-			result += inFeatures.get(i);
-
-			if (inFeatures.size() - 1 != i)
-				result += "|";
-
-		}
-
-		result += ").*";
-
-		return result;
-	}
+//
+//	private static String regexFeatures(ArrayList<String> inFeatures) {
+//
+//		// a
+//		// b
+//		// => (a|b).*
+//
+//		String result = "(";
+//
+//		if (inFeatures.size() == 1)
+//			return inFeatures.get(0) + ".*";
+//
+//		for (int i = 0; i < inFeatures.size(); i++) {
+//
+//			result += inFeatures.get(i);
+//
+//			if (inFeatures.size() - 1 != i)
+//				result += "|";
+//
+//		}
+//
+//		result += ").*";
+//
+//		return result;
+//	}
 
 }

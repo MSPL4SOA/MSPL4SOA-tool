@@ -12,7 +12,7 @@ public class ReduceServicesTest {
 //		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
 		String fmSCPath = "/home/akram/Desktop/fm3.fml";
-		String fmSCString = util.Functions.fileToString(fmSCPath).replaceAll("=", "_eq_");
+		String fmSCString = util.Functions.fileToString(fmSCPath);
 
 		
 		System.out.println(fmSCString);

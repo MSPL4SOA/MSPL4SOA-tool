@@ -3,6 +3,7 @@ package mock;
 import java.util.ArrayList;
 
 import familiar.FMBDD;
+import familiar.FMFactory;
 import familiar.FMUpdateBDD;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.SetVariable;
@@ -16,7 +17,7 @@ public class MockData {
 
 		ArrayList<String> attributeFeaturesStringList = util.Functions.StringToList(SwitchyardProject.ATTRIBUTES_SP_CONTENT,"\n");
 
-		String regexFeaturesString = regexFeatures(attributeFeaturesStringList);
+		String regexFeaturesString = FMFactory.regexFeatures(attributeFeaturesStringList);
 
 		// System.out.println(regexFeaturesString);
 
@@ -81,39 +82,40 @@ public class MockData {
 				else if (featureName.contains("ServiceName"))
 					value = featureName;
 
-				fm = fm.replaceFirst(featureName, featureName + "=" + value.replaceAll("-", ""));
+//				fm = fm.replaceFirst(featureName, FMFactory.
+//						addQuote(featureName + "=" + value.replaceAll("-", "")));
 				// .replaceAll("_", "")
 
-				// fmFMV.renameFeature(featureName, featureName + "=" + value);
+				 fmFMV.renameFeature(featureName, featureName + "=" + value);
 			}
 		}
 
-		return fm;
+		return fmFMV.toString();
 	}
-
-	private static String regexFeatures(ArrayList<String> inFeatures) {
-
-		// a
-		// b
-		// => (a|b).*
-
-		String result = "(";
-
-		if (inFeatures.size() == 1)
-			return inFeatures.get(0) + ".*";
-
-		for (int i = 0; i < inFeatures.size(); i++) {
-
-			result += inFeatures.get(i);
-
-			if (inFeatures.size() - 1 != i)
-				result += "|";
-
-		}
-
-		result += ").*";
-
-		return result;
-	}
+//
+//	private static String regexFeatures(ArrayList<String> inFeatures) {
+//
+//		// a
+//		// b
+//		// => (a|b).*
+//
+//		String result = "(";
+//
+//		if (inFeatures.size() == 1)
+//			return inFeatures.get(0) + ".*";
+//
+//		for (int i = 0; i < inFeatures.size(); i++) {
+//
+//			result += inFeatures.get(i);
+//
+//			if (inFeatures.size() - 1 != i)
+//				result += "|";
+//
+//		}
+//
+//		result += ").*";
+//
+//		return result;
+//	}
 
 }
