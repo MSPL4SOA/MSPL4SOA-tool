@@ -1,0 +1,11 @@
+package a1.camelrouter
+import org.switchyard.Message
+global Message message
+
+rule "CheckInputMessageFeatures"
+    when
+        $m : Message( content =="22" )
+    then
+        // insert consequence here
+        System.out.println("service: CheckInputMessageFeatures, payload: " + $m.getContent());
+end

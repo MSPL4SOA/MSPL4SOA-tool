@@ -14,9 +14,9 @@ public class SwitchyardProject {
 	// features
 	public static final String SPECIALIZED_FEATURES = FEATURES_DIR + "specialized_features.txt";
 	public static final String ESSENTIAL_FEATURES = FEATURES_DIR + "essential_features.txt";
-	public static final String INTERNAL_FEATURES_SP = FEATURES_DIR + "internal_features_sp.txt";
+//	public static final String INTERNAL_FEATURES_SP = FEATURES_DIR + "internal_features_sp.txt";
 	public static final String INTERNAL_FEATURES_SC = FEATURES_DIR + "internal_features_sc.txt";
-	public static final String ATTRIBUTES_SP = FEATURES_DIR + "sp_attributes.txt";
+	public static final String ATTRIBUTES_SC = FEATURES_DIR + "sc_attributes.txt";
 	public static final String REDUCE_COMPLEXITY_FEATURES_SP = FEATURES_DIR + "reduce_complexity_features_sp.txt";
 
 	public static final String HIDDEN_SHARED_FEATURES = FEATURES_DIR + "hiddensharedfeatures.xml";
@@ -28,12 +28,12 @@ public class SwitchyardProject {
 	// //content
 	public static final String SPECIALIZED_FEATURES_CONTENT = util.Functions.fileToString(SPECIALIZED_FEATURES);
 	public static final String ESSENTIAL_FEATURES_CONTENT = util.Functions.fileToString(ESSENTIAL_FEATURES);
-	public static final String INTERNAL_FEATURES_SP_CONTENT = util.Functions.fileToString(INTERNAL_FEATURES_SP);
+//	public static final String INTERNAL_FEATURES_SP_CONTENT = util.Functions.fileToString(INTERNAL_FEATURES_SP);
 	public static final String INTERNAL_FEATURES_SC_CONTENT = util.Functions.fileToString(INTERNAL_FEATURES_SC);
-	public static final String ATTRIBUTES_SP_CONTENT = util.Functions.fileToString(ATTRIBUTES_SP);
+	public static final String ATTRIBUTES_SC_CONTENT = util.Functions.fileToString(ATTRIBUTES_SC);
 	public static final String REDUCE_COMPLEXITY_FEATURES_SP_CONTENT = util.Functions
 			.fileToString(REDUCE_COMPLEXITY_FEATURES_SP);
-	public static final byte[] FILE_ICON_OK_PATH_CONTENT = util.Functions.readResourceToByteArray(FILE_ICON_OK_PATH);
+//	public static final byte[] FILE_ICON_OK_PATH_CONTENT = util.Functions.readResourceToByteArray(FILE_ICON_OK_PATH);
 
 	public static String getVelocityDir(String fileName) {
 		return VELOCITY_DIR + fileName;

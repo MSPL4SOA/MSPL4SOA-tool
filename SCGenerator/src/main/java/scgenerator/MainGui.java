@@ -237,8 +237,11 @@ public class MainGui {
 										.fileToString(scProject.fmSCUpdateFMLPath));
 								// System.out.println("GO!!");
 								// int amsCount = fmvSC.configsBDD().size();
+								
+								FeatureModelVariable fmvSCReduce =
+										FMBDD.getInstance().FM("fm",FMFactory.reduceComplexitySP(fmvSC.toString()));
 
-								int amsCount = (int) fmvSC.counting(CountingStrategy.SAT_FML) / 2;
+								int amsCount = (int) fmvSCReduce.counting(CountingStrategy.SAT_FML) / 2;
 								// System.out.println(amsCount);
 								amsCountLbl.setText("AM SC update count: " + amsCount);
 							} catch (Exception e) {

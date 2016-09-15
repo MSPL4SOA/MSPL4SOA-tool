@@ -706,7 +706,7 @@ public class FMFactory {
 			SetVariable fmSPFMVFeatures = fmSPFMV.features();
 
 			ArrayList<String> internalEssentialFeaturesStringList = util.Functions
-					.StringToList(SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT, "\n");
+					.StringToList(SwitchyardProject.INTERNAL_FEATURES_SC_CONTENT, "\n");
 
 			internalEssentialFeaturesStringList
 					.addAll(util.Functions.StringToList(SwitchyardProject.ESSENTIAL_FEATURES_CONTENT, "\n"));
@@ -892,7 +892,7 @@ public class FMFactory {
 		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fmSP", fm);
 
 		ArrayList<String> attributeFeaturesStringList = util.Functions
-				.StringToList(SwitchyardProject.ATTRIBUTES_SP_CONTENT, "\n");
+				.StringToList(SwitchyardProject.ATTRIBUTES_SC_CONTENT, "\n");
 
 		String regexFeaturesString = regexFeatures(attributeFeaturesStringList);
 

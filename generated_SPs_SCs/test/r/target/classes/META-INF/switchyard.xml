@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="r" targetNamespace="urn:r:r:1.0">
+  <sca:composite name="r" targetNamespace="urn:r:r:1.0">
+    <sca:service name="DownloadContract" promote="DownloadContractBean/DownloadContract">
+      <sca:interface.java interface="r.service.DownloadContract"/>
+      <resteasy:binding.rest name="restContract">
+        <resteasy:interfaces>r.resource.ResourceDownloadContract</resteasy:interfaces>
+        <resteasy:contextPath>r/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="DownloadContractBean">
+      <bean:implementation.bean class="r.service.DownloadContractBean"/>
+      <sca:service name="DownloadContract">
+        <sca:interface.java interface="r.service.DownloadContract"/>
+      </sca:service>
+    </sca:component>
+  <sca:component name="ServiceName_1Bean">
+      <bean:implementation.bean class="r.service.ServiceName_1Bean"/>
+      <sca:service name="ServiceName_1">
+        <sca:interface.java interface="r.service.ServiceName_1"/>
+      </sca:service>
+    </sca:component>
+  </sca:composite>
+</sy:switchyard>

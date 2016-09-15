@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+                    <jms-queue name="mm1_in_queue_1_1">
+                <entry name="mm1_in_queue_1_1"/>
+                <entry name="java:jboss/exported/jms/mm1_in_queue_1_1"/>
+            </jms-queue>
+            <jms-queue name="mm1_out_queue_1_1">
+                <entry name="mm1_out_queue_1_1"/>
+                <entry name="java:jboss/exported/jms/mm1_out_queue_1_1"/>
+            </jms-queue>
+                                    <jms-topic name="mm1_topic_1_1">
+                <entry name="mm1_topic_1_1"/>
+                <entry name="java:jboss/exported/jms/mm1_topic_1_1"/>
+            </jms-topic>
+                        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>

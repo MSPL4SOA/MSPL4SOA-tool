@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_4</interfaceName>
+        <beanName>ServiceName_4Bean</beanName>
+        <number>4</number>
+        <capability>
+            <name>CapabilityName_4_4</name>
+            <number>4</number>
+            <serviceName>ServiceName_4</serviceName>
+            <stateClassName>State_ServiceName_4_CapabilityName_4_4</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>false</soap>
+            <broker>
+                <brokerName>HornetQ</brokerName>
+                <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+                <providerUrl>remote://localhost:4447</providerUrl>
+                <securityPrincipal>guest</securityPrincipal>
+                <securityCredentials>jboss@dmin88</securityCredentials>
+                <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+                <queueError>net implemented</queueError>
+                <queueIn>large3_in_queue_4_4</queueIn>
+                <queueOut>large3_out_queue_4_4</queueOut>
+                <transactional>false</transactional>
+                <acknowledgement>true</acknowledgement>
+                <persistentDelivery>true</persistentDelivery>
+                <publishSubscribe>false</publishSubscribe>
+                <durable>false</durable>
+                <serviceName>ServiceName_4</serviceName>
+                <capabilityName>CapabilityName_4_4</capabilityName>
+            </broker>
+            <authentification>false</authentification>
+            <jms>true</jms>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>large3</projectName>
+    <hostName>http://localhost:8080/large3</hostName>
+    <dataInputPkg>large3.input</dataInputPkg>
+    <dataOutputPkg>large3.output</dataOutputPkg>
+</contract>
