@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -17,10 +19,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import familiar.FMBDD;
 import familiar.FMFactory;
+import familiar.FeatureInsertForXML;
+import familiar.HiddenFeatures;
 import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
+import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import generating.SwitchyardProject;
-
 
 public class TextEditor {
 
@@ -87,39 +92,83 @@ public class TextEditor {
 		btnSaveSpSpecialized.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				String error = "";
+
 				try {
-					boolean ok = false;
 
 					System.out.println("begin");
 
-					textPane.setText(textPane.getText().replaceAll("\"", ""));
+					textPane.setText(textPane.getText());
 
 					fmFactory.specializedAttributedFMSP = textPane.getText().replaceAll("=", "_eq_");
 
 					// System.out.println(fmFactory.specializedAttributedFMSP);
 
-					fmFactory.specializedFMSP = fmFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
+					fmFactory.specializedFMSP = FMFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
 
-					fmFactory.extractAttributesValues(fmFactory.specializedAttributedFMSP);// mandatory
+//					fmFactory.attributes = FMFactory.extractAttributesValues(fmFactory.specializedAttributedFMSP);// mandatory
 
 					// boolean checkSpec = true;
-					boolean checkSpec = fmFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.specializedFMSP);
+					error += FMFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.specializedFMSP);
 
-					boolean checkEss = fmFactory.checkEssentialAndInternalVariability(fmFactory.specializedFMSP);
+					error += FMFactory.checkEssentialAndInternalVariability(fmFactory.specializedFMSP);
 
-					boolean checkAtt = fmFactory.checkAttributesValue(fmFactory.specializedAttributedFMSP);
+					error += FMFactory.checkAttributesValue(fmFactory.specializedAttributedFMSP);
 
-					if (checkSpec == true && checkEss == true && checkAtt == true) {
-						ok = true;
+					if ("".equals(error)) {
 
 						S2T2Converter s2t2Converter = new S2T2Converter();
 						String xmiS2T2;
 
-						fmFactory.updateAndDelete(fmFactory.specializedFMSP, fmFactory._fmSC);
+						Set<String> fmSCFMVSharedFeatureSet = FMFactory
+								.getSharedFeatures(FMBDD.getInstance().FM("fmc", fmFactory._fmSC));
+
+						FeatureModelVariable fmSPSpecDeleteAttributeFMV = FMBDD.getInstance().FM("fmspd",
+								FMFactory.deleteAttributesValues(fmFactory.specializedFMSP.toString()));
+
+						Set<String> omittedSharedFeatures = com.google.common.collect.Sets
+								.difference(fmSCFMVSharedFeatureSet, fmSPSpecDeleteAttributeFMV.features().names());
+
+						Set<String> featureSetToSlice = FMFactory.getCorrespondingFeatures(
+								fmSPSpecDeleteAttributeFMV.features().names(),
+								SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT);
+
+						fmFactory.updatedAttributedFMSC = FMFactory.updateAndDelete2(fmFactory._fmSC,
+								fmFactory.specializedAttributedFMSP, omittedSharedFeatures, true, featureSetToSlice);
+						
+						fmFactory.updatedFMSC = FMFactory.deleteAttributesValues(fmFactory.updatedAttributedFMSC);
+
+						
+						// insert hidden features to fm_sp_spec and fm_sc_update
+						//
+						HiddenFeatures hiddenSharedFeatures = (HiddenFeatures) util.JAXBUtil
+								.unmarshall(SwitchyardProject.HIDDEN_SHARED_FEATURES, HiddenFeatures.class);
+
+						HiddenFeatures hiddenSPInternalFeatures = (HiddenFeatures) util.JAXBUtil
+								.unmarshall(SwitchyardProject.HIDDEN_SP_FEATURES, HiddenFeatures.class);
+
+						ArrayList<FeatureInsertForXML> featureHiddenSharedSP = new ArrayList<FeatureInsertForXML>();
+						featureHiddenSharedSP.addAll(hiddenSharedFeatures.featureInserts);
+						featureHiddenSharedSP.addAll(hiddenSPInternalFeatures.featureInserts);
+
+						ArrayList<String> options = new ArrayList<String>();
+						options.add(MainGui.PROJECT_NAME);
+						options.add(SwitchyardProject.HOST_NAME);
+
+						fmFactory.specializedAttributedFMSP = FMFactory
+								.insertFeatureFromXML(fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, options);
+
+						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(fmFactory.updatedAttributedFMSC,
+								hiddenSharedFeatures.featureInserts, options);
+						//
+						//////////////////////////
+						
+						// fmFactory.updateAndDelete(fmFactory.specializedFMSP,
+						// fmFactory._fmSC);
 
 						// specialized
 						util.Functions.stringToFile(
-								fmFactory.specializedAttributedFMSP.replaceAll("_eq_", "=").replaceAll("\"", ""),
+								fmFactory.specializedAttributedFMSP.replaceAll("_eq_", "="),
 								spSpecializedFMFamiliarFilePath, false);
 						// util.Functions.stringToFile(
 						// fmFactory.specializedAttributedFMSP.replaceAll("_eq_",
@@ -127,9 +176,7 @@ public class TextEditor {
 						// spSpecializedFMS2T2FilePath, false);
 
 						xmiS2T2 = s2t2Converter
-								.fmlToS2T2XMI(
-										fmFactory.fmUpdateBDD.FM("fm_sp_spec", fmFactory.specializedAttributedFMSP))
-								.replaceAll("_eq_", "=");
+								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec", fmFactory.specializedAttributedFMSP));
 						util.Functions.stringToFile(xmiS2T2, spSpecializedFMS2T2FilePath, false);
 
 						// util.Functions.stringToFile(
@@ -138,16 +185,21 @@ public class TextEditor {
 						// "./fm_familiar_generated/fm_sp_spec.fml", false);
 						util.Functions.stringToFile(fmFactory.updatedAttributedFMSC.replaceAll("_eq_", "="),
 								scUpdatedFMFamiliarFilePath, false);
+						
+						System.out.println();
+						
+						System.out.println(fmFactory.updatedAttributedFMSC);
+						
+						System.out.println();
 
-						xmiS2T2 = s2t2Converter.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM("fm_sc_update",
-								fmFactory.updatedAttributedFMSC.replaceAll("_eq_", "=")));
+						xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update",
+								fmFactory.updatedAttributedFMSC));
 						util.Functions.stringToFile(xmiS2T2, scUpdatedFMS2T2FilePath, false);
 
 						lblScUpdatedFm.setVisible(true);
 						scUpdateFamiliarButton.setVisible(true);
 						scUpdateS2T2Button.setVisible(true);
 						generateSPButton.setVisible(true);
-						
 
 						JOptionPane.showMessageDialog(null,
 								"The FM SP specialize is correct and the FM SC update is generated", "OK",
@@ -155,7 +207,7 @@ public class TextEditor {
 
 					} else {
 
-						JOptionPane optionPane = new JOptionPane(fmFactory.error);
+						JOptionPane optionPane = new JOptionPane(error);
 						optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 
 						Object[] options = {};
@@ -172,15 +224,14 @@ public class TextEditor {
 						// JOptionPane.ERROR_MESSAGE);
 
 						// System.out.println(fmFactory.error);
-						fmFactory.error = "";
+						error = "";
 					}
 				} catch (Exception e1) {
 
 					e1.printStackTrace();
 					System.out.println("Syntax problem");
-					String ok = ";";
 
-					JOptionPane optionPane = new JOptionPane("The syntax of the FM is incorrect.\n" + fmFactory.error);
+					JOptionPane optionPane = new JOptionPane("The syntax of the FM is incorrect.\n" + error);
 					optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 
 					Object[] options = {};
@@ -197,7 +248,7 @@ public class TextEditor {
 					// JOptionPane.ERROR_MESSAGE);
 
 					// System.out.println(fmFactory.error);
-					fmFactory.error = "";
+					error = "";
 
 				}
 

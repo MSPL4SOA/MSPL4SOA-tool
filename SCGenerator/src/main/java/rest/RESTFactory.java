@@ -57,7 +57,7 @@ public class RESTFactory {
 
 		ClientBuilder.newBuilder();
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(amGenerator.host + "/rest");
+		WebTarget target = client.target(amGenerator.contractCapability.hostName + "/rest");
 
 		// get Values
 
@@ -69,10 +69,12 @@ public class RESTFactory {
 
 		// System.out.println(InputFactory.getDataRest(configurationGenerating));
 
-		target = target.path(amGenerator.capability.serviceName + "/" + amGenerator.capability.name
+		target = target.path(amGenerator.extractCapabilityFromContract().serviceName + "/" + amGenerator.extractCapabilityFromContract().name
 				+ InputFactory.getDataRest(amGenerator));
 
-		String methodRest = amGenerator.capability.restMethod.toUpperCase();
+		String methodRest = amGenerator.extractCapabilityFromContract().restMethod.toUpperCase();
+		
+		
 		//
 		// if (featuresList.contains("Post"))
 		// methodRest = "POST";
@@ -85,20 +87,20 @@ public class RESTFactory {
 		// else
 		// throw new GenRESTException("Rest method is not found");
 
-		// System.out.println(configurationGenerating.capability.restMethod);
+		// System.out.println(configurationGenerating.extractCapabilityFromContract().restMethod);
 
 		Invocation.Builder builder = target.request();
 
-		if (amGenerator.capability.authentification == true) {
+		if (amGenerator.extractCapabilityFromContract().authentification == true) {
 
-			builder.header("username", amGenerator.capability.usernameValue);
-			builder.header("password", amGenerator.capability.passwordValue);
+			builder.header("username", amGenerator.extractCapabilityFromContract().username);
+			builder.header("password", amGenerator.extractCapabilityFromContract().password);
 		}
 
-		if (amGenerator.capability.twoWayState == true)
+		if (amGenerator.extractCapabilityFromContract().twoWayState == true)
 			builder.header(StateMessagingDP.HeaderName, amGenerator.stateMessagingDP.getState());
 
-		if (amGenerator.capability.synchronous == true) {
+		if (amGenerator.extractCapabilityFromContract().synchronous == true) {
 			Response response = builder.method(methodRest);
 			try {
 				getResponse(response);
@@ -114,7 +116,7 @@ public class RESTFactory {
 
 		}
 
-		if (amGenerator.capability.asynchronous == true) {
+		if (amGenerator.extractCapabilityFromContract().asynchronous == true) {
 			futrureResponse = builder.async().method(methodRest);
 
 			// System.out.println("async1");
@@ -140,21 +142,21 @@ public class RESTFactory {
 		Object resp = null;
 		String state;
 
-		if (amGenerator.capability.stateMessaging == true) {
+		if (amGenerator.extractCapabilityFromContract().stateMessaging == true) {
 			state = response.getHeaderString(StateMessagingDP.HeaderName) + "\n";
 			//
 			// System.out.println("StateHeader: " + state);
 
-			if (amGenerator.capability.stateRepository == true)
+			if (amGenerator.extractCapabilityFromContract().stateRepository == true)
 				amGenerator.stateMessagingDP.setStateInDisk(state);
 
-			if (amGenerator.capability.temporaryMemory == true)
+			if (amGenerator.extractCapabilityFromContract().temporaryMemory == true)
 				amGenerator.stateMessagingDP.setStateInMemory(state);
 		}
 
-		if (amGenerator.capability.getOutputs().size() != 0) {
+		if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 
-			String className = amGenerator.contract.dataOutputPkg + "." + amGenerator.capability.dataOutputClassName;
+			String className = amGenerator.contractCapability.dataOutputPkg + "." + amGenerator.extractCapabilityFromContract().dataOutputClassName;
 
 			className = className.trim();
 			Class<?> typeout;

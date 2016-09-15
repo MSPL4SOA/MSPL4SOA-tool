@@ -131,7 +131,7 @@ public class MockData {
 		Contract conract = new Contract();
 		
 		conract.projectName = MockData.projectName;
-		conract.host = "h1";
+		conract.hostName = "h1";
 
 		conract.services.add(getService1());
 		conract.services.add(getService2());

@@ -20,7 +20,6 @@ public class FMLUpdateTest extends FMLTest {
 		FeatureModelVariable fmToPreserve;
 		Set<String> fts = new HashSet<String>();
 
-		FMUpdateBDD fmUpdaterBDD = new FMUpdateBDD();
 
 		fmToUpdate = FM("m1", "a: (b|c)+ d;b: [f] [g];\n");
 
@@ -34,7 +33,7 @@ public class FMLUpdateTest extends FMLTest {
 		// assertNotNull(fmToPreserve);
 		// assertNotNull(fmToUpdate);
 
-		FeatureModelVariable fmUpdated = fmUpdaterBDD.updateFM(fmToUpdate, fmToPreserve, SliceMode.INCLUDING);
+		FeatureModelVariable fmUpdated = FMUpdateBDD.updateFM(fmToUpdate, fmToPreserve, SliceMode.INCLUDING);
 		System.out.println("Result");
 		System.out.println(fmUpdated);
 

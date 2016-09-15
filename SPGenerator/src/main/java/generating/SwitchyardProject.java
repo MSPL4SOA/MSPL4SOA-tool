@@ -25,6 +25,9 @@ public class SwitchyardProject {
 
 	// just for viewing in form
 	// public static String PROJECTS_INIT_DIR = "./projects/";
+	
+	//will be modified as HostName + MainGui.PROJECT_NAME
+	public static String HOST_NAME = "http://localhost:8080/";
 
 	public static final String SCRIPTS_DIR = MainGui.FILES_GENERATED_PATH + "tmp/";
 	// public static final String TMP_DIR = "./tmp/";
@@ -35,13 +38,16 @@ public class SwitchyardProject {
 	public static final String S2T2_JAR_PATH = FILES_DIR + "s2t2-configurator-0.1.1/ie.lero.spl.vizconfig.jar";
 
 	// features
-	private static final String SPECIALIZED_FEATURES = FEATURES_DIR + "specialized_features.txt";
-	private static final String ESSENTIAL_FEATURES = FEATURES_DIR + "essential_features.txt";
-	private static final String INTERNAL_FEATURES_SP = FEATURES_DIR + "internal_features_sp.txt";
-	private static final String INTERNAL_FEATURES_SC = FEATURES_DIR + "internal_features_sc.txt";
-	private static final String ATTRIBUTES_SP = FEATURES_DIR + "sp_attributes.txt";
-	private static final String REDUCE_COMPLEXITY_FEATURES_SP = FEATURES_DIR + "reduce_complexity_features_sp.txt";
+	public static final String SPECIALIZED_FEATURES = FEATURES_DIR + "specialized_features.txt";
+	public static final String ESSENTIAL_FEATURES = FEATURES_DIR + "essential_features.txt";
+	public static final String INTERNAL_FEATURES_SP = FEATURES_DIR + "internal_features_sp.txt";
+	public static final String INTERNAL_FEATURES_SC = FEATURES_DIR + "internal_features_sc.txt";
+	public static final String ATTRIBUTES_SP = FEATURES_DIR + "sp_attributes.txt";
+	public static final String REDUCE_COMPLEXITY_FEATURES_SP = FEATURES_DIR + "reduce_complexity_features_sp.txt";
 
+	public static final String HIDDEN_SHARED_FEATURES = FEATURES_DIR + "hiddensharedfeatures.xml";
+	public static final String HIDDEN_SP_FEATURES = FEATURES_DIR + "hiddenspinternalfeatures.xml";
+	
 	// images
 	public static final String FILE_ICON_OK_PATH = IMAGES_DIR + "ok.png";
 

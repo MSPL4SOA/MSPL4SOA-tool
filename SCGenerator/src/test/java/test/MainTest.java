@@ -4,11 +4,11 @@ import java.util.Random;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import features.bean.Capability;
 import fr.unice.polytech.modalis.familiar.operations.CountingStrategy;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
 import jms.JMSFactory;
-import scfactory.Capability;
 import scfactory.FMBDD;
 import util.Functions;
 

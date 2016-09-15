@@ -22,6 +22,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import features.jms.Broker;
 import scfactory.SCGenerator;
 import scfactory.SCGeneratorException;
 import scfactory.InputFactory;
@@ -63,7 +64,7 @@ public class JMSFactory {
 	public JMSFactory(SCGenerator amGenerator) throws SCGeneratorException {
 		this.amGenerator = amGenerator;
 
-		if (amGenerator.capability.getInputs().size() != 0)
+		if (amGenerator.extractCapabilityFromContract().getInputs().size() != 0)
 			this.data = InputFactory.getInstance(amGenerator);
 		else
 			this.data = null;
@@ -80,7 +81,7 @@ public class JMSFactory {
 			// if (featuresList.contains("HornetQ"))
 			// brokerName = "HornetQ";
 
-			Broker broker = amGenerator.capability.broker;
+			Broker broker = amGenerator.extractCapabilityFromContract().broker;
 			
 //			System.out.println(broker.getInitialContextFactory());
 //			System.out.println(broker.getProviderUrl());
@@ -95,7 +96,7 @@ public class JMSFactory {
 			// break;
 			// }
 			// }
-
+			
 			// Mondatory
 			final Properties env = new Properties();
 			env.put(Context.INITIAL_CONTEXT_FACTORY, broker.getInitialContextFactory());
@@ -118,14 +119,14 @@ public class JMSFactory {
 					System.getProperty("password", broker.getSecurityCredentials()));
 
 			//
-			if (amGenerator.capability.broker.durable == true) {
+			if (amGenerator.extractCapabilityFromContract().broker.durable == true) {
 
 				clientId = UUID.randomUUID().toString();
 //				log.info("clientId for durable subscriber: " + clientId);
 				connection.setClientID(clientId);
 			}
 
-			if (amGenerator.capability.broker.acknowledgement == true) {
+			if (amGenerator.extractCapabilityFromContract().broker.acknowledgement == true) {
 				// if (featuresList.contains("AutoACK"))
 				// ack = Session.AUTO_ACKNOWLEDGE;
 				// else if (featuresList.contains("ClientACK"))
@@ -137,7 +138,7 @@ public class JMSFactory {
 				session = connection.createSession(false, ack);
 			}
 
-			if (amGenerator.capability.broker.transactional == true) {
+			if (amGenerator.extractCapabilityFromContract().broker.transactional == true) {
 				session = connection.createSession(true, Session.DUPS_OK_ACKNOWLEDGE);
 				
 			}
@@ -164,7 +165,7 @@ public class JMSFactory {
 			//
 			// the args are variable
 
-			if (amGenerator.capability.broker.persistentDelivery == true)
+			if (amGenerator.extractCapabilityFromContract().broker.persistentDelivery == true)
 				producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 			else
 				producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
@@ -192,13 +193,13 @@ public class JMSFactory {
 			// cc.setMessageListener();
 
 			// P2C
-			if (amGenerator.capability.getOutputs().size() != 0) {
+			if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 
 				// if (featuresList.contains("OutWay")) {
 				// variable for in pattern
 				//
 
-				if (amGenerator.capability.broker.publishSubscribe == true) {
+				if (amGenerator.extractCapabilityFromContract().broker.publishSubscribe == true) {
 					// if (featuresList.contains("Server")) {
 
 					// outDest = (Destination)
@@ -227,8 +228,8 @@ public class JMSFactory {
 					//
 				}
 
-				if (amGenerator.capability.broker.durable == true
-						&& amGenerator.capability.broker.publishSubscribe == true) {
+				if (amGenerator.extractCapabilityFromContract().broker.durable == true
+						&& amGenerator.extractCapabilityFromContract().broker.publishSubscribe == true) {
 					subscriptionName = "DurableSubscriber";
 					consumer = session.createDurableSubscriber((Topic) outDest, subscriptionName);
 				} else
@@ -237,7 +238,7 @@ public class JMSFactory {
 				// Only for asynchronous client
 				// Variable
 
-				if (amGenerator.capability.asynchronous == true) {
+				if (amGenerator.extractCapabilityFromContract().asynchronous == true) {
 					ConsumerListner consumerListner = new ConsumerListner(this.amGenerator, session);
 					consumer.setMessageListener(consumerListner);
 				}
@@ -252,8 +253,8 @@ public class JMSFactory {
 			// if (featuresList.contains("OutWay"))
 			// variable for synchronous client
 
-			if (amGenerator.capability.synchronous == true
-					&& amGenerator.capability.getOutputs().size() != 0) {
+			if (amGenerator.extractCapabilityFromContract().synchronous == true
+					&& amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 				SynchronousConsumer synchronousConsumer = new SynchronousConsumer(this.amGenerator,
 						consumer, session);
 				synchronousConsumer.handleOutPut();
@@ -279,17 +280,17 @@ public class JMSFactory {
 
 		this.addHeaders();
 
-		if (amGenerator.capability.getOutputs().size() != 0)
+		if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0)
 			this.addCallbackHeaders();
 
-		if (amGenerator.capability.twoWayState == true)
+		if (amGenerator.extractCapabilityFromContract().twoWayState == true)
 			this.addStateHeader();
 
 		//
 		// //variable for out pattern (topic use)
 		this.producer.send(message);
 
-		if (amGenerator.capability.broker.transactional == true)
+		if (amGenerator.extractCapabilityFromContract().broker.transactional == true)
 			this.session.commit();
 
 //		log.info(message.toString());
@@ -314,16 +315,16 @@ public class JMSFactory {
 	public void addHeaders() throws JMSException {
 		// variable
 		// Mondatory
-		message.setStringProperty("service_name", amGenerator.capability.serviceName);
-		message.setStringProperty("method_name", amGenerator.capability.name);
+		message.setStringProperty("service_name", amGenerator.extractCapabilityFromContract().serviceName);
+		message.setStringProperty("method_name", amGenerator.extractCapabilityFromContract().name);
 
 		// message.setStringProperty("features",
 		// Functions.listToString(featuresList, " "));
 
-		if (amGenerator.capability.authentification == true) {
+		if (amGenerator.extractCapabilityFromContract().authentification == true) {
 
-			message.setStringProperty("username", amGenerator.capability.usernameValue);
-			message.setStringProperty("password", amGenerator.capability.passwordValue);
+			message.setStringProperty("username", amGenerator.extractCapabilityFromContract().username);
+			message.setStringProperty("password", amGenerator.extractCapabilityFromContract().password);
 		}
 	}
 
@@ -341,12 +342,12 @@ public class JMSFactory {
 		// if (featuresList.contains("InWay"))
 		this.producer.close();
 
-		if (amGenerator.capability.getOutputs().size() != 0) {
+		if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 			this.consumer.close();
 			// for durable topic
 
-			if (amGenerator.capability.broker.durable == true
-					&& amGenerator.capability.broker.publishSubscribe == true)
+			if (amGenerator.extractCapabilityFromContract().broker.durable == true
+					&& amGenerator.extractCapabilityFromContract().broker.publishSubscribe == true)
 				this.session.unsubscribe(subscriptionName);
 		}
 

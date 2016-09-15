@@ -1,0 +1,43 @@
+package $inputDataPkg;
+
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "$capability.dataInputClassName")
+@XmlType(name = "$capability.dataInputClassName.substring(0,1).toLowerCase()$capability.dataInputClassName.substring(1)", propOrder = {
+    #foreach($input in $capability.inputs)
+    	"$input.name"
+    	#if($foreach.count != $capability.inputs.size()) 
+            , 
+        #end
+    #end
+})
+public class $capability.dataInputClassName implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+    	#foreach($input in $capability.inputs)
+    		@XmlElement(name = "$input.name")
+    		protected $input.type $input.name;
+    	#end
+
+		#foreach($input in $capability.inputs)
+    		public $input.type get$input.name.substring(0,1).toUpperCase()$input.name.substring(1)()
+    		{
+    			return $input.name;
+    		}
+    	#end
+    	
+    	#foreach($input in $capability.inputs)
+    		public void set$input.name.substring(0,1).toUpperCase()$input.name.substring(1)($input.type value)
+    		{
+    			this.$input.name = value;
+    		}
+    	#end
+
+}

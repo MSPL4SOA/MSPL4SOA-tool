@@ -61,7 +61,7 @@ public final class SOAPFactory {
 
 //		this.genWSDLPKG = "gen.soap";
 		
-		this.genWSDLPKG = amGenerator.contract.projectName + ".soap"; 
+		this.genWSDLPKG = amGenerator.contractCapability.projectName + ".soap"; 
 
 		// this.httpWSDL = this.configurationGenerating.getHostName() + "/"
 		// + serviceName + "/" + serviceName + "?wsdl";
@@ -74,10 +74,10 @@ public final class SOAPFactory {
 
 		try {
 
-			String inputClassName = amGenerator.contract.dataInputPkg + "."
-					+ amGenerator.capability.dataInputClassName;
+			String inputClassName = amGenerator.contractCapability.dataInputPkg + "."
+					+ amGenerator.extractCapabilityFromContract().dataInputClassName;
 
-			String serviceName = amGenerator.capability.serviceName.replaceAll("_", "").trim();
+			String serviceName = amGenerator.extractCapabilityFromContract().serviceName.replaceAll("_", "").trim();
 
 			// ServiceName1 serviceName1 = new ServiceName1();
 			Class<?> serviceClass = Class.forName(this.genWSDLPKG + "." + serviceName);
@@ -89,20 +89,20 @@ public final class SOAPFactory {
 
 			// set header to producer
 			List<Header> headers = new ArrayList<Header>();
-			if (amGenerator.capability.twoWayState == true) {
+			if (amGenerator.extractCapabilityFromContract().twoWayState == true) {
 				Header stateHeader = new Header(new QName(StateMessagingDP.HeaderName),
 						amGenerator.stateMessagingDP.getState(), new JAXBDataBinding(String.class));
 				headers.add(stateHeader);
 			}
 
-			if (amGenerator.capability.authentification == true) {
+			if (amGenerator.extractCapabilityFromContract().authentification == true) {
 
 
-				Header usernameHeader = new Header(new QName("username"), amGenerator.capability.usernameValue,
+				Header usernameHeader = new Header(new QName("username"), amGenerator.extractCapabilityFromContract().username,
 						new JAXBDataBinding(String.class));
 				headers.add(usernameHeader);
 
-				Header passwordHeader = new Header(new QName("password"), amGenerator.capability.passwordValue,
+				Header passwordHeader = new Header(new QName("password"), amGenerator.extractCapabilityFromContract().password,
 						new JAXBDataBinding(String.class));
 				headers.add(passwordHeader);
 			}
@@ -115,14 +115,14 @@ public final class SOAPFactory {
 			binding.getRequestContext().put(Header.HEADER_LIST, headers);
 			/////////////////
 
-			String methodLowerCase = amGenerator.capability.name.replaceAll("_", "").trim();
+			String methodLowerCase = amGenerator.extractCapabilityFromContract().name.replaceAll("_", "").trim();
 			methodLowerCase = methodLowerCase.substring(0, 1).toLowerCase() + methodLowerCase.substring(1);
 
 			Object[] objectToInsert;
 			Class<?>[] parametersToInsert;
 
-			if (amGenerator.capability.getInputs() == null
-					|| amGenerator.capability.getInputs().size() == 0) {
+			if (amGenerator.extractCapabilityFromContract().getInputs() == null
+					|| amGenerator.extractCapabilityFromContract().getInputs().size() == 0) {
 
 				objectToInsert = new Object[0];
 				parametersToInsert = new Class<?>[0];
@@ -137,8 +137,8 @@ public final class SOAPFactory {
 
 			// serviceName1PortType.capabilityName11(...)
 
-			if (amGenerator.capability.asynchronous == true
-					&& amGenerator.capability.getOutputs().size() != 0) {
+			if (amGenerator.extractCapabilityFromContract().asynchronous == true
+					&& amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 				// System.out.println("Async");
 				methodLowerCase += "Async";
 			}
@@ -146,12 +146,12 @@ public final class SOAPFactory {
 			Method callCapability = servicePortTypeObject.getClass().getMethod(methodLowerCase, parametersToInsert);
 			Object result = callCapability.invoke(servicePortTypeObject, objectToInsert);
 
-			if (amGenerator.capability.getOutputs().size() != 0) {
+			if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 
-				if (amGenerator.capability.synchronous == true) {
+				if (amGenerator.extractCapabilityFromContract().synchronous == true) {
 					amGenerator.getReponseList().add(result);
 
-					if (amGenerator.capability.stateMessaging == true) {
+					if (amGenerator.extractCapabilityFromContract().stateMessaging == true) {
 						String state = "";
 
 						Map<String, List<String>> headersMap = (Map<String, List<String>>) binding.getResponseContext()
@@ -165,16 +165,16 @@ public final class SOAPFactory {
 						}
 						//
 
-						if (amGenerator.capability.stateRepository == true)
+						if (amGenerator.extractCapabilityFromContract().stateRepository == true)
 							amGenerator.stateMessagingDP.setStateInDisk(state);
 
-						if (amGenerator.capability.temporaryMemory == true)
+						if (amGenerator.extractCapabilityFromContract().temporaryMemory == true)
 							amGenerator.stateMessagingDP.setStateInMemory(state);
 
 					}
 				}
 
-				if (amGenerator.capability.asynchronous == true) {
+				if (amGenerator.extractCapabilityFromContract().asynchronous == true) {
 					asynchronousResponse = (Response<?>) result;
 
 				}
@@ -200,12 +200,12 @@ public final class SOAPFactory {
 
 	public void getAsynchrounousResponse() throws GeneratingSOAPException {
 
-		if (amGenerator.capability.getOutputs().size() != 0) {
+		if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
 			try {
 
 				// gen.soap.CapabilityName_1_3Response.getReturn();
 				
-				String className = this.genWSDLPKG + "." + Functions.toUpperFirstLetter(amGenerator.capability.name) + "Response";
+				String className = this.genWSDLPKG + "." + Functions.toUpperFirstLetter(amGenerator.extractCapabilityFromContract().name) + "Response";
 				
 				Class<?> responseClass = Class.forName(className);
 

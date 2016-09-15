@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<HiddenFeatures>
+    <featureInserts>
+        <featureName>TopicConfiguration</featureName>
+        <featureParent>PublishSubscribe@@1</featureParent>
+        <featureEdgeKind>mand</featureEdgeKind>
+        <fmvToInsert>TopicConfiguration@@1: TopicJNDI@@1;</fmvToInsert>
+        <featureAttribute>
+            <name>TopicJNDI@@1</name>
+            <attribute>@@2_topic@@1</attribute>
+        </featureAttribute>
+    </featureInserts>
+    <featureInserts>
+        <featureName>QueueConfiguration</featureName>
+        <featureParent>AsynchronousQueue@@1</featureParent>
+        <featureEdgeKind>mand</featureEdgeKind>
+        <fmvToInsert>QueueConfiguration@@1: QueueInJNDI@@1 QueueOutJNDI@@1;</fmvToInsert>
+        <featureAttribute>
+            <name>QueueInJNDI@@1</name>
+            <attribute>@@2_in_queue@@1</attribute>
+        </featureAttribute>
+        <featureAttribute>
+            <name>QueueOutJNDI@@1</name>
+            <attribute>@@2_out_queue@@1</attribute>
+        </featureAttribute>
+    </featureInserts>
+    <featureInserts>
+        <featureName>MOMConfiguration</featureName>
+        <featureParent>MOM@@1</featureParent>
+        <featureEdgeKind>mand</featureEdgeKind>
+        <fmvToInsert>MOMConfiguration@@1: InitialContextFactory@@1 ProviderUrl@@1 SecurityPrincipal@@1 SecurityCredentials@@1 ConnectionConsumerFactory@@1;</fmvToInsert>
+        <featureAttribute>
+            <name>InitialContextFactory@@1</name>
+            <attribute>org.jboss.naming.remote.client.InitialContextFactory</attribute>
+        </featureAttribute>
+        <featureAttribute>
+            <name>ProviderUrl@@1</name>
+            <attribute>remote://localhost:4447</attribute>
+        </featureAttribute>
+        <featureAttribute>
+            <name>SecurityPrincipal@@1</name>
+            <attribute>guest</attribute>
+        </featureAttribute>
+        <featureAttribute>
+            <name>SecurityCredentials@@1</name>
+            <attribute>jboss@dmin88</attribute>
+        </featureAttribute>
+        <featureAttribute>
+            <name>ConnectionConsumerFactory@@1</name>
+            <attribute>jms/RemoteConnectionFactory</attribute>
+        </featureAttribute>
+    </featureInserts>
+    <featureInserts>
+        <featureName>ProjectName</featureName>
+        <featureParent>ServiceContract</featureParent>
+        <featureEdgeKind>mand</featureEdgeKind>
+        <fmvToInsert>ProjectName;</fmvToInsert>
+        <featureAttribute>
+            <name>ProjectName</name>
+            <attribute>@@2</attribute>
+        </featureAttribute>
+    </featureInserts>
+    <featureInserts>
+        <featureName>HostName</featureName>
+        <featureParent>ServiceContract</featureParent>
+        <featureEdgeKind>mand</featureEdgeKind>
+        <fmvToInsert>HostName;</fmvToInsert>
+        <featureAttribute>
+            <name>HostName</name>
+            <attribute>@@3</attribute>
+        </featureAttribute>
+    </featureInserts>
+</HiddenFeatures>

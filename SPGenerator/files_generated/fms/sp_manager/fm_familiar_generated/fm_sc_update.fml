@@ -1,4 +1,4 @@
-Root: ("Service_6"|"Service_1"|"Service_4"|"Service_5"|"Service_3"|"Service_7"|"Service_2") ; 
+ServiceContract: ("Service_6"|"Service_1"|"Service_4"|"Service_5"|"Service_3"|"Service_7"|"Service_2") ; 
 "Service_6": ("Capability_6_4"|"Capability_6_2"|"Capability_6_3"|"Capability_6_1"|"Capability_6_6"|"Capability_6_5") "ServiceName_6=ServiceName_6" ; 
 "Service_1": ("Capability_1_1"|"Capability_1_6"|"Capability_1_5"|"Capability_1_4"|"Capability_1_3"|"Capability_1_2") "ServiceName_1=ServiceName_1" ; 
 "Service_4": ("Capability_4_1"|"Capability_4_5"|"Capability_4_4"|"Capability_4_3"|"Capability_4_2") "ServiceName_4=ServiceName_4" ; 

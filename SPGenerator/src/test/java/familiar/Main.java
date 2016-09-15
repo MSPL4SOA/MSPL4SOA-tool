@@ -91,10 +91,10 @@ public class Main {
 //		FeatureModelVariable sp = fmUpdateBDD.FM("tst","Root:(Service_1|Service_2|Service_3|Service_4|Service_5);Service_1: ServiceName_1 Capability_1_1;Capability_1_1:  InputData_1_1_1 InputData_1_1_2  OutputData_1_1_1 OutputData_1_1_2 OutputData_1_1_3 OutputData_1_1_4 OutputData_1_1_5 CommunicationTechnologie_1_1 [Authentification_1_1] [ServiceState_1_1] CapabilityName_1_1;CommunicationTechnologie_1_1: (SOAP_1_1|REST_1_1|MOM_1_1);REST_1_1: (Post_1_1|Get_1_1|Put_1_1|Delete_1_1);MOM_1_1: AsynchronousQueue_1_1 [PublishSubscribe_1_1] [Transactional_1_1] [Reliability_1_1];PublishSubscribe_1_1: [Durable_1_1];Reliability_1_1: (PersistentDelivery_1_1|Acknowledgement_1_1)+;ServiceState_1_1: (StateMessaging_1_1|StatefulService_1_1)+;StateMessaging_1_1: [TwoWayState_1_1];StatefulService_1_1: (StateRepository_1_1|TemporaryMemory_1_1);InputData_1_1_1: InputName_1_1_1 InputType_1_1_1;InputData_1_1_2: InputName_1_1_2 InputType_1_1_2;OutputData_1_1_1: OutputName_1_1_1 OutputType_1_1_1;OutputData_1_1_2: OutputName_1_1_2 OutputType_1_1_2;OutputData_1_1_3: OutputName_1_1_3 OutputType_1_1_3;OutputData_1_1_4: OutputName_1_1_4 OutputType_1_1_4;OutputData_1_1_5: OutputName_1_1_5 OutputType_1_1_5;Service_2: ServiceName_2 (Capability_2_1|Capability_2_2);Capability_2_1:  InputData_2_1_1 InputData_2_1_2  OutputData_2_1_1 CommunicationTechnologie_2_1 [Authentification_2_1] [ServiceState_2_1] CapabilityName_2_1;CommunicationTechnologie_2_1: (SOAP_2_1|REST_2_1|MOM_2_1);REST_2_1: (Post_2_1|Get_2_1|Put_2_1|Delete_2_1);MOM_2_1: AsynchronousQueue_2_1 [PublishSubscribe_2_1] [Transactional_2_1] [Reliability_2_1];PublishSubscribe_2_1: [Durable_2_1];Reliability_2_1: (PersistentDelivery_2_1|Acknowledgement_2_1)+;ServiceState_2_1: (StateMessaging_2_1|StatefulService_2_1)+;StateMessaging_2_1: [TwoWayState_2_1];StatefulService_2_1: (StateRepository_2_1|TemporaryMemory_2_1);InputData_2_1_1: InputName_2_1_1 InputType_2_1_1;InputData_2_1_2: InputName_2_1_2 InputType_2_1_2;OutputData_2_1_1: OutputName_2_1_1 OutputType_2_1_1;Capability_2_2:  InputData_2_2_1 InputData_2_2_2  OutputData_2_2_1 OutputData_2_2_2 CommunicationTechnologie_2_2 [Authentification_2_2] [ServiceState_2_2] CapabilityName_2_2;CommunicationTechnologie_2_2: (SOAP_2_2|REST_2_2|MOM_2_2);REST_2_2: (Post_2_2|Get_2_2|Put_2_2|Delete_2_2);MOM_2_2: AsynchronousQueue_2_2 [PublishSubscribe_2_2] [Transactional_2_2] [Reliability_2_2];PublishSubscribe_2_2: [Durable_2_2];Reliability_2_2: (PersistentDelivery_2_2|Acknowledgement_2_2)+;ServiceState_2_2: (StateMessaging_2_2|StatefulService_2_2)+;StateMessaging_2_2: [TwoWayState_2_2];StatefulService_2_2: (StateRepository_2_2|TemporaryMemory_2_2);InputData_2_2_1: InputName_2_2_1 InputType_2_2_1;InputData_2_2_2: InputName_2_2_2 InputType_2_2_2;OutputData_2_2_1: OutputName_2_2_1 OutputType_2_2_1;OutputData_2_2_2: OutputName_2_2_2 OutputType_2_2_2;Service_3: ServiceName_3 (Capability_3_1|Capability_3_2|Capability_3_3|Capability_3_4);Capability_3_1:   CommunicationTechnologie_3_1 [Authentification_3_1] [ServiceState_3_1] CapabilityName_3_1;CommunicationTechnologie_3_1: (SOAP_3_1|REST_3_1|MOM_3_1);REST_3_1: (Post_3_1|Get_3_1|Put_3_1|Delete_3_1);MOM_3_1: AsynchronousQueue_3_1 ;ServiceState_3_1: StatefulService_3_1;StatefulService_3_1: (StateRepository_3_1|TemporaryMemory_3_1);Capability_3_2:   CommunicationTechnologie_3_2 [Authentification_3_2] [ServiceState_3_2] CapabilityName_3_2;CommunicationTechnologie_3_2: (SOAP_3_2|REST_3_2|MOM_3_2);REST_3_2: (Post_3_2|Get_3_2|Put_3_2|Delete_3_2);MOM_3_2: AsynchronousQueue_3_2 ;ServiceState_3_2: StatefulService_3_2;StatefulService_3_2: (StateRepository_3_2|TemporaryMemory_3_2);Capability_3_3:  InputData_3_3_1 InputData_3_3_2  OutputData_3_3_1 OutputData_3_3_2 OutputData_3_3_3 CommunicationTechnologie_3_3 [Authentification_3_3] [ServiceState_3_3] CapabilityName_3_3;CommunicationTechnologie_3_3: (SOAP_3_3|REST_3_3|MOM_3_3);REST_3_3: (Post_3_3|Get_3_3|Put_3_3|Delete_3_3);MOM_3_3: AsynchronousQueue_3_3 [PublishSubscribe_3_3] [Transactional_3_3] [Reliability_3_3];PublishSubscribe_3_3: [Durable_3_3];Reliability_3_3: (PersistentDelivery_3_3|Acknowledgement_3_3)+;ServiceState_3_3: (StateMessaging_3_3|StatefulService_3_3)+;StateMessaging_3_3: [TwoWayState_3_3];StatefulService_3_3: (StateRepository_3_3|TemporaryMemory_3_3);InputData_3_3_1: InputName_3_3_1 InputType_3_3_1;InputData_3_3_2: InputName_3_3_2 InputType_3_3_2;OutputData_3_3_1: OutputName_3_3_1 OutputType_3_3_1;OutputData_3_3_2: OutputName_3_3_2 OutputType_3_3_2;OutputData_3_3_3: OutputName_3_3_3 OutputType_3_3_3;Capability_3_4:  InputData_3_4_1 InputData_3_4_2 InputData_3_4_3 InputData_3_4_4 InputData_3_4_5  OutputData_3_4_1 OutputData_3_4_2 OutputData_3_4_3 OutputData_3_4_4 CommunicationTechnologie_3_4 [Authentification_3_4] [ServiceState_3_4] CapabilityName_3_4;CommunicationTechnologie_3_4: (SOAP_3_4|REST_3_4|MOM_3_4);REST_3_4: (Post_3_4|Get_3_4|Put_3_4|Delete_3_4);MOM_3_4: AsynchronousQueue_3_4 [PublishSubscribe_3_4] [Transactional_3_4] [Reliability_3_4];PublishSubscribe_3_4: [Durable_3_4];Reliability_3_4: (PersistentDelivery_3_4|Acknowledgement_3_4)+;ServiceState_3_4: (StateMessaging_3_4|StatefulService_3_4)+;StateMessaging_3_4: [TwoWayState_3_4];StatefulService_3_4: (StateRepository_3_4|TemporaryMemory_3_4);InputData_3_4_1: InputName_3_4_1 InputType_3_4_1;InputData_3_4_2: InputName_3_4_2 InputType_3_4_2;InputData_3_4_3: InputName_3_4_3 InputType_3_4_3;InputData_3_4_4: InputName_3_4_4 InputType_3_4_4;InputData_3_4_5: InputName_3_4_5 InputType_3_4_5;OutputData_3_4_1: OutputName_3_4_1 OutputType_3_4_1;OutputData_3_4_2: OutputName_3_4_2 OutputType_3_4_2;OutputData_3_4_3: OutputName_3_4_3 OutputType_3_4_3;OutputData_3_4_4: OutputName_3_4_4 OutputType_3_4_4;Service_4: ServiceName_4 (Capability_4_1|Capability_4_2);Capability_4_1:  InputData_4_1_1 InputData_4_1_2 InputData_4_1_3  OutputData_4_1_1 OutputData_4_1_2 CommunicationTechnologie_4_1 [Authentification_4_1] [ServiceState_4_1] CapabilityName_4_1;CommunicationTechnologie_4_1: (SOAP_4_1|REST_4_1|MOM_4_1);REST_4_1: (Post_4_1|Get_4_1|Put_4_1|Delete_4_1);MOM_4_1: AsynchronousQueue_4_1 [PublishSubscribe_4_1] [Transactional_4_1] [Reliability_4_1];PublishSubscribe_4_1: [Durable_4_1];Reliability_4_1: (PersistentDelivery_4_1|Acknowledgement_4_1)+;ServiceState_4_1: (StateMessaging_4_1|StatefulService_4_1)+;StateMessaging_4_1: [TwoWayState_4_1];StatefulService_4_1: (StateRepository_4_1|TemporaryMemory_4_1);InputData_4_1_1: InputName_4_1_1 InputType_4_1_1;InputData_4_1_2: InputName_4_1_2 InputType_4_1_2;InputData_4_1_3: InputName_4_1_3 InputType_4_1_3;OutputData_4_1_1: OutputName_4_1_1 OutputType_4_1_1;OutputData_4_1_2: OutputName_4_1_2 OutputType_4_1_2;Capability_4_2:  InputData_4_2_1  OutputData_4_2_1 OutputData_4_2_2 OutputData_4_2_3 OutputData_4_2_4 OutputData_4_2_5 CommunicationTechnologie_4_2 [Authentification_4_2] [ServiceState_4_2] CapabilityName_4_2;CommunicationTechnologie_4_2: (SOAP_4_2|REST_4_2|MOM_4_2);REST_4_2: (Post_4_2|Get_4_2|Put_4_2|Delete_4_2);MOM_4_2: AsynchronousQueue_4_2 [PublishSubscribe_4_2] [Transactional_4_2] [Reliability_4_2];PublishSubscribe_4_2: [Durable_4_2];Reliability_4_2: (PersistentDelivery_4_2|Acknowledgement_4_2)+;ServiceState_4_2: (StateMessaging_4_2|StatefulService_4_2)+;StateMessaging_4_2: [TwoWayState_4_2];StatefulService_4_2: (StateRepository_4_2|TemporaryMemory_4_2);InputData_4_2_1: InputName_4_2_1 InputType_4_2_1;OutputData_4_2_1: OutputName_4_2_1 OutputType_4_2_1;OutputData_4_2_2: OutputName_4_2_2 OutputType_4_2_2;OutputData_4_2_3: OutputName_4_2_3 OutputType_4_2_3;OutputData_4_2_4: OutputName_4_2_4 OutputType_4_2_4;OutputData_4_2_5: OutputName_4_2_5 OutputType_4_2_5;Service_5: ServiceName_5 (Capability_5_1|Capability_5_2|Capability_5_3|Capability_5_4|Capability_5_5);Capability_5_1:  InputData_5_1_1 InputData_5_1_2  OutputData_5_1_1 OutputData_5_1_2 OutputData_5_1_3 OutputData_5_1_4 CommunicationTechnologie_5_1 [Authentification_5_1] [ServiceState_5_1] CapabilityName_5_1;CommunicationTechnologie_5_1: (SOAP_5_1|REST_5_1|MOM_5_1);REST_5_1: (Post_5_1|Get_5_1|Put_5_1|Delete_5_1);MOM_5_1: AsynchronousQueue_5_1 [PublishSubscribe_5_1] [Transactional_5_1] [Reliability_5_1];PublishSubscribe_5_1: [Durable_5_1];Reliability_5_1: (PersistentDelivery_5_1|Acknowledgement_5_1)+;ServiceState_5_1: (StateMessaging_5_1|StatefulService_5_1)+;StateMessaging_5_1: [TwoWayState_5_1];StatefulService_5_1: (StateRepository_5_1|TemporaryMemory_5_1);InputData_5_1_1: InputName_5_1_1 InputType_5_1_1;InputData_5_1_2: InputName_5_1_2 InputType_5_1_2;OutputData_5_1_1: OutputName_5_1_1 OutputType_5_1_1;OutputData_5_1_2: OutputName_5_1_2 OutputType_5_1_2;OutputData_5_1_3: OutputName_5_1_3 OutputType_5_1_3;OutputData_5_1_4: OutputName_5_1_4 OutputType_5_1_4;Capability_5_2:  InputData_5_2_1 InputData_5_2_2 InputData_5_2_3 InputData_5_2_4 InputData_5_2_5  OutputData_5_2_1 OutputData_5_2_2 CommunicationTechnologie_5_2 [Authentification_5_2] [ServiceState_5_2] CapabilityName_5_2;CommunicationTechnologie_5_2: (SOAP_5_2|REST_5_2|MOM_5_2);REST_5_2: (Post_5_2|Get_5_2|Put_5_2|Delete_5_2);MOM_5_2: AsynchronousQueue_5_2 [PublishSubscribe_5_2] [Transactional_5_2] [Reliability_5_2];PublishSubscribe_5_2: [Durable_5_2];Reliability_5_2: (PersistentDelivery_5_2|Acknowledgement_5_2)+;ServiceState_5_2: (StateMessaging_5_2|StatefulService_5_2)+;StateMessaging_5_2: [TwoWayState_5_2];StatefulService_5_2: (StateRepository_5_2|TemporaryMemory_5_2);InputData_5_2_1: InputName_5_2_1 InputType_5_2_1;InputData_5_2_2: InputName_5_2_2 InputType_5_2_2;InputData_5_2_3: InputName_5_2_3 InputType_5_2_3;InputData_5_2_4: InputName_5_2_4 InputType_5_2_4;InputData_5_2_5: InputName_5_2_5 InputType_5_2_5;OutputData_5_2_1: OutputName_5_2_1 OutputType_5_2_1;OutputData_5_2_2: OutputName_5_2_2 OutputType_5_2_2;Capability_5_3:  InputData_5_3_1 InputData_5_3_2 InputData_5_3_3 InputData_5_3_4 InputData_5_3_5 InputData_5_3_6  OutputData_5_3_1 OutputData_5_3_2 CommunicationTechnologie_5_3 [Authentification_5_3] [ServiceState_5_3] CapabilityName_5_3;CommunicationTechnologie_5_3: (SOAP_5_3|REST_5_3|MOM_5_3);REST_5_3: (Post_5_3|Get_5_3|Put_5_3|Delete_5_3);MOM_5_3: AsynchronousQueue_5_3 [PublishSubscribe_5_3] [Transactional_5_3] [Reliability_5_3];PublishSubscribe_5_3: [Durable_5_3];Reliability_5_3: (PersistentDelivery_5_3|Acknowledgement_5_3)+;ServiceState_5_3: (StateMessaging_5_3|StatefulService_5_3)+;StateMessaging_5_3: [TwoWayState_5_3];StatefulService_5_3: (StateRepository_5_3|TemporaryMemory_5_3);InputData_5_3_1: InputName_5_3_1 InputType_5_3_1;InputData_5_3_2: InputName_5_3_2 InputType_5_3_2;InputData_5_3_3: InputName_5_3_3 InputType_5_3_3;InputData_5_3_4: InputName_5_3_4 InputType_5_3_4;InputData_5_3_5: InputName_5_3_5 InputType_5_3_5;InputData_5_3_6: InputName_5_3_6 InputType_5_3_6;OutputData_5_3_1: OutputName_5_3_1 OutputType_5_3_1;OutputData_5_3_2: OutputName_5_3_2 OutputType_5_3_2;Capability_5_4:  InputData_5_4_1 InputData_5_4_2  OutputData_5_4_1 CommunicationTechnologie_5_4 [Authentification_5_4] [ServiceState_5_4] CapabilityName_5_4;CommunicationTechnologie_5_4: (SOAP_5_4|REST_5_4|MOM_5_4);REST_5_4: (Post_5_4|Get_5_4|Put_5_4|Delete_5_4);MOM_5_4: AsynchronousQueue_5_4 [PublishSubscribe_5_4] [Transactional_5_4] [Reliability_5_4];PublishSubscribe_5_4: [Durable_5_4];Reliability_5_4: (PersistentDelivery_5_4|Acknowledgement_5_4)+;ServiceState_5_4: (StateMessaging_5_4|StatefulService_5_4)+;StateMessaging_5_4: [TwoWayState_5_4];StatefulService_5_4: (StateRepository_5_4|TemporaryMemory_5_4);InputData_5_4_1: InputName_5_4_1 InputType_5_4_1;InputData_5_4_2: InputName_5_4_2 InputType_5_4_2;OutputData_5_4_1: OutputName_5_4_1 OutputType_5_4_1;Capability_5_5:  InputData_5_5_1 InputData_5_5_2 InputData_5_5_3 InputData_5_5_4  OutputData_5_5_1 OutputData_5_5_2 OutputData_5_5_3 OutputData_5_5_4 OutputData_5_5_5 CommunicationTechnologie_5_5 [Authentification_5_5] [ServiceState_5_5] CapabilityName_5_5;CommunicationTechnologie_5_5: (SOAP_5_5|REST_5_5|MOM_5_5);REST_5_5: (Post_5_5|Get_5_5|Put_5_5|Delete_5_5);MOM_5_5: AsynchronousQueue_5_5 [PublishSubscribe_5_5] [Transactional_5_5] [Reliability_5_5];PublishSubscribe_5_5: [Durable_5_5];Reliability_5_5: (PersistentDelivery_5_5|Acknowledgement_5_5)+;ServiceState_5_5: (StateMessaging_5_5|StatefulService_5_5)+;StateMessaging_5_5: [TwoWayState_5_5];StatefulService_5_5: (StateRepository_5_5|TemporaryMemory_5_5);InputData_5_5_1: InputName_5_5_1 InputType_5_5_1;InputData_5_5_2: InputName_5_5_2 InputType_5_5_2;InputData_5_5_3: InputName_5_5_3 InputType_5_5_3;InputData_5_5_4: InputName_5_5_4 InputType_5_5_4;OutputData_5_5_1: OutputName_5_5_1 OutputType_5_5_1;OutputData_5_5_2: OutputName_5_5_2 OutputType_5_5_2;OutputData_5_5_3: OutputName_5_5_3 OutputType_5_5_3;OutputData_5_5_4: OutputName_5_5_4 OutputType_5_5_4;OutputData_5_5_5: OutputName_5_5_5 OutputType_5_5_5;Transactional_1_1 implies !Acknowledgement_1_1;Transactional_2_1 implies !Acknowledgement_2_1;Transactional_2_2 implies !Acknowledgement_2_2;Transactional_3_3 implies !Acknowledgement_3_3;Transactional_3_4 implies !Acknowledgement_3_4;Transactional_4_1 implies !Acknowledgement_4_1;Transactional_4_2 implies !Acknowledgement_4_2;Transactional_5_1 implies !Acknowledgement_5_1;Transactional_5_2 implies !Acknowledgement_5_2;Transactional_5_3 implies !Acknowledgement_5_3;Transactional_5_4 implies !Acknowledgement_5_4;Transactional_5_5 implies !Acknowledgement_5_5;");
 
 		
-//		String spec = MockData.setAttributes(fmFactory.mockSPSpec, fmFactory.fmUpdateBDD);
+//		String spec = MockData.setAttributes(fmFactory.mockSPSpec, FMBDD.getInstance());
 		
 		
-		System.out.println(fmFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.mockSPSpec));
+		System.out.println(FMFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.mockSPSpec));
 		
 		System.exit(-1);
 		
@@ -182,7 +182,7 @@ public class Main {
 		
 		fmFactory.specializedAttributedFMSP = "Root:Service_1; Service_1: ServiceName_1_eq_myService1 Capability_1_1;Capability_1_1:  InputData_1_1_1  OutputData_1_1_1 CommunicationTechnologie_1_1 Authentification_1_1 ServiceState_1_1 CapabilityName_1_1_eq_myCap1;CommunicationTechnologie_1_1: (SOAP_1_1|REST_1_1);REST_1_1: Post_1_1;ServiceState_1_1: StateMessaging_1_1;StateMessaging_1_1: TwoWayState_1_1;InputData_1_1_1: InputName_1_1_1_eq_myinname1 InputType_1_1_1_eq_myintype1;OutputData_1_1_1: OutputName_1_1_1_eq_myoutname1 OutputType_1_1_1_eq_myouttype1;";
 
-		fmFactory.specializedFMSP = fmFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
+		fmFactory.specializedFMSP = FMFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
 		
 //		fmFactory.specializedFMSP = fmFactory._fmSP;
 		
@@ -323,56 +323,58 @@ public class Main {
 		// Scanner sc = new Scanner(System.in);
 		fmFactory.specializedAttributedFMSP = "Root:Service_1; Service_1: ServiceName_1_eq_myService1 Capability_1_1;Capability_1_1:  InputData_1_1_1  OutputData_1_1_1 CommunicationTechnologie_1_1 Authentification_1_1 ServiceState_1_1 CapabilityName_1_1_eq_myCap1;CommunicationTechnologie_1_1: (SOAP_1_1|REST_1_1);REST_1_1: Post_1_1;ServiceState_1_1: StateMessaging_1_1;StateMessaging_1_1: TwoWayState_1_1;InputData_1_1_1: InputName_1_1_1_eq_myinname1 InputType_1_1_1_eq_myintype1;OutputData_1_1_1: OutputName_1_1_1_eq_myoutname1 OutputType_1_1_1_eq_myouttype1;";
 
-		fmFactory.specializedFMSP = fmFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
+		fmFactory.specializedFMSP = FMFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
 
-		fmFactory.extractAttributesValues(fmFactory.specializedAttributedFMSP);// mandatory
+//		fmFactory.attributes =  FMFactory.extractAttributesValues(fmFactory.specializedAttributedFMSP);// mandatory
 		// System.out.println(fmFactory.getAttributesValues(fmFactory.specializedAttributedFMSP));
 
 		// System.exit(-1);
+		
+		String error = "";
 
-		boolean checkSpec = fmFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.specializedFMSP);
+		error += FMFactory.checkSpecialization2(fmFactory._fmSP, fmFactory.specializedFMSP);
 
-		boolean checkEss = fmFactory.checkEssentialAndInternalVariability(fmFactory.specializedFMSP);
+		error += FMFactory.checkEssentialAndInternalVariability(fmFactory.specializedFMSP);
 
-		boolean checkAtt = fmFactory.checkAttributesValue(fmFactory.specializedAttributedFMSP);
+		error += FMFactory.checkAttributesValue(fmFactory.specializedAttributedFMSP);
 
-		if (checkSpec == true && checkEss == true && checkAtt == true) {
-			ok = true;
-
-			fmFactory.updateAndDelete(fmFactory.specializedFMSP, fmFactory._fmSC);
-		} else {
-			System.out.println(fmFactory.error);
-			fmFactory.error = "";
-		}
+//		if (checkSpec == true && checkEss == true && checkAtt == true) {
+//			ok = true;
+//
+//			fmFactory.updateAndDelete(fmFactory.specializedFMSP, fmFactory._fmSC);
+//		} else {
+//			System.out.println(fmFactory.error);
+//			fmFactory.error = "";
+//		}
 		// }
 
 		///// put fms familiar in files ///////
-		util.Functions.stringToFile(fmFactory.fmUpdateBDD.FM("fm_sc", fmFactory._fmSC).toString(),
+		util.Functions.stringToFile(FMBDD.getInstance().FM("fm_sc", fmFactory._fmSC).toString(),
 				"./fm_familiar_generated/fm_sc.fml", false);
-		util.Functions.stringToFile(fmFactory.fmUpdateBDD.FM("fm_sp", fmFactory._fmSP).toString(),
+		util.Functions.stringToFile(FMBDD.getInstance().FM("fm_sp", fmFactory._fmSP).toString(),
 				"./fm_familiar_generated/fm_sp.fml", false);
 		util.Functions.stringToFile(
-				fmFactory.fmUpdateBDD.FM("fm_sp_spec", fmFactory.specializedAttributedFMSP).toString(),
+				FMBDD.getInstance().FM("fm_sp_spec", fmFactory.specializedAttributedFMSP).toString(),
 				"./fm_familiar_generated/fm_sp_spec.fml", false);
 		util.Functions.stringToFile(
-				fmFactory.fmUpdateBDD.FM("fm_sc_update", fmFactory.updatedAttributedFMSC).toString(),
+				FMBDD.getInstance().FM("fm_sc_update", fmFactory.updatedAttributedFMSC).toString(),
 				"./fm_familiar_generated/fm_sc_update.fml", false);
 
 		///// put fms s2t2 in files ///////
 		S2T2Converter s2t2Converter = new S2T2Converter();
 		String xmiS2T2;
 
-		xmiS2T2 = s2t2Converter.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM("fm_sc", fmFactory._fmSC));
+		xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc", fmFactory._fmSC));
 		util.Functions.stringToFile(xmiS2T2, "./fm_s2t2_generated/fm_sc.fmprimitives", false);
 
-		xmiS2T2 = s2t2Converter.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM("fm_sp", fmFactory._fmSP));
+		xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp", fmFactory._fmSP));
 		util.Functions.stringToFile(xmiS2T2, "./fm_s2t2_generated/fm_sp.fmprimitives", false);
 
 		xmiS2T2 = s2t2Converter
-				.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM("fm_sp_spec", fmFactory.specializedAttributedFMSP));
+				.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec", fmFactory.specializedAttributedFMSP));
 		util.Functions.stringToFile(xmiS2T2, "./fm_s2t2_generated/fm_sp_spec.fmprimitives", false);
 
-		xmiS2T2 = s2t2Converter.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM("fm_sc_update", fmFactory.updatedAttributedFMSC));
+		xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update", fmFactory.updatedAttributedFMSC));
 		util.Functions.stringToFile(xmiS2T2, "./fm_s2t2_generated/fm_sc_update.fmprimitives", false);
 
 		// System.exit(-1);

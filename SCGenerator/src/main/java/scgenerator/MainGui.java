@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,10 +26,12 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 
+import familiar.FMFactory;
 import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
 import fr.unice.polytech.modalis.familiar.operations.CountingStrategy;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
+import gsd.synthesis.FeatureModel;
 import scfactory.SCGenerator;
 import scfactory.FMBDD;
 import scfactory.SCProject;
@@ -133,7 +136,7 @@ public class MainGui {
 					if (amsc.valid == true) {
 
 						if (atLeastOnResponseHandlerAsynchonous == false
-								&& amsc.amGenerator.capability.asynchronous == true)
+								&& amsc.amGenerator.extractCapabilityFromContract().asynchronous == true)
 							atLeastOnResponseHandlerAsynchonous = true;
 
 						amscList.add(amsc);
@@ -235,7 +238,7 @@ public class MainGui {
 								// System.out.println("GO!!");
 								// int amsCount = fmvSC.configsBDD().size();
 
-								int amsCount = (int) fmvSC.counting(CountingStrategy.SAT_FML)/2;
+								int amsCount = (int) fmvSC.counting(CountingStrategy.SAT_FML) / 2;
 								// System.out.println(amsCount);
 								amsCountLbl.setText("AM SC update count: " + amsCount);
 							} catch (Exception e) {
@@ -280,10 +283,24 @@ public class MainGui {
 					for (Variable confVariable : configsList) {
 						if (maxAMs-- == 0)
 							break;
-						String conf = "RootSynthetis : " + confVariable.getValue().replaceAll(";", " ")
-								.replaceFirst("\\{", "").replaceFirst("\\}", "") + ";";
+						// String conf = "RootSynthetis : " +
+						// confVariable.getValue().replaceAll(";", " ")
+						// .replaceFirst("\\{", "").replaceFirst("\\}", "") +
+						// ";";
 
-						String confResult = MockData.setAttributes(conf, FMBDD.getInstance());
+						String serviceFeature = AMSC.searchFeatureIntoVariable(confVariable, "Service_");
+						String capabilityFeature = AMSC.searchFeatureIntoVariable(confVariable, "Capability_");
+
+						FeatureModelVariable fmvSCCapability = new FeatureModelVariable("fm",
+								fmvSC.extract(capabilityFeature));
+
+						Set<String> capabilityFeatures = com.google.common.collect.Sets
+								.intersection(AMSC.variableToSet(confVariable), fmvSCCapability.features().names());
+
+						String conf = AMSC.variableToFMStr(fmvSC, capabilityFeatures, serviceFeature,
+								capabilityFeature);
+
+						String confResult = MockData.setAttributes(conf);
 
 						// confResult = confResult.replaceAll(EQ_ATTRIBUTE,
 						// "=");
@@ -292,7 +309,7 @@ public class MainGui {
 						amsc.createSCAM();
 
 						amsc.valid = true;
-						amsc.am = confResult;
+						amsc.am = confResult.replaceAll(FMFactory.EQ_ATTRIBUTE, "=");
 
 						// FeatureModelVariable fmvAM = amsc.fmbdd.FM("am",
 						// confResult);
@@ -321,7 +338,7 @@ public class MainGui {
 						amsc.amGenerator = new SCGenerator(scProject.fmSCUpdateFMLPath);
 						amsc.amGenerator.setAmFilePath(amsc.amFilePath);
 
-						amsc.amGenerator.fmlToObject(fmvAM);
+						amsc.amGenerator.convertAMToContractXML(fmvAM);
 
 						amsc.textEditor.amsc = amsc;
 						amsc.textEditor.setTextPane(amsc.am);
@@ -385,18 +402,21 @@ public class MainGui {
 								.addGap(66)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblHostName)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblHostName)
 								.addComponent(hostTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnNewButton))
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(scAMbtnButton)
-								.addComponent(btnFmScUpdate).addComponent(btnGenerateAllAmscupdate))
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textMaxField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblMax).addComponent(amsCountLbl)))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(
+								groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(scAMbtnButton).addComponent(btnFmScUpdate)
+												.addComponent(btnGenerateAllAmscupdate))
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(textMaxField, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblMax).addComponent(amsCountLbl)))
 						.addGap(96).addComponent(scAttributeFeaturesLbl).addPreferredGap(ComponentPlacement.UNRELATED)
 						.addComponent(attributeSCextArea, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)

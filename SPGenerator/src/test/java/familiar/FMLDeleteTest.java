@@ -19,7 +19,6 @@ public class FMLDeleteTest extends FMLTest {
 		Set<String> fts = new HashSet<String>();
 		fts.add("Authentification_1_1");
 
-		FMDeleteBDD fmDeleteBDD = new FMDeleteBDD();
 
 //		fmToDelete = FM("m1", "a: (b|c) d;b: [f] [g] k; g implies f;\n");
 		
@@ -34,7 +33,7 @@ public class FMLDeleteTest extends FMLTest {
 		// assertNotNull(fmToPreserve);
 		// assertNotNull(fmToUpdate);
 
-		FeatureModelVariable fmUpdated = fmDeleteBDD.deleteFM(fmToDelete, fts);
+		FeatureModelVariable fmUpdated = FMDeleteBDD.deleteFM2(fmToDelete, fts);
 		System.out.println("Result");
 		System.out.println(fmUpdated);
 		System.out.println("End");

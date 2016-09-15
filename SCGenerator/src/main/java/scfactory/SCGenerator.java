@@ -4,6 +4,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
+import familiar.FMFactory;
+import features.bean.Capability;
+import features.bean.Contract;
+import features.bean.Input;
+import features.bean.Service;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import jms.JMSFactory;
 import rest.RESTFactory;
@@ -34,11 +39,13 @@ public class SCGenerator {
 
 	public StateMessagingDP stateMessagingDP;
 
-	public String host;
+//	public String host;
 
-	public Contract contract;
+	public Contract contractFM;
 	// public Service service;
-	public Capability capability;
+	// public Capability capability;
+	public Contract contractCapability;
+
 	public String capabilityXMLPath;
 
 	// public ArrayList<String> extractedData;
@@ -51,14 +58,18 @@ public class SCGenerator {
 	public static final String EQ_ATTRIBUTE = "_eq_";
 
 	public String projectPath;
-	private String fmFilePath;
+	public String fmFilePath;
 
-//	public SCGenerator() {
-//
-//	}
+	// public SCGenerator() {
+	//
+	// }
 
 	public SCGenerator(String fmFilePath) {
 		this.fmFilePath = fmFilePath;
+	}
+
+	public Capability extractCapabilityFromContract() {
+		return contractCapability.services.get(0).capabilities.get(0);
 	}
 
 	public static String extractFeatureValue(String feature) {
@@ -103,14 +114,14 @@ public class SCGenerator {
 
 		// this.data = data;
 		try {
-			if (capability.jms == true) {
+			if (extractCapabilityFromContract().jms == true) {
 				jmsBasic = new JMSFactory(this);
 				jmsBasic.initConf();
-			} else if (capability.soap == true) {
+			} else if (extractCapabilityFromContract().soap == true) {
 				soapBasic = new SOAPFactory(this);
 
 				soapBasic.initConf();
-			} else if (capability.rest == true) {
+			} else if (extractCapabilityFromContract().rest == true) {
 				restBasic = new RESTFactory(this);
 
 				restBasic.initConf();
@@ -128,13 +139,13 @@ public class SCGenerator {
 	public void stop() throws SCGeneratorException {
 		try {
 
-			if (capability.jms == true)
+			if (extractCapabilityFromContract().jms == true)
 				jmsBasic.closeJMS();
 
-			if (capability.soap == true && capability.asynchronous == true) {
+			if (extractCapabilityFromContract().soap == true && extractCapabilityFromContract().asynchronous == true) {
 				soapBasic.getAsynchrounousResponse();
 			}
-			if (capability.rest == true && capability.asynchronous == true) {
+			if (extractCapabilityFromContract().rest == true && extractCapabilityFromContract().asynchronous == true) {
 				restBasic.getRestAsynchronousResponse();
 			}
 
@@ -219,112 +230,121 @@ public class SCGenerator {
 	// this.errorResponseList = errorResponseList;
 	// }
 
-	public void fmlToObject(FeatureModelVariable fmvAM) throws Exception {
-
-		String serviceName = getFeatureValue(fmvAM, "ServiceName");
-		String capabilityName = getFeatureValue(fmvAM, "CapabilityName");
-
-		// String amID = getFeatureValue(fmvAM, "ServiceName") + "_" +
-		// getFeatureValue(fmvAM, "CapabilityName") + "_"
-		// + AMSC.amSCValidNumber++;
-
-		// amsc.amFilePath = SCProject.AM_Dir + amID + ".fml";
-		// amsc.capabilityPath = SCProject.CAPABILITY_Dir + "capability_" + amID
-		// + ".xml";
-
-		for (Service serviceTemp : contract.getServices()) {
-			if (serviceTemp.interfaceName.equals(serviceName)) {
-
-				for (Capability capabilityTemp : serviceTemp.capabilities) {
-
-					if (capabilityTemp.name.equals(capabilityName)) {
-						capability = capabilityTemp.clone();
-
-						capabilityId = getFeatureID(getFeatureName(fmvAM, "CapabilityName"));
-
-						// System.out.println(capabilityId);
-
-						capability.serviceName = serviceName;
-						capability.dataInputClassName = getFeatureValue(fmvAM, "InputDataClassName" + capabilityId);
-						capability.dataOutputClassName = getFeatureValue(fmvAM, "OutputDataClassName" + capabilityId);
-
-						capability.stateMessaging = fmvAM.features().names().contains("StateMessaging" + capabilityId);
-						capability.twoWayState = fmvAM.features().names().contains("TwoWayState" + capabilityId);
-						capability.stateRepository = fmvAM.features().names()
-								.contains("StateRepository" + capabilityId);
-						capability.temporaryMemory = fmvAM.features().names()
-								.contains("TemporaryMemory" + capabilityId);
-
-						capability.soap = fmvAM.features().names().contains("SOAP" + capabilityId);
-
-						capability.rest = fmvAM.features().names().contains("REST" + capabilityId);
-
-						//
-						if (fmvAM.features().names().contains("Put" + capabilityId))
-							capability.restMethod = "Put";
-						else if (fmvAM.features().names().contains("Get" + capabilityId))
-							capability.restMethod = "Get";
-						else if (fmvAM.features().names().contains("Post" + capabilityId))
-							capability.restMethod = "Post";
-						else if (fmvAM.features().names().contains("Delete" + capabilityId))
-							capability.restMethod = "Delete";
-						//
-
-						capability.jms = fmvAM.features().names().contains("MOM" + capabilityId);
-						//
-						if (capability.jms == true) {
-							//
-							capability.broker.acknowledgement = fmvAM.features().names()
-									.contains("Acknowledgement" + capabilityId);
-							capability.broker.transactional = fmvAM.features().names()
-									.contains("Transactional" + capabilityId);
-							capability.broker.persistentDelivery = fmvAM.features().names()
-									.contains("PersistentDelivery" + capabilityId);
-
-							capability.broker.publishSubscribe = fmvAM.features().names()
-									.contains("PublishSubscribe" + capabilityId);
-							capability.broker.durable = fmvAM.features().names().contains("Durable" + capabilityId);
-
-						} else
-							capability.broker = null;
-
-						capability.asynchronous = fmvAM.features().names()
-								.contains("Asynchronous" + capabilityId);
-
-						if (capability.asynchronous == false)
-							capability.synchronous = true;
-						// amsc.capability.synchronousResponseHandlerExist =
-						// fmvAM.features().names()
-						// .contains("Synchronous" + capabilityId);
-
-						capability.authentification = fmvAM.features().names()
-								.contains("Authentification" + capabilityId);
-						//
-						if (capability.authentification == true) {
-							capability.usernameValue = getFeatureValue(fmvAM, "Username" + capabilityId);
-							capability.passwordValue = getFeatureValue(fmvAM, "Password" + capabilityId);
-						}
-
-						// input
-						for (Input input : capability.inputs) {
-
-							String inputID = capabilityId + "_" + input.number;
-
-							input.value = getFeatureValue(fmvAM, "InputValue" + inputID);
-
-						}
-
-						break;
-					}
-				}
-				break;
-			}
-		}
-		capabilityXMLPath = projectPath + SCProject.CAPABILITY_DIR_NAME + "capability_"
-				+ amFilePath.substring(amFilePath.lastIndexOf("/") + 1, amFilePath.lastIndexOf(".")) + ".xml";
-		util.JAXBUtil.marshall(capability, capabilityXMLPath);
-
-	}
+	// public void fmlToObject(FeatureModelVariable fmvAM) throws Exception {
+	//
+	// String serviceName = getFeatureValue(fmvAM, "ServiceName");
+	// String capabilityName = getFeatureValue(fmvAM, "CapabilityName");
+	//
+	// // String amID = getFeatureValue(fmvAM, "ServiceName") + "_" +
+	// // getFeatureValue(fmvAM, "CapabilityName") + "_"
+	// // + AMSC.amSCValidNumber++;
+	//
+	// // amsc.amFilePath = SCProject.AM_Dir + amID + ".fml";
+	// // amsc.capabilityPath = SCProject.CAPABILITY_Dir + "capability_" + amID
+	// // + ".xml";
+	//
+	// for (Service serviceTemp : contract.getServices()) {
+	// if (serviceTemp.interfaceName.equals(serviceName)) {
+	//
+	// for (Capability capabilityTemp : serviceTemp.capabilities) {
+	//
+	// if (capabilityTemp.name.equals(capabilityName)) {
+	// capability = capabilityTemp.clone();
+	//
+	// capabilityId = getFeatureID(getFeatureName(fmvAM, "CapabilityName"));
+	//
+	// // System.out.println(capabilityId);
+	//
+	// capability.serviceName = serviceName;
+	// capability.dataInputClassName = getFeatureValue(fmvAM,
+	// "InputDataClassName" + capabilityId);
+	// capability.dataOutputClassName = getFeatureValue(fmvAM,
+	// "OutputDataClassName" + capabilityId);
+	//
+	// capability.stateMessaging =
+	// fmvAM.features().names().contains("StateMessaging" + capabilityId);
+	// capability.twoWayState = fmvAM.features().names().contains("TwoWayState"
+	// + capabilityId);
+	// capability.stateRepository = fmvAM.features().names()
+	// .contains("StateRepository" + capabilityId);
+	// capability.temporaryMemory = fmvAM.features().names()
+	// .contains("TemporaryMemory" + capabilityId);
+	//
+	// capability.soap = fmvAM.features().names().contains("SOAP" +
+	// capabilityId);
+	//
+	// capability.rest = fmvAM.features().names().contains("REST" +
+	// capabilityId);
+	//
+	// //
+	// if (fmvAM.features().names().contains("Put" + capabilityId))
+	// capability.restMethod = "Put";
+	// else if (fmvAM.features().names().contains("Get" + capabilityId))
+	// capability.restMethod = "Get";
+	// else if (fmvAM.features().names().contains("Post" + capabilityId))
+	// capability.restMethod = "Post";
+	// else if (fmvAM.features().names().contains("Delete" + capabilityId))
+	// capability.restMethod = "Delete";
+	// //
+	//
+	// capability.jms = fmvAM.features().names().contains("MOM" + capabilityId);
+	// //
+	// if (capability.jms == true) {
+	// //
+	// capability.broker.acknowledgement = fmvAM.features().names()
+	// .contains("Acknowledgement" + capabilityId);
+	// capability.broker.transactional = fmvAM.features().names()
+	// .contains("Transactional" + capabilityId);
+	// capability.broker.persistentDelivery = fmvAM.features().names()
+	// .contains("PersistentDelivery" + capabilityId);
+	//
+	// capability.broker.publishSubscribe = fmvAM.features().names()
+	// .contains("PublishSubscribe" + capabilityId);
+	// capability.broker.durable = fmvAM.features().names().contains("Durable" +
+	// capabilityId);
+	//
+	// } else
+	// capability.broker = null;
+	//
+	// capability.asynchronous = fmvAM.features().names()
+	// .contains("Asynchronous" + capabilityId);
+	//
+	// if (capability.asynchronous == false)
+	// capability.synchronous = true;
+	// // amsc.capability.synchronousResponseHandlerExist =
+	// // fmvAM.features().names()
+	// // .contains("Synchronous" + capabilityId);
+	//
+	// capability.authentification = fmvAM.features().names()
+	// .contains("Authentification" + capabilityId);
+	// //
+	// if (capability.authentification == true) {
+	// capability.username = getFeatureValue(fmvAM, "Username" + capabilityId);
+	// capability.password = getFeatureValue(fmvAM, "Password" + capabilityId);
+	// }
+	//
+	// // input
+	// for (Input input : capability.inputs) {
+	//
+	// String inputID = capabilityId + "_" + input.number;
+	//
+	// input.value = getFeatureValue(fmvAM, "InputValue" + inputID);
+	//
+	// }
+	//
+	// break;
+	// }
+	// }
+	// break;
+	// }
+	// }
+	// contractCapabilityXMLPath = projectPath + SCProject.CAPABILITY_DIR_NAME +
+	// "capability_"
+	// + amFilePath.substring(amFilePath.lastIndexOf("/") + 1,
+	// amFilePath.lastIndexOf(".")) + ".xml";
+	// util.JAXBUtil.marshall(capability, contractCapabilityXMLPath);
+	//
+	// }
 
 	public static String getFeatureValue(FeatureModelVariable fmv, String featureToSearch) {
 
@@ -355,19 +375,32 @@ public class SCGenerator {
 	}
 
 	public Capability getCapability() {
-		return capability;
+		return extractCapabilityFromContract();
 	}
 
 	public String getCapabilityId() {
 		return capabilityId;
 	}
 
-	public Contract getContract() {
-		return contract;
+	public Contract getContractFM() {
+		return contractFM;
 	}
 
 	public String getAmFilePath() {
 		return this.amFilePath;
+	}
+
+	public void convertAMToContractXML(FeatureModelVariable fmvAM) {
+		try {
+			contractCapability = FMFactory.convertFMSCUpdateToContractXML(fmvAM.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		capabilityXMLPath = projectPath + SCProject.CAPABILITY_DIR_NAME + "capability_"
+				+ amFilePath.substring(amFilePath.lastIndexOf("/") + 1, amFilePath.lastIndexOf(".")) + ".xml";
+		util.JAXBUtil.marshall(contractCapability, capabilityXMLPath);
 	}
 
 	public void setAmFilePath(String amFilePath) throws SCGeneratorException {
@@ -378,7 +411,7 @@ public class SCGenerator {
 		projectPath = fmFilePath.substring(0,
 				amFilePath.substring(0, amFilePath.lastIndexOf("/")).lastIndexOf("/") + 1);
 		//
-//		this.fmFilePath = projectPath + SCProject.FM_SC_UPDATE_FML_NAME;
+		// this.fmFilePath = projectPath + SCProject.FM_SC_UPDATE_FML_NAME;
 
 		this.amFilePath = amFilePath;
 		// this.serviceName = serviceName;
@@ -388,14 +421,17 @@ public class SCGenerator {
 
 		fmbdd = FMBDD.getInstance();
 
-		contract = (Contract) util.JAXBUtil.unmarshall(projectPath + SCProject.CONTRACT_NAME, Contract.class);
-		this.host = contract.host;
+		// contractCapability = (Contract) util.JAXBUtil.unmarshall(projectPath
+		// + SCProject.CONTRACT_NAME, Contract.class);
+		// this.host = contract.hostName;
 
 		try {
 			fmvAM = fmbdd.FM("am", Functions.fileToString(amFilePath).replaceAll("=", "_eq_"));
 
+			convertAMToContractXML(fmvAM);
 			// load capability
-			fmlToObject(fmvAM);
+			// fmlToObject(fmvAM);
+
 		} catch (Exception e) {
 
 			// e.printStackTrace();

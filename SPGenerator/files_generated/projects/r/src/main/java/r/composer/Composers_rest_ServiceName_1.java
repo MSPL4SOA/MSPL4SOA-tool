@@ -8,8 +8,10 @@ import org.switchyard.component.resteasy.composer.RESTEasyBindingData;
 import org.switchyard.component.resteasy.composer.RESTEasyMessageComposer;
 
 import r.state.State_ServiceName_1_CapabilityName_1_1;
+import r.state.State_ServiceName_1_CapabilityName_1_2;
 
 import r.input.InputDataClassName_1_1;
+import r.input.InputDataClassName_1_2;
 
 public class Composers_rest_ServiceName_1 extends RESTEasyMessageComposer {
 
@@ -25,9 +27,16 @@ public class Composers_rest_ServiceName_1 extends RESTEasyMessageComposer {
 		if (opName.equals("CapabilityName_1_1")) {
 			InputDataClassName_1_1 in = new InputDataClassName_1_1();
 
-			in.setInputName_1_1_1((Float) source.getParameters()[0]);
+			in.setInputName_1_1_1((Integer) source.getParameters()[0]);
 			in.setInputName_1_1_2((Integer) source.getParameters()[1]);
-			in.setInputName_1_1_3((String) source.getParameters()[2]);
+			message.setContent(in);
+		}
+
+		if (opName.equals("CapabilityName_1_2")) {
+			InputDataClassName_1_2 in = new InputDataClassName_1_2();
+
+			in.setInputName_1_2_1((Integer) source.getParameters()[0]);
+			in.setInputName_1_2_2((String) source.getParameters()[1]);
 			message.setContent(in);
 		}
 

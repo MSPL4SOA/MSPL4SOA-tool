@@ -3,18 +3,23 @@ package scgenerator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import familiar.FMFactory;
+import fr.unice.polytech.modalis.familiar.fm.FMLUtils;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
 import gsd.synthesis.FeatureModel;
-import scfactory.SCGenerator;
 import scfactory.FMBDD;
+import scfactory.SCGenerator;
 import scfactory.SCProject;
+import spc1.soap.ServiceName1;
 import util.Functions;
 import util.MockData;
 
@@ -64,10 +69,9 @@ public class AMSC {
 		final String fmToConfigure;
 		if (valid == false)
 
-			fmToConfigure = util.Functions.fileToString(scProject.fmSCUpdateFMLPath)
-					.replaceAll("\"", "");
+			fmToConfigure = util.Functions.fileToString(scProject.fmSCUpdateFMLPath);
 		else
-			fmToConfigure = util.Functions.fileToString(amFilePath).replaceAll("\"", "");
+			fmToConfigure = util.Functions.fileToString(amFilePath);
 
 		textEditor = new TextEditor();
 		textEditor.setTextPane(fmToConfigure);
@@ -137,11 +141,11 @@ public class AMSC {
 		int capabilityCount = scProject.contract.services.get(serviceNumber).capabilities.size();
 		int capabilityNumber = Functions.randInt(0, capabilityCount - 1);
 
-		String capabilityName = "Capability_" + (serviceNumber + 1) + "_" + (capabilityNumber + 1);
+		String capabilityFeature = "Capability_" + (serviceNumber + 1) + "_" + (capabilityNumber + 1);
 
-		FeatureModelVariable fmvFM = fmbdd.FM("fm", scProject.fmSCUpdateFML_eq_);
+		FeatureModelVariable fmvFM = FMBDD.getInstance().FM("fm", scProject.fmSCUpdateFML_eq_);
 
-		FeatureModel<String> capabilityFM = fmvFM.extract(capabilityName);
+		FeatureModel<String> capabilityFM = fmvFM.extract(capabilityFeature);
 
 		FeatureModelVariable fmvCapability = new FeatureModelVariable("capability", capabilityFM);
 
@@ -177,30 +181,101 @@ public class AMSC {
 		int capabilityCommunicationConfigsNumber = Functions.randInt(0, capabilityCommunicationConfigsCount - 1);
 		Variable confVariable = capabilityCommunicationConfigsList.get(capabilityCommunicationConfigsNumber);
 
-		String conf = confVariable.getValue().replaceAll(";", " ").replaceFirst("\\{", "").replaceFirst("\\}", "");
+		Set<Variable> confVariableUtils = new HashSet<Variable>();
+		confVariableUtils.add(confVariable);
 
-		String serviceId = "Service_" + (serviceNumber + 1);
+		Set<Set<String>> sfm1 = FMLUtils.setConfigToSetStr(confVariableUtils);
 
-		String serviceFeature = "ServiceName_" + (serviceNumber + 1) + "_eq_"
-				+ scProject.contract.services.get(serviceNumber).interfaceName;
+		String confCapability = "";
 
-		// String capabilityFeature = capabilityName + "_eq_"
-		// +
-		// scProject.contract.services.get(serviceNumber).capabilities.get(capabilityNumber).name;
+		for (Set<String> set : sfm1) {
 
-		// remane capability
-		// conf = conf.replaceFirst(capabilityName, capabilityFeature);
+			for (String varStr : set) {
 
-		conf = conf.replaceFirst(capabilityName, "");
+				confCapability += FMFactory.addQuote(varStr) + " ";
+			}
 
-		conf = "Root : " + serviceId + " " + serviceFeature + " " + capabilityName + ";" + capabilityName + ":" + conf
-				+ ";";
+		}
 
-		String confResult = MockData.setAttributes(conf, fmbdd);
+		String serviceFeature = "Service_" + (serviceNumber + 1);
+
+		confCapability = confCapability.replaceFirst(FMFactory.addQuote(capabilityFeature), "");
+
+		String conf = FMFactory.SP_ROOT + ": " + FMFactory.getRootFeatures(fmvFM) + FMFactory.addQuote(serviceFeature)
+				+ ";\n" + FMFactory.addQuote(serviceFeature) + ": "
+				+ FMFactory.getServiceFeatures(fmvFM, serviceFeature) + FMFactory.addQuote(capabilityFeature) + ";\n"
+				+ FMFactory.addQuote(capabilityFeature) + ": " + confCapability + ";";
+
+		String confResult = MockData.setAttributes(conf);
 
 		confResult = confResult.replaceAll("_eq_", "=");
 
 		return confResult;
+	}
+
+	public static String searchFeatureIntoVariable(Variable confVariable, String featureName) {
+
+		Set<Variable> confVariableUtils = new HashSet<Variable>();
+		confVariableUtils.add(confVariable);
+
+		Set<Set<String>> sfm1 = FMLUtils.setConfigToSetStr(confVariableUtils);
+
+		for (Set<String> set : sfm1) {
+
+			for (String varStr : set) {
+
+				if (varStr.matches(".*" + featureName + ".*"))
+
+					return varStr;
+			}
+
+		}
+
+		return "";
+	}
+
+	public static Set<String> variableToSet(Variable variable) {
+		Set<Variable> confVariableUtils = new HashSet<Variable>();
+		confVariableUtils.add(variable);
+
+		Set<Set<String>> sfm1 = FMLUtils.setConfigToSetStr(confVariableUtils);
+
+		Set<String> result = new HashSet<String>();
+
+		for (Set<String> set : sfm1) {
+
+			for (String varStr : set) {
+				result.add(varStr);
+			}
+		}
+		return result;
+	}
+
+	public static String variableToFMStr(FeatureModelVariable fmvFM, Set<String> capabilityFeatures,
+			String serviceFeature, String capabilityFeature) throws Exception {
+
+		String capabilityFeaturesStr = "";
+
+		for (String feature : capabilityFeatures) {
+
+			if (!feature.equals(capabilityFeature))
+				capabilityFeaturesStr += FMFactory.addQuote(feature) + " ";
+
+		}
+		//
+		// String confCapability =
+		// confCapability.replaceFirst(FMFactory.addQuote(capabilityFeature),
+		// "");
+		//
+		// confCapability = FMFactory.addQuote(capabilityFeature) + ": " +
+		// confCapability;
+
+		String conf = FMFactory.SP_ROOT + ": " + FMFactory.getRootFeatures(fmvFM) + FMFactory.addQuote(serviceFeature)
+				+ ";\n" + FMFactory.addQuote(serviceFeature) + ": "
+				+ FMFactory.getServiceFeatures(fmvFM, serviceFeature) + FMFactory.addQuote(capabilityFeature) + ";\n"
+				+ capabilityFeature + ": " + capabilityFeaturesStr + ";";
+
+		return conf;
 	}
 
 	// public static void generateAllAMSC() throws Exception {

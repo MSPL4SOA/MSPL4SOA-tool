@@ -95,7 +95,7 @@ public class Contract {
 
 	public String projectName;
 
-	public String host;
+	public String hostName;
 
 	public String dataInputPkg;
 	public String dataOutputPkg;
@@ -108,8 +108,8 @@ public class Contract {
 		return services;
 	}
 
-	public String getHost() {
-		return host;
+	public String getHostName() {
+		return hostName;
 	}
 
 	public String getDataInputPkg() {

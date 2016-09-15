@@ -28,6 +28,8 @@ import java.util.logging.Logger;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.io.IOUtils;
+
 /**
  *
  * @author akram
@@ -46,6 +48,32 @@ public class Functions {
 
 		if (!file.exists())
 			file.mkdirs();
+	}
+
+	public static String readResourceToString(String filePath) {
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		InputStream is = classloader.getResourceAsStream(filePath);
+		try {
+			return IOUtils.toString(is, "UTF-8");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public static byte[] readResourceToByteArray(String filePath) {
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		InputStream is = classloader.getResourceAsStream(filePath);
+		try {
+			return IOUtils.toByteArray(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	public static void copyFile(String fileInPath, String fileOutPath) {
@@ -202,30 +230,6 @@ public class Functions {
 	}
 
 	public static void execExtProg(String args, String FilePathTmp) {
-
-		OutputStreamWriter os;
-		BufferedWriter bw;
-
-		(new File(FilePathTmp)).delete();
-		try {
-
-			os = new OutputStreamWriter(new FileOutputStream(FilePathTmp), "UTF-8");
-			bw = new BufferedWriter(os);
-
-			bw.write(args);
-
-			bw.close();
-			os.close();
-
-		} catch (IOException ex) {
-			Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		String[] argsTab = { "/bin/sh", FilePathTmp };
-		Functions.execExtProg(argsTab);
-	}
-
-	public static void execExtProgJava(String args, String FilePathTmp) {
 
 		OutputStreamWriter os;
 		BufferedWriter bw;
@@ -477,56 +481,6 @@ public class Functions {
 		}
 
 		return result;
-	}
-	
-	public static String inputStreamToString(InputStream inputStream) {
-
-
-		String result = "";
-
-		InputStreamReader is;
-		BufferedReader br;
-		String line;
-
-		try {
-			is = new InputStreamReader(inputStream, "UTF-8");
-			br = new BufferedReader(is);
-
-			while ((line = br.readLine()) != null) {
-				result += line + "\n";
-			}
-		} catch (IOException ex) {
-			Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (Exception ex) {
-			Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		return result;
-	}
-	
-	public static ArrayList<String> inputStreamToStrings(InputStream inputStream) {
-
-
-		ArrayList<String> fileStringsList = new ArrayList<String>();
-
-		InputStreamReader is;
-		BufferedReader br;
-		String line;
-
-		try {
-			is = new InputStreamReader(inputStream, "UTF-8");
-			br = new BufferedReader(is);
-
-			while ((line = br.readLine()) != null) {
-				fileStringsList.add(line);
-			}
-		} catch (IOException ex) {
-			Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (Exception ex) {
-			Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		return fileStringsList;
 	}
 
 	public static String listToString(ArrayList array, String delim) {
@@ -794,7 +748,7 @@ public class Functions {
 		resultat &= path.delete();
 		return (resultat);
 	}
-
+	
 	static public String toUpperFirstLetter(String in) {
 
 		return in.substring(0, 1).toUpperCase() + in.substring(1);
@@ -804,7 +758,7 @@ public class Functions {
 
 		return in.substring(0, 1).toLowerCase() + in.substring(1);
 	}
-
+	
 	public static int randInt(int min, int max) {
 
 		// Usually this can be a field rather than a method variable

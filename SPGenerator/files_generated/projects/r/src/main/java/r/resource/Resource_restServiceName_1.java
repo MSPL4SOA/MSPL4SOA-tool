@@ -15,15 +15,24 @@ import r.output.OutputDataClassName_1_1;
 public interface Resource_restServiceName_1 {
 
 	@GET
-	@Path("/CapabilityName_1_1/{InputName_1_1_1}/{InputName_1_1_2}/{InputName_1_1_3}/")
+	@Path("/CapabilityName_1_1/{InputName_1_1_1}/{InputName_1_1_2}/")
 	@Produces({ "text/xml" })
 	public Response CapabilityName_1_1(
 
-	@PathParam("InputName_1_1_1") Float InputName_1_1_1
+	@PathParam("InputName_1_1_1") Integer InputName_1_1_1
 
 	, @PathParam("InputName_1_1_2") Integer InputName_1_1_2
 
-	, @PathParam("InputName_1_1_3") String InputName_1_1_3
+	);
+
+	@POST
+	@Path("/CapabilityName_1_2/{InputName_1_2_1}/{InputName_1_2_2}/")
+	@Produces({ "text/xml" })
+	public void CapabilityName_1_2(
+
+	@PathParam("InputName_1_2_1") Integer InputName_1_2_1
+
+	, @PathParam("InputName_1_2_2") String InputName_1_2_2
 
 	);
 

@@ -28,7 +28,7 @@ public class FMStatistics {
 			String fm = util.Functions.fileToString(fmFilePath).replaceAll("=", EQ_ATTRIBUTE);
 
 			fmSPFMV = FMBDD.getInstance().FM("fm", deleteAttributesValues(fm));
-
+			
 			SetVariable fmSPFMVFeatures = fmSPFMV.features();
 
 			ArrayList<String> featuresStringList = util.Functions.fileToStrings(featureFilePath);
@@ -99,12 +99,12 @@ public class FMStatistics {
 
 	public static void stat1() throws Exception {
 
-		String projectName = "large11";
+		String projectName = "large3";
 
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
 		// fm
-		String fmSPPath = projectDir + "fm_sp.fml";
+		String fmSPPath = "/home/akram/Desktop/fm.fml";
 		String fmSCPath = projectDir + "fm_sc.fml";
 		String fmSPSpecializePath = projectDir + "fm_sp_spec.fml";
 		String fmSCUpdatePath = projectDir + "fm_sc_update.fml";
@@ -135,7 +135,7 @@ public class FMStatistics {
 						/ 2);
 		System.out.println("-------------------------");
 
-		// SP specialize
+//		// SP specialize
 		System.out.println("fm_sp_spec :: ");
 		System.out.println("Internal Features :: " + fmStatistics(fmSPSpecializePath, internalFeaturesSPPath));
 		System.out.println("Essential Features :: " + fmStatistics(fmSPSpecializePath, essentialFeaturesPath));
@@ -153,15 +153,15 @@ public class FMStatistics {
 		System.out.println("-------------------------");
 
 		// SC
-		System.out.println("fm_sc :: ");
-		System.out.println("Internal Features :: " + fmStatistics(fmSCPath, internalFeaturesSCPath));
-		System.out.println("Essential Features :: " + fmStatistics(fmSCPath, essentialFeaturesPath));
-		System.out.println("Specialized Features :: " + fmStatistics(fmSCPath, specializedFeaturesPath));
-		System.out.println("AMs :: "
-				+ FMBDD.getInstance().FM("fm_sc", Functions.fileToString(fmSCPath)).counting(CountingStrategy.SAT_FML)
-						/ 2);
-		System.out.println("-------------------------");
-
+//		System.out.println("fm_sc :: ");
+//		System.out.println("Internal Features :: " + fmStatistics(fmSCPath, internalFeaturesSCPath));
+//		System.out.println("Essential Features :: " + fmStatistics(fmSCPath, essentialFeaturesPath));
+//		System.out.println("Specialized Features :: " + fmStatistics(fmSCPath, specializedFeaturesPath));
+//		System.out.println("AMs :: "
+//				+ FMBDD.getInstance().FM("fm_sc", Functions.fileToString(fmSCPath)).counting(CountingStrategy.SAT_FML)
+//						/ 2);
+//		System.out.println("-------------------------");
+//
 		// SC update
 		System.out.println("fm_sc_update :: ");
 		System.out.println("Internal Features :: " + fmStatistics(fmSCUpdatePath, internalFeaturesSCPath));

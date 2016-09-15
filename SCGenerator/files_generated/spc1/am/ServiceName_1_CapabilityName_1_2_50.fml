@@ -1,0 +1,3 @@
+"ServiceContract": "HostName_eq_http://localhost:8080/spc1" "ProjectName_eq_spc1" "Service_1";
+"Service_1": "ServiceName_1_eq_ServiceName_1" "Capability_1_2";
+Capability_1_2: "InputValue_1_2_3=154" "InputDataClassName_1_2_eq_InputDataClassName_1_2" "CommunicationTechnologie_1_2" "CapabilityName_1_2_eq_CapabilityName_1_2" "Post_1_2" "InputName_1_2_1_eq_InputName_1_2_1" "REST_1_2" "Authentification_1_2" "InputValue_1_2_2=789" "InputValue_1_2_1=476" "InputData_1_2_1" "InputType_1_2_2_eq_String" "InputType_1_2_3_eq_Float" "Password_1_2=rqmpehsiidmnrgjm" "InputName_1_2_2_eq_InputName_1_2_2" "InputName_1_2_3_eq_InputName_1_2_3" "InputData_1_2_2" "InputType_1_2_1_eq_Integer" "InputData_1_2_3" "Username_1_2=bsjdbdlqqtog" ;

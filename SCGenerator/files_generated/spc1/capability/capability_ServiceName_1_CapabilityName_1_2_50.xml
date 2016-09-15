@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_1</interfaceName>
+        <beanName>ServiceName_1Bean</beanName>
+        <number>1</number>
+        <capability>
+            <name>CapabilityName_1_2</name>
+            <number>2</number>
+            <serviceName>ServiceName_1</serviceName>
+            <dataInputClassName>InputDataClassName_1_2</dataInputClassName>
+            <stateClassName>State_ServiceName_1_CapabilityName_1_2</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>true</rest>
+            <restMethod>Post</restMethod>
+            <soap>false</soap>
+            <authentification>true</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_1_2_1</name>
+                <type>Integer</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">476</value>
+            </input>
+            <input>
+                <name>InputName_1_2_2</name>
+                <type>String</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">789</value>
+            </input>
+            <input>
+                <name>InputName_1_2_3</name>
+                <type>Float</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">154</value>
+            </input>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+            <username>bsjdbdlqqtog</username>
+            <password>rqmpehsiidmnrgjm</password>
+        </capability>
+    </service>
+    <projectName>spc1</projectName>
+    <hostName>http://localhost:8080/spc1</hostName>
+    <dataInputPkg>spc1.input</dataInputPkg>
+    <dataOutputPkg>spc1.output</dataOutputPkg>
+</contract>

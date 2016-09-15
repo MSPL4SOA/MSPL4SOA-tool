@@ -25,7 +25,7 @@ public class ConsumerListner implements MessageListener {
 		Object reponseMessage = null;
 		
 		
-		if (amGenerator.capability.broker.transactional == true)
+		if (amGenerator.extractCapabilityFromContract().broker.transactional == true)
 			try {
 				session.commit();
 			} catch (JMSException e2) {
@@ -44,17 +44,17 @@ public class ConsumerListner implements MessageListener {
 //				methodNameState = message.getStringProperty("method_name_state");
 
 				
-				if (amGenerator.capability.stateMessaging == true) {
+				if (amGenerator.extractCapabilityFromContract().stateMessaging == true) {
 					state = message.getStringProperty(StateMessagingDP.HeaderName) + "\n";
 					//
 //					System.out.println("StateHeader: " + state);
 					
 					
-					if (amGenerator.capability.stateRepository == true)
+					if (amGenerator.extractCapabilityFromContract().stateRepository == true)
 						amGenerator.stateMessagingDP.setStateInDisk(state);
 
 					
-					if (amGenerator.capability.temporaryMemory == true)
+					if (amGenerator.extractCapabilityFromContract().temporaryMemory == true)
 						amGenerator.stateMessagingDP.setStateInMemory(state);
 				}
 				//

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="r" targetNamespace="urn:r:r:1.0">
+<sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:jms="urn:switchyard-component-camel-jms:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" name="r" targetNamespace="urn:r:r:1.0">
   <sca:composite name="r" targetNamespace="urn:r:r:1.0">
     <sca:service name="DownloadContract" promote="DownloadContractBean/DownloadContract">
       <sca:interface.java interface="r.service.DownloadContract"/>
       <resteasy:binding.rest name="restContract">
         <resteasy:interfaces>r.resource.ResourceDownloadContract</resteasy:interfaces>
-        <resteasy:contextPath>rest</resteasy:contextPath>
+        <resteasy:contextPath>r/rest</resteasy:contextPath>
       </resteasy:binding.rest>
     </sca:service>
     <sca:component name="DownloadContractBean">
@@ -26,6 +26,7 @@
         <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
         <soap:messageComposer class="r.composer.Composers_soap_ServiceName_1"/>
         <soap:wsdl>ServiceName_1.wsdl</soap:wsdl>
+        <soap:contextPath>r/ServiceName_1</soap:contextPath>
       </soap:binding.soap>
     </sca:service>
     <sca:service name="ServiceName_1" promote="ServiceName_1Bean/ServiceName_1">
@@ -33,7 +34,7 @@
         <resteasy:contextMapper includes=".*"/>
         <resteasy:messageComposer class="r.composer.Composers_rest_ServiceName_1"/>
         <resteasy:interfaces>r.resource.Resource_restServiceName_1</resteasy:interfaces>
-        <resteasy:contextPath>rest</resteasy:contextPath>
+        <resteasy:contextPath>r/rest</resteasy:contextPath>
       </resteasy:binding.rest>
     </sca:service>
     <sca:component name="ServiceName_1JMSCamelRouter">
@@ -49,13 +50,19 @@
     </sca:component>
     <sca:service name="ServiceName_1JMSInterface" promote="ServiceName_1JMSCamelRouter/ServiceName_1JMSInterface">
       <sca:interface.java interface="r.service.ServiceName_1JMSInterface"/>
-      <jms:binding.jms name="hornetq_queueServiceName_1_CapabilityName_1_1">
+      <jms:binding.jms name="r_hornetq_queue_ServiceName_1_CapabilityName_1_1">
         <sy:operationSelector operationName="invokeMethod"/>
         <jms:contextMapper includes=".*"/>
-        <jms:queue>in_queue_ServiceName_1_CapabilityName_1_1</jms:queue>
+        <jms:queue>r_in_queue_1_1</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
         <jms:deliveryPersistent>true</jms:deliveryPersistent>
         <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+      <jms:binding.jms name="r_hornetq_queue_ServiceName_1_CapabilityName_1_2">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>r_in_queue_1_2</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:service>
   </sca:composite>

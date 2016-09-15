@@ -8,6 +8,7 @@ import org.switchyard.component.soap.composer.SOAPBindingData;
 import org.switchyard.component.soap.composer.SOAPMessageComposer;
 
 import r.state.State_ServiceName_1_CapabilityName_1_1;
+import r.state.State_ServiceName_1_CapabilityName_1_2;
 
 public class Composers_soap_ServiceName_1 extends SOAPMessageComposer {
 

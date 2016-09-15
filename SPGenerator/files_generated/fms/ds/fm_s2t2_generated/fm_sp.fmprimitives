@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fmprimitives:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fmprimitives="http://lero.ie/spl/fmprimitives.ecore" id="fm_sp" name="fm_sp">
+  <features id="Root" name="Root" featureHasSubfeature="//@primitives.10"/>
+  <features id="Capability_1_2" name="Capability_1_2" groupHasChild="//@primitives.23" featureHasSubfeature="//@primitives.1 //@primitives.2 //@primitives.5 //@primitives.8"/>
+  <features id="Authentification_1_1" name="Authentification_1_1" featureHasParent="//@primitives.7"/>
+  <features id="Authentification_1_2" name="Authentification_1_2" featureHasParent="//@primitives.2"/>
+  <features id="StateRepository_1_1" name="StateRepository_1_1" groupHasChild="//@primitives.40"/>
+  <features id="Delete_1_2" name="Delete_1_2" groupHasChild="//@primitives.36"/>
+  <features id="REST_1_1" name="REST_1_1" groupHasParent="//@primitives.31" groupHasChild="//@primitives.52"/>
+  <features id="SOAP_1_2" name="SOAP_1_2" groupHasChild="//@primitives.18"/>
+  <features id="CapabilityName_1_1" name="CapabilityName_1_1" featureHasParent="//@primitives.13"/>
+  <features id="Post_1_1" name="Post_1_1" groupHasChild="//@primitives.30"/>
+  <features id="TemporaryMemory_1_1" name="TemporaryMemory_1_1" groupHasChild="//@primitives.42"/>
+  <features id="Get_1_2" name="Get_1_2" groupHasChild="//@primitives.35"/>
+  <features id="Capability_1_1" name="Capability_1_1" groupHasChild="//@primitives.21" featureHasSubfeature="//@primitives.3 //@primitives.7 //@primitives.9 //@primitives.13"/>
+  <features id="TemporaryMemory_1_2" name="TemporaryMemory_1_2" groupHasChild="//@primitives.47"/>
+  <features id="StatefulService_1_2" name="StatefulService_1_2" groupHasParent="//@primitives.48" featureHasParent="//@primitives.0"/>
+  <features id="StateRepository_1_2" name="StateRepository_1_2" groupHasChild="//@primitives.45"/>
+  <features id="Put_1_2" name="Put_1_2" groupHasChild="//@primitives.37"/>
+  <features id="CommunicationTechnologie_1_2" name="CommunicationTechnologie_1_2" groupHasParent="//@primitives.19" featureHasParent="//@primitives.1"/>
+  <features id="synth980102568Xor" name="synth980102568Xor" groupHasParent="//@primitives.24" featureHasParent="//@primitives.12"/>
+  <features id="AsynchronousQueue_1_2" name="AsynchronousQueue_1_2" featureHasParent="//@primitives.6"/>
+  <features id="CapabilityName_1_2" name="CapabilityName_1_2" featureHasParent="//@primitives.8"/>
+  <features id="ServiceName_1" name="ServiceName_1" featureHasParent="//@primitives.11"/>
+  <features id="Service_1" name="Service_1" featureHasParent="//@primitives.10" featureHasSubfeature="//@primitives.11 //@primitives.12"/>
+  <features id="Get_1_1" name="Get_1_1" groupHasChild="//@primitives.26"/>
+  <features id="REST_1_2" name="REST_1_2" groupHasParent="//@primitives.38" groupHasChild="//@primitives.15"/>
+  <features id="CommunicationTechnologie_1_1" name="CommunicationTechnologie_1_1" groupHasParent="//@primitives.54" featureHasParent="//@primitives.3"/>
+  <features id="MOM_1_2" name="MOM_1_2" groupHasChild="//@primitives.17" featureHasSubfeature="//@primitives.6"/>
+  <features id="Post_1_2" name="Post_1_2" groupHasChild="//@primitives.33"/>
+  <features id="MOM_1_1" name="MOM_1_1" groupHasChild="//@primitives.53" featureHasSubfeature="//@primitives.14"/>
+  <features id="ServiceState_1_1" name="ServiceState_1_1" featureHasParent="//@primitives.9" featureHasSubfeature="//@primitives.4"/>
+  <features id="ServiceState_1_2" name="ServiceState_1_2" featureHasParent="//@primitives.5" featureHasSubfeature="//@primitives.0"/>
+  <features id="StatefulService_1_1" name="StatefulService_1_1" groupHasParent="//@primitives.43" featureHasParent="//@primitives.4"/>
+  <features id="AsynchronousQueue_1_1" name="AsynchronousQueue_1_1" featureHasParent="//@primitives.14"/>
+  <features id="Delete_1_1" name="Delete_1_1" groupHasChild="//@primitives.28"/>
+  <features id="Put_1_1" name="Put_1_1" groupHasChild="//@primitives.29"/>
+  <features id="SOAP_1_1" name="SOAP_1_1" groupHasChild="//@primitives.50"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge0" name="edge0" parent="//@features.30" subfeature="//@features.14"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge1" name="edge1" parent="//@features.1" subfeature="//@features.17"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" id="edge2" name="edge2" parent="//@features.1" subfeature="//@features.3"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge3" name="edge3" parent="//@features.12" subfeature="//@features.25"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge4" name="edge4" parent="//@features.29" subfeature="//@features.31"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" id="edge5" name="edge5" parent="//@features.1" subfeature="//@features.30"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge6" name="edge6" parent="//@features.26" subfeature="//@features.19"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" id="edge7" name="edge7" parent="//@features.12" subfeature="//@features.2"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge8" name="edge8" parent="//@features.1" subfeature="//@features.20"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" id="edge9" name="edge9" parent="//@features.12" subfeature="//@features.29"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge10" name="edge10" parent="//@features.0" subfeature="//@features.22"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge11" name="edge11" parent="//@features.22" subfeature="//@features.21"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge12" name="edge12" parent="//@features.22" subfeature="//@features.18"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge13" name="edge13" parent="//@features.12" subfeature="//@features.8"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge14" name="edge14" parent="//@features.28" subfeature="//@features.32"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild0" name="groupchild0" child="//@features.24" group="//@primitives.16"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group0" name="group0" groupHasParent="//@primitives.19" groupHasChild="//@primitives.15 //@primitives.17 //@primitives.18" groupHasMin="//@primitives.20"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild1" name="groupchild1" child="//@features.26" group="//@primitives.16"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild2" name="groupchild2" child="//@features.7" group="//@primitives.16"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent0" name="gparent0" parent="//@features.17" group="//@primitives.16"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.16"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild3" name="groupchild3" child="//@features.12" group="//@primitives.22"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group1" name="group1" groupHasParent="//@primitives.24" groupHasChild="//@primitives.21 //@primitives.23" groupHasMin="//@primitives.25"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild4" name="groupchild4" child="//@features.1" group="//@primitives.22"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent1" name="gparent1" parent="//@features.18" group="//@primitives.22"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.22"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild5" name="groupchild5" child="//@features.23" group="//@primitives.27"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group2" name="group2" groupHasParent="//@primitives.31" groupHasChild="//@primitives.26 //@primitives.28 //@primitives.29 //@primitives.30" groupHasMin="//@primitives.32"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild6" name="groupchild6" child="//@features.33" group="//@primitives.27"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild7" name="groupchild7" child="//@features.34" group="//@primitives.27"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild8" name="groupchild8" child="//@features.9" group="//@primitives.27"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent2" name="gparent2" parent="//@features.6" group="//@primitives.27"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.27"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild9" name="groupchild9" child="//@features.27" group="//@primitives.34"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group3" name="group3" groupHasParent="//@primitives.38" groupHasChild="//@primitives.33 //@primitives.35 //@primitives.36 //@primitives.37" groupHasMin="//@primitives.39"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild10" name="groupchild10" child="//@features.11" group="//@primitives.34"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild11" name="groupchild11" child="//@features.5" group="//@primitives.34"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild12" name="groupchild12" child="//@features.16" group="//@primitives.34"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent3" name="gparent3" parent="//@features.24" group="//@primitives.34"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.34"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild13" name="groupchild13" child="//@features.4" group="//@primitives.41"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group4" name="group4" groupHasParent="//@primitives.43" groupHasChild="//@primitives.40 //@primitives.42" groupHasMin="//@primitives.44"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild14" name="groupchild14" child="//@features.10" group="//@primitives.41"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent4" name="gparent4" parent="//@features.31" group="//@primitives.41"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.41"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild15" name="groupchild15" child="//@features.15" group="//@primitives.46"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group5" name="group5" groupHasParent="//@primitives.48" groupHasChild="//@primitives.45 //@primitives.47" groupHasMin="//@primitives.49"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild16" name="groupchild16" child="//@features.13" group="//@primitives.46"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent5" name="gparent5" parent="//@features.14" group="//@primitives.46"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.46"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild17" name="groupchild17" child="//@features.35" group="//@primitives.51"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group6" name="group6" groupHasParent="//@primitives.54" groupHasChild="//@primitives.50 //@primitives.52 //@primitives.53" groupHasMin="//@primitives.55"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild18" name="groupchild18" child="//@features.6" group="//@primitives.51"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild19" name="groupchild19" child="//@features.28" group="//@primitives.51"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent6" name="gparent6" parent="//@features.25" group="//@primitives.51"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.51"/>
+</fmprimitives:FeatureModel>

@@ -1,5 +1,5 @@
-Root:(Service_1|Service_2|Service_3|Service_4|Service_5|Service_6|Service_7);
- Service_1: ServiceName_1 (Capability_1_1|Capability_1_2|Capability_1_3|Capability_1_4|Capability_1_5|Capability_1_6);
+ServiceContract:(Service_1|Service_2|Service_3|Service_4|Service_5|Service_6|Service_7);
+Service_1: ServiceName_1 (Capability_1_1|Capability_1_2|Capability_1_3|Capability_1_4|Capability_1_5|Capability_1_6);
 Capability_1_1:  InputDataClassName_1_1 InputData_1_1_1 InputData_1_1_2  OutputDataClassName_1_1 OutputData_1_1_1 OutputData_1_1_2 OutputData_1_1_3 OutputData_1_1_4 OutputData_1_1_5 CommunicationTechnologie_1_1 [Authentification_1_1] [ServiceState_1_1] CapabilityName_1_1;
 CommunicationTechnologie_1_1: (SOAP_1_1|REST_1_1|MOM_1_1);
 REST_1_1: (Post_1_1|Get_1_1|Put_1_1|Delete_1_1);

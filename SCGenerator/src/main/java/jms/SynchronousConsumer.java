@@ -32,14 +32,14 @@ public class SynchronousConsumer {
 		// consumer.receive(this.configurationGenerating.getSleepConf());
 		Message message = consumer.receive();
 
-		if (amGenerator.capability.broker.transactional == true)
+		if (amGenerator.extractCapabilityFromContract().broker.transactional == true)
 			session.commit();
 
 		Object reponseMessage = null;
 
 		if (message != null) {
 
-			if (amGenerator.capability.stateMessaging == true) {
+			if (amGenerator.extractCapabilityFromContract().stateMessaging == true) {
 				// headers state
 				// String serviceNameState =
 				// message.getStringProperty("service_name_state");
@@ -52,10 +52,10 @@ public class SynchronousConsumer {
 				//
 				// System.out.println("state: " + state);
 
-				if (amGenerator.capability.stateRepository == true)
+				if (amGenerator.extractCapabilityFromContract().stateRepository == true)
 					amGenerator.stateMessagingDP.setStateInDisk(state);
 
-				if (amGenerator.capability.temporaryMemory == true)
+				if (amGenerator.extractCapabilityFromContract().temporaryMemory == true)
 					amGenerator.stateMessagingDP.setStateInMemory(state);
 
 				//

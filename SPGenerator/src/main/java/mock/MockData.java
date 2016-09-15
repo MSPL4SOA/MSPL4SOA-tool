@@ -2,6 +2,7 @@ package mock;
 
 import java.util.ArrayList;
 
+import familiar.FMBDD;
 import familiar.FMUpdateBDD;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.SetVariable;
@@ -9,9 +10,9 @@ import generating.SwitchyardProject;
 
 public class MockData {
 
-	public static String setAttributes(String fm, FMUpdateBDD fmUpdateBDD) throws Exception {
+	public static String setAttributes(String fm) throws Exception {
 
-		FeatureModelVariable fmFMV = fmUpdateBDD.FM("fmSP", fm);
+		FeatureModelVariable fmFMV = FMBDD.getInstance().FM("fmSP", fm);
 
 		ArrayList<String> attributeFeaturesStringList = util.Functions.StringToList(SwitchyardProject.ATTRIBUTES_SP_CONTENT,"\n");
 

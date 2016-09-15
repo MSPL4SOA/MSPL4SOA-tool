@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="urn:h1:h1:1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:h1:h1:1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceName_1" targetNamespace="urn:h1:h1:1.0">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:h1:h1:1.0">
+  <xs:element name="InputDataClassName_1_1" type="tns:inputDataClassName_1_1"/>
+  <xs:element name="InputDataClassName_1_2" type="tns:inputDataClassName_1_2"/>
+  <xs:element name="OutputDataClassName_1_1" type="tns:outputDataClassName_1_1"/>
+  <xs:complexType name="inputDataClassName_1_2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_1_2_1" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_1_2_2" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inputDataClassName_1_1">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_1_1_1" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_1_1_2" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_1_1">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_1_1_2" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_1_1_3" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_1_1_1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_1_2" type="tns:CapabilityName_1_2"/>
+  <xs:complexType name="CapabilityName_1_2">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_1_2"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:element name="CapabilityName_1_1" type="tns:CapabilityName_1_1"/>
+  <xs:complexType name="CapabilityName_1_1">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_1_1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_1_1Response" type="tns:CapabilityName_1_1Response"/>
+  <xs:complexType name="CapabilityName_1_1Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_1_1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  
+  <wsdl:message name="CapabilityName_1_1">
+    <wsdl:part element="ns1:CapabilityName_1_1" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_1_2">
+    <wsdl:part element="ns1:CapabilityName_1_2" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_1_1Response">
+    <wsdl:part element="ns1:CapabilityName_1_1Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServiceName_1PortType">
+    <wsdl:operation name="CapabilityName_1_2">
+      <wsdl:input message="ns1:CapabilityName_1_2" name="CapabilityName_1_2">
+    </wsdl:input>
+      
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_1_1">
+      <wsdl:input message="ns1:CapabilityName_1_1" name="CapabilityName_1_1">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_1_1Response" name="CapabilityName_1_1Response">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceName_1SoapBinding" type="ns1:ServiceName_1PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CapabilityName_1_2">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_1_2">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_1_1">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_1_1">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_1_1Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceName_1">
+    <wsdl:port binding="ns1:ServiceName_1SoapBinding" name="ServiceName_1Port">
+      <soap:address location="http://localhost:8080/ServiceName_1/ServiceName_1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

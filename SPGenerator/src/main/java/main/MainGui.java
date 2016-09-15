@@ -10,8 +10,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +24,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import familiar.CapabilityFG;
 import familiar.ContractFG;
+import familiar.FMBDD;
 import familiar.FMFactory;
+import familiar.FeatureInsertForXML;
+import familiar.HiddenFeatures;
 import familiar.ServiceFG;
 import features.SOAP.SOAPFeature;
 import features.bean.Contract;
@@ -53,10 +56,12 @@ public class MainGui {
 	private JTextField projectNameTextField;
 	private JTextField serviceTextField;
 	
+	public static String PROJECT_NAME = "";
+
 	public static final String FILES_GENERATED_PATH = "./files_generated/";
-	
+
 	public static String projectsDirPath = FILES_GENERATED_PATH + "projects/";
-	
+
 	public static String projectsFilesGeneratedPath = FILES_GENERATED_PATH + "fms/";
 
 	private String filesFMLPath = "fm_familiar_generated/";
@@ -80,8 +85,6 @@ public class MainGui {
 
 	private JButton generateSPButton;
 	private JTextField projectPathTextField;
-
-	
 
 	/**
 	 * Launch the application.
@@ -151,29 +154,29 @@ public class MainGui {
 
 		JLabel lblProjectPath = new JLabel("Workspace :");
 		GroupLayout gl_panel1 = new GroupLayout(panel1);
-		gl_panel1.setHorizontalGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel1.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
+		gl_panel1.setHorizontalGroup(
+				gl_panel1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel1.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel1
+								.createSequentialGroup()
+								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+								.addGap(30)
+								.addComponent(serviceTextField, GroupLayout.PREFERRED_SIZE,
+										29, GroupLayout.PREFERRED_SIZE)
+								.addGap(18).addComponent(btnServiceOk, GroupLayout.PREFERRED_SIZE, 108,
+										GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel1.createSequentialGroup()
-										.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 114,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(30)
-										.addComponent(serviceTextField, GroupLayout.PREFERRED_SIZE, 29,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(18).addComponent(btnServiceOk, GroupLayout.PREFERRED_SIZE, 108,
-												GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel1.createSequentialGroup()
-								.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
-										.addComponent(label, GroupLayout.PREFERRED_SIZE, 102,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblProjectPath))
-								.addGap(42)
-								.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
-										.addComponent(projectPathTextField, GroupLayout.PREFERRED_SIZE, 500,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(projectNameTextField, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-				.addContainerGap(334, Short.MAX_VALUE)));
+										.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
+												.addComponent(label, GroupLayout.PREFERRED_SIZE, 102,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblProjectPath))
+										.addGap(42)
+										.addGroup(gl_panel1.createParallelGroup(Alignment.LEADING)
+												.addComponent(projectPathTextField, GroupLayout.PREFERRED_SIZE, 500,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(projectNameTextField, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+						.addContainerGap(334, Short.MAX_VALUE)));
 		gl_panel1.setVerticalGroup(gl_panel1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel1
 				.createSequentialGroup().addContainerGap()
 				.addGroup(gl_panel1.createParallelGroup(Alignment.BASELINE)
@@ -246,7 +249,7 @@ public class MainGui {
 
 				// System.out.println(filesFMLPath + fmSPFileName + ".fml");
 				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSPFileName + ".fml").replaceAll("\"", ""));
+						util.Functions.fileToString(filesFMLPath + fmSPFileName + ".fml"));
 				textEditor.setTitle("SP FM in " + filesFMLPath + fmSPFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
@@ -260,8 +263,8 @@ public class MainGui {
 				// ie.lero.spl.vizconfig.swingapp.ConfiguratorStarter.main(new
 				// String[]{filesS2T2Path + fmSPFileName + ".fmprimitives"});
 
-				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " "
-						+ filesS2T2Path + fmSPFileName + ".fmprimitives");
+				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " " + filesS2T2Path
+						+ fmSPFileName + ".fmprimitives");
 			}
 		});
 
@@ -269,8 +272,8 @@ public class MainGui {
 		btFMSCS2T2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " "
-						+ filesS2T2Path + fmSCFileName + ".fmprimitives");
+				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " " + filesS2T2Path
+						+ fmSCFileName + ".fmprimitives");
 			}
 		});
 
@@ -282,7 +285,7 @@ public class MainGui {
 
 				System.out.println(filesFMLPath + fmSCFileName + ".fml");
 				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSCFileName + ".fml").replaceAll("\"", ""));
+						util.Functions.fileToString(filesFMLPath + fmSCFileName + ".fml"));
 				textEditor.setTitle("FM SC in " + filesFMLPath + fmSCFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
@@ -302,7 +305,7 @@ public class MainGui {
 
 				// System.out.println(filesFMLPath + fmSPSpecFileName + ".fml");
 				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSPSpecFileName + ".fml").replaceAll("\"", ""));
+						util.Functions.fileToString(filesFMLPath + fmSPSpecFileName + ".fml"));
 				textEditor.setTitle("FM SP specialize in " + filesFMLPath + fmSPSpecFileName + ".fml");
 
 				textEditor.setFmFactory(fmFactory);
@@ -326,8 +329,8 @@ public class MainGui {
 		btFMSPSpecS2T2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " "
-						+ filesS2T2Path + fmSPSpecFileName + ".fmprimitives");
+				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " " + filesS2T2Path
+						+ fmSPSpecFileName + ".fmprimitives");
 			}
 		});
 
@@ -335,8 +338,8 @@ public class MainGui {
 		btFMSCUpdateS2T2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " "
-						+ filesS2T2Path + fmSCUpdatedFileName + ".fmprimitives");
+				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " " + filesS2T2Path
+						+ fmSCUpdatedFileName + ".fmprimitives");
 			}
 		});
 
@@ -348,7 +351,7 @@ public class MainGui {
 
 				System.out.println(filesFMLPath + fmSCUpdatedFileName + ".fml");
 				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSCUpdatedFileName + ".fml").replaceAll("\"", ""));
+						util.Functions.fileToString(filesFMLPath + fmSCUpdatedFileName + ".fml"));
 				textEditor.setTitle("FM SC update in " + filesFMLPath + fmSCUpdatedFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
@@ -370,13 +373,16 @@ public class MainGui {
 
 				Contract contract;
 				try {
-					contract = fmFactory.convertFMSCUpdateToContractXML(fmFactory.specializedAttributedFMSP);
+
+					
+
+					contract = FMFactory.convertFMSCUpdateToContractXML(fmFactory.specializedAttributedFMSP);
 
 					SwitchyardProject switchyardProject = new SwitchyardProject(projectsDirPath, contract.projectName,
 							contract.projectName);
 
-					contract.dataInputPkg = switchyardProject.inputDataPkg;
-					contract.dataOutputPkg = switchyardProject.outputDataPkg;
+//					contract.dataInputPkg = switchyardProject.inputDataPkg;
+//					contract.dataOutputPkg = switchyardProject.outputDataPkg;
 
 					switchyardProject.generateMavenProject();
 					switchyardProject.configureSwitchyardProject();// mandatory
@@ -483,8 +489,8 @@ public class MainGui {
 							switchyardProject.contractDirPath + "fm_sc_update.fml", false);
 
 					S2T2Converter s2t2Converter = new S2T2Converter();
-					String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM("updatedAttributedFMSC",
-							fmFactory.updatedAttributedFMSC.replaceAll("_eq_", "=")));
+					String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("updatedAttributedFMSC",
+							fmFactory.updatedAttributedFMSC));
 					util.Functions.stringToFile(xmiS2T2,
 							switchyardProject.contractDirPath + fmSCUpdatedFileName + ".fmprimitives", false);
 
@@ -508,7 +514,7 @@ public class MainGui {
 				try {
 
 					fmFactory.specializedAttributedFMSP = fmFactory.specializedFMSP = mock.MockData
-							.setAttributes(fmFactory.mockSPSpec, fmFactory.fmUpdateBDD);
+							.setAttributes(fmFactory.mockSPSpec);
 
 					util.Functions.stringToFile(fmFactory.specializedAttributedFMSP.replaceAll("_eq_", "="),
 							filesFMLPath + fmSPSpecFileName + ".fml", false);
@@ -518,14 +524,14 @@ public class MainGui {
 					S2T2Converter s2t2Converter = new S2T2Converter();
 					String xmiS2T2;
 					xmiS2T2 = s2t2Converter
-							.fmlToS2T2XMI(fmFactory.fmUpdateBDD.FM(fmSPSpecFileName,
+							.fmlToS2T2XMI(FMBDD.getInstance().FM(fmSPSpecFileName,
 									fmFactory.specializedAttributedFMSP.replaceAll("=", "_eq_")))
 							.replaceAll("_eq_", "=");
 
 					util.Functions.stringToFile(xmiS2T2, filesS2T2Path + fmSPSpecFileName + ".fmprimitives", false);
 
-					JOptionPane.showMessageDialog(null, "A FM SP specialize have been generated", "OK", JOptionPane.OK_OPTION,
-							new ImageIcon(SwitchyardProject.FILE_ICON_OK_PATH_CONTENT));
+					JOptionPane.showMessageDialog(null, "A FM SP specialize have been generated", "OK",
+							JOptionPane.OK_OPTION, new ImageIcon(SwitchyardProject.FILE_ICON_OK_PATH_CONTENT));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -538,25 +544,23 @@ public class MainGui {
 		JLabel label_3 = new JLabel("Shared features (Specialized)");
 
 		GroupLayout gl_panel2 = new GroupLayout(panel2);
-		gl_panel2.setHorizontalGroup(gl_panel2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel2.createSequentialGroup().addGap(28)
-						.addGroup(gl_panel2.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel2.createSequentialGroup()
-										.addComponent(lblScUpdatedFm, GroupLayout.PREFERRED_SIZE, 135,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(47)
-										.addComponent(scUpdateFamiliarButton, GroupLayout.PREFERRED_SIZE, 90,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(btFMSCUpdateS2T2,
-												GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
+		gl_panel2.setHorizontalGroup(gl_panel2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel2
+				.createSequentialGroup().addGap(28)
+				.addGroup(gl_panel2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel2.createSequentialGroup()
+						.addComponent(lblScUpdatedFm, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+						.addGap(47)
+						.addComponent(scUpdateFamiliarButton, GroupLayout.PREFERRED_SIZE, 90,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btFMSCUpdateS2T2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel2.createSequentialGroup()
 								.addGroup(gl_panel2.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblSpecializedFeatures, GroupLayout.PREFERRED_SIZE, 152,
 												GroupLayout.PREFERRED_SIZE)
-								.addComponent(specializedTextArea, GroupLayout.PREFERRED_SIZE, 143,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel2.createSequentialGroup().addGap(0).addComponent(label_3,
-										GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(specializedTextArea, GroupLayout.PREFERRED_SIZE, 143,
+												GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_panel2.createSequentialGroup().addGap(0).addComponent(label_3,
+												GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)))
 								.addGap(6)
 								.addGroup(gl_panel2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel2
 										.createSequentialGroup()
@@ -592,7 +596,8 @@ public class MainGui {
 								.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel2.createParallelGroup(Alignment.TRAILING)
 										.addGroup(gl_panel2.createSequentialGroup().addComponent(lblSpFm)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnFamiliar))
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(btnFamiliar))
 										.addGroup(gl_panel2.createSequentialGroup()
 												.addComponent(lblScFm, GroupLayout.PREFERRED_SIZE, 51,
 														GroupLayout.PREFERRED_SIZE)
@@ -608,17 +613,17 @@ public class MainGui {
 												.addPreferredGap(ComponentPlacement.RELATED)
 												.addComponent(btFMSPSpecS2T2, GroupLayout.PREFERRED_SIZE, 90,
 														GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(mockDataButton))
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(mockDataButton))
 										.addComponent(btFMSCS2T2, GroupLayout.PREFERRED_SIZE, 90,
 												GroupLayout.PREFERRED_SIZE)
 										.addComponent(btFMSPS2T2, GroupLayout.PREFERRED_SIZE, 90,
 												GroupLayout.PREFERRED_SIZE)))))
 				.addGroup(gl_panel2.createSequentialGroup().addGap(113).addComponent(generateSPButton,
 						GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE)));
-		gl_panel2.setVerticalGroup(gl_panel2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel2.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panel2.createParallelGroup(Alignment.BASELINE).addComponent(label_2)
-								.addComponent(label_3))
+		gl_panel2.setVerticalGroup(gl_panel2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel2
+				.createSequentialGroup().addContainerGap()
+				.addGroup(gl_panel2.createParallelGroup(Alignment.BASELINE).addComponent(label_2).addComponent(label_3))
 				.addPreferredGap(ComponentPlacement.UNRELATED)
 				.addGroup(gl_panel2.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel2.createParallelGroup(Alignment.BASELINE).addComponent(lblInternalSpFeatures)
@@ -650,8 +655,9 @@ public class MainGui {
 				.addGroup(gl_panel2.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel2.createParallelGroup(Alignment.BASELINE).addComponent(btFMSCUpdateS2T2)
 								.addComponent(scUpdateFamiliarButton))
-						.addComponent(lblScUpdatedFm)).addGap(33)
-				.addComponent(generateSPButton, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE).addContainerGap()));
+						.addComponent(lblScUpdatedFm))
+				.addGap(33).addComponent(generateSPButton, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+				.addContainerGap()));
 		panel2.setLayout(gl_panel2);
 
 		btnServiceOk.addActionListener(new ActionListener() {
@@ -685,6 +691,9 @@ public class MainGui {
 					contractFG.projectName = projectNameTextField.getText();
 
 					projectsDirPath = projectPathTextField.getText();
+					
+					PROJECT_NAME = projectNameTextField.getText();
+					SwitchyardProject.HOST_NAME += PROJECT_NAME;
 
 					// util.Functions.mkdirIfExist(projectsDirPath);
 
@@ -726,7 +735,7 @@ public class MainGui {
 						xAbs += 170;
 
 						ServiceFG serviceFG = new ServiceFG();
-						serviceFG.serviceName = "Service_" + serviceNumber;
+						serviceFG.name = "Service_" + serviceNumber;
 
 						contractFG.serviceFGs.add(serviceFG);
 					}
@@ -778,7 +787,7 @@ public class MainGui {
 									for (int capabilityNumber = 0; capabilityNumber < in; capabilityNumber++) {
 
 										CapabilityFG capabilityFG = new CapabilityFG();
-										capabilityFG.capabilityName = "Capability_" + (capabilityNumber + 1);
+										capabilityFG.name = "Capability_" + (capabilityNumber + 1);
 
 										contractFG.serviceFGs.get(serviceNumber).capabilityFGs.add(capabilityFG);
 
@@ -918,16 +927,16 @@ public class MainGui {
 												String xmiS2T2;
 
 												xmiS2T2 = s2t2Converter.fmlToS2T2XMI(
-														fmFactory.fmUpdateBDD.FM(fmSCFileName, fmFactory._fmSC));
+														FMBDD.getInstance().FM(fmSCFileName, fmFactory._fmSC));
 												util.Functions.stringToFile(xmiS2T2,
 														filesS2T2Path + fmSCFileName + ".fmprimitives", false);
 
 												xmiS2T2 = s2t2Converter.fmlToS2T2XMI(
-														fmFactory.fmUpdateBDD.FM(fmSPFileName, fmFactory._fmSP));
+														FMBDD.getInstance().FM(fmSPFileName, fmFactory._fmSP));
 												util.Functions.stringToFile(xmiS2T2,
 														filesS2T2Path + fmSPFileName + ".fmprimitives", false);
 
-												xmiS2T2 = s2t2Converter.fmlToS2T2XMI(fmFactory.fmUpdateBDD
+												xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance()
 														.FM(fmSPSpecFileName, fmFactory.specializedFMSP));
 												util.Functions.stringToFile(xmiS2T2,
 														filesS2T2Path + fmSPSpecFileName + ".fmprimitives", false);

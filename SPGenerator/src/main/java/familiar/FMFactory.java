@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.xtext.example.mydsl.fML.FeatureEdgeKind;
 import org.xtext.example.mydsl.fML.SliceMode;
 
 import features.bean.Capability;
@@ -15,15 +16,14 @@ import features.bean.Contract;
 import features.bean.Input;
 import features.bean.Output;
 import features.bean.Service;
-import fr.unice.polytech.modalis.familiar.operations.featureide.FMSlicerSAT;
+import fr.unice.polytech.modalis.familiar.parser.MyExpressionParser;
 import fr.unice.polytech.modalis.familiar.variable.Comparison;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
-import fr.unice.polytech.modalis.familiar.variable.FeatureVariable;
 import fr.unice.polytech.modalis.familiar.variable.SetVariable;
 import generating.SwitchyardProject;
 import gsd.synthesis.Expression;
-import gsd.synthesis.FeatureGraph;
 import gsd.synthesis.FeatureModel;
+import gsd.synthesis.Formula;
 
 public class FMFactory {
 
@@ -33,24 +33,22 @@ public class FMFactory {
 	public String _fmSP = "";
 	public String _fmSC = "";
 
-	public String fmSPReduceComplexity = "";
+	// public String fmSPReduceComplexity = "";
 
 	public ContractFG contractFG;
 
-	public FMUpdateBDD fmUpdateBDD;
-	FMDeleteBDD fmDeleteBDD;
+	// public FMUpdateBDD fmUpdateBDD;
+	// FMDeleteBDD fmDeleteBDD;
 
-	public String error = "";
-
-	public Map<String, String> attributes = new HashMap<String, String>();
+	// public String error = "";
 
 	public static final String EQ_ATTRIBUTE = "_eq_";
 
 	// SP
 	// we avoid a different name (ServiceProvider) to accelarate the reasoning
 	// process
-	public static final String SP_ROOT = "Root";
-	public static final String SC_ROOT = "Root";
+	public static final String SP_ROOT = "\"ServiceContract\"";
+	public static final String SC_ROOT = SP_ROOT;
 
 	public String specializedFMSP;
 
@@ -61,7 +59,7 @@ public class FMFactory {
 
 	public String mockSPSpec = "";
 
-	public Contract contract;
+	// public Contract contract;
 
 	/// MockSPSpec
 
@@ -231,10 +229,12 @@ public class FMFactory {
 		mockSPSpec = SP_ROOT + ":";
 
 		contractFG = new ContractFG();
-		fmUpdateBDD = new FMUpdateBDD();
-		fmDeleteBDD = new FMDeleteBDD();
+		// fmUpdateBDD = new FMUpdateBDD();
+		// fmDeleteBDD = new FMDeleteBDD();
 
-		contract = new Contract();
+		// contract = new Contract();
+
+		FMBDD.getInstance();
 	}
 
 	public void Init() {
@@ -256,7 +256,7 @@ public class FMFactory {
 				System.out.print("Capability count for service " + serviceNumber + " : ");
 
 			ServiceFG serviceFG = new ServiceFG();
-			serviceFG.serviceName = "Service_" + serviceNumber;
+			serviceFG.name = "Service_" + serviceNumber;
 
 			for (int capabilityNumber = 1; capabilityNumber <= capabilityCount; capabilityNumber++) {
 
@@ -269,7 +269,7 @@ public class FMFactory {
 				int outputDataCount = sc.nextInt();
 
 				CapabilityFG capabilityFG = new CapabilityFG();
-				capabilityFG.capabilityName = "Capability_" + serviceNumber + "_" + capabilityNumber;
+				capabilityFG.name = "Capability_" + serviceNumber + "_" + capabilityNumber;
 				capabilityFG.inputDataCount = inputDataCount;
 				capabilityFG.outputDataCount = outputDataCount;
 
@@ -279,6 +279,7 @@ public class FMFactory {
 			contractFG.serviceFGs.add(serviceFG);
 		}
 
+		sc.close();
 	}
 
 	public void buildFMs() throws Exception {
@@ -294,7 +295,7 @@ public class FMFactory {
 		for (int serviceNumber = 1; serviceNumber <= contractFG.serviceFGs.size(); serviceNumber++) {
 
 			ServiceFG serviceFG = contractFG.serviceFGs.get(serviceNumber - 1);
-			serviceFG.serviceName = "Service_" + serviceNumber;
+			serviceFG.name = "Service_" + serviceNumber;
 
 			ArrayList<String> capabilitiesValueSP = new ArrayList<String>();
 			ArrayList<String> capabilitiesKeySP = new ArrayList<String>();
@@ -307,7 +308,7 @@ public class FMFactory {
 			for (int capabilityNumber = 1; capabilityNumber <= serviceFG.capabilityFGs.size(); capabilityNumber++) {
 
 				CapabilityFG capabilityFG = serviceFG.capabilityFGs.get(capabilityNumber - 1);
-				capabilityFG.capabilityName = "Capability_" + serviceNumber + "_" + capabilityNumber;
+				capabilityFG.name = "Capability_" + serviceNumber + "_" + capabilityNumber;
 
 				String capabilitySC = "";
 				String capabilitySP = "";
@@ -421,7 +422,7 @@ public class FMFactory {
 			////////////////
 			// SC
 			String serviceValueSC = "";
-			serviceValueSC += setServiceSCFeatures(serviceNumber, buildServicekey(capabilitiesKeySC));
+			serviceValueSC += setServiceSCFeatures(serviceNumber, buildAlternativeFeature(capabilitiesKeySC));
 
 			for (int capI = 0; capI < capabilitiesValueSC.size(); capI++) {
 				serviceValueSC += capabilitiesValueSC.get(capI);
@@ -434,7 +435,7 @@ public class FMFactory {
 			////////////////
 			// SP
 			String serviceValueSP = "";
-			serviceValueSP += setServiceSPFeatures(serviceNumber, buildServicekey(capabilitiesKeySP));
+			serviceValueSP += setServiceSPFeatures(serviceNumber, buildAlternativeFeature(capabilitiesKeySP));
 
 			for (int capI = 0; capI < capabilitiesValueSP.size(); capI++) {
 				serviceValueSP += capabilitiesValueSP.get(capI);
@@ -447,7 +448,7 @@ public class FMFactory {
 			////////////////
 			// MockSPSpec
 			String serviceValueMockSPSpec = "";
-			serviceValueMockSPSpec += setServiceSPFeatures(serviceNumber, buildServicekey(capabilitiesKeySP));
+			serviceValueMockSPSpec += setServiceSPFeatures(serviceNumber, buildAlternativeFeature(capabilitiesKeySP));
 
 			for (int capI = 0; capI < capabilitiesValueMockSPSpec.size(); capI++) {
 				serviceValueMockSPSpec += capabilitiesValueMockSPSpec.get(capI);
@@ -460,7 +461,7 @@ public class FMFactory {
 		// ////////////////
 		// // SC
 		String serviceValueSC = "";
-		serviceValueSC += buildServicekey(servicesKeySC);
+		serviceValueSC += buildAlternativeFeature(servicesKeySC);
 
 		serviceValueSC += "; ";
 
@@ -475,7 +476,7 @@ public class FMFactory {
 		////////////////
 		// SP
 		String serviceValueSP = "";
-		serviceValueSP += buildServicekey(servicesKeySP);
+		serviceValueSP += buildAlternativeFeature(servicesKeySP);
 		serviceValueSP += "; ";
 
 		for (int capI = 0; capI < servicesValueSP.size(); capI++) {
@@ -489,7 +490,7 @@ public class FMFactory {
 		////////////////
 		// SP
 		String serviceValueMockSPSpec = "";
-		serviceValueMockSPSpec += buildServicekey(servicesKeySP);
+		serviceValueMockSPSpec += buildAlternativeFeature(servicesKeySP);
 		serviceValueMockSPSpec += "; ";
 
 		for (int capI = 0; capI < servicesValueMockSPSpec.size(); capI++) {
@@ -500,30 +501,34 @@ public class FMFactory {
 		this.mockSPSpec = this.mockSPSpec.replaceAll(";", ";\n");
 		//////////////
 
-		this.fmSPReduceComplexity = this._fmSP;
+		// this.fmSPReduceComplexity = this._fmSP;
 		this.specializedFMSP = this._fmSP;
 		////////////////
 	}
 
-	public static String buildServicekey(ArrayList<String> capabilitiesKeySP) {
+	public static String buildAlternativeFeature(ArrayList<String> features) {
 
-		if (capabilitiesKeySP.size() == 1) {
+		String result = "";
+		if (features.size() == 1) {
 
-			return capabilitiesKeySP.get(0);
+			result = addQuote(features.get(0));
 		}
 
-		String serviceTempSP = "(";
+		else {
 
-		for (int capI = 0; capI < capabilitiesKeySP.size(); capI++) {
-			serviceTempSP += capabilitiesKeySP.get(capI);
+			result = "(";
 
-			if (capI != capabilitiesKeySP.size() - 1)
-				serviceTempSP += "|";
+			for (int capI = 0; capI < features.size(); capI++) {
+				result += addQuote(features.get(capI));
+
+				if (capI != features.size() - 1)
+					result += "|";
+			}
+
+			result += ")";
 		}
 
-		serviceTempSP += ")";
-
-		return serviceTempSP;
+		return result + " ";
 
 	}
 
@@ -581,22 +586,89 @@ public class FMFactory {
 	// return result;
 	// }
 
+	// public static String insertReducedFeatures(String fm)
+	// {
+	//
+	// }
+
+	public static ArrayList<FeatureInsert> getFeaturesToReduce(String fm) {
+
+		ArrayList<FeatureInsert> featureInserts = new ArrayList<FeatureInsert>();
+
+		FeatureModelVariable fmSPFMV = null;
+		try {
+			fmSPFMV = FMBDD.getInstance().FM("fm", fm);
+
+			SetVariable fmSPFMVFeatures = fmSPFMV.features();
+			ArrayList<String> reduceFeaturesStringList = util.Functions
+					.StringToList(SwitchyardProject.REDUCE_COMPLEXITY_FEATURES_SP_CONTENT, "\n");
+
+			String regexReduceFeaturesString = regexFeatures(reduceFeaturesStringList);
+
+			for (String featureName : fmSPFMVFeatures.names()) {
+
+				if (featureName.matches(regexReduceFeaturesString)) {
+
+					String featureParent = fmSPFMV.getFeature(featureName).parent().getFtName();
+
+					// System.out.println(featureName + " : " + featureParent);
+
+					FeatureModelVariable fmvToInsert = new FeatureModelVariable("fm1", fmSPFMV.extract(featureName));
+
+					featureInserts
+							.add(new FeatureInsert(featureName, featureParent, FeatureEdgeKind.MANDATORY, fmvToInsert));
+					// fmSPFMV.removeFeature(featureName);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return featureInserts;
+	}
+
+	public static String removeFeatures(String fm, ArrayList<FeatureInsert> featureInserts) throws Exception {
+
+		FeatureModelVariable fmv = FMBDD.getInstance().FM("fm", fm);
+
+		for (FeatureInsert featureInsert : featureInserts) {
+
+			fmv.removeFeature(featureInsert.featureName);
+		}
+
+		return fmv.toString();
+	}
+
+	public static String insertFeatures(String fm, ArrayList<FeatureInsert> featureInserts) throws Exception {
+
+		FeatureModelVariable fmv = FMBDD.getInstance().FM("fm", fm);
+
+		for (FeatureInsert featureInsert : featureInserts) {
+
+			if (fmv.features().names().contains(featureInsert.featureParent))
+				fmv.insert(featureInsert.fmvToInsert, featureInsert.featureParent, featureInsert.featureEdgeKind);
+
+		}
+
+		return fmv.toString();
+	}
+
 	// to accelerate the update operator
-	public String reduceComplexitySP(String fm) {
+	public static String reduceComplexitySP(String fm) {
 
 		System.out.println("Reduce complexity");
 
 		// FMUpdateBDD fmUpdateBDD = new FMUpdateBDD();
 		FeatureModelVariable fmSPFMV = null;
 		try {
-			fmSPFMV = fmUpdateBDD.FM("fmSP", fm);
+			fmSPFMV = FMBDD.getInstance().FM("fm", fm);
 
 			SetVariable fmSPFMVFeatures = fmSPFMV.features();
 			ArrayList<String> reduceFeaturesStringList = util.Functions
 					.StringToList(SwitchyardProject.REDUCE_COMPLEXITY_FEATURES_SP_CONTENT, "\n");
-					// ArrayList<String> reduceFeaturesStringList =
-					// util.Functions.fileToStrings(SwitchyardProject.filesDir +
-					// "internal_features_sp.txt");
+			// ArrayList<String> reduceFeaturesStringList =
+			// util.Functions.fileToStrings(SwitchyardProject.filesDir +
+			// "internal_features_sp.txt");
 
 			// reduceFeaturesStringList.addAll(util.Functions.fileToStrings(SwitchyardProject.filesDir
 			// + "reduce_complexity_features_sp.txt"));
@@ -610,7 +682,7 @@ public class FMFactory {
 					fmSPFMV.removeFeature(featureName);
 				}
 			}
-			this.fmSPReduceComplexity = fmSPFMV.toString();
+			// this.fmSPReduceComplexity = fmSPFMV.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -618,7 +690,7 @@ public class FMFactory {
 		return fmSPFMV.toString();
 	}
 
-	public boolean checkEssentialAndInternalVariability(String fm) {
+	public static String checkEssentialAndInternalVariability(String fm) {
 
 		// System.out.println("Found internal and essential features SP");
 		// FMUpdateBDD fmUpdateBDD = new FMUpdateBDD();
@@ -626,10 +698,10 @@ public class FMFactory {
 
 		// Set<String> internaFeatures = new HashSet<String>();
 
-		boolean result = true;
+		String error = "";
 
 		try {
-			fmSPFMV = fmUpdateBDD.FM("specializedFMSP", fm);
+			fmSPFMV = FMBDD.getInstance().FM("specializedFMSP", fm);
 
 			SetVariable fmSPFMVFeatures = fmSPFMV.features();
 
@@ -652,7 +724,6 @@ public class FMFactory {
 					// internaFeatures.add(featureName);
 					// fmSPFMV.removeFeature(featureName);
 
-					result = false;
 					error += "The variability of " + featureName + " must be resolved.\n";
 					// System.out.println("The variability of " + featureName +
 					// " must be resolved.");
@@ -662,10 +733,10 @@ public class FMFactory {
 			e.printStackTrace();
 		}
 
-		return result;
+		return error;
 	}
 
-	public Set<String> getCorrespondingFeatures(Set<String> features, String featuresFileContent) {
+	public static Set<String> getCorrespondingFeatures(Set<String> features, String featuresFileContent) {
 
 		// System.out.println("Found internal features SP");
 		// FMUpdateBDD fmUpdateBDD = new FMUpdateBDD();
@@ -678,7 +749,7 @@ public class FMFactory {
 
 			// SetVariable fmSPFMVFeatures = fmSPFMV.features();
 
-			ArrayList<String> internalFeaturesStringList = util.Functions.StringToList(featuresFileContent,"\n");
+			ArrayList<String> internalFeaturesStringList = util.Functions.StringToList(featuresFileContent, "\n");
 
 			String regexInternalFeaturesString = regexFeatures(internalFeaturesStringList);
 
@@ -701,7 +772,7 @@ public class FMFactory {
 
 	}
 
-	private String regexFeatures(ArrayList<String> inFeatures) {
+	public static String regexFeatures(ArrayList<String> inFeatures) {
 
 		// a
 		// b
@@ -726,12 +797,37 @@ public class FMFactory {
 		return result;
 	}
 
-	public Set<String> getOmmitedSharedFeaturesSP(String fmSC, String fmSPSpec) throws Exception {
+	public static Set<String> getSharedFeatures(FeatureModelVariable fmv) {
 
 		Set<String> result = new HashSet<String>();
 
-		FeatureModelVariable fmSPSpecFMV = fmUpdateBDD.FM("fmSPSpec", fmSPSpec);
-		FeatureModelVariable fmSPFMV = fmUpdateBDD.FM("fmSP", fmSC);
+		Set<String> featuresFM = fmv.features().names();
+
+		ArrayList<String> sharedFeaturesStringList = util.Functions
+				.fileToStrings(SwitchyardProject.FEATURES_DIR + "essential_features.txt");
+		sharedFeaturesStringList
+				.addAll(util.Functions.fileToStrings(SwitchyardProject.FEATURES_DIR + "specialized_features.txt"));
+
+		for (String featureFM : featuresFM) {
+			for (String sharedFeature : sharedFeaturesStringList) {
+
+				if (featureFM.matches(sharedFeature + "_.*")) {
+					result.add(featureFM);
+					break;
+				}
+			}
+		}
+
+		return result;
+
+	}
+
+	public static Set<String> getOmmitedSharedFeaturesSP(String fmSC, String fmSPSpec) throws Exception {
+
+		Set<String> result = new HashSet<String>();
+
+		FeatureModelVariable fmSPSpecFMV = FMBDD.getInstance().FM("fmSPSpec", fmSPSpec);
+		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fmSP", fmSC);
 
 		Set<String> fmSPSpecFeatures = fmSPSpecFMV.features().names();
 		Set<String> fmSPFeatures = fmSPFMV.features().names();
@@ -746,11 +842,6 @@ public class FMFactory {
 		// System.out.println("diff: " +result);
 		// System.exit(-1);
 
-		// ArrayList<String> sharedFeaturesStringList =
-		// util.Functions.fileToStrings(SwitchyardProject.filesDir +
-		// "essential_features.txt");
-		// sharedFeaturesStringList.addAll(util.Functions.fileToStrings(SwitchyardProject.filesDir
-		// + "specialized_features.txt"));
 		//
 		// String regexFeaturesString = regexFeatures(sharedFeaturesStringList);
 
@@ -794,13 +885,14 @@ public class FMFactory {
 	// }
 	// }
 
-	public boolean checkAttributesValue(String fm) throws Exception {
+	public static String checkAttributesValue(String fm) throws Exception {
 
-		boolean result = true;
+		String error = "";
 
-		FeatureModelVariable fmSPFMV = fmUpdateBDD.FM("fmSP", fm);
+		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fmSP", fm);
 
-		ArrayList<String> attributeFeaturesStringList = util.Functions.StringToList(SwitchyardProject.ATTRIBUTES_SP_CONTENT,"\n");
+		ArrayList<String> attributeFeaturesStringList = util.Functions
+				.StringToList(SwitchyardProject.ATTRIBUTES_SP_CONTENT, "\n");
 
 		String regexFeaturesString = regexFeatures(attributeFeaturesStringList);
 
@@ -811,13 +903,11 @@ public class FMFactory {
 		for (String featureName : fmSPFMVFeatures.names()) {
 
 			if (featureName.matches(regexFeaturesString) && !featureName.matches(".+" + EQ_ATTRIBUTE + ".+")) {
-				result = false;
-
 				error += "The feature " + featureName + " is an attribute and must be valued by =" + ".\n";
 			}
 		}
 
-		return result;
+		return error;
 	}
 
 	// @Deprecated
@@ -838,38 +928,77 @@ public class FMFactory {
 	// }
 	// }
 
-	public boolean checkSpecialization2(String fmSP, String fmSPSpec) throws Exception {
+	public static String checkSpecialization2(String fmSP, String fmSPSpec) throws Exception {
 
-		FeatureModelVariable fmSPSpecFMV = fmUpdateBDD.FM("fmSPSpec", reduceComplexitySP(fmSPSpec));
-		FeatureModelVariable fmSPFMV = fmUpdateBDD.FM("fmSPFMV", reduceComplexitySP(fmSP));
+		ContractFG contractFGSP = extractContractFG(fmSP);
+		ContractFG contractFGSPSpec = extractContractFG(fmSPSpec);
 
 		Comparison comparison = null;
+		String error = "";
 
-		for (ServiceFG serviceFG : contractFG.serviceFGs) {
+		for (int i = 0; i < contractFGSP.serviceFGs.size(); i++) {
 
-			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+			// contractFGSP.serviceFGs.get(i);
+			// contractFGSPSpec.serviceFGs.get(i);
 
-				FeatureModel<String> capabilityFMSP = fmSPFMV.extract(capabilityFG.capabilityName);
-				FeatureModel<String> capabilityFMSPspec = fmSPSpecFMV.extract(capabilityFG.capabilityName);
+			for (int j = 0; j < contractFGSP.serviceFGs.get(i).capabilityFGs.size(); j++) {
 
-				comparison = (new FeatureModelVariable("", capabilityFMSPspec))
-						.compare(new FeatureModelVariable("", capabilityFMSP));
+				CapabilityFG capabilityFGSP = contractFGSP.serviceFGs.get(i).capabilityFGs.get(j);
+				CapabilityFG capabilityFGSPSpec = contractFGSPSpec.serviceFGs.get(i).capabilityFGs.get(j);
+
+				// contractFGSP.serviceFGs.get(i).capabilityFGs.get(j);
+				// contractFGSPSpec.serviceFGs.get(i).capabilityFGs.get(j);
+
+				FeatureModelVariable fmSPSpecFMV = FMBDD.getInstance().FM("fmSPSpec",
+						reduceComplexitySP(capabilityFGSPSpec.capabilityFM));
+
+				FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fmSPFMV",
+						reduceComplexitySP(capabilityFGSP.capabilityFM));
+
+				comparison = fmSPSpecFMV.compare(fmSPFMV);
 
 				// System.out.println("capabilityFMSPspec:\n" +
 				// capabilityFMSPspec);
 				// System.out.println("capabilityFMSP:\n" + capabilityFMSP);
 
 				if (comparison != Comparison.SPECIALIZATION) {
-					error += capabilityFG.capabilityName + " of fm_sp_spec is a " + comparison + " of "
-							+ capabilityFG.capabilityName + " of fm_sp and it must be a sepcialization.\n";
-					return false;
-				}
+					error += capabilityFGSPSpec.name + " of fm_sp_spec is a " + comparison + " of "
+							+ capabilityFGSP.name + " of fm_sp and it must be a sepcialization.\n";
 
+				}
 			}
 
 		}
 
-		return true;
+		// for (ServiceFG serviceFG : contractFG.serviceFGs) {
+		//
+		// for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+		//
+		// FeatureModel<String> capabilityFMSP =
+		// fmSPFMV.extract(capabilityFG.capabilityName);
+		// FeatureModel<String> capabilityFMSPspec =
+		// fmSPSpecFMV.extract(capabilityFG.capabilityName);
+		//
+		// comparison = (new FeatureModelVariable("", capabilityFMSPspec))
+		// .compare(new FeatureModelVariable("", capabilityFMSP));
+		//
+		// // System.out.println("capabilityFMSPspec:\n" +
+		// // capabilityFMSPspec);
+		// // System.out.println("capabilityFMSP:\n" + capabilityFMSP);
+		//
+		// if (comparison != Comparison.SPECIALIZATION) {
+		// error += capabilityFG.capabilityName + " of fm_sp_spec is a " +
+		// comparison + " of "
+		// + capabilityFG.capabilityName + " of fm_sp and it must be a
+		// sepcialization.\n";
+		// return false;
+		// }
+		//
+		// }
+		//
+		// }
+
+		return error;
 		// if (comparison == Comparison.SPECIALIZATION)
 		// return true;
 		// else {
@@ -920,185 +1049,563 @@ public class FMFactory {
 	//
 	// }
 
-	public String updateAndDelete(String fmSPSpec, String fmSC) throws Exception {
+	public static String slice(String fmToSlice, Set<String> featureSetToSlice, SliceMode sliceMode) throws Exception {
 
-		System.out.println("Execute update and delete operations");
-		// FeatureModelVariable fmSPSpecFMV = fmUpdateBDD.FM("fmSPSpec",
-		// reduceComplexitySP2(fmSPSpec));
+		System.out.println("Execute slice operation");
 
-		FeatureModelVariable fmSPSpecFMV = fmUpdateBDD.FM("fmSPSpec", fmSPSpec);
+		ContractFG contractFGResult = new ContractFG();
 
-		FeatureModelVariable fmSCFMV = fmUpdateBDD.FM("fmSCFMV", fmSC);
+		ContractFG contractFGToSlice = extractContractFG(fmToSlice);
 
-		// System.out.println(fmSPSpecFMV);
-		//
-		// System.exit(-1);
+		for (ServiceFG serviceFGToSlice : contractFGToSlice.serviceFGs) {
 
-		String cst = "";
-		String resultFM = SC_ROOT + ": ";
+			ServiceFG serviceFGResult = new ServiceFG();
+			serviceFGResult.name = serviceFGToSlice.name;
+			serviceFGResult.id = serviceFGResult.name.substring(serviceFGResult.name.indexOf("_"));
+			// serviceFGResult.serviceName = serviceFGToSlice.serviceName;
 
-		// System.out.println("eza");
+			for (CapabilityFG capabilityFGToUpdate : serviceFGToSlice.capabilityFGs) {
 
-		ArrayList<String> keyServiceGF = new ArrayList<String>();
-		for (ServiceFG serviceFG : contractFG.serviceFGs) {
+				CapabilityFG capabilityFGResult = new CapabilityFG();
+				capabilityFGResult.name = capabilityFGToUpdate.name;
 
-			keyServiceGF.add(serviceFG.serviceName);
+				capabilityFGToUpdate.id = capabilityFGToUpdate.name.substring(capabilityFGToUpdate.name.indexOf("_"));
 
-		}
+				// toupdate
+				FeatureModelVariable capabilityFGToUpdateFMV = FMBDD.getInstance().FM("capabilityFGToUpdate",
+						capabilityFGToUpdate.capabilityFM);
 
-		resultFM += buildServicekey(keyServiceGF) + ";";
+				FeatureModelVariable capabilityFGToUpdateFMVDelAttributeFMV = FMBDD.getInstance().FM("fm",
+						deleteAttributesValues(capabilityFGToUpdateFMV.toString()));
 
-		// System.out.println(resultFM);
+				ArrayList<FeatureInsert> featuresReducedToUpdate = getFeaturesToReduce(
+						capabilityFGToUpdateFMVDelAttributeFMV.toString());
 
-		int serviceNumber = 1;
-		for (ServiceFG serviceFG : contractFG.serviceFGs) {
+				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = capabilityFGToUpdateFMVDelAttributeFMV;
+//				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = FMBDD.getInstance().FM("fmSPSpec",
+//						removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(), featuresReducedToUpdate));
 
-			int capabilityNumber = 1;
+				Set<String> featureSetToSliceCapability = com.google.common.collect.Sets.intersection(featureSetToSlice,
+						capabilityFGToUpdateFMVComplexityReduced.features().names());
 
-			ArrayList<String> keyCapabilityFG = new ArrayList<String>();
-			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+				FeatureModelVariable capabilitySliced = capabilityFGToUpdateFMVComplexityReduced;
 
-				keyCapabilityFG.add(capabilityFG.capabilityName);
+				boolean ok = !((featureSetToSliceCapability.size() == 0 && sliceMode == SliceMode.EXCLUDING)
+						|| (featureSetToSliceCapability.size() == capabilityFGToUpdateFMVDelAttributeFMV.features()
+								.size() && sliceMode == SliceMode.INCLUDING));
 
-			}
-
-			resultFM += serviceFG.serviceName + ":" + " ServiceName_" + serviceNumber + " "
-					+ buildServicekey(keyCapabilityFG) + ";";
-
-			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
-
-				String id = "_" + serviceNumber + "_" + capabilityNumber;
-
-				String capabilityId = "Capability_" + serviceNumber + "_" + capabilityNumber;
-
-				FeatureModel<String> capabilityFMSC = fmSCFMV.extract(capabilityId);
-				FeatureModel<String> capabilityFMSPspec = fmSPSpecFMV.extract(capabilityId);
-
-				// SC
-				// remove first line (1: Capability_1_1 ; )
-				// String capabilityFMSCString = capabilityFMSC.toString()
-				// .substring(capabilityFMSC.toString().indexOf('\n') + 1);
-				//
-
-				FeatureModelVariable capabilityFMSCFMV = new FeatureModelVariable("FMSC", capabilityFMSC);
-				// System.out.println("----------------\n" + capabilityFMSCFMV);
-
-				// fmUpdateBDD.FM("capSC", capabilityFMSCString);
-
-				// SP
-				// remove first line (1: Capability_1_1 ; )
-				// String capabilityFMSPspecString =
-				// capabilityFMSPspec.toString()
-				// .substring(capabilityFMSPspec.toString().indexOf('\n') + 1);
-				//
-				FeatureModelVariable capabilityFMSPSpecFMV = new FeatureModelVariable("", capabilityFMSPspec);
-
-				// // delete
-				// System.out.println("Delete ommited shared features");
-				// FeatureModelVariable capabilityFMSCFMVDeleted =
-				// fmDeleteBDD.deleteFM(capabilityFMSCFMV,
-				// getOmmitedSharedFeaturesSP(capabilityFMSCFMV.toString(),
-				// capabilityFMSPSpecFMV.toString()));
-				//
-				// System.out.println("Updating");
-				// FeatureModelVariable capabilityFMSCFMVUpdatedFMV =
-				// fmUpdateBDD.updateFM(capabilityFMSCFMVDeleted,
-				// fmUpdateBDD.FM("fmSPSpec",
-				// reduceComplexitySP(capabilityFMSPSpecFMV.toString())),
-				// getCorrespondingFeatures(capabilityFMSPSpecFMV.features().names(),
-				// SwitchyardProject.filesDir + "internal_features_sp.txt"),
-				// SliceMode.EXCLUDING);
-
-				System.out.println("Updating");
-				FeatureModelVariable capabilityFMSCFMVUpdatedPrimFMV = fmUpdateBDD.updateFM(capabilityFMSCFMV,
-						fmUpdateBDD.FM("fmSPSpec", reduceComplexitySP(capabilityFMSPSpecFMV.toString())),
-						getCorrespondingFeatures(capabilityFMSPSpecFMV.features().names(),
-								SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT),
-						SliceMode.EXCLUDING);
-
-				// System.out.println("\n\n" +
-				// capabilityFMSCFMVUpdatedPrimFMV.toString().replaceAll("\"",
-				// "") + "\n\n");
-
-				System.out.println("Delete ommited shared features");
-				FeatureModelVariable capabilityFMSCFMVUpdatedFMV = fmDeleteBDD.deleteFM(
-						fmDeleteBDD.FM("m1", capabilityFMSCFMVUpdatedPrimFMV.toString()),
-						getOmmitedSharedFeaturesSP(capabilityFMSCFMV.toString(), capabilityFMSPSpecFMV.toString()));
-
-				for (Expression<String> constraint : capabilityFMSCFMVUpdatedFMV.getFm().getConstraints()) {
-
-					cst += constraint + ";";
+				if (ok) {
+					capabilitySliced = FMBDD.getSlicerInstance().sliceFM(capabilityFGToUpdateFMVComplexityReduced,
+							featureSetToSliceCapability, sliceMode);
 				}
+				
+				capabilitySliced.cleanup2();
 
-				// FIXME
-				// anomalie in update:: ksynthetisis. contrainst such a ->(a|b)
-				// are not considered
-				// We add manually MOM implies (Transactional or
-				// Acknowledgement) if Transactional or Acknowledgement exists
+				// for (Expression<String> constraint :
+				// capabilitySliced.getFm().getConstraints()) {
+				//
+				// contractFGResult.csts += constraint + ";\n";
+				// }
 
-				for (String feature : capabilityFMSCFMVUpdatedFMV.features().names()) {
+				// System.out.println(featureSetToSliceCapability);
 
-					if (feature.contains("Transactional") || feature.contains("Acknowledgement")) {
-						cst += "MOM@@ implies (Transactional@@ or Acknowledgement@@)".replaceAll("@@", id) + ";";
-						break;
-					}
-
-				}
-
-				// System.out.println(cst);
-
-				capabilityFMSCFMVUpdatedFMV.getFm().removeAllConstraints();
-
-				resultFM += capabilityFMSCFMVUpdatedFMV;
-
-				System.out.println(resultFM + "\n");
+				// capabilitySliced.cleanup2();
+				// System.out.println(capabilitySliced);
 				// System.exit(-1);
-				//
-				// System.out.println(capabilityFMSCFMVUpdatedFMV);
 
-				capabilityNumber++;
+				//
+				//
+				// capabilitySliced.getFm().removeAllConstraints();
+				//
+				capabilityFGResult.capabilityFM = capabilitySliced.toString();
+				//
+				capabilityFGResult.capabilityFM = insertFeatures(capabilitySliced.toString(), featuresReducedToUpdate);
+				//
+				capabilityFGResult.capabilityFM = setAttributesValues(capabilityFGResult.capabilityFM,
+						extractAttributesValues(capabilityFGToUpdateFMV.toString()));
+
+				serviceFGResult.capabilityFGs.add(capabilityFGResult);
+				//
+				// System.out.println(capabilityFGResult.capabilityFM);
 
 			}
 
-			serviceNumber++;
+			contractFGResult.serviceFGs.add(serviceFGResult);
+
 		}
 
-		// FeatureModel<String> fmSCUpdateFM = new FeatureModel<String>(null);
-		//
-		// System.out.println("Delete ommited shared features");
-		// FeatureModelVariable fmSCFMVDeleted = fmDeleteBDD.deleteFM(fmSCFMV,
-		// getOmmitedSharedFeaturesSP(fmSC, fmSPSpec));
-		//
-		// System.out.println("Updating");
-		// FeatureModelVariable fmSCFMVUpdated =
-		// fmUpdateBDD.updateFM(fmSCFMVDeleted, fmSPSpecFMV,
-		// getCorrespondingFeatures(fmSPSpecFMV.features().names(),
-		// SwitchyardProject.filesDir + "internal_features_sp.txt"),
-		// SliceMode.EXCLUDING);
-		//
-		// this.updatedFMSC = fmSCFMVUpdated.toString();
-		//
-		// this.updatedAttributedFMSC = setAttributesValues(this.updatedFMSC);
-
-		// FeatureModelVariable fmSCFMVUpdated = null;
-
-		// System.out.println(resultFM + cst);
-
-		resultFM += cst;
-
-		this.updatedFMSC = resultFM;
-
-		this.updatedAttributedFMSC = setAttributesValues(this.updatedFMSC);
-
-		return resultFM;
-
+		return buildFMV(contractFGResult, fmToSlice);
 	}
 
-	public String deleteAttributesValues(String fm) {
+	// public String fixManuallyOperation()
+	// {
+	//
+	//
+	// }
+
+	public static String updateAndDelete2(String fmToUpdate, String fmToPreserve, Set<String> featureSetToDelete,
+			boolean performSlice, Set<String> featureSetToSlice) throws Exception {
+
+		System.out.println("Execute update and delete operations");
+
+		ContractFG contractFGResult = new ContractFG();
+
+		ContractFG contractFGToUpdate = extractContractFG(fmToUpdate);
+
+		ContractFG contractFGToPreserve = extractContractFG(fmToPreserve);
+
+		// FMUpdateBDD fmUpdateBDD = new FMUpdateBDD();
+		// FMDeleteBDD fmDeleteBDD = new FMDeleteBDD();
+
+		for (ServiceFG serviceFGToUpdate : contractFGToUpdate.serviceFGs) {
+			// if(contractFGToPreserve.serviceFGs.contains(serviceFGToUpdate.serviceName))
+			for (ServiceFG serviceFGToPreserve : contractFGToPreserve.serviceFGs) {
+				// search service
+				if (serviceFGToUpdate.name.equals(serviceFGToPreserve.name)) {
+
+					ServiceFG serviceFGResult = new ServiceFG();
+					serviceFGResult.name = serviceFGToUpdate.name;
+					// serviceFGResult.serviceName =
+					// serviceFGToPreserve.serviceName;
+
+					serviceFGResult.id = serviceFGResult.name.substring(serviceFGResult.name.indexOf("_"));
+
+					for (CapabilityFG capabilityFGToUpdate : serviceFGToUpdate.capabilityFGs) {
+						for (CapabilityFG capabilityFGToPreserve : serviceFGToPreserve.capabilityFGs) {
+							// search capability
+							if (capabilityFGToUpdate.name.equals(capabilityFGToPreserve.name)) {
+
+								CapabilityFG capabilityFGResult = new CapabilityFG();
+								capabilityFGResult.name = capabilityFGToUpdate.name;
+
+								capabilityFGResult.id = capabilityFGResult.name
+										.substring(capabilityFGResult.name.indexOf("_"));
+
+								// transformation process
+
+								// toupdate
+								FeatureModelVariable capabilityFGToUpdateFMV = FMBDD.getInstance()
+										.FM("capabilityFGToUpdate", capabilityFGToUpdate.capabilityFM);
+
+								FeatureModelVariable capabilityFGToUpdateFMVDelAttributeFMV = FMBDD.getInstance()
+										.FM("fm", deleteAttributesValues(capabilityFGToUpdateFMV.toString()));
+
+								ArrayList<FeatureInsert> featuresReducedToUpdate = getFeaturesToReduce(
+										capabilityFGToUpdateFMVDelAttributeFMV.toString());
+
+								FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = FMBDD.getInstance().FM(
+										"fmSPSpec", removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(),
+												featuresReducedToUpdate));
+
+								// topreserve
+								FeatureModelVariable capabilityFGToPreserveFMV = FMBDD.getInstance()
+										.FM("capabilityFGToPreserve", capabilityFGToPreserve.capabilityFM);
+
+								FeatureModelVariable capabilityFGToPreserveFMVDelAttributeFMV = FMBDD.getInstance()
+										.FM("fm", deleteAttributesValues(capabilityFGToPreserveFMV.toString()));
+
+								FeatureModelVariable capabilityFGToPreserveFMVComplexityReduced = FMBDD.getInstance()
+										.FM("fmSPSpec", reduceComplexitySP(
+												capabilityFGToPreserveFMVDelAttributeFMV.toString()));
+
+								//
+								System.out.println("Updating");
+
+								// FeatureModelVariable
+								// capabilityUpdatedPrimFMV;
+
+								// FMBDD.getInstance().FM("r",reduceComplexitySP(
+								// capabilityFGToUpdateFMVDelAttributeFMV.toString()));
+
+								Formula<String> formulaUpdate = FMUpdateBDD.getUpdateFMFormula(
+										capabilityFGToUpdateFMVComplexityReduced,
+										capabilityFGToPreserveFMVComplexityReduced, performSlice, featureSetToSlice,
+										SliceMode.EXCLUDING);
+
+								// if (performSlice == true) {
+								//
+								// capabilityUpdatedPrimFMV =
+								// FMUpdateBDD.updateWithSliceFM(
+								// capabilityFGToUpdateFMVComplexityReduced,
+								// capabilityFGToPreserveFMVComplexityReduced,
+								// featureSetToSlice,
+								// SliceMode.EXCLUDING);
+								// } else {
+								//
+								// capabilityUpdatedPrimFMV =
+								// FMUpdateBDD.updateFMWithOutSlice(
+								// capabilityFGToUpdateFMVComplexityReduced,
+								// capabilityFGToPreserveFMVComplexityReduced);
+								// }
+
+								Set<String> featureSetToDeleteCapability = com.google.common.collect.Sets.intersection(
+										featureSetToDelete,
+										capabilityFGToUpdateFMVComplexityReduced.features().names());
+
+								// System.out.println(featureSetToDeleteCapability);
+
+								System.out.println("Delete ommited shared features");
+								// FeatureModelVariable capabilityUpdatedFMV =
+								// FMDeleteBDD.deleteFM2(
+								// capabilityFGToUpdateFMVComplexityReduced,
+								// featureSetToDeleteCapability);
+
+								Formula<String> formulaUpdateDelete = formulaUpdate;
+
+								if (featureSetToDeleteCapability.size() != 0) {
+									Formula<String> formulaDelete = FMDeleteBDD.getDeleteFMFormula(
+											capabilityFGToUpdateFMVComplexityReduced, featureSetToDeleteCapability);
+
+									formulaUpdateDelete = formulaUpdate.andWith(formulaDelete);
+
+								}
+
+								FeatureModelVariable capabilityUpdatedFMV = FMBDD.synthesisFM(formulaUpdateDelete,
+										capabilityFGToUpdateFMVComplexityReduced);
+
+								// delete redundant constraints
+
+								// cleanup in delete
+								// capabilityUpdatedFMV.cleanup2();
+								// capabilityUpdatedFMV.eliminateRedundantConstraints();
+
+								// System.exit(-1);
+
+								// for (Expression<String> constraint :
+								// capabilityUpdatedFMV.getFm().getConstraints())
+								// {
+								//
+								// cst += constraint + ";\n";
+								// }
+
+								// System.out.println(getOmmitedSharedFeaturesSP(capabilityFGToUpdateFMV.toString(),
+								// capabilityFGToPreserveFMV.toString()) +
+								// "\n");
+
+								// FIXME
+								// anomalie in update:: ksynthetisis. contrainst
+								// such a ->(a|b)
+								// are not considered
+								// We add manually MOM implies (Transactional or
+								// Acknowledgement) if Transactional or
+								// Acknowledgement exists
+
+								// String id = "_" + serviceNumber + "_" +
+								// capabilityNumber;
+
+								// String id = "_" +
+								// capabilityFGToUpdate.capabilityName
+								// .substring(capabilityFGToUpdate.capabilityName.indexOf("_"));
+
+								// int AckTrans = 0;
+								// for (String feature :
+								// capabilityUpdatedFMV.features().names()) {
+								// if (feature.contains("Transactional") ||
+								// feature.contains("Acknowledgement")) {
+								// cst += "MOM@@ implies (Transactional@@ or
+								// Acknowledgement@@)".replaceAll("@@",
+								// capabilityFGToUpdate.id) + ";\n";
+								// AckTrans++;
+								// }
+								// }
+								//
+								// // (Acknowledgement_3_3 ->
+								// !Transactional_3_3);
+								// if (AckTrans == 2)
+								// cst += "(Acknowledgement@@ ->
+								// !Transactional@@)".replaceAll("@@",
+								// capabilityFGToUpdate.id) + ";\n";
+
+								// String cst = "";
+
+								if (capabilityUpdatedFMV.features().names()
+										.contains("Acknowledgement" + capabilityFGToUpdate.id)
+										&& capabilityUpdatedFMV.features().names()
+												.contains("Transactional" + capabilityFGToUpdate.id)) {
+
+									// cst += "MOM@@ implies (Transactional@@ or
+									// Acknowledgement@@)".replaceAll("@@",
+									// capabilityFGToUpdate.id) + ";\n";
+
+									Expression<String> constraint = MyExpressionParser
+											.parseString("MOM@@ -> (Transactional@@ or Acknowledgement@@)"
+													.replaceAll("@@", capabilityFGToUpdate.id));
+
+									capabilityUpdatedFMV.addConstraint(constraint);
+									
+									constraint = MyExpressionParser
+											.parseString("(Acknowledgement@@ -> !Transactional@@)"
+													.replaceAll("@@", capabilityFGToUpdate.id));
+									
+									capabilityUpdatedFMV.addConstraint(constraint);
+
+									// cst += "(Acknowledgement@@ ->
+									// !Transactional@@)".replaceAll("@@",
+									// capabilityFGToUpdate.id) + ";\n";
+
+//									capabilityUpdatedFMV.addConstraint(
+//											new Expression<String>("(Acknowledgement@@ -> !Transactional@@)"
+//													.replaceAll("@@", capabilityFGToUpdate.id)));
+
+
+								}
+
+								System.out.println(capabilityUpdatedFMV + "\n");
+
+								// remove constraints that contain feature to
+								// delete
+
+								// System.out.println(featureSetToDeleteCapability);
+								//
+								// System.out.println(capabilityUpdatedFMV);
+
+								// System.exit(-1);
+
+								// capabilityUpdatedFMV.getFm().removeAllConstraints();
+
+								// capabilityFGResult.capabilityFM =
+								// capabilityUpdatedFMV.toString();
+								
+//								capabilityUpdatedFMV.cleanup2();
+
+								capabilityFGResult.capabilityFM = insertFeatures(capabilityUpdatedFMV.toString(),
+										featuresReducedToUpdate);
+
+								capabilityFGResult.capabilityFM = setAttributesValues(capabilityFGResult.capabilityFM,
+										extractAttributesValues(capabilityFGToUpdateFMV.toString()));
+
+								capabilityFGResult.capabilityFM = setAttributesValues(capabilityFGResult.capabilityFM,
+										extractSharedAttributesValues(capabilityFGToPreserveFMV.toString()));
+
+								serviceFGResult.capabilityFGs.add(capabilityFGResult);
+
+								// System.exit(-1);
+
+								break;
+							}
+						}
+
+					}
+
+					contractFGResult.serviceFGs.add(serviceFGResult);
+
+					break;
+				}
+
+			}
+
+		}
+
+		// contractFGResult.csts = cst;
+
+		// buildFMV(contractFGResult);
+
+		// add cst
+
+		return buildFMV(contractFGResult, fmToPreserve);
+	}
+
+	// @Deprecated
+	// public String updateAndDelete(String fmSPSpec, String fmSC) throws
+	// Exception {
+	//
+	// System.out.println("Execute update and delete operations");
+	// // FeatureModelVariable fmSPSpecFMV = fmUpdateBDD.FM("fmSPSpec",
+	// // reduceComplexitySP2(fmSPSpec));
+	//
+	// FeatureModelVariable fmSPSpecFMV = FMBDD.getInstance().FM("fmSPSpec",
+	// fmSPSpec);
+	//
+	// FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fmSCFMV", fmSC);
+	//
+	// // System.out.println(fmSPSpecFMV);
+	// //
+	// // System.exit(-1);
+	//
+	// String cst = "";
+	// String resultFM = SC_ROOT + ": ";
+	//
+	// // System.out.println("eza");
+	//
+	// // contractFG = getServiceCapability(fm)
+	//
+	// ArrayList<String> keyServiceGF = new ArrayList<String>();
+	// for (ServiceFG serviceFG : contractFG.serviceFGs) {
+	//
+	// keyServiceGF.add(serviceFG.serviceName);
+	//
+	// }
+	//
+	// resultFM += buildAlternativeFeature(keyServiceGF) + ";";
+	//
+	// // System.out.println(resultFM);
+	//
+	// int serviceNumber = 1;
+	// for (ServiceFG serviceFG : contractFG.serviceFGs) {
+	//
+	// int capabilityNumber = 1;
+	//
+	// ArrayList<String> keyCapabilityFG = new ArrayList<String>();
+	// for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+	//
+	// keyCapabilityFG.add(capabilityFG.capabilityName);
+	//
+	// }
+	//
+	// resultFM += serviceFG.serviceName + ":" + " ServiceName_" + serviceNumber
+	// + " "
+	// + buildAlternativeFeature(keyCapabilityFG) + ";";
+	//
+	// for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+	//
+	// String id = "_" + serviceNumber + "_" + capabilityNumber;
+	//
+	// String capabilityId = "Capability_" + serviceNumber + "_" +
+	// capabilityNumber;
+	//
+	// FeatureModel<String> capabilityFMSC = fmSCFMV.extract(capabilityId);
+	// FeatureModel<String> capabilityFMSPspec =
+	// fmSPSpecFMV.extract(capabilityId);
+	//
+	// // SC
+	// // remove first line (1: Capability_1_1 ; )
+	// // String capabilityFMSCString = capabilityFMSC.toString()
+	// // .substring(capabilityFMSC.toString().indexOf('\n') + 1);
+	// //
+	//
+	// FeatureModelVariable capabilityFMSCFMV = new FeatureModelVariable("FMSC",
+	// capabilityFMSC);
+	// // System.out.println("----------------\n" + capabilityFMSCFMV);
+	//
+	// // fmUpdateBDD.FM("capSC", capabilityFMSCString);
+	//
+	// // SP
+	// // remove first line (1: Capability_1_1 ; )
+	// // String capabilityFMSPspecString =
+	// // capabilityFMSPspec.toString()
+	// // .substring(capabilityFMSPspec.toString().indexOf('\n') + 1);
+	// //
+	// FeatureModelVariable capabilityFMSPSpecFMV = new FeatureModelVariable("",
+	// capabilityFMSPspec);
+	//
+	// // // delete
+	// // System.out.println("Delete ommited shared features");
+	// // FeatureModelVariable capabilityFMSCFMVDeleted =
+	// // fmDeleteBDD.deleteFM(capabilityFMSCFMV,
+	// // getOmmitedSharedFeaturesSP(capabilityFMSCFMV.toString(),
+	// // capabilityFMSPSpecFMV.toString()));
+	// //
+	// // System.out.println("Updating");
+	// // FeatureModelVariable capabilityFMSCFMVUpdatedFMV =
+	// // fmUpdateBDD.updateFM(capabilityFMSCFMVDeleted,
+	// // fmUpdateBDD.FM("fmSPSpec",
+	// // reduceComplexitySP(capabilityFMSPSpecFMV.toString())),
+	// // getCorrespondingFeatures(capabilityFMSPSpecFMV.features().names(),
+	// // SwitchyardProject.filesDir + "internal_features_sp.txt"),
+	// // SliceMode.EXCLUDING);
+	//
+	// System.out.println("Updating");
+	// FeatureModelVariable capabilityFMSCFMVUpdatedPrimFMV =
+	// FMUpdateBDD.updateWithSliceFM(capabilityFMSCFMV,
+	// FMBDD.getInstance().FM("fmSPSpec",
+	// reduceComplexitySP(capabilityFMSPSpecFMV.toString())),
+	// getCorrespondingFeatures(capabilityFMSPSpecFMV.features().names(),
+	// SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT),
+	// SliceMode.EXCLUDING);
+	//
+	// // System.out.println("\n\n" +
+	// // capabilityFMSCFMVUpdatedPrimFMV.toString().replaceAll("\"",
+	// // "") + "\n\n");
+	//
+	// System.out.println("Delete ommited shared features");
+	// // FeatureModelVariable capabilityFMSCFMVUpdatedFMV =
+	// // fmDeleteBDD.deleteFM(capabilityFMSCFMVUpdatedPrimFMV,
+	// // getOmmitedSharedFeaturesSP(capabilityFMSCFMV.toString(),
+	// // capabilityFMSPSpecFMV.toString()));
+	//
+	// FeatureModelVariable capabilityFMSCFMVUpdatedFMV = FMDeleteBDD.deleteFM2(
+	// FMBDD.getInstance().FM("m1", capabilityFMSCFMVUpdatedPrimFMV.toString()),
+	// getOmmitedSharedFeaturesSP(capabilityFMSCFMV.toString(),
+	// capabilityFMSPSpecFMV.toString()));
+	//
+	// for (Expression<String> constraint :
+	// capabilityFMSCFMVUpdatedFMV.getFm().getConstraints()) {
+	//
+	// cst += constraint + ";";
+	// }
+	//
+	// // FIXME
+	// // anomalie in update:: ksynthetisis. contrainst such a ->(a|b)
+	// // are not considered
+	// // We add manually MOM implies (Transactional or
+	// // Acknowledgement) if Transactional or Acknowledgement exists
+	//
+	// for (String feature : capabilityFMSCFMVUpdatedFMV.features().names()) {
+	//
+	// if (feature.contains("Transactional") ||
+	// feature.contains("Acknowledgement")) {
+	// cst += "MOM@@ implies (Transactional@@ or
+	// Acknowledgement@@)".replaceAll("@@", id) + ";";
+	// break;
+	// }
+	//
+	// }
+	//
+	// // System.out.println(cst);
+	//
+	// capabilityFMSCFMVUpdatedFMV.getFm().removeAllConstraints();
+	//
+	// resultFM += capabilityFMSCFMVUpdatedFMV;
+	//
+	// System.out.println(resultFM + "\n");
+	// // System.exit(-1);
+	// //
+	// // System.out.println(capabilityFMSCFMVUpdatedFMV);
+	//
+	// capabilityNumber++;
+	//
+	// }
+	//
+	// serviceNumber++;
+	// }
+	//
+	// // FeatureModel<String> fmSCUpdateFM = new FeatureModel<String>(null);
+	// //
+	// // System.out.println("Delete ommited shared features");
+	// // FeatureModelVariable fmSCFMVDeleted = fmDeleteBDD.deleteFM(fmSCFMV,
+	// // getOmmitedSharedFeaturesSP(fmSC, fmSPSpec));
+	// //
+	// // System.out.println("Updating");
+	// // FeatureModelVariable fmSCFMVUpdated =
+	// // fmUpdateBDD.updateFM(fmSCFMVDeleted, fmSPSpecFMV,
+	// // getCorrespondingFeatures(fmSPSpecFMV.features().names(),
+	// // SwitchyardProject.filesDir + "internal_features_sp.txt"),
+	// // SliceMode.EXCLUDING);
+	// //
+	// // this.updatedFMSC = fmSCFMVUpdated.toString();
+	// //
+	// // this.updatedAttributedFMSC = setAttributesValues(this.updatedFMSC);
+	//
+	// // FeatureModelVariable fmSCFMVUpdated = null;
+	//
+	// // System.out.println(resultFM + cst);
+	//
+	// resultFM += cst;
+	//
+	// this.updatedFMSC = resultFM;
+	//
+	// this.updatedAttributedFMSC = setAttributesValues(this.updatedFMSC,
+	// attributes);
+	//
+	// return resultFM;
+	//
+	// }
+
+	public static String deleteAttributesValues(String fm) {
 
 		FeatureModelVariable fmFMV = null;
 		try {
-			fmFMV = fmUpdateBDD.FM("fm", fm);
+			fmFMV = FMBDD.getInstance().FM("fm", fm);
 
 			SetVariable fmSPFMVFeatures = fmFMV.features();
 
@@ -1111,42 +1618,60 @@ public class FMFactory {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return fmFMV.toString();
 	}
 
-	public Map<String, String> extractAttributesValues(String fm) {
+	public static Map<String, String> extractSharedAttributesValues(String fm) throws Exception {
 
-		attributes = new HashMap<String, String>();
+		Map<String, String> attributesResult = new HashMap<String, String>();
+
+		FeatureModelVariable fmFMV = FMBDD.getInstance().FM("fm", fm);
+
+		Set<String> sharedFeatures = getSharedFeatures(fmFMV);
+
+		for (String featureName : sharedFeatures) {
+
+			if (featureName.matches(".+" + EQ_ATTRIBUTE + ".*")) {
+
+				attributesResult.put(featureName.substring(0, featureName.indexOf(EQ_ATTRIBUTE)),
+						featureName.substring(featureName.indexOf(EQ_ATTRIBUTE) + EQ_ATTRIBUTE.length()));
+
+			}
+		}
+
+		return attributesResult;
+	}
+
+	public static Map<String, String> extractAttributesValues(String fm) {
+
+		Map<String, String> attributesResult = new HashMap<String, String>();
 		FeatureModelVariable fmFMV = null;
 		try {
-			fmFMV = fmUpdateBDD.FM("fm", fm);
+			fmFMV = FMBDD.getInstance().FM("fm", fm);
 
 			SetVariable fmSPFMVFeatures = fmFMV.features();
 
 			for (String featureName : fmSPFMVFeatures.names()) {
 
 				if (featureName.matches(".+" + EQ_ATTRIBUTE + ".*")) {
-
-					attributes.put(featureName.substring(0, featureName.indexOf(EQ_ATTRIBUTE)),
+					attributesResult.put(featureName.substring(0, featureName.indexOf(EQ_ATTRIBUTE)),
 							featureName.substring(featureName.indexOf(EQ_ATTRIBUTE) + EQ_ATTRIBUTE.length()));
 
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return attributes;
+		return attributesResult;
 	}
 
-	public String setAttributesValues(String fm) {
+	public static String setAttributesValues(String fm, Map<String, String> attributes) {
 
 		FeatureModelVariable fmFMV = null;
 		try {
-			fmFMV = fmUpdateBDD.FM("fm", fm);
+			fmFMV = FMBDD.getInstance().FM("fm", fm);
 
 			Iterator it = attributes.entrySet().iterator();
 			while (it.hasNext()) {
@@ -1155,8 +1680,13 @@ public class FMFactory {
 
 				// System.out.println(pair.getKey() + " = " + pair.getValue());
 
-				fmFMV.renameFeature((String) pair.getKey(), pair.getKey() + EQ_ATTRIBUTE + pair.getValue());
+				if (fmFMV.features().names().contains((String) pair.getKey())) {
+					String oldFeatureName = (String) pair.getKey();
 
+					String newFeatureName = addQuote(oldFeatureName + EQ_ATTRIBUTE + pair.getValue());
+
+					fmFMV.renameFeature(oldFeatureName, newFeatureName);
+				}
 				// it.remove(); // avoids a ConcurrentModificationException
 			}
 
@@ -1172,75 +1702,69 @@ public class FMFactory {
 			// }
 			// }
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return fmFMV.toString();
 	}
 
-	public Contract convertFMSCUpdateToContractXML(String fm) throws Exception {
+	public static Contract convertFMSCUpdateToContractXML(String fm) throws Exception {
 		// should be executed after update
 
-		int serviceNumber = 1;
-		contract = new Contract();
+		Map<String, String> attributes = new HashMap<String, String>();
+		attributes = extractAttributesValues(fm);
+
+		Contract contract = new Contract();
 		ArrayList<Service> services = new ArrayList<Service>();
 
-		FeatureModelVariable fmFMV = fmUpdateBDD.FM("fm", fm);
+		contract.projectName = attributes.get("ProjectName");
+		contract.hostName = attributes.get("HostName");
+		contract.dataInputPkg = contract.projectName + "." + SwitchyardProject.INPUT_DIR;
+		contract.dataOutputPkg = contract.projectName + "." + SwitchyardProject.OUTPUT_DIR;
 
-		contract.projectName = contractFG.projectName;
+		FeatureModelVariable fmFMV = FMBDD.getInstance().FM("fm", fm);
+		ContractFG contractFG = extractContractFG(fm);
 
-		for (ServiceFG serviceFG : this.contractFG.serviceFGs) {
-
-			int capabilityNumber = 1;
+		for (ServiceFG serviceFG : contractFG.serviceFGs) {
 
 			Service service = new Service();
-			service.interfaceName = attributes.get("ServiceName_" + serviceNumber);
+			service.interfaceName = attributes.get("ServiceName" + serviceFG.id);
+
 			service.beanName = service.interfaceName + "Bean";
-			service.number = serviceNumber;
+			service.number = getFeatureIDNumber(serviceFG.id);
 
 			ArrayList<Capability> capabilities = new ArrayList<Capability>();
 			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
 
-				String capabilityId = "_" + serviceNumber + "_" + capabilityNumber;
-
 				Capability capability = new Capability();
 
-				capability.name = attributes.get("CapabilityName" + capabilityId);
+				capability.name = attributes.get("CapabilityName" + capabilityFG.id);
 				capability.serviceName = service.interfaceName;
-				capability.number = capabilityNumber;
+
+				capability.number = getFeatureIDNumber(capabilityFG.id);
 
 				///////// Input output
 				ArrayList<Input> inputs = new ArrayList<Input>();
-				for (int inputDataNumber = 1; inputDataNumber <= capabilityFG.inputDataCount; inputDataNumber++) {
-
-					String inputDataId = capabilityId + "_" + inputDataNumber;
+				for (InputFG inputfg : capabilityFG.inputFGs) {
 
 					Input input = new Input();
-					input.name = attributes.get("InputName" + inputDataId);
-					input.type = attributes.get("InputType" + inputDataId);
-					input.number = inputDataNumber;
+					input.name = attributes.get("InputName" + inputfg.id);
+					input.type = attributes.get("InputType" + inputfg.id);
+					input.number = getFeatureIDNumber(inputfg.id);
 
 					inputs.add(input);
 				}
 				capability.inputs = inputs;
 				//
 				ArrayList<Output> outputs = new ArrayList<Output>();
-				for (int outputDataNumber = 1; outputDataNumber <= capabilityFG.outputDataCount; outputDataNumber++) {
 
-					String outputDataId = capabilityId + "_" + outputDataNumber;
+				for (OutputFG outputfg : capabilityFG.outputFGs) {
 
 					Output output = new Output();
-					output.name = attributes.get("OutputName" + outputDataId);
-					output.type = attributes.get("OutputType" + outputDataId);
-					output.number = outputDataNumber;
+					output.name = attributes.get("OutputName" + outputfg.id);
+					output.type = attributes.get("OutputType" + outputfg.id);
+					output.number = getFeatureIDNumber(outputfg.id);
 
 					outputs.add(output);
-
-					// System.out.println(attributes);
-					// System.out.println(output.name);
-					// System.out.println(output.type);
-					//
-					// System.exit(-1);
 				}
 				//
 				capability.outputs = outputs;
@@ -1249,67 +1773,427 @@ public class FMFactory {
 				////////// features true or false
 				//
 
-				capability.authentification = fmFMV.features().names()
-						.contains("Authentification" + capabilityId);
-				capability.serviceState = fmFMV.features().names().contains("ServiceState" + capabilityId);
-				capability.stateMessaging = fmFMV.features().names()
-						.contains("StateMessaging" + capabilityId);
-				capability.twoWayState = fmFMV.features().names().contains("TwoWayState" + capabilityId);
-				capability.statefullService = fmFMV.features().names().contains("StatefulService" + capabilityId);
-				capability.stateRepository = fmFMV.features().names().contains("StateRepository" + capabilityId);
-				capability.soap = fmFMV.features().names().contains("SOAP" + capabilityId);
-				capability.rest = fmFMV.features().names().contains("REST" + capabilityId);
+				capability.authentification = fmFMV.features().names().contains("Authentification" + capabilityFG.id);
+				capability.serviceState = fmFMV.features().names().contains("ServiceState" + capabilityFG.id);
+				capability.stateMessaging = fmFMV.features().names().contains("StateMessaging" + capabilityFG.id);
+				capability.twoWayState = fmFMV.features().names().contains("TwoWayState" + capabilityFG.id);
+				capability.statefullService = fmFMV.features().names().contains("StatefulService" + capabilityFG.id);
+				capability.stateRepository = fmFMV.features().names().contains("StateRepository" + capabilityFG.id);
+				capability.soap = fmFMV.features().names().contains("SOAP" + capabilityFG.id);
+				capability.rest = fmFMV.features().names().contains("REST" + capabilityFG.id);
 				//
-				if (fmFMV.features().names().contains("Put" + capabilityId))
+				if (fmFMV.features().names().contains("Put" + capabilityFG.id))
 					capability.restMethod = "Put";
-				else if (fmFMV.features().names().contains("Get" + capabilityId))
+				else if (fmFMV.features().names().contains("Get" + capabilityFG.id))
 					capability.restMethod = "Get";
-				else if (fmFMV.features().names().contains("Post" + capabilityId))
+				else if (fmFMV.features().names().contains("Post" + capabilityFG.id))
 					capability.restMethod = "Post";
-				else if (fmFMV.features().names().contains("Delete" + capabilityId))
+				else if (fmFMV.features().names().contains("Delete" + capabilityFG.id))
 					capability.restMethod = "Delete";
 				//
-				capability.jms = fmFMV.features().names().contains("MOM" + capabilityId);
+				capability.jms = fmFMV.features().names().contains("MOM" + capabilityFG.id);
 				//
 				if (capability.jms == true) {
 					capability.broker.serviceName = service.interfaceName;
 					capability.broker.capabilityName = capability.name;
-					capability.broker.setQueues(contract.projectName);
+					// capability.broker.setQueues(contract.projectName);
 					//
 					capability.broker.acknowledgement = fmFMV.features().names()
-							.contains("Acknowledgement" + capabilityId);
+							.contains("Acknowledgement" + capabilityFG.id);
 					capability.broker.transactional = fmFMV.features().names()
-							.contains("Transactional" + capabilityId);
+							.contains("Transactional" + capabilityFG.id);
 					capability.broker.persistentDelivery = fmFMV.features().names()
-							.contains("PersistentDelivery" + capabilityId);
+							.contains("PersistentDelivery" + capabilityFG.id);
 
 					capability.broker.publishSubscribe = fmFMV.features().names()
-							.contains("PublishSubscribe" + capabilityId);
-					capability.broker.durable = fmFMV.features().names()
-							.contains("Durable" + capabilityId);
+							.contains("PublishSubscribe" + capabilityFG.id);
+					capability.broker.durable = fmFMV.features().names().contains("Durable" + capabilityFG.id);
 
+					// hidden features
+					capability.broker.initialContextFactory = attributes.get("InitialContextFactory" + capabilityFG.id);
+					capability.broker.providerUrl = attributes.get("ProviderUrl" + capabilityFG.id);
+					capability.broker.securityPrincipal = attributes.get("SecurityPrincipal" + capabilityFG.id);
+					capability.broker.securityCredentials = attributes.get("SecurityCredentials" + capabilityFG.id);
+					capability.broker.connectionFactory = attributes.get("ConnectionFactory" + capabilityFG.id);
+					capability.broker.connectionConsumerFactory = attributes
+							.get("ConnectionConsumerFactory" + capabilityFG.id);
+
+					capability.broker.queueIn = attributes.get("QueueInJNDI" + capabilityFG.id);
+					capability.broker.queueOut = attributes.get("QueueOutJNDI" + capabilityFG.id);
+
+					if (capability.broker.publishSubscribe == true)
+						capability.broker.topic = attributes.get("TopicJNDI" + capabilityFG.id);
+
+					// this.initialContextFactory =
+					// "org.jboss.naming.remote.client.InitialContextFactory";
+					// this.providerUrl = "remote://localhost:4447";
+					// this.securityPrincipal = "guest";
+					// this.securityCredentials = "jboss@dmin88";
+					// this.connectionFactory = "#ConnectionFactory";
+					// this.connectionConsumerFactory =
+					// "jms/RemoteConnectionFactory";
+					// this.queueIn = artifactId + "_in_queue_" + serviceName +
+					// "_" + capabilityName;
+					// this.queueOut = artifactId + "_out_queue_" + serviceName
+					// + "_" + capabilityName;
+					// this.topic = artifactId + "_topic_" + serviceName + "_" +
+					// capabilityName;
 				} else
 					capability.broker = null;
 
-				capability.dataInputClassName = attributes.get("InputDataClassName" + capabilityId);
-				capability.dataOutputClassName = attributes.get("OutputDataClassName" + capabilityId);
+				capability.dataInputClassName = attributes.get("InputDataClassName" + capabilityFG.id);
+				capability.dataOutputClassName = attributes.get("OutputDataClassName" + capabilityFG.id);
 
 				capability.setConfigurations();
 				//
 				/////////////////////////////////////
 
 				capabilities.add(capability);
-				capabilityNumber++;
 			}
 
 			service.capabilities = capabilities;
 
 			services.add(service);
-			serviceNumber++;
 		}
 
 		contract.services = services;
 
 		return contract;
+	}
+
+	// public static String reduceServices(String fm) throws Exception {
+	// String result = "";
+	//
+	// FeatureModelVariable fmv = FMBDD.getInstance().FM("fmi", fm);
+	//
+	// for (String feature : fmv.root().children().names()) {
+	//
+	// if (!feature.matches("Service_.*"))
+	// result += feature + " ";
+	//
+	// }
+	//
+	// System.out.println(result);
+	//
+	// return result;
+	// }
+
+	public static String buildFMV(ContractFG contractFG, String fm) throws Exception {
+
+		String result = SC_ROOT + ": ";
+		String csts = "";
+
+		FeatureModelVariable fmv = FMBDD.getInstance().FM("fmi", fm);
+
+		// insert children of root
+		for (String feature : fmv.root().children().names()) {
+
+			if (!feature.matches("Service_.*"))
+				result += addQuote(feature) + " ";
+
+		}
+
+		ArrayList<String> keyServiceGF = new ArrayList<String>();
+		for (ServiceFG serviceFG : contractFG.serviceFGs) {
+
+			keyServiceGF.add(serviceFG.name);
+
+		}
+
+		result += buildAlternativeFeature(keyServiceGF) + ";\n";
+
+		for (ServiceFG serviceFG : contractFG.serviceFGs) {
+
+			ArrayList<String> keyCapabilityFG = new ArrayList<String>();
+			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+
+				keyCapabilityFG.add(capabilityFG.name);
+
+			}
+
+			result += serviceFG.name + ": " + buildAlternativeFeature(keyCapabilityFG);
+
+			// insert children of service
+			for (String feature : fmv.getFeature(serviceFG.name).children().names()) {
+
+				if (!feature.matches("Capability_.*"))
+					result += addQuote(feature) + " ";
+
+			}
+
+			// String serviceName = searchFeatureMatch(fmv, "ServiceName" +
+			// serviceFG.id);
+
+			result += ";\n";
+
+			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+
+				FeatureModelVariable fmvCapability = FMBDD.getInstance().FM("fmv", capabilityFG.capabilityFM);
+
+				for (Expression<String> constraint : fmvCapability.getFm().getConstraints()) {
+
+					csts += constraint + ";\n";
+				}
+
+				fmvCapability.removeAllConstraints();
+
+				result += fmvCapability.toString();
+
+			}
+		}
+
+		result += csts + contractFG.csts;
+		return result;
+
+	}
+
+	public static ContractFG extractContractFG(String fm) throws Exception {
+
+		String FEATURE_SERVICE = "Service";
+		String FEATURE_SERVICE_NAME = "ServiceName";
+		String FEATURE_CAPABILITY = "Capability";
+		String FEATURE_INPUT_DATA = "InputData";
+		String FEATURE_OUTPUT_DATA = "OutputData";
+
+		ContractFG contractFG = new ContractFG();
+		FeatureModelVariable fmFMV = FMBDD.getInstance().FM("fm", fm);
+
+		Set<String> fmFeatures = fmFMV.features().names();
+
+		for (String featureService : fmFeatures) {
+
+			if (featureService.matches(FEATURE_SERVICE + "_.*")) {
+
+				ServiceFG serviceFG = new ServiceFG();
+
+				FeatureModel<String> serviceFM = fmFMV.extract(featureService);
+
+				serviceFG.name = featureService;
+
+				serviceFG.id = getFeatureID(serviceFG.name);
+
+				Set<String> serviceFeatures = serviceFM.features();
+
+				for (String featureCapability : serviceFeatures) {
+
+					// if(featureCapability.matches(FEATURE_SERVICE_NAME +
+					// "_.*"))
+					// {
+					// serviceFG.serviceName = featureCapability;
+					// }
+
+					if (featureCapability.matches(FEATURE_CAPABILITY + "_.*")) {
+
+						CapabilityFG capabilityFG = new CapabilityFG();
+						capabilityFG.name = featureCapability;
+
+						// capabilityFG.id = capabilityFG.capabilityName
+						// .substring(capabilityFG.capabilityName.indexOf("_"));
+
+						capabilityFG.id = getFeatureID(capabilityFG.name);
+
+						FeatureModelVariable capabilityFMSCFMV = new FeatureModelVariable("FMSC",
+								fmFMV.extract(featureCapability));
+
+						capabilityFG.capabilityFM = capabilityFMSCFMV.toString();
+
+						for (String featureInoutPut : capabilityFMSCFMV.features().names()) {
+
+							if (featureInoutPut.matches(FEATURE_INPUT_DATA + "_.*")) {
+
+								InputFG inputFG = new InputFG();
+								inputFG.name = featureInoutPut;
+								inputFG.id = getFeatureID(inputFG.name);
+
+								capabilityFG.inputFGs.add(inputFG);
+
+							}
+
+							if (featureInoutPut.matches(FEATURE_OUTPUT_DATA + "_.*")) {
+
+								OutputFG outputFG = new OutputFG();
+								outputFG.name = featureInoutPut;
+								outputFG.id = getFeatureID(outputFG.name);
+
+								capabilityFG.outputFGs.add(outputFG);
+
+							}
+
+						}
+
+						serviceFG.capabilityFGs.add(capabilityFG);
+					}
+
+				}
+
+				contractFG.serviceFGs.add(serviceFG);
+			}
+
+		}
+
+		return contractFG;
+	}
+
+	public static String getFeatureID(String feature) {
+		return feature.substring(feature.indexOf("_"));
+	}
+
+	public static Integer getFeatureIDNumber(String featureId) {
+		return Integer.valueOf(featureId.substring(featureId.lastIndexOf("_") + 1));
+	}
+
+	// public static String resolveinsertedFeatureVariability(String fm,
+	// ArrayList<String> options)
+	// {
+	//
+	// String projectName = options.get(0);
+	//
+	// return fm;
+	//
+	// }
+
+	public static String insertFeatureFromXML(String fm, ArrayList<FeatureInsertForXML> featureInsertForXMLs,
+			ArrayList<String> options) throws Exception {
+
+		// String projectName = options.get(0);
+		System.out.println("Insert and resolve the variability of hidden features");
+
+		ContractFG contractFG = extractContractFG(fm);
+
+		FeatureModelVariable fmv = FMBDD.getInstance().FM("fm", fm);
+
+		// insert features not in service features
+		for (FeatureInsertForXML featureInsertForXML : featureInsertForXMLs) {
+
+			if (!featureInsertForXML.fmvToInsert.contains("@@1")) {
+				insertFeatureElementForXML(featureInsertForXML, fmv, null, options);
+			}
+		}
+
+		for (ServiceFG serviceFG : contractFG.serviceFGs) {
+
+			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
+
+				FeatureModelVariable fmCapabilityFMV = FMBDD.getInstance().FM("fm", capabilityFG.capabilityFM);
+
+				for (FeatureInsertForXML featureInsertForXML : featureInsertForXMLs) {
+
+					insertFeatureElementForXML(featureInsertForXML, fmCapabilityFMV, capabilityFG, options);
+
+					// String featureParent =
+					// featureInsertForXML.featureParent.replaceAll("@@1",
+					// capabilityFG.id);
+					//
+					// if
+					// (fmCapabilityFMV.features().names().contains(featureParent))
+					// {
+					//
+					// FeatureModelVariable featureToInsertFMV =
+					// FMBDD.getInstance().FM("fmi",
+					// featureInsertForXML.fmvToInsert.replaceAll("@@1",
+					// capabilityFG.id));
+					//
+					// FeatureEdgeKind operator = FeatureEdgeKind.MANDATORY;
+					//
+					// if
+					// (FeatureEdgeKind.MANDATORY.toString().equals(featureInsertForXML.featureEdgeKind))
+					// operator = FeatureEdgeKind.MANDATORY;
+					// else if
+					// (FeatureEdgeKind.OPTIONAL.toString().equals(featureInsertForXML.featureEdgeKind))
+					// operator = FeatureEdgeKind.OPTIONAL;
+					//
+					// fmCapabilityFMV.insert(featureToInsertFMV,
+					// featureInsertForXML.featureParent.replaceAll("@@1",
+					// capabilityFG.id), operator);
+					//
+					// for (FeatureAttribute featureAttribute :
+					// featureInsertForXML.attributes) {
+					//
+					// String featureName =
+					// featureAttribute.name.replaceAll("@@1", capabilityFG.id);
+					//
+					// String newFeatureName = featureName + EQ_ATTRIBUTE +
+					// featureAttribute.attribute
+					// .replaceAll("@@1", options.get(0)).replaceAll("@@2",
+					// capabilityFG.id);
+					//
+					// fmCapabilityFMV.renameFeature(featureName,
+					// newFeatureName);
+					//
+					// }
+					// }
+
+				}
+
+				// for (Expression<String> constraint :
+				// fmCapabilityFMV.getFm().getConstraints()) {
+				//
+				// contractFG.csts += constraint + ";\n";
+				// }
+				//
+				// fmCapabilityFMV.removeAllConstraints();
+
+				capabilityFG.capabilityFM = fmCapabilityFMV.toString();
+
+			}
+
+		}
+		return buildFMV(contractFG, fmv.toString());
+	}
+
+	public static void insertFeatureElementForXML(FeatureInsertForXML featureInsertForXML, FeatureModelVariable fmv,
+			CapabilityFG capabilityFG, ArrayList<String> options) throws Exception {
+
+		if (capabilityFG == null)
+			capabilityFG = new CapabilityFG();
+
+		String featureParent = featureInsertForXML.featureParent.replaceAll("@@1", capabilityFG.id);
+
+		if (fmv.features().names().contains(featureParent)) {
+
+			FeatureModelVariable featureToInsertFMV = FMBDD.getInstance().FM("fmi",
+					featureInsertForXML.fmvToInsert.replaceAll("@@1", capabilityFG.id));
+
+			FeatureEdgeKind operator = FeatureEdgeKind.MANDATORY;
+
+			if (FeatureEdgeKind.MANDATORY.toString().equals(featureInsertForXML.featureEdgeKind))
+				operator = FeatureEdgeKind.MANDATORY;
+			else if (FeatureEdgeKind.OPTIONAL.toString().equals(featureInsertForXML.featureEdgeKind))
+				operator = FeatureEdgeKind.OPTIONAL;
+
+			fmv.insert(featureToInsertFMV, featureInsertForXML.featureParent.replaceAll("@@1", capabilityFG.id),
+					operator);
+
+			for (FeatureAttribute featureAttribute : featureInsertForXML.attributes) {
+
+				String featureName = featureAttribute.name.replaceAll("@@1", capabilityFG.id);
+
+				String newFeatureName = featureName + EQ_ATTRIBUTE
+						+ featureAttribute.attribute.replaceAll("@@1", capabilityFG.id)
+								.replaceAll("@@2", options.get(0)).replaceAll("@@3", options.get(1));
+
+				newFeatureName = addQuote(newFeatureName);
+
+				fmv.renameFeature(featureName, newFeatureName);
+
+			}
+		}
+	}
+
+	public static String addQuote(String str) {
+		return "\"" + str + "\"";
+	}
+
+	public static String searchFeatureMatch(FeatureModelVariable fmv, String featureToSearch) {
+		String result = "";
+
+		for (String feature : fmv.features().names()) {
+
+			if (feature.matches(".*" + featureToSearch + ".*")) {
+				return feature;
+			}
+		}
+
+		return result;
 	}
 }

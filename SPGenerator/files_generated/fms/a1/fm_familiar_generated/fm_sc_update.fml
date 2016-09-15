@@ -1,6 +1,6 @@
-Root: ("Service_1"|"Service_2") ; 
+ServiceContract: ("Service_1"|"Service_2") ; 
 "Service_1": ("Capability_1_1"|"Capability_1_2") "ServiceName_1=ServiceName_1" ; 
-"Service_2": ("Capability_2_2"|"Capability_2_1") "ServiceName_2=ServiceName_2" ; 
+"Service_2": ("Capability_2_2"|"Capability_2_1") "ServiceName_2=ServiceName_2dsq" ; 
 "Capability_1_1": "InputData_1_1_2" "InputData_1_1_1" "CommunicationTechnologie_1_1" ["Authentification_1_1"] "InputDataClassName_1_1=InputDataClassName_1_1" "CapabilityName_1_1=CapabilityName_1_1" ; 
 "Capability_1_2": "OutputData_1_2_1" "OutputDataClassName_1_2=OutputDataClassName_1_2" ["Authentification_1_2"] "CommunicationTechnologie_1_2" "StateMessaging_1_2" "CapabilityName_1_2=CapabilityName_1_2" ; 
 "Capability_2_2": ["Authentification_2_2"] "CommunicationTechnologie_2_2" "CapabilityName_2_2=CapabilityName_2_2" ; 

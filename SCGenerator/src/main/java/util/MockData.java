@@ -11,9 +11,9 @@ import scfactory.SCProject;
 
 public class MockData {
 
-	public static String setAttributes(String fm, FMBDD fmbdd) throws Exception {
+	public static String setAttributes(String fm) throws Exception {
 
-		FeatureModelVariable fmFMV = fmbdd.FM("fm", fm);
+		FeatureModelVariable fmFMV = FMBDD.getInstance().FM("fm", fm);
 
 		ArrayList<String> attributeFeaturesStringList = util.Functions.StringToList(SCProject.SC_ATTRIBUTES_CONTENT, "\n");
 

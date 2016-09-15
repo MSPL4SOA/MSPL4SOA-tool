@@ -5,10 +5,12 @@ import javax.inject.Inject;
 import org.switchyard.Context;
 
 import r.input.InputDataClassName_1_1;
+import r.input.InputDataClassName_1_2;
 
 import r.output.OutputDataClassName_1_1;
 
 import r.state.State_ServiceName_1_CapabilityName_1_1;
+import r.state.State_ServiceName_1_CapabilityName_1_2;
 
 import r.util.ConsumerHeader;
 
@@ -20,6 +22,8 @@ public class ServiceName_1Bean implements ServiceName_1 {
 
 	@Inject
 	State_ServiceName_1_CapabilityName_1_1 instanceState_ServiceName_1_CapabilityName_1_1;
+	@Inject
+	State_ServiceName_1_CapabilityName_1_2 instanceState_ServiceName_1_CapabilityName_1_2;
 
 	@Override
 	public OutputDataClassName_1_1 CapabilityName_1_1(
@@ -33,14 +37,12 @@ public class ServiceName_1Bean implements ServiceName_1 {
 				+ inputDataClassName_1_1.getInputName_1_1_1());
 		System.out.println("InputName_1_1_2 : "
 				+ inputDataClassName_1_1.getInputName_1_1_2());
-		System.out.println("InputName_1_1_3 : "
-				+ inputDataClassName_1_1.getInputName_1_1_3());
 
 		OutputDataClassName_1_1 out = new OutputDataClassName_1_1();
 
-		out.setOutputName_1_1_1(Float.valueOf("912"));
+		out.setOutputName_1_1_2(Integer.valueOf("132"));
 
-		out.setOutputName_1_1_2(Integer.valueOf("507"));
+		out.setOutputName_1_1_1(Float.valueOf("376"));
 
 		boolean checkAuth = ConsumerHeader.checkAuthentification(context);
 		if (checkAuth == true) {
@@ -60,6 +62,33 @@ public class ServiceName_1Bean implements ServiceName_1 {
 						.getState() + " ServiceName_1 CapabilityName_1_1");
 
 		return out;
+	}
+
+	@Override
+	public void CapabilityName_1_2(InputDataClassName_1_2 inputDataClassName_1_2) {
+		// TODO Auto-generated stub
+
+		System.out
+				.println("\\\\******* The output of ServiceName_1 : CapabilityName_1_2 : ********//");
+
+		System.out.println("InputName_1_2_1 : "
+				+ inputDataClassName_1_2.getInputName_1_2_1());
+		System.out.println("InputName_1_2_2 : "
+				+ inputDataClassName_1_2.getInputName_1_2_2());
+
+		boolean checkAuth = ConsumerHeader.checkAuthentification(context);
+		if (checkAuth == true) {
+			// TODO Auto-generated stub
+			System.out.println("Correct authentification");
+		} else {
+			// TODO Auto-generated stub
+			System.out.println("Incorrect authentification");
+		}
+
+		instanceState_ServiceName_1_CapabilityName_1_2
+				.setState(instanceState_ServiceName_1_CapabilityName_1_2
+						.getState() + " ServiceName_1 CapabilityName_1_2");
+
 	}
 
 }

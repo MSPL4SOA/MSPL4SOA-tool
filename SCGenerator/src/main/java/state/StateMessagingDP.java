@@ -20,12 +20,12 @@ public class StateMessagingDP {
 
 	
 	public StateMessagingDP(SCGenerator amGenerator) {
-//		this.serviceName = amGenerator.capability.serviceName;
-//		this.methodName = amGenerator.capability.name;
+//		this.serviceName = amGenerator.extractCapabilityFromContract().serviceName;
+//		this.methodName = amGenerator.extractCapabilityFromContract().name;
 		
 		stateDirPath = amGenerator.projectPath + stateDirPath;
 		
-		stateFile = new File(stateDirPath + amGenerator.capability.serviceName + "." + amGenerator.capability.name + ".txt");
+		stateFile = new File(stateDirPath + amGenerator.extractCapabilityFromContract().serviceName + "." + amGenerator.extractCapabilityFromContract().name + ".txt");
 		// + UUID.randomUUID()
 		
 //		stateFile.delete();

@@ -20,6 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import features.bean.Capability;
+import features.bean.Input;
+import features.bean.Service;
 import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
 import fr.unice.polytech.modalis.familiar.operations.Mode;
 import fr.unice.polytech.modalis.familiar.variable.Comparison;
@@ -28,11 +31,8 @@ import fr.unice.polytech.modalis.familiar.variable.SetVariable;
 import gsd.synthesis.FeatureModel;
 import scfactory.SCGenerator;
 import scfactory.SCGeneratorException;
-import scfactory.Capability;
 import scfactory.FMBDD;
-import scfactory.Input;
 import scfactory.SCProject;
-import scfactory.Service;
 
 public class TextEditor {
 
@@ -144,7 +144,7 @@ public class TextEditor {
 						amsc.amGenerator = new SCGenerator(scProject.fmSCUpdateFMLPath);
 						amsc.amGenerator.setAmFilePath(amsc.amFilePath);
 
-						amsc.amGenerator.fmlToObject(fmvAM);
+						amsc.amGenerator.convertAMToContractXML(fmvAM);
 
 						JOptionPane.showMessageDialog(null, "The AM SC update is valid", "OK", JOptionPane.OK_OPTION,
 								new ImageIcon(SCProject.FILE_ICON_OK_PATH));

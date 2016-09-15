@@ -19,6 +19,10 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 
+import familiar.FMFactory;
+import features.bean.Capability;
+import features.bean.Contract;
+import features.bean.Service;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import util.FileSearch;
 import util.Functions;
@@ -41,28 +45,27 @@ public class SCProject {
 	public static final String FEATURES_Dir = FILES_DIR + "features/";
 	public static final String VELOCITY_DIR = FILES_DIR + "velocity/";
 	public static final String IMAGES_DIR = FILES_DIR + "images/";
-	
+
 	public static final String SC_ATTRIBUTES_PATH = FEATURES_Dir + "sc_attributes.txt";
 	public static final String BINDING_SOAP_XML_PATH = FILES_DIR + "soap/binding.xjb";
 	public static final String FILE_ICON_OK_PATH = IMAGES_DIR + "ok.png";
-	
+
 	public static final String SC_ATTRIBUTES_CONTENT = util.Functions.fileToString(SC_ATTRIBUTES_PATH);
 	public static final String BINDING_SOAP_XML_CONTENT = util.Functions.fileToString(BINDING_SOAP_XML_PATH);
 	public static final ImageIcon FILE_ICON_OK_CONTENT = new ImageIcon(FILE_ICON_OK_PATH);
 
-//	public static InputStream getResourcePath(String path) {
-//		return SC_PROJECT_CLASS_LOADER.getResourceAsStream(path);
-//	}
-//
-//	public static InputStream getVelocityResourcePath(String fileName) {
-//		return getResourcePath(VELOCITY_DIR + fileName);
-//	}
+	// public static InputStream getResourcePath(String path) {
+	// return SC_PROJECT_CLASS_LOADER.getResourceAsStream(path);
+	// }
+	//
+	// public static InputStream getVelocityResourcePath(String fileName) {
+	// return getResourcePath(VELOCITY_DIR + fileName);
+	// }
 
-	
 	public static final String SRC_Dir = "./src/main/java/";
 	public static String FILES_GENERATED_DIR = "./files_generated/";
 	public static final String TMP_DIR = FILES_GENERATED_DIR + "tmp/";
-	
+
 	public static String AM_DIR;
 	public static String AM_S2T2_DIR;
 	public static String CAPABILITY_DIR;
@@ -78,10 +81,10 @@ public class SCProject {
 	public static String CONTRACT_PATH;
 	public String fmSCUpdateFMLPath;
 	public static String FM_SC_UPDATE_S2T2_PATH;
-	
-//	public static String CONTRACT_CONTENT;
-//	public static String FM_SC_UPDATE_FML_CONTENT;
-//	public static String FM_SC_UPDATE_S2T2_CONTENT;
+
+	// public static String CONTRACT_CONTENT;
+	// public static String FM_SC_UPDATE_FML_CONTENT;
+	// public static String FM_SC_UPDATE_S2T2_CONTENT;
 
 	public String soapPkg;
 	public String soapDir;
@@ -128,13 +131,40 @@ public class SCProject {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(this.host + "/rest/");
 
-		String responseString = target.path("DownloadContract/contract.xml").request().method("GET")
+		// String responseString =
+		// target.path("DownloadContract/contract.xml").request().method("GET")
+		// .readEntity(String.class);
+
+		String responseString = target.path("DownloadContract/fm_sc_update.fml").request().method("GET")
 				.readEntity(String.class);
 
-		CONTRACT_PATH = TMP_DIR + "/" + CONTRACT_NAME;
-		Functions.stringToFile(responseString, CONTRACT_PATH, false);
-		contract = (Contract) util.JAXBUtil.unmarshall(CONTRACT_PATH, Contract.class);
-		contract.host = this.host;
+		fmSCUpdateFML = responseString.replaceAll(";", ";\n");
+
+		fmSCUpdateFML_eq_ = fmSCUpdateFML.replaceAll("=", "_eq_");
+
+		try {
+			contract = FMFactory.convertFMSCUpdateToContractXML(fmSCUpdateFML_eq_);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		// format file
+
+		try {
+			fmvFMSCUpdate = fmbdd.FM("fmscupdate", fmSCUpdateFML_eq_);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// contract.host = this.host;
+		// CONTRACT_PATH = TMP_DIR + "/" + CONTRACT_NAME;
+		// Functions.stringToFile(responseString, CONTRACT_PATH, false);
+
+		// contract = (Contract) util.JAXBUtil.unmarshall(CONTRACT_PATH,
+		// Contract.class);
+		// contract.host = this.host;
 
 		System.out.println(contract.projectName);
 
@@ -155,27 +185,10 @@ public class SCProject {
 		Functions.mkdirIfExist(CAPABILITY_DIR);
 		//
 
+		Functions.stringToFile(fmSCUpdateFML, fmSCUpdateFMLPath, false);
 		util.JAXBUtil.marshall(contract, CONTRACT_PATH);
 
 		// ----------------------//
-
-		responseString = target.path("DownloadContract/fm_sc_update.fml").request().method("GET")
-				.readEntity(String.class);
-
-		// format file
-
-		fmSCUpdateFML = responseString.replaceAll(";", ";\n").replaceAll("\"", "");
-
-		fmSCUpdateFML_eq_ = fmSCUpdateFML.replaceAll("=", "_eq_");
-
-		Functions.stringToFile(fmSCUpdateFML, fmSCUpdateFMLPath, false);
-
-		try {
-			fmvFMSCUpdate = fmbdd.FM("fmscupdate", fmSCUpdateFML_eq_);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		// Functions.stringToFile(
 		// fmBDD.FM("fm_sc_update", responseString.replaceAll("=",
@@ -217,8 +230,7 @@ public class SCProject {
 
 			String[] argswsdlToJava = new String[] { "-verbose", "-exsh", "false", "-dns", "true", "-asyncMethods",
 					"-b", BINDING_SOAP_XML_PATH, "-d", SRC_Dir, "-p", soapPkg,
-					host + "/" + service.interfaceName 
-					+ "/" + service.interfaceName + "?wsdl" };
+					host + "/" + service.interfaceName + "/" + service.interfaceName + "?wsdl" };
 
 			WSDLToJava.main(argswsdlToJava);
 
