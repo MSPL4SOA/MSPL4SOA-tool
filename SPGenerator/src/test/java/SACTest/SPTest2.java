@@ -134,7 +134,7 @@ public class SPTest2 {
 		FMFactory.exportFM(fmSCUpdateStr, "fm_sc_update", fmOutDir, st2tOutDir);
 		
 		//fmscupdate-hidden
-		
+		 
 		// fmspspec
 		ArrayList<String> hiddenSCArrayList = util.Functions
 				.fileToList(new File("./files_sp/features2/hidden_features_sc.txt"));
