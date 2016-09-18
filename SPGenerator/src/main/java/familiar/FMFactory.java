@@ -1077,7 +1077,7 @@ public class FMFactory {
 				capabilityFGResult.name = capabilityFGToUpdate.name;
 
 				capabilityFGToUpdate.id = capabilityFGToUpdate.name.substring(capabilityFGToUpdate.name.indexOf("_"));
-
+ 
 				// toupdate
 				FeatureModelVariable capabilityFGToUpdateFMV = FMBDD.getInstance().FM("capabilityFGToUpdate",
 						capabilityFGToUpdate.capabilityFM);

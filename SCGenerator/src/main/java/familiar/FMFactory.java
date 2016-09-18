@@ -1086,7 +1086,7 @@ public class FMFactory {
 				// featureSetToSlice in featuresReducedToUpdate, then it is ok.
 
 				// FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced
-				// = capabilityFGToUpdateFMVDelAttributeFMV;
+				// = capabilityFGToUpdateFMVDelAttributeFMV; 
 				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = FMBDD.getInstance().FM("fmSPSpec",
 						removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(), featuresReducedToUpdate));
 
