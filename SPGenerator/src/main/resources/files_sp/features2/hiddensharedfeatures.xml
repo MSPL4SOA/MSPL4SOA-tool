@@ -28,9 +28,9 @@
         <featureName>MOMConfiguration</featureName>
         <featureParent>MOM@@1</featureParent>
         <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>MOMConfiguration@@1: InitialContextFactory@@1 ProviderUrl@@1 SecurityPrincipal@@1 SecurityCredentials@@1 ConnectionConsumerFactory@@1;</fmvToInsert>
+        <fmvToInsert>MOMConfiguration@@1: InitialContextFactor@@1 ProviderUrl@@1 SecurityPrincipal@@1 SecurityCredentials@@1 ConnectionConsumerFactory@@1;</fmvToInsert>
         <featureAttribute>
-            <name>InitialContextFactory@@1</name>
+            <name>InitialContextFactor@@1</name>
             <attribute>org.jboss.naming.remote.client.InitialContextFactory</attribute>
         </featureAttribute>
         <featureAttribute>
@@ -70,23 +70,4 @@
             <attribute>@@3</attribute>
         </featureAttribute>
     </featureInserts>
-     <featureInserts>
-        <featureName>Username</featureName>
-        <featureParent>Authentication</featureParent>
-        <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>Username;</fmvToInsert>
-    </featureInserts>
-    <featureInserts>
-        <featureName>Password</featureName>
-        <featureParent>Authentication</featureParent>
-        <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>Password;</fmvToInsert>
-    </featureInserts>
-    <featureInserts>
-        <featureName>InputValue</featureName>
-        <featureParent>InputData</featureParent>
-        <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>InputValue;</fmvToInsert>
-    </featureInserts>
 </HiddenFeatures>
-

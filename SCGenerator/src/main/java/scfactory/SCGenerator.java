@@ -50,7 +50,6 @@ public class SCGenerator {
 
 	// public ArrayList<String> extractedData;
 
-	public FMBDD fmbdd;
 	public FeatureModelVariable fmvAM;
 
 	public String capabilityId;
@@ -417,16 +416,15 @@ public class SCGenerator {
 		// this.features = Functions.fileToString(soaAMPath);
 		// this.soaFama = new SOAFama(this.soaFMPath);
 
-		fmbdd = FMBDD.getInstance();
 
 		// contractCapability = (Contract) util.JAXBUtil.unmarshall(projectPath
 		// + SCProject.CONTRACT_NAME, Contract.class);
 		// this.host = contract.hostName;
 
 		try {
-			fmvAM = fmbdd.FM("am", Functions.fileToString(amFilePath));
+			fmvAM = FMBDD.getInstance().FM("am", Functions.fileToString(amFilePath));
 
-			convertAMToContractXML(fmvAM);
+			
 			// load capability
 			// fmlToObject(fmvAM);
 
@@ -447,6 +445,7 @@ public class SCGenerator {
 		// this.capabilityName =
 		// extractFeatureValue(searchFeature("CapabilityName", featuresList));
 
+		convertAMToContractXML(fmvAM);
 		this.reponseList = new ArrayList<Object>();
 		this.errorResponseList = new ArrayList<Object>();
 

@@ -7,3 +7,6 @@ Acknowledgement
 ResponseHandler
 Asynchronous
 Synchronous
+Username
+Password
+InputValue

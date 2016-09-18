@@ -36,7 +36,7 @@ public class InsertHiddenFeatures2 {
 		ArrayList<String> options = new ArrayList<String>();
 		options.add("proj_name");
 		options.add("host_name");
-		String result = FMFactory.insertFeatureFromXML(fmSCString, hiddenSharedFeatures.featureInserts, options);
+		String result = FMFactory.insertFeatureFromXML(fmSCString, hiddenSharedFeatures.featureInserts, true, options);
 
 //		FMFactory.extractAttributesValues(result);
 		

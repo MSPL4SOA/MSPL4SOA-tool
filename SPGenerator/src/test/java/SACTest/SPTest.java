@@ -50,7 +50,7 @@ public class SPTest {
 		//
 
 		// fmsp
-		String fmSPStr = FMFactory.insertFeatureFromXML(fmSPHiddenStr, featureHiddenSharedSP, options);
+		String fmSPStr = FMFactory.insertFeatureFromXML(fmSPHiddenStr, featureHiddenSharedSP, true, options);
 		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("zae", fmSPStr);
 
 		// fmspspec

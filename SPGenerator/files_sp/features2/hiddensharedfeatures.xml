@@ -70,23 +70,4 @@
             <attribute>@@3</attribute>
         </featureAttribute>
     </featureInserts>
-     <featureInserts>
-        <featureName>Username</featureName>
-        <featureParent>Authentication</featureParent>
-        <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>Username;</fmvToInsert>
-    </featureInserts>
-    <featureInserts>
-        <featureName>Password</featureName>
-        <featureParent>Authentication</featureParent>
-        <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>Password;</fmvToInsert>
-    </featureInserts>
-    <featureInserts>
-        <featureName>InputValue</featureName>
-        <featureParent>InputData</featureParent>
-        <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>InputValue;</fmvToInsert>
-    </featureInserts>
 </HiddenFeatures>
-

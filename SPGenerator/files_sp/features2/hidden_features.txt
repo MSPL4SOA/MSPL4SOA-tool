@@ -10,3 +10,10 @@ ConnectionConsumerFactory
 ProjectName
 HostName
 ConnectionFactory
+Username
+Password
+InputValue
+TopicConfiguration
+TopicJNDI
+HostName
+ProjectName

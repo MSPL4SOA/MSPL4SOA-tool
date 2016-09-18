@@ -1,0 +1,17 @@
+InputDataClassName
+InputName
+InputType
+OutputDataClassName
+OutputName
+OutputType
+CapabilityName
+ServiceName
+InitialContextFactor
+ProviderUrl
+SecurityCredentials
+SecurityPrincipal
+TopicJNDI
+QueueInJNDI
+QueueOutJNDI
+ConnectionFactory
+ConnectionConsumerFactory

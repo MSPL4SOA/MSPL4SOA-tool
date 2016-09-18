@@ -16,6 +16,7 @@ import features.bean.Contract;
 import features.bean.Input;
 import features.bean.Output;
 import features.bean.Service;
+import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
 import fr.unice.polytech.modalis.familiar.parser.MyExpressionParser;
 import fr.unice.polytech.modalis.familiar.variable.Comparison;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
@@ -1107,7 +1108,9 @@ public class FMFactory {
 							featureSetToSliceCapability, sliceMode);
 				}
 
-				capabilitySliced.cleanup2();
+//				capabilitySliced.cleanup2();
+				
+				System.out.println(capabilitySliced);
 
 				// for (Expression<String> constraint :
 				// capabilitySliced.getFm().getConstraints()) {
@@ -1954,7 +1957,7 @@ public class FMFactory {
 			}
 		}
 
-		result += csts + contractFG.csts;
+		result += csts +  contractFG.csts;
 		return result;
 
 	}
@@ -2065,7 +2068,7 @@ public class FMFactory {
 	// }
 
 	public static String insertFeatureFromXML(String fm, ArrayList<FeatureInsertForXML> featureInsertForXMLs,
-			ArrayList<String> options) throws Exception {
+			boolean insertAttributes, ArrayList<String> options) throws Exception {
 
 		// String projectName = options.get(0);
 		System.out.println("Insert and resolve the variability of hidden features");
@@ -2078,7 +2081,7 @@ public class FMFactory {
 		for (FeatureInsertForXML featureInsertForXML : featureInsertForXMLs) {
 
 			if (!featureInsertForXML.fmvToInsert.contains("@@1")) {
-				insertFeatureElementForXML(featureInsertForXML, fmv, null, options);
+				insertFeatureElementForXML(featureInsertForXML, fmv, null, insertAttributes, options);
 			}
 		}
 
@@ -2090,7 +2093,8 @@ public class FMFactory {
 
 				for (FeatureInsertForXML featureInsertForXML : featureInsertForXMLs) {
 
-					insertFeatureElementForXML(featureInsertForXML, fmCapabilityFMV, capabilityFG, options);
+					insertFeatureElementForXML(featureInsertForXML, fmCapabilityFMV, capabilityFG, insertAttributes,
+							options);
 
 					// String featureParent =
 					// featureInsertForXML.featureParent.replaceAll("@@1",
@@ -2154,7 +2158,7 @@ public class FMFactory {
 	}
 
 	public static void insertFeatureElementForXML(FeatureInsertForXML featureInsertForXML, FeatureModelVariable fmv,
-			CapabilityFG capabilityFG, ArrayList<String> options) throws Exception {
+			CapabilityFG capabilityFG, boolean insertAttributes, ArrayList<String> options) throws Exception {
 
 		if (capabilityFG == null)
 			capabilityFG = new CapabilityFG();
@@ -2172,25 +2176,57 @@ public class FMFactory {
 				operator = FeatureEdgeKind.MANDATORY;
 			else if (FeatureEdgeKind.OPTIONAL.toString().equals(featureInsertForXML.featureEdgeKind))
 				operator = FeatureEdgeKind.OPTIONAL;
-			
 
 			fmv.insert(featureToInsertFMV, featureInsertForXML.featureParent.replaceAll("@@1", capabilityFG.id),
 					operator);
 
-			for (FeatureAttribute featureAttribute : featureInsertForXML.attributes) {
+			if (insertAttributes)
+				for (FeatureAttribute featureAttribute : featureInsertForXML.attributes) {
 
-				String featureName = featureAttribute.name.replaceAll("@@1", capabilityFG.id);
+					String featureName = featureAttribute.name.replaceAll("@@1", capabilityFG.id);
 
-				String newFeatureName = featureName + EQ_ATTRIBUTE
-						+ featureAttribute.attribute.replaceAll("@@1", capabilityFG.id)
-								.replaceAll("@@2", options.get(0)).replaceAll("@@3", options.get(1));
+					String newFeatureName = featureName + EQ_ATTRIBUTE
+							+ featureAttribute.attribute.replaceAll("@@1", capabilityFG.id)
+									.replaceAll("@@2", options.get(0)).replaceAll("@@3", options.get(1));
 
-				newFeatureName = addQuote(newFeatureName);
+					newFeatureName = addQuote(newFeatureName);
 
-				fmv.renameFeature(featureName, newFeatureName);
+					fmv.renameFeature(featureName, newFeatureName);
 
+				}
+		}
+	}
+
+	public static void exportFM(String fm, String fmName, String fmDirPath, String s2t2DirPath) throws Exception {
+
+		util.Functions.mkdirIfExist(fmDirPath);
+		util.Functions.mkdirIfExist(s2t2DirPath);
+		util.Functions.stringToFile(fm, fmDirPath + fmName + ".fml", false);
+
+		S2T2Converter s2t2Converter = new S2T2Converter();
+
+		String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec", fm));
+		util.Functions.stringToFile(xmiS2T2, s2t2DirPath + fmName + ".fmprimitives", false);
+	}
+
+	public static ArrayList<String> getFeatureNamesFromFM(String fm, ArrayList<String> features) throws Exception {
+
+		ArrayList<String> result = new ArrayList<String>();
+
+		FeatureModelVariable fmv = FMBDD.getInstance().FM("fm", fm);
+
+		for (String featureFM : fmv.features().names()) {
+
+			for (String feature : features) {
+				if (featureFM.matches(feature + "_.+")) {
+					result.add(featureFM);
+
+					break;
+				}
 			}
 		}
+
+		return result;
 	}
 
 	public static String addQuote(String str) {

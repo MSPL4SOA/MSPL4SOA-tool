@@ -157,10 +157,10 @@ public class TextEditor {
 						options.add(SwitchyardProject.HOST_NAME);
 
 						fmFactory.specializedAttributedFMSP = FMFactory.insertFeatureFromXML(
-								fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, options);
+								fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, true, options);
 
 						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(
-								fmFactory.updatedAttributedFMSC, hiddenSharedFeatures.featureInserts, options);
+								fmFactory.updatedAttributedFMSC, hiddenSharedFeatures.featureInserts, true, options);
 						//
 						//////////////////////////
 
