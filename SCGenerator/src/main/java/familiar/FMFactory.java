@@ -1119,6 +1119,17 @@ public class FMFactory {
 				//
 				//
 				// capabilitySliced.getFm().removeAllConstraints();
+				
+				//to avoid inserting the features to slice
+				for (FeatureInsert featureInsert : featuresReducedToUpdate) {
+
+					for (String feature : featureInsert.fmvToInsert.features().names()) {
+
+						if (featureSetToSlice.contains(feature))
+							featureInsert.fmvToInsert.removeFeature(feature);
+					}
+				}
+				
 				//
 				capabilityFGResult.capabilityFM = capabilitySliced.toString();
 				//

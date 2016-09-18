@@ -1077,7 +1077,7 @@ public class FMFactory {
 				capabilityFGResult.name = capabilityFGToUpdate.name;
 
 				capabilityFGToUpdate.id = capabilityFGToUpdate.name.substring(capabilityFGToUpdate.name.indexOf("_"));
- 
+
 				// toupdate
 				FeatureModelVariable capabilityFGToUpdateFMV = FMBDD.getInstance().FM("capabilityFGToUpdate",
 						capabilityFGToUpdate.capabilityFM);
@@ -1130,8 +1130,25 @@ public class FMFactory {
 				//
 				// capabilitySliced.getFm().removeAllConstraints();
 				//
-				capabilityFGResult.capabilityFM = capabilitySliced.toString();
+				
 				//
+
+				// new HashSet<String>(featuresReducedToUpdate);
+
+				// featureSetToSlice
+
+				//to avoid inserting the features to slice
+				for (FeatureInsert featureInsert : featuresReducedToUpdate) {
+
+					for (String feature : featureInsert.fmvToInsert.features().names()) {
+
+						if (featureSetToSlice.contains(feature))
+							featureInsert.fmvToInsert.removeFeature(feature);
+					}
+				}
+				
+				capabilityFGResult.capabilityFM = capabilitySliced.toString();
+
 				capabilityFGResult.capabilityFM = insertFeatures(capabilitySliced.toString(), featuresReducedToUpdate);
 				//
 				capabilityFGResult.capabilityFM = setAttributesValues(capabilityFGResult.capabilityFM,
