@@ -1,4 +1,4 @@
-"ServiceContract": "ProjectName=large3" "HostName=http://localhost:8080/large3" ("Service_7"|"Service_6"|"Service_5"|"Service_4"|"Service_3"|"Service_2"|"Service_1") ;
+"ServiceContract": "ProjectName=large3" "HostName=http://localhost:8080/large3" ("Service_7"|"Service_6"|"Service_5"|"Service_4"|"Service_3"|"Service_2"|"Service_1");
 Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_6"|"Capability_7_1"|"Capability_7_2") "ServiceName_7=ServiceName_7" ;
 "Capability_7_3": "CommunicationTechnologie_7_3" ["Authentification_7_3"] "OutputData_7_3_2" "InputData_7_3_1" "InputData_7_3_3" "OutputData_7_3_4" "OutputData_7_3_5" "CapabilityName_7_3=CapabilityName_7_3" "InputDataClassName_7_3=InputDataClassName_7_3" "InputData_7_3_2" "OutputDataClassName_7_3=OutputDataClassName_7_3" "OutputData_7_3_3" "InputData_7_3_4" "StateMessaging_7_3" "OutputData_7_3_1" ; 
 "CommunicationTechnologie_7_3": ("MOM_7_3"|"REST_7_3"|"SOAP_7_3") "ResponseHandler_7_3" ; 
