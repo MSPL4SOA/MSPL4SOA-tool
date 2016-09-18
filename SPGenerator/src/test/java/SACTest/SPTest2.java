@@ -73,7 +73,7 @@ public class SPTest2 {
 		FeatureModelVariable fmSCHiddenDAFMV = FMBDD.getInstance().FM("zae", fmSCHiddenDAStr);
 		FMFactory.exportFM(fmSCHiddenStr, "fm_sc_hidden", fmOutDir, st2tOutDir);
 		//
-		// fmsc
+		// fmsc 
 		String fmSCStr = FMFactory.insertFeatureFromXML(fmSCHiddenStr, hiddenSharedFeatures.featureInserts, false,
 				options);
 		FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("zae", fmSCStr);
