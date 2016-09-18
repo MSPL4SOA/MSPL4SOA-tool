@@ -1082,6 +1082,11 @@ public class FMFactory {
 				ArrayList<FeatureInsert> featuresReducedToUpdate = getFeaturesToReduce(
 						capabilityFGToUpdateFMVDelAttributeFMV.toString());
 
+				// All featuresReducedToUpdate are core features. Thus, if
+				// featureSetToSlice in featuresReducedToUpdate, then it is ok.
+
+				// FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced
+				// = capabilityFGToUpdateFMVDelAttributeFMV;
 				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = FMBDD.getInstance().FM("fmSPSpec",
 						removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(), featuresReducedToUpdate));
 
@@ -1735,8 +1740,6 @@ public class FMFactory {
 
 			ArrayList<Capability> capabilities = new ArrayList<Capability>();
 			for (CapabilityFG capabilityFG : serviceFG.capabilityFGs) {
-				
-				
 
 				Capability capability = new Capability();
 
@@ -1745,7 +1748,6 @@ public class FMFactory {
 
 				capability.number = getFeatureIDNumber(capabilityFG.id);
 
-				
 				///////// Input output
 				ArrayList<Input> inputs = new ArrayList<Input>();
 				for (InputFG inputfg : capabilityFG.inputFGs) {
@@ -1755,7 +1757,7 @@ public class FMFactory {
 					input.type = attributes.get("InputType" + inputfg.id);
 					input.number = getFeatureIDNumber(inputfg.id);
 
-					//SC
+					// SC
 					input.value = attributes.get("InputValue" + inputfg.id);
 
 					inputs.add(input);
@@ -1901,11 +1903,11 @@ public class FMFactory {
 
 		return result;
 	}
-	
+
 	public static String getServiceFeatures(FeatureModelVariable fmv, String serviceName) {
-		
+
 		String result = "";
-		
+
 		for (String feature : fmv.getFeature(serviceName).children().names()) {
 
 			if (!feature.matches("Capability_.*"))
@@ -1916,7 +1918,6 @@ public class FMFactory {
 		return result;
 	}
 
-
 	public static String buildFMV(ContractFG contractFG, String fm) throws Exception {
 
 		String result = SC_ROOT + ": ";
@@ -1924,14 +1925,14 @@ public class FMFactory {
 
 		FeatureModelVariable fmv = FMBDD.getInstance().FM("fmi", fm);
 
-//		// insert children of root
-//		for (String feature : fmv.root().children().names()) {
-//
-//			if (!feature.matches("Service_.*"))
-//				result += addQuote(feature) + " ";
-//
-//		}
-		
+		// // insert children of root
+		// for (String feature : fmv.root().children().names()) {
+		//
+		// if (!feature.matches("Service_.*"))
+		// result += addQuote(feature) + " ";
+		//
+		// }
+
 		result += getRootFeatures(fmv);
 
 		ArrayList<String> keyServiceGF = new ArrayList<String>();
@@ -1954,14 +1955,15 @@ public class FMFactory {
 
 			result += serviceFG.name + ": " + buildAlternativeFeature(keyCapabilityFG);
 
-//			// insert children of service
-//			for (String feature : fmv.getFeature(serviceFG.name).children().names()) {
-//
-//				if (!feature.matches("Capability_.*"))
-//					result += addQuote(feature) + " ";
-//
-//			}
-			
+			// // insert children of service
+			// for (String feature :
+			// fmv.getFeature(serviceFG.name).children().names()) {
+			//
+			// if (!feature.matches("Capability_.*"))
+			// result += addQuote(feature) + " ";
+			//
+			// }
+
 			result += getServiceFeatures(fmv, serviceFG.name);
 
 			// String serviceName = searchFeatureMatch(fmv, "ServiceName" +

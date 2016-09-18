@@ -1088,11 +1088,13 @@ public class FMFactory {
 				ArrayList<FeatureInsert> featuresReducedToUpdate = getFeaturesToReduce(
 						capabilityFGToUpdateFMVDelAttributeFMV.toString());
 
-				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = capabilityFGToUpdateFMVDelAttributeFMV;
+				// All featuresReducedToUpdate are core features. Thus, if
+				// featureSetToSlice in featuresReducedToUpdate, then it is ok.
+
 				// FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced
-				// = FMBDD.getInstance().FM("fmSPSpec",
-				// removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(),
-				// featuresReducedToUpdate));
+				// = capabilityFGToUpdateFMVDelAttributeFMV;
+				FeatureModelVariable capabilityFGToUpdateFMVComplexityReduced = FMBDD.getInstance().FM("fmSPSpec",
+						removeFeatures(capabilityFGToUpdateFMVDelAttributeFMV.toString(), featuresReducedToUpdate));
 
 				Set<String> featureSetToSliceCapability = com.google.common.collect.Sets.intersection(featureSetToSlice,
 						capabilityFGToUpdateFMVComplexityReduced.features().names());
@@ -1108,8 +1110,8 @@ public class FMFactory {
 							featureSetToSliceCapability, sliceMode);
 				}
 
-//				capabilitySliced.cleanup2();
-				
+				// capabilitySliced.cleanup2();
+
 				System.out.println(capabilitySliced);
 
 				// for (Expression<String> constraint :
@@ -1957,7 +1959,7 @@ public class FMFactory {
 			}
 		}
 
-		result += csts +  contractFG.csts;
+		result += csts + contractFG.csts;
 		return result;
 
 	}
