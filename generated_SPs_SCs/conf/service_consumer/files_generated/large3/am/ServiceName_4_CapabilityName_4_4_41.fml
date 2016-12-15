@@ -1,0 +1,3 @@
+ServiceContract: "HostName=http://localhost:8080/large3" "ProjectName=large3" "Service_4" ; 
+"Service_4": "Capability_4_4" "ServiceName_4=ServiceName_4" ; 
+"Capability_4_4": "QueueOutJNDI_4_4=large3_out_queue_4_4" "MOM_4_4" "ConnectionConsumerFactory_4_4=jms/RemoteConnectionFactory" "CommunicationTechnologie_4_4" "SecurityCredentials_4_4=jboss@dmin88" "QueueConfiguration_4_4" "MOMConfiguration_4_4" "PersistentDelivery_4_4" "AsynchronousQueue_4_4" "Reliability_4_4" "ProviderUrl_4_4=remote://localhost:4447" "InitialContextFactory_4_4=org.jboss.naming.remote.client.InitialContextFactory" "Acknowledgement_4_4" "SecurityPrincipal_4_4=guest" "CapabilityName_4_4=CapabilityName_4_4" "QueueInJNDI_4_4=large3_in_queue_4_4" ;
