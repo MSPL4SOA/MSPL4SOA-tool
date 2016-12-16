@@ -1,3 +1,0 @@
-InputValue
-Password
-Username

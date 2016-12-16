@@ -1,4 +1,0 @@
-InputData
-OutputData
-ServiceName
-CapabilityName
