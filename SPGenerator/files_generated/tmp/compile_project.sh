@@ -1,2 +1,2 @@
-cd ./files_generated/projects//testeq3/
+cd ./files_generated/projects//SP/
 mvn compile

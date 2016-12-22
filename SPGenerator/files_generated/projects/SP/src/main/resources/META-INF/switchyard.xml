@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:jms="urn:switchyard-component-camel-jms:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" name="SP" targetNamespace="urn:SP:SP:1.0">
+  <sca:composite name="SP" targetNamespace="urn:SP:SP:1.0">
+    <sca:service name="DownloadContract" promote="DownloadContractBean/DownloadContract">
+      <sca:interface.java interface="SP.service.DownloadContract"/>
+      <resteasy:binding.rest name="restContract">
+        <resteasy:interfaces>SP.resource.ResourceDownloadContract</resteasy:interfaces>
+        <resteasy:contextPath>SP/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="DownloadContractBean">
+      <bean:implementation.bean class="SP.service.DownloadContractBean"/>
+      <sca:service name="DownloadContract">
+        <sca:interface.java interface="SP.service.DownloadContract"/>
+      </sca:service>
+    </sca:component>
+  <sca:component name="PersonelBean">
+      <bean:implementation.bean class="SP.service.PersonelBean"/>
+      <sca:service name="Personel">
+        <sca:interface.java interface="SP.service.Personel"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="PersonelPortType" promote="PersonelBean/Personel">
+      <sca:interface.wsdl interface="Personel.wsdl#wsdl.porttype(PersonelPortType)"/>
+      <soap:binding.soap name="soapPersonel">
+        <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+        <soap:messageComposer class="SP.composer.Composers_soap_Personel"/>
+        <soap:wsdl>Personel.wsdl</soap:wsdl>
+        <soap:contextPath>SP/Personel</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:service name="Personel" promote="PersonelBean/Personel">
+      <resteasy:binding.rest name="restPersonel">
+        <resteasy:contextMapper includes=".*"/>
+        <resteasy:messageComposer class="SP.composer.Composers_rest_Personel"/>
+        <resteasy:interfaces>SP.resource.Resource_restPersonel</resteasy:interfaces>
+        <resteasy:contextPath>SP/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="PersonelJMSCamelRouter">
+      <camel:implementation.camel>
+        <camel:java class="SP.camelrouter.PersonelJMSCamelRouter"/>
+      </camel:implementation.camel>
+      <sca:service name="PersonelJMSInterface">
+        <sca:interface.java interface="SP.service.PersonelJMSInterface"/>
+      </sca:service>
+      <sca:reference name="Personel">
+        <sca:interface.java interface="SP.service.Personel"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="PersonelJMSInterface" promote="PersonelJMSCamelRouter/PersonelJMSInterface">
+      <sca:interface.java interface="SP.service.PersonelJMSInterface"/>
+      <jms:binding.jms name="SP_hornetq_queue_Personel_login">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_in_queue_1_1</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:deliveryPersistent>true</jms:deliveryPersistent>
+        <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+    </sca:service>
+  </sca:composite>
+</sy:switchyard>

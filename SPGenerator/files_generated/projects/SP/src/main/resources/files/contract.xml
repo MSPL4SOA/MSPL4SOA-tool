@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contract>
+   <service>
+      <interfaceName>Personel</interfaceName>
+      <number>1</number>
+      <capability>
+         <name>login</name>
+         <number>1</number>
+         <dataInputClassName>Session</dataInputClassName>
+         <dataOutputClassName>SessionResponse</dataOutputClassName>
+         <stateMessaging>true</stateMessaging>
+         <twoWayState>true</twoWayState>
+         <rest>true</rest>
+         <restMethod>Get</restMethod>
+         <soap>true</soap>
+         <broker>
+            <brokerName>HornetQ</brokerName>
+            <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+            <providerUrl>remote://localhost:4447</providerUrl>
+            <securityPrincipal>guest</securityPrincipal>
+            <securityCredentials>jboss@dmin88</securityCredentials>
+            <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+            <queueIn>SP_in_queue_1_1</queueIn>
+            <queueOut>SP_out_queue_1_1</queueOut>
+            <topic>SP_topic_1_1</topic>
+            <publishSubscribe>true</publishSubscribe>
+            <durable>true</durable>
+         </broker>
+         <authentification>true</authentification>
+         <jms>true</jms>
+         <input>
+            <name>id</name>
+            <type>String</type>
+            <number>1</number>
+         </input>
+         <output>
+            <name>ok</name>
+            <type>Boolean</type>
+            <number>1</number>
+         </output>
+      </capability>
+   </service>
+   <projectName>SP</projectName>
+   <dataInputPkg>SP.input</dataInputPkg>
+   <dataOutputPkg>SP.output</dataOutputPkg>
+</contract>

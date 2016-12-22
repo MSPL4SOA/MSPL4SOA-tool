@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?><sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:jms="urn:switchyard-component-camel-jms:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" name="large3" targetNamespace="urn:large3:large3:1.0">
+    <sca:composite name="large3" targetNamespace="urn:large3:large3:1.0">
+        <sca:service name="DownloadContract" promote="DownloadContractBean/DownloadContract">
+            <sca:interface.java interface="large3.service.DownloadContract"/>
+            <resteasy:binding.rest name="restContract">
+                <resteasy:interfaces>large3.resource.ResourceDownloadContract</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_7PortType" promote="ServiceName_7Bean/ServiceName_7">
+            <sca:interface.wsdl interface="ServiceName_7.wsdl#wsdl.porttype(ServiceName_7PortType)"/>
+            <soap:binding.soap name="soapServiceName_7">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_7"/>
+                <soap:wsdl>ServiceName_7.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_7</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_7" promote="ServiceName_7Bean/ServiceName_7">
+            <resteasy:binding.rest name="restServiceName_7">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_7"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_7</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_7JMSInterface" promote="ServiceName_7JMSCamelRouter/ServiceName_7JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_7JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_7_CapabilityName_7_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_7_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_7_CapabilityName_7_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_7_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_7_CapabilityName_7_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_7_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_7_CapabilityName_7_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_7_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_7_CapabilityName_7_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_7_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_7_CapabilityName_7_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_7_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:service name="ServiceName_6PortType" promote="ServiceName_6Bean/ServiceName_6">
+            <sca:interface.wsdl interface="ServiceName_6.wsdl#wsdl.porttype(ServiceName_6PortType)"/>
+            <soap:binding.soap name="soapServiceName_6">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_6"/>
+                <soap:wsdl>ServiceName_6.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_6</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_6" promote="ServiceName_6Bean/ServiceName_6">
+            <resteasy:binding.rest name="restServiceName_6">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_6"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_6</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_6JMSInterface" promote="ServiceName_6JMSCamelRouter/ServiceName_6JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_6JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_6_CapabilityName_6_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_6_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_6_CapabilityName_6_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_6_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_6_CapabilityName_6_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_6_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_6_CapabilityName_6_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_6_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_6_CapabilityName_6_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_6_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_6_CapabilityName_6_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_6_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:service name="ServiceName_5PortType" promote="ServiceName_5Bean/ServiceName_5">
+            <sca:interface.wsdl interface="ServiceName_5.wsdl#wsdl.porttype(ServiceName_5PortType)"/>
+            <soap:binding.soap name="soapServiceName_5">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_5"/>
+                <soap:wsdl>ServiceName_5.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_5</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_5" promote="ServiceName_5Bean/ServiceName_5">
+            <resteasy:binding.rest name="restServiceName_5">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_5"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_5</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_5JMSInterface" promote="ServiceName_5JMSCamelRouter/ServiceName_5JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_5JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_5_CapabilityName_5_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_5_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_5_CapabilityName_5_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_5_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_5_CapabilityName_5_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_5_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_5_CapabilityName_5_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_5_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_5_CapabilityName_5_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_5_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_5_CapabilityName_5_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_5_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:service name="ServiceName_4PortType" promote="ServiceName_4Bean/ServiceName_4">
+            <sca:interface.wsdl interface="ServiceName_4.wsdl#wsdl.porttype(ServiceName_4PortType)"/>
+            <soap:binding.soap name="soapServiceName_4">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_4"/>
+                <soap:wsdl>ServiceName_4.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_4</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_4" promote="ServiceName_4Bean/ServiceName_4">
+            <resteasy:binding.rest name="restServiceName_4">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_4"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_4</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_4JMSInterface" promote="ServiceName_4JMSCamelRouter/ServiceName_4JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_4JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_4_CapabilityName_4_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_4_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_4_CapabilityName_4_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_4_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_4_CapabilityName_4_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_4_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_4_CapabilityName_4_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_4_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_4_CapabilityName_4_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_4_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_4_CapabilityName_4_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_4_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:service name="ServiceName_3PortType" promote="ServiceName_3Bean/ServiceName_3">
+            <sca:interface.wsdl interface="ServiceName_3.wsdl#wsdl.porttype(ServiceName_3PortType)"/>
+            <soap:binding.soap name="soapServiceName_3">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_3"/>
+                <soap:wsdl>ServiceName_3.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_3</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_3" promote="ServiceName_3Bean/ServiceName_3">
+            <resteasy:binding.rest name="restServiceName_3">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_3"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_3</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_3JMSInterface" promote="ServiceName_3JMSCamelRouter/ServiceName_3JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_3JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_3_CapabilityName_3_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_3_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_3_CapabilityName_3_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_3_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_3_CapabilityName_3_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_3_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_3_CapabilityName_3_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_3_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_3_CapabilityName_3_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_3_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_3_CapabilityName_3_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_3_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:service name="ServiceName_2PortType" promote="ServiceName_2Bean/ServiceName_2">
+            <sca:interface.wsdl interface="ServiceName_2.wsdl#wsdl.porttype(ServiceName_2PortType)"/>
+            <soap:binding.soap name="soapServiceName_2">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_2"/>
+                <soap:wsdl>ServiceName_2.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_2</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_2" promote="ServiceName_2Bean/ServiceName_2">
+            <resteasy:binding.rest name="restServiceName_2">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_2"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_2</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_2JMSInterface" promote="ServiceName_2JMSCamelRouter/ServiceName_2JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_2JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_2_CapabilityName_2_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_2_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_2_CapabilityName_2_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_2_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_2_CapabilityName_2_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_2_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_2_CapabilityName_2_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_2_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_2_CapabilityName_2_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_2_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_2_CapabilityName_2_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_2_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:service name="ServiceName_1PortType" promote="ServiceName_1Bean/ServiceName_1">
+            <sca:interface.wsdl interface="ServiceName_1.wsdl#wsdl.porttype(ServiceName_1PortType)"/>
+            <soap:binding.soap name="soapServiceName_1">
+                <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+                <soap:messageComposer class="large3.composer.Composers_soap_ServiceName_1"/>
+                <soap:wsdl>ServiceName_1.wsdl</soap:wsdl>
+                <soap:contextPath>large3/ServiceName_1</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:service name="ServiceName_1" promote="ServiceName_1Bean/ServiceName_1">
+            <resteasy:binding.rest name="restServiceName_1">
+                <resteasy:contextMapper includes=".*"/>
+                <resteasy:messageComposer class="large3.composer.Composers_rest_ServiceName_1"/>
+                <resteasy:interfaces>large3.resource.Resource_restServiceName_1</resteasy:interfaces>
+                <resteasy:contextPath>large3/rest</resteasy:contextPath>
+            </resteasy:binding.rest>
+        </sca:service>
+        <sca:service name="ServiceName_1JMSInterface" promote="ServiceName_1JMSCamelRouter/ServiceName_1JMSInterface">
+            <sca:interface.java interface="large3.service.ServiceName_1JMSInterface"/>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_1_CapabilityName_1_5">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_1_5</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_1_CapabilityName_1_6">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_1_6</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_1_CapabilityName_1_1">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_1_1</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_1_CapabilityName_1_2">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_1_2</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_1_CapabilityName_1_3">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_1_3</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+            <jms:binding.jms name="large3_hornetq_queue_ServiceName_1_CapabilityName_1_4">
+                <sy:operationSelector operationName="invokeMethod"/>
+                <jms:contextMapper includes=".*"/>
+                <jms:queue>large3_in_queue_1_4</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:deliveryPersistent>true</jms:deliveryPersistent>
+                <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:component name="DownloadContractBean">
+            <bean:implementation.bean class="large3.service.DownloadContractBean"/>
+            <sca:service name="DownloadContract">
+                <sca:interface.java interface="large3.service.DownloadContract"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_7Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_7Bean"/>
+            <sca:service name="ServiceName_7">
+                <sca:interface.java interface="large3.service.ServiceName_7"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_6Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_6Bean"/>
+            <sca:service name="ServiceName_6">
+                <sca:interface.java interface="large3.service.ServiceName_6"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_5Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_5Bean"/>
+            <sca:service name="ServiceName_5">
+                <sca:interface.java interface="large3.service.ServiceName_5"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_4Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_4Bean"/>
+            <sca:service name="ServiceName_4">
+                <sca:interface.java interface="large3.service.ServiceName_4"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_3Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_3Bean"/>
+            <sca:service name="ServiceName_3">
+                <sca:interface.java interface="large3.service.ServiceName_3"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_2Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_2Bean"/>
+            <sca:service name="ServiceName_2">
+                <sca:interface.java interface="large3.service.ServiceName_2"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_1Bean">
+            <bean:implementation.bean class="large3.service.ServiceName_1Bean"/>
+            <sca:service name="ServiceName_1">
+                <sca:interface.java interface="large3.service.ServiceName_1"/>
+            </sca:service>
+        </sca:component>
+        <sca:component name="ServiceName_7JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_7JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_7JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_7JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_7">
+                <sca:interface.java interface="large3.service.ServiceName_7"/>
+            </sca:reference>
+        </sca:component>
+        <sca:component name="ServiceName_6JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_6JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_6JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_6JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_6">
+                <sca:interface.java interface="large3.service.ServiceName_6"/>
+            </sca:reference>
+        </sca:component>
+        <sca:component name="ServiceName_5JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_5JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_5JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_5JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_5">
+                <sca:interface.java interface="large3.service.ServiceName_5"/>
+            </sca:reference>
+        </sca:component>
+        <sca:component name="ServiceName_4JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_4JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_4JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_4JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_4">
+                <sca:interface.java interface="large3.service.ServiceName_4"/>
+            </sca:reference>
+        </sca:component>
+        <sca:component name="ServiceName_3JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_3JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_3JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_3JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_3">
+                <sca:interface.java interface="large3.service.ServiceName_3"/>
+            </sca:reference>
+        </sca:component>
+        <sca:component name="ServiceName_2JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_2JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_2JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_2JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_2">
+                <sca:interface.java interface="large3.service.ServiceName_2"/>
+            </sca:reference>
+        </sca:component>
+        <sca:component name="ServiceName_1JMSCamelRouter">
+            <camel:implementation.camel>
+                <camel:java class="large3.camelrouter.ServiceName_1JMSCamelRouter"/>
+            </camel:implementation.camel>
+            <sca:service name="ServiceName_1JMSInterface">
+                <sca:interface.java interface="large3.service.ServiceName_1JMSInterface"/>
+            </sca:service>
+            <sca:reference name="ServiceName_1">
+                <sca:interface.java interface="large3.service.ServiceName_1"/>
+            </sca:reference>
+        </sca:component>
+    </sca:composite>
+    <transforms>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="java:large3.output.OutputDataClassName_1_1" to="{urn:large3:large3:1.0}CapabilityName_1_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="java:large3.output.OutputDataClassName_1_2" to="{urn:large3:large3:1.0}CapabilityName_1_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="java:large3.output.OutputDataClassName_1_3" to="{urn:large3:large3:1.0}CapabilityName_1_3Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="java:large3.output.OutputDataClassName_1_4" to="{urn:large3:large3:1.0}CapabilityName_1_4Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="java:large3.output.OutputDataClassName_1_5" to="{urn:large3:large3:1.0}CapabilityName_1_5Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="{urn:large3:large3:1.0}CapabilityName_1_1" to="java:large3.input.InputDataClassName_1_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="{urn:large3:large3:1.0}CapabilityName_1_2" to="java:large3.input.InputDataClassName_1_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="{urn:large3:large3:1.0}CapabilityName_1_3" to="java:large3.input.InputDataClassName_1_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="{urn:large3:large3:1.0}CapabilityName_1_4" to="java:large3.input.InputDataClassName_1_4"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_1" from="{urn:large3:large3:1.0}CapabilityName_1_6" to="java:large3.input.InputDataClassName_1_6"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="java:large3.output.OutputDataClassName_2_1" to="{urn:large3:large3:1.0}CapabilityName_2_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="java:large3.output.OutputDataClassName_2_2" to="{urn:large3:large3:1.0}CapabilityName_2_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="java:large3.output.OutputDataClassName_2_3" to="{urn:large3:large3:1.0}CapabilityName_2_3Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="java:large3.output.OutputDataClassName_2_4" to="{urn:large3:large3:1.0}CapabilityName_2_4Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="java:large3.output.OutputDataClassName_2_5" to="{urn:large3:large3:1.0}CapabilityName_2_5Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="{urn:large3:large3:1.0}CapabilityName_2_1" to="java:large3.input.InputDataClassName_2_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="{urn:large3:large3:1.0}CapabilityName_2_2" to="java:large3.input.InputDataClassName_2_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="{urn:large3:large3:1.0}CapabilityName_2_3" to="java:large3.input.InputDataClassName_2_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="{urn:large3:large3:1.0}CapabilityName_2_4" to="java:large3.input.InputDataClassName_2_4"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_2" from="{urn:large3:large3:1.0}CapabilityName_2_5" to="java:large3.input.InputDataClassName_2_5"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="java:large3.output.OutputDataClassName_3_1" to="{urn:large3:large3:1.0}CapabilityName_3_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="java:large3.output.OutputDataClassName_3_2" to="{urn:large3:large3:1.0}CapabilityName_3_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="java:large3.output.OutputDataClassName_3_3" to="{urn:large3:large3:1.0}CapabilityName_3_3Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="java:large3.output.OutputDataClassName_3_4" to="{urn:large3:large3:1.0}CapabilityName_3_4Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="java:large3.output.OutputDataClassName_3_5" to="{urn:large3:large3:1.0}CapabilityName_3_5Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="java:large3.output.OutputDataClassName_3_6" to="{urn:large3:large3:1.0}CapabilityName_3_6Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="{urn:large3:large3:1.0}CapabilityName_3_1" to="java:large3.input.InputDataClassName_3_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="{urn:large3:large3:1.0}CapabilityName_3_2" to="java:large3.input.InputDataClassName_3_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="{urn:large3:large3:1.0}CapabilityName_3_3" to="java:large3.input.InputDataClassName_3_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="{urn:large3:large3:1.0}CapabilityName_3_4" to="java:large3.input.InputDataClassName_3_4"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="{urn:large3:large3:1.0}CapabilityName_3_5" to="java:large3.input.InputDataClassName_3_5"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_3" from="{urn:large3:large3:1.0}CapabilityName_3_6" to="java:large3.input.InputDataClassName_3_6"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="java:large3.output.OutputDataClassName_4_1" to="{urn:large3:large3:1.0}CapabilityName_4_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="java:large3.output.OutputDataClassName_4_2" to="{urn:large3:large3:1.0}CapabilityName_4_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="java:large3.output.OutputDataClassName_4_5" to="{urn:large3:large3:1.0}CapabilityName_4_5Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="java:large3.output.OutputDataClassName_4_6" to="{urn:large3:large3:1.0}CapabilityName_4_6Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="{urn:large3:large3:1.0}CapabilityName_4_1" to="java:large3.input.InputDataClassName_4_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="{urn:large3:large3:1.0}CapabilityName_4_2" to="java:large3.input.InputDataClassName_4_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="{urn:large3:large3:1.0}CapabilityName_4_3" to="java:large3.input.InputDataClassName_4_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="{urn:large3:large3:1.0}CapabilityName_4_5" to="java:large3.input.InputDataClassName_4_5"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_4" from="{urn:large3:large3:1.0}CapabilityName_4_6" to="java:large3.input.InputDataClassName_4_6"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="java:large3.output.OutputDataClassName_5_1" to="{urn:large3:large3:1.0}CapabilityName_5_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="java:large3.output.OutputDataClassName_5_2" to="{urn:large3:large3:1.0}CapabilityName_5_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="java:large3.output.OutputDataClassName_5_3" to="{urn:large3:large3:1.0}CapabilityName_5_3Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="java:large3.output.OutputDataClassName_5_4" to="{urn:large3:large3:1.0}CapabilityName_5_4Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="java:large3.output.OutputDataClassName_5_5" to="{urn:large3:large3:1.0}CapabilityName_5_5Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="java:large3.output.OutputDataClassName_5_6" to="{urn:large3:large3:1.0}CapabilityName_5_6Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="{urn:large3:large3:1.0}CapabilityName_5_1" to="java:large3.input.InputDataClassName_5_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="{urn:large3:large3:1.0}CapabilityName_5_2" to="java:large3.input.InputDataClassName_5_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="{urn:large3:large3:1.0}CapabilityName_5_3" to="java:large3.input.InputDataClassName_5_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="{urn:large3:large3:1.0}CapabilityName_5_4" to="java:large3.input.InputDataClassName_5_4"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="{urn:large3:large3:1.0}CapabilityName_5_5" to="java:large3.input.InputDataClassName_5_5"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_5" from="{urn:large3:large3:1.0}CapabilityName_5_6" to="java:large3.input.InputDataClassName_5_6"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="java:large3.output.OutputDataClassName_6_1" to="{urn:large3:large3:1.0}CapabilityName_6_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="java:large3.output.OutputDataClassName_6_2" to="{urn:large3:large3:1.0}CapabilityName_6_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="java:large3.output.OutputDataClassName_6_3" to="{urn:large3:large3:1.0}CapabilityName_6_3Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="java:large3.output.OutputDataClassName_6_4" to="{urn:large3:large3:1.0}CapabilityName_6_4Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="java:large3.output.OutputDataClassName_6_5" to="{urn:large3:large3:1.0}CapabilityName_6_5Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="java:large3.output.OutputDataClassName_6_6" to="{urn:large3:large3:1.0}CapabilityName_6_6Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="{urn:large3:large3:1.0}CapabilityName_6_1" to="java:large3.input.InputDataClassName_6_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="{urn:large3:large3:1.0}CapabilityName_6_2" to="java:large3.input.InputDataClassName_6_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="{urn:large3:large3:1.0}CapabilityName_6_3" to="java:large3.input.InputDataClassName_6_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="{urn:large3:large3:1.0}CapabilityName_6_4" to="java:large3.input.InputDataClassName_6_4"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="{urn:large3:large3:1.0}CapabilityName_6_5" to="java:large3.input.InputDataClassName_6_5"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_6" from="{urn:large3:large3:1.0}CapabilityName_6_6" to="java:large3.input.InputDataClassName_6_6"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="java:large3.output.OutputDataClassName_7_1" to="{urn:large3:large3:1.0}CapabilityName_7_1Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="java:large3.output.OutputDataClassName_7_2" to="{urn:large3:large3:1.0}CapabilityName_7_2Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="java:large3.output.OutputDataClassName_7_3" to="{urn:large3:large3:1.0}CapabilityName_7_3Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="java:large3.output.OutputDataClassName_7_4" to="{urn:large3:large3:1.0}CapabilityName_7_4Response"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="{urn:large3:large3:1.0}CapabilityName_7_1" to="java:large3.input.InputDataClassName_7_1"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="{urn:large3:large3:1.0}CapabilityName_7_2" to="java:large3.input.InputDataClassName_7_2"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="{urn:large3:large3:1.0}CapabilityName_7_3" to="java:large3.input.InputDataClassName_7_3"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="{urn:large3:large3:1.0}CapabilityName_7_4" to="java:large3.input.InputDataClassName_7_4"/>
+        <transform.java xmlns="urn:switchyard-config:transform:2.0" class="large3.transformer.TransformersServiceName_7" from="{urn:large3:large3:1.0}CapabilityName_7_5" to="java:large3.input.InputDataClassName_7_5"/>
+    </transforms>
+</sy:switchyard>
