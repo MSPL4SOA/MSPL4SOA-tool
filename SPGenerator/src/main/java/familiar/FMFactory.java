@@ -26,7 +26,7 @@ import generating.SwitchyardProject;
 import gsd.synthesis.Expression;
 import gsd.synthesis.FeatureModel;
 import gsd.synthesis.Formula;
-
+ 
 public class FMFactory {
 
 	public String cstSP = "";
