@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_1</interfaceName>
+        <beanName>ServiceName_1Bean</beanName>
+        <number>1</number>
+        <capability>
+            <name>CapabilityName_1_2</name>
+            <number>2</number>
+            <serviceName>ServiceName_1</serviceName>
+            <dataInputClassName>InputDataClassName_1_2</dataInputClassName>
+            <stateClassName>State_ServiceName_1_CapabilityName_1_2</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>false</soap>
+            <broker>
+                <brokerName>HornetQ</brokerName>
+                <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+                <providerUrl>remote://localhost:4447</providerUrl>
+                <securityPrincipal>guest</securityPrincipal>
+                <securityCredentials>jboss@dmin88</securityCredentials>
+                <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+                <queueError>net implemented</queueError>
+                <queueIn>the1_in_queue_1_2</queueIn>
+                <queueOut>the1_out_queue_1_2</queueOut>
+                <transactional>false</transactional>
+                <acknowledgement>true</acknowledgement>
+                <persistentDelivery>false</persistentDelivery>
+                <publishSubscribe>false</publishSubscribe>
+                <durable>false</durable>
+                <serviceName>ServiceName_1</serviceName>
+                <capabilityName>CapabilityName_1_2</capabilityName>
+            </broker>
+            <authentification>true</authentification>
+            <jms>true</jms>
+            <input>
+                <name>InputName_1_2_1</name>
+                <type>Float</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">203</value>
+            </input>
+            <input>
+                <name>InputName_1_2_2</name>
+                <type>String</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">443</value>
+            </input>
+            <input>
+                <name>InputName_1_2_3</name>
+                <type>String</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">929</value>
+            </input>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+            <username>knodtimbhsqt</username>
+            <password>kjqqckkrlrmcidcc</password>
+        </capability>
+    </service>
+    <projectName>the1</projectName>
+    <hostName>http://localhost:8080/the1</hostName>
+    <dataInputPkg>the1.input</dataInputPkg>
+    <dataOutputPkg>the1.output</dataOutputPkg>
+</contract>

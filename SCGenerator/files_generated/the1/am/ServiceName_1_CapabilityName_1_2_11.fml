@@ -1,0 +1,3 @@
+ServiceContract: "HostName=http://localhost:8080/the1" "Service_1" "ProjectName_0=the1" ; 
+"Service_1": "ServiceName_1=ServiceName_1" "Capability_1_2" ; 
+"Capability_1_2": "InputValue_1_2_2=520" "InputValue_1_2_1=211" "CapabilityName_1_2=CapabilityName_1_2" "InputData_1_2_1" "InputType_1_2_3=String" "InputName_1_2_2=InputName_1_2_2" "SOAP_1_2" "InputValue_1_2_3=490" "InputName_1_2_3=InputName_1_2_3" "InputData_1_2_3" "InputDataClassName_1_2=InputDataClassName_1_2" "InputType_1_2_2=String" "InputType_1_2_1=Float" "CommunicationTechnologie_1_2" "InputName_1_2_1=InputName_1_2_1" "InputData_1_2_2" ;

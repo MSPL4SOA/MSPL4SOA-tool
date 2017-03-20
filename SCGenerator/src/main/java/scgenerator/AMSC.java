@@ -20,7 +20,6 @@ import mock.MockData;
 import scfactory.FMBDD;
 import scfactory.SCGenerator;
 import scfactory.SCProject;
-import spc1.soap.ServiceName1;
 import util.Functions;
 
 public class AMSC {
@@ -57,9 +56,9 @@ public class AMSC {
 		this.scProject = scProject;
 		this.frame = frame;
 		this.fmbdd = fmbdd;
-		lblScAm = new JLabel("AM SC update " + scAMNumber + " :");
+		lblScAm = new JLabel("AM SC sync " + scAMNumber + " :");
 		scFamiliarBtn = new JButton("Familiar");
-		generateBtn = new JButton("Generate a random AM SC update");
+		generateBtn = new JButton("Generate a random AM SC sync");
 		s2t2Btn = new JButton("S2T2");
 
 		this.amS2T2FilePath = SCProject.FM_SC_UPDATE_S2T2_PATH;
@@ -104,7 +103,7 @@ public class AMSC {
 					// System.out.println(generateRandomSCAM());
 					textEditor.setTextPane(generateRandomSCAM());
 
-					JOptionPane.showMessageDialog(null, "A random AM SC update is generated", "OK",
+					JOptionPane.showMessageDialog(null, "A random AM SC sync is generated", "OK",
 							JOptionPane.OK_OPTION);
 
 				} catch (Exception e1) {

@@ -235,10 +235,12 @@ public class MainGui {
 		internalSPTextArea.setText(SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT);
 
 		internalSCTextArea.setText(SwitchyardProject.INTERNAL_FEATURES_SC_CONTENT);
+		internalSCTextArea.setVisible(false);
 
 		AttributeSPTextArea.setText(SwitchyardProject.ATTRIBUTES_SP_CONTENT);
 
 		JLabel lblInternalScFeatures_1 = new JLabel("SC Internal features");
+		lblInternalScFeatures_1.setVisible(false);
 
 		JLabel lblSpFm = new JLabel("FM SP :");
 
@@ -250,7 +252,7 @@ public class MainGui {
 				// System.out.println(filesFMLPath + fmSPFileName + ".fml");
 				textEditor.setTextPane(
 						util.Functions.fileToString(filesFMLPath + fmSPFileName + ".fml"));
-				textEditor.setTitle("SP FM in " + filesFMLPath + fmSPFileName + ".fml");
+				textEditor.setTitle("FM SP in " + filesFMLPath + fmSPFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
 				textEditor.getFrame().setVisible(true);
@@ -269,6 +271,10 @@ public class MainGui {
 		});
 
 		JButton btFMSCS2T2 = new JButton("S2T2");
+		
+		//TODO invisible in thesis report
+		btFMSCS2T2.setVisible(false);
+		
 		btFMSCS2T2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -278,6 +284,10 @@ public class MainGui {
 		});
 
 		JButton button_1 = new JButton("Familiar");
+		
+		//TODO invisible in thesis report
+		button_1.setVisible(false);
+		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -294,8 +304,12 @@ public class MainGui {
 		});
 
 		JLabel lblScFm = new JLabel("FM SC :");
+		
+		//TODO invisible in thesis report
+		lblScFm.setVisible(false);
+		
 
-		JLabel lblSpecializedSpFm = new JLabel("FM SP specialize :");
+		JLabel lblSpecializedSpFm = new JLabel("FM SP spec :");
 
 		JButton button_2 = new JButton("Familiar");
 		button_2.addActionListener(new ActionListener() {
@@ -306,7 +320,7 @@ public class MainGui {
 				// System.out.println(filesFMLPath + fmSPSpecFileName + ".fml");
 				textEditor.setTextPane(
 						util.Functions.fileToString(filesFMLPath + fmSPSpecFileName + ".fml"));
-				textEditor.setTitle("FM SP specialize in " + filesFMLPath + fmSPSpecFileName + ".fml");
+				textEditor.setTitle("FM SP spec in " + filesFMLPath + fmSPSpecFileName + ".fml");
 
 				textEditor.setFmFactory(fmFactory);
 
@@ -352,18 +366,18 @@ public class MainGui {
 				System.out.println(filesFMLPath + fmSCUpdatedFileName + ".fml");
 				textEditor.setTextPane(
 						util.Functions.fileToString(filesFMLPath + fmSCUpdatedFileName + ".fml"));
-				textEditor.setTitle("FM SC update in " + filesFMLPath + fmSCUpdatedFileName + ".fml");
+				textEditor.setTitle("FM SC sync in " + filesFMLPath + fmSCUpdatedFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
 				textEditor.getFrame().setVisible(true);
 			}
 		});
 
-		lblScUpdatedFm = new JLabel("FM SC update :");
+		lblScUpdatedFm = new JLabel("FM SC sync :");
 
-		lblScUpdatedFm.setVisible(false);
-		scUpdateFamiliarButton.setVisible(false);
-		btFMSCUpdateS2T2.setVisible(false);
+//		lblScUpdatedFm.setVisible(false);
+//		scUpdateFamiliarButton.setVisible(false);
+//		btFMSCUpdateS2T2.setVisible(false);
 
 		generateSPButton = new JButton("Generate SP artifacts");
 		generateSPButton.setVisible(false);
@@ -507,7 +521,7 @@ public class MainGui {
 			}
 		});
 
-		JButton mockDataButton = new JButton("Generate a random FM SP specialize");
+		JButton mockDataButton = new JButton("Generate a random FM SP spec");
 		mockDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -529,7 +543,7 @@ public class MainGui {
 
 					util.Functions.stringToFile(xmiS2T2, filesS2T2Path + fmSPSpecFileName + ".fmprimitives", false);
 
-					JOptionPane.showMessageDialog(null, "A FM SP specialize have been generated", "OK",
+					JOptionPane.showMessageDialog(null, "A FM SP spec have been generated", "OK",
 							JOptionPane.OK_OPTION, new ImageIcon(SwitchyardProject.FILE_ICON_OK_PATH_CONTENT));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

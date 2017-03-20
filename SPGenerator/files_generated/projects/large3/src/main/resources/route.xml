@@ -1,0 +1,7 @@
+<routes xmlns="http://camel.apache.org/schema/spring" id="routes-893f74c8-7991-4fdf-868b-97eaa3fb5e8e">
+  <route id="_route1">
+    
+    <from id="_from1" uri="switchyard://Salem"/>
+      <log id="_log1" message="Salem - message received: ${body}"/>
+  </route>
+</routes>

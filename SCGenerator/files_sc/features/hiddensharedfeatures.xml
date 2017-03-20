@@ -51,12 +51,12 @@
         </featureAttribute>
     </featureInserts>
     <featureInserts>
-        <featureName>ProjectName</featureName>
+        <featureName>ProjectName_0</featureName>
         <featureParent>ServiceContract</featureParent>
         <featureEdgeKind>mand</featureEdgeKind>
-        <fmvToInsert>ProjectName;</fmvToInsert>
+        <fmvToInsert>ProjectName_0;</fmvToInsert>
         <featureAttribute>
-            <name>ProjectName</name>
+            <name>ProjectName_0</name>
             <attribute>@@2</attribute>
         </featureAttribute>
     </featureInserts>

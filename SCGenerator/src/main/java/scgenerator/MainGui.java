@@ -90,7 +90,7 @@ public class MainGui {
 		hostTextField.setText("http://localhost:8080");
 		hostTextField.setColumns(10);
 
-		final JButton scAMbtnButton = new JButton("New AM SC update");
+		final JButton scAMbtnButton = new JButton("New AM SC sync");
 		scAMbtnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -102,7 +102,7 @@ public class MainGui {
 		});
 		scAMbtnButton.setVisible(false);
 
-		final JLabel scAttributeFeaturesLbl = new JLabel("FM SC update attribute features");
+		final JLabel scAttributeFeaturesLbl = new JLabel("FM SC sync attribute features");
 
 		scAttributeFeaturesLbl.setVisible(false);
 
@@ -179,11 +179,11 @@ public class MainGui {
 
 					util.JavaCodeFormatter.formattingCode(new File(classSCPath));
 
-					JOptionPane.showMessageDialog(null, "The AMs SC update artifacts have been generated", "OK",
+					JOptionPane.showMessageDialog(null, "The AMs SC sync artifacts have been generated", "OK",
 							JOptionPane.OK_OPTION, new ImageIcon(SCProject.FILE_ICON_OK_PATH));
 
 				} else {
-					JOptionPane.showMessageDialog(null, "A one valid AM SC update must at least be defined", "Error",
+					JOptionPane.showMessageDialog(null, "A one valid AM SC sync must at least be defined", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -191,20 +191,20 @@ public class MainGui {
 		});
 		generateSCAMsBtn.setVisible(false);
 
-		final JButton btnFmScUpdate = new JButton("View FM SC update (S2T2)");
+		final JButton btnFmScUpdate = new JButton("View FM SC sync (S2T2)");
 		btnFmScUpdate.setVisible(false);
 
-		final JLabel amsCountLbl = new JLabel("AM SC update count: Loading...");
+		final JLabel amsCountLbl = new JLabel("AM SC sync count: Loading...");
 		amsCountLbl.setForeground(Color.RED);
 		amsCountLbl.setFont(new Font("Dialog", Font.BOLD, 16));
 		amsCountLbl.setVisible(false);
 
-		final JButton btnGenerateAllAmscupdate = new JButton("Generate all AM SC update");
+		final JButton btnGenerateAllAmscupdate = new JButton("Generate all AM SC sync");
 		final JLabel lblMax = new JLabel("Max:");
 
 		btnGenerateAllAmscupdate.setVisible(false);
 
-		JButton btnNewButton = new JButton("Download FM SC update and configure the SC generator");
+		JButton btnNewButton = new JButton("Download FM SP spec-sync and configure the SC generator");
 		btnNewButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -243,7 +243,7 @@ public class MainGui {
 
 								int amsCount = (int) fmvSCReduce.counting(CountingStrategy.SAT_FML) / 2;
 								// System.out.println(amsCount);
-								amsCountLbl.setText("AM SC update count: " + amsCount);
+								amsCountLbl.setText("AM SC sync count: " + amsCount);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -348,7 +348,7 @@ public class MainGui {
 						System.out.println(confResult);
 					}
 
-					JOptionPane.showMessageDialog(null, "All the AM SC update have been generated", "OK",
+					JOptionPane.showMessageDialog(null, "All the AM SC sync have been generated", "OK",
 							JOptionPane.OK_OPTION, new ImageIcon(SCProject.FILE_ICON_OK_PATH));
 
 				} catch (Exception ex) {

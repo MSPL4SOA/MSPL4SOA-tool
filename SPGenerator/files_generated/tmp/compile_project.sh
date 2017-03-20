@@ -1,2 +1,2 @@
-cd ./files_generated/projects//SP/
+cd ./files_generated/projects//the1/
 mvn compile

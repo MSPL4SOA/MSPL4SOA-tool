@@ -10,7 +10,7 @@ public class Update2Test {
 
 	public static void main(String[] args) throws Exception {
 
-		String projectName = "large2";
+		String projectName = "ttee";
 
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
@@ -26,11 +26,13 @@ public class Update2Test {
 		// FMFactory.extractAttributesValues(fmSPString));
 
 		FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fmsc", fmSCString);
-		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fmsp", fmSPString);
+		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fm_sp_spec", fmSPString);
 //		
 //		if(fmSCFMV.features().names().contains("Service_1"))
 //			System.out.println("ok");
 //		
+		
+//		System.out.println(fmSPFMV.toString());
 //		System.exit(-1);
 
 		FeatureModelVariable fmSPDeleteAttributeFMV = FMBDD.getInstance().FM("fmspd",

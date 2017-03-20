@@ -159,8 +159,13 @@ public class TextEditor {
 						fmFactory.specializedAttributedFMSP = FMFactory.insertFeatureFromXML(
 								fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, true, options);
 
+						
 						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(
 								fmFactory.updatedAttributedFMSC, hiddenSharedFeatures.featureInserts, true, options);
+						
+						System.out.println(fmFactory.updatedAttributedFMSC);
+						System.exit(-1);
+						
 						//
 						//////////////////////////
 
@@ -195,9 +200,12 @@ public class TextEditor {
 								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update", fmFactory.updatedAttributedFMSC));
 						util.Functions.stringToFile(xmiS2T2, scUpdatedFMS2T2FilePath, false);
 
-						lblScUpdatedFm.setVisible(true);
-						scUpdateFamiliarButton.setVisible(true);
-						scUpdateS2T2Button.setVisible(true);
+						//TODO (they have been invisible in the thesis report)
+//						lblScUpdatedFm.setVisible(true);
+//						scUpdateFamiliarButton.setVisible(true);
+//						scUpdateS2T2Button.setVisible(true);
+						
+						
 						generateSPButton.setVisible(true);
 
 						JOptionPane.showMessageDialog(null,

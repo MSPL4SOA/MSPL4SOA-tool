@@ -87,7 +87,7 @@ public class TextEditor {
 		textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 
-		btnSaveSpSpecialized = new JButton("Check the consistency of AM SC update");
+		btnSaveSpSpecialized = new JButton("Check the consistency of AM SC sync");
 
 		btnSaveSpSpecialized.addActionListener(new ActionListener() {
 
@@ -144,7 +144,7 @@ public class TextEditor {
 
 						amsc.amGenerator.convertAMToContractXML(fmvAM);
 
-						JOptionPane.showMessageDialog(null, "The AM SC update is valid", "OK", JOptionPane.OK_OPTION,
+						JOptionPane.showMessageDialog(null, "The AM SC sync is valid", "OK", JOptionPane.OK_OPTION,
 								new ImageIcon(SCProject.FILE_ICON_OK_PATH));
 
 					} else {
@@ -179,7 +179,7 @@ public class TextEditor {
 					// e1.printStackTrace();
 					System.out.println("Syntax problem");
 
-					error += "The syntax of the AM SC update is incorrect.\n";
+					error += "The syntax of the AM SC sync is incorrect.\n";
 
 					JOptionPane optionPane = new JOptionPane(error);
 					optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
@@ -263,7 +263,7 @@ public class TextEditor {
 			FeatureModelVariable fmTemp = FMBDD.getInstance().FM("fm", fm.toString());
 
 			if (!(amTemp.getMandatory().size() == amTemp.features().size())) {
-				error += "All features of AM SC update must be mandatory.\n";
+				error += "All features of AM SC sync must be mandatory.\n";
 
 			} else {
 				amTemp = FMBDD.getInstance().FM("am", FMFactory.deleteAttributesValues(am.toString()));
@@ -280,7 +280,7 @@ public class TextEditor {
 
 				Comparison comparison = amTemp.compare(fmTemp);
 				if (comparison != Comparison.SPECIALIZATION) {
-					error += "The AM SC update must be comform to FM SC update.\n";
+					error += "The AM SC sync must be comform to FM SC sync.\n";
 				}
 			}
 

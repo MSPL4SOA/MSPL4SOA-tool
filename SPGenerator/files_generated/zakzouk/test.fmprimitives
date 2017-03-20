@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fmprimitives:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fmprimitives="http://lero.ie/spl/fmprimitives.ecore" id="fm_sp_spec" name="fm_sp_spec">
+  <features id="a" name="a" featureHasSubfeature="//@primitives.0"/>
+  <features id="h" name="h" featureHasParent="//@primitives.1"/>
+  <features id="f" name="f" groupHasChild="//@primitives.4"/>
+  <features id="c" name="c" groupHasChild="//@primitives.2" featureHasSubfeature="//@primitives.1"/>
+  <features id="b" name="b" groupHasParent="//@primitives.5" featureHasParent="//@primitives.0"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" id="edge0" name="edge0" parent="//@features.0" subfeature="//@features.4"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" id="edge1" name="edge1" parent="//@features.3" subfeature="//@features.1"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild0" name="groupchild0" child="//@features.3" group="//@primitives.3"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" id="group0" name="group0" groupHasParent="//@primitives.5" groupHasChild="//@primitives.2 //@primitives.4" groupHasMin="//@primitives.6"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" id="groupchild1" name="groupchild1" child="//@features.2" group="//@primitives.3"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" id="gparent0" name="gparent0" parent="//@features.4" group="//@primitives.3"/>
+  <primitives xsi:type="fmprimitives:GroupHasMin" group="//@primitives.3"/>
+  <primitives xsi:type="fmprimitives:Requires" id="cst0" name="cst0" sources="//@features.2" targets="//@features.3"/>
+</fmprimitives:FeatureModel>

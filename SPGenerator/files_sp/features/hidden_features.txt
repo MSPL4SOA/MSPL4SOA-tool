@@ -7,6 +7,6 @@ ProviderUrl
 SecurityPrincipal
 SecurityCredentials
 ConnectionConsumerFactory
-ProjectName
+ProjectName_0
 HostName
 ConnectionFactory

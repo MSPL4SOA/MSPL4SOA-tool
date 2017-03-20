@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_2</interfaceName>
+        <beanName>ServiceName_2Bean</beanName>
+        <number>2</number>
+        <capability>
+            <name>CapabilityName_2_1</name>
+            <number>1</number>
+            <serviceName>ServiceName_2</serviceName>
+            <dataOutputClassName>OutputDataClassName_2_1</dataOutputClassName>
+            <stateClassName>State_ServiceName_2_CapabilityName_2_1</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>true</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>true</twoWayState>
+            <rest>true</rest>
+            <restMethod>Get</restMethod>
+            <soap>false</soap>
+            <authentification>true</authentification>
+            <jms>false</jms>
+            <output>
+                <name>OutputName_2_1_1</name>
+                <type>String</type>
+                <number>1</number>
+            </output>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>true</asynchronous>
+            <username>llqsqpdesprs</username>
+            <password>pass</password>
+        </capability>
+    </service>
+    <projectName>pn1</projectName>
+    <hostName>http://localhost:8080/pn1</hostName>
+    <dataInputPkg>pn1.input</dataInputPkg>
+    <dataOutputPkg>pn1.output</dataOutputPkg>
+</contract>

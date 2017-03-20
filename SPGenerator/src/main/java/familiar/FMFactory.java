@@ -1348,39 +1348,20 @@ public class FMFactory {
 
 								// String cst = "";
 
-								if (capabilityUpdatedFMV.features().names()
-										.contains("Acknowledgement" + capabilityFGToUpdate.id)
-										&& capabilityUpdatedFMV.features().names()
-												.contains("Transactional" + capabilityFGToUpdate.id)) {
-
-									// cst += "MOM@@ implies (Transactional@@ or
-									// Acknowledgement@@)".replaceAll("@@",
-									// capabilityFGToUpdate.id) + ";\n";
-
-									Expression<String> constraint = MyExpressionParser
-											.parseString("MOM@@ -> (Transactional@@ or Acknowledgement@@)"
-													.replaceAll("@@", capabilityFGToUpdate.id));
-
-									capabilityUpdatedFMV.addConstraint(constraint);
-
-									constraint = MyExpressionParser
-											.parseString("(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@",
-													capabilityFGToUpdate.id));
-
-									capabilityUpdatedFMV.addConstraint(constraint);
-
-									// cst += "(Acknowledgement@@ ->
-									// !Transactional@@)".replaceAll("@@",
-									// capabilityFGToUpdate.id) + ";\n";
-
-									// capabilityUpdatedFMV.addConstraint(
-									// new
-									// Expression<String>("(Acknowledgement@@ ->
-									// !Transactional@@)"
-									// .replaceAll("@@",
-									// capabilityFGToUpdate.id)));
-
-								}
+//								if (capabilityUpdatedFMV.features().names()
+//										.contains("Acknowledgement" + capabilityFGToUpdate.id)
+//										&& capabilityUpdatedFMV.features().names()
+//												.contains("Transactional" + capabilityFGToUpdate.id)) {
+//									
+//									contractFGResult.csts += "MOM@@ implies (Transactional@@ or Acknowledgement@@)".
+//											 replaceAll("@@", capabilityFGToUpdate.id) + ";\n";
+//
+//									contractFGResult.csts += "(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@",
+//									 capabilityFGToUpdate.id) + ";\n";
+//
+//								}
+								
+//								addPropositionalConstraints(capabilityUpdatedFMV, capabilityFGToUpdate, contractFGResult);
 
 								System.out.println(capabilityUpdatedFMV + "\n");
 
@@ -1750,7 +1731,7 @@ public class FMFactory {
 		Contract contract = new Contract();
 		ArrayList<Service> services = new ArrayList<Service>();
 
-		contract.projectName = attributes.get("ProjectName");
+		contract.projectName = attributes.get("ProjectName_0");
 		contract.hostName = attributes.get("HostName");
 		contract.dataInputPkg = contract.projectName + "." + SwitchyardProject.INPUT_DIR;
 		contract.dataOutputPkg = contract.projectName + "." + SwitchyardProject.OUTPUT_DIR;
@@ -1915,7 +1896,7 @@ public class FMFactory {
 	public static String buildFMV(ContractFG contractFG, String fm) throws Exception {
 
 		String result = SC_ROOT + ": ";
-		String csts = "";
+//		String csts = "";
 
 		FeatureModelVariable fmv = FMBDD.getInstance().FM("fmi", fm);
 
@@ -1964,19 +1945,23 @@ public class FMFactory {
 
 				FeatureModelVariable fmvCapability = FMBDD.getInstance().FM("fmv", capabilityFG.capabilityFM);
 
-				for (Expression<String> constraint : fmvCapability.getFm().getConstraints()) {
-
-					csts += constraint + ";\n";
-				}
-
+//				for (Expression<String> constraint : fmvCapability.getFm().getConstraints()) {
+//
+//					csts += constraint + ";\n";
+//				}
+//
 				fmvCapability.removeAllConstraints();
+				
+				addPropositionalConstraints(fmvCapability, capabilityFG, contractFG);
+
 
 				result += fmvCapability.toString();
 
 			}
 		}
 
-		result += csts + contractFG.csts;
+//		result += csts + contractFG.csts;
+		result += "\n" + contractFG.csts;
 		return result;
 
 	}
@@ -2114,59 +2099,9 @@ public class FMFactory {
 
 					insertFeatureElementForXML(featureInsertForXML, fmCapabilityFMV, capabilityFG, insertAttributes,
 							options);
-
-					// String featureParent =
-					// featureInsertForXML.featureParent.replaceAll("@@1",
-					// capabilityFG.id);
-					//
-					// if
-					// (fmCapabilityFMV.features().names().contains(featureParent))
-					// {
-					//
-					// FeatureModelVariable featureToInsertFMV =
-					// FMBDD.getInstance().FM("fmi",
-					// featureInsertForXML.fmvToInsert.replaceAll("@@1",
-					// capabilityFG.id));
-					//
-					// FeatureEdgeKind operator = FeatureEdgeKind.MANDATORY;
-					//
-					// if
-					// (FeatureEdgeKind.MANDATORY.toString().equals(featureInsertForXML.featureEdgeKind))
-					// operator = FeatureEdgeKind.MANDATORY;
-					// else if
-					// (FeatureEdgeKind.OPTIONAL.toString().equals(featureInsertForXML.featureEdgeKind))
-					// operator = FeatureEdgeKind.OPTIONAL;
-					//
-					// fmCapabilityFMV.insert(featureToInsertFMV,
-					// featureInsertForXML.featureParent.replaceAll("@@1",
-					// capabilityFG.id), operator);
-					//
-					// for (FeatureAttribute featureAttribute :
-					// featureInsertForXML.attributes) {
-					//
-					// String featureName =
-					// featureAttribute.name.replaceAll("@@1", capabilityFG.id);
-					//
-					// String newFeatureName = featureName + EQ_ATTRIBUTE +
-					// featureAttribute.attribute
-					// .replaceAll("@@1", options.get(0)).replaceAll("@@2",
-					// capabilityFG.id);
-					//
-					// fmCapabilityFMV.renameFeature(featureName,
-					// newFeatureName);
-					//
-					// }
-					// }
-
 				}
 
-				// for (Expression<String> constraint :
-				// fmCapabilityFMV.getFm().getConstraints()) {
-				//
-				// contractFG.csts += constraint + ";\n";
-				// }
-				//
-				// fmCapabilityFMV.removeAllConstraints();
+//				addPropositionalConstraints(fmCapabilityFMV, capabilityFG, contractFG);
 
 				capabilityFG.capabilityFM = fmCapabilityFMV.toString();
 
@@ -2174,6 +2109,25 @@ public class FMFactory {
 
 		}
 		return buildFMV(contractFG, fmv.toString());
+	}
+	
+	
+	public static void addPropositionalConstraints(FeatureModelVariable fmCapabilityFMV, CapabilityFG capabilityFG,
+			ContractFG contractFG)
+	{
+		
+		if (fmCapabilityFMV.features().names()
+				.contains("Acknowledgement" + capabilityFG.id)
+				&& fmCapabilityFMV.features().names()
+						.contains("Transactional" + capabilityFG.id)) {
+			
+			contractFG.csts += "MOM@@ implies (Transactional@@ or Acknowledgement@@)".
+					 replaceAll("@@", capabilityFG.id) + ";\n";
+
+			contractFG.csts += "(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@",
+					capabilityFG.id) + ";\n";
+
+		}
 	}
 
 	public static void insertFeatureElementForXML(FeatureInsertForXML featureInsertForXML, FeatureModelVariable fmv,
