@@ -1076,8 +1076,9 @@ public class FMFactory {
 				CapabilityFG capabilityFGResult = new CapabilityFG();
 				capabilityFGResult.name = capabilityFGToUpdate.name;
 
-				capabilityFGToUpdate.id = capabilityFGToUpdate.name.substring(capabilityFGToUpdate.name.indexOf("_"));
+				capabilityFGResult.id = capabilityFGToUpdate.name.substring(capabilityFGToUpdate.name.indexOf("_"));
 
+				
 				// toupdate
 				FeatureModelVariable capabilityFGToUpdateFMV = FMBDD.getInstance().FM("capabilityFGToUpdate",
 						capabilityFGToUpdate.capabilityFM);
@@ -1110,32 +1111,8 @@ public class FMFactory {
 							featureSetToSliceCapability, sliceMode);
 				}
 
-				// capabilitySliced.cleanup2();
-
 				System.out.println(capabilitySliced);
 
-				// for (Expression<String> constraint :
-				// capabilitySliced.getFm().getConstraints()) {
-				//
-				// contractFGResult.csts += constraint + ";\n";
-				// }
-
-				// System.out.println(featureSetToSliceCapability);
-
-				// capabilitySliced.cleanup2();
-				// System.out.println(capabilitySliced);
-				// System.exit(-1);
-
-				//
-				//
-				// capabilitySliced.getFm().removeAllConstraints();
-				//
-				
-				//
-
-				// new HashSet<String>(featuresReducedToUpdate);
-
-				// featureSetToSlice
 
 				//to avoid inserting the features to slice
 				for (FeatureInsert featureInsert : featuresReducedToUpdate) {
@@ -1952,6 +1929,8 @@ public class FMFactory {
 //
 				fmvCapability.removeAllConstraints();
 				
+
+				
 				addPropositionalConstraints(fmvCapability, capabilityFG, contractFG);
 
 
@@ -1959,6 +1938,8 @@ public class FMFactory {
 
 			}
 		}
+		
+		System.out.println("ezaea: " + contractFG.csts);
 
 //		result += csts + contractFG.csts;
 		result += "\n" + contractFG.csts;
@@ -2115,6 +2096,13 @@ public class FMFactory {
 	public static void addPropositionalConstraints(FeatureModelVariable fmCapabilityFMV, CapabilityFG capabilityFG,
 			ContractFG contractFG)
 	{
+		
+//		System.out.println();
+//		System.out.println();
+//		System.out.println(fmCapabilityFMV.features().names());
+//		System.out.println(capabilityFG.id);
+//		
+//		System.exit(-1);
 		
 		if (fmCapabilityFMV.features().names()
 				.contains("Acknowledgement" + capabilityFG.id)

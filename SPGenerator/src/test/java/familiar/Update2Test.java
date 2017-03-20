@@ -10,7 +10,7 @@ public class Update2Test {
 
 	public static void main(String[] args) throws Exception {
 
-		String projectName = "ttee";
+		String projectName = "the1";
 
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 

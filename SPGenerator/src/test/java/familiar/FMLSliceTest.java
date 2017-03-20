@@ -12,25 +12,22 @@ public class FMLSliceTest {
 
 	public static void main(String[] args) throws Exception {
 
-		String projectName = "a1";
+		String projectName = "the1";
 
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
-		String fmSCPath = projectDir + "fm_sc.fml";
+		String fmSCPath = projectDir + "fm_sc_update.fml";
 		String fmSCString = util.Functions.fileToString(fmSCPath);
 
-		String fmSPPath = projectDir + "fm_sp_spec.fml";
-		String fmSPString = util.Functions.fileToString(fmSPPath);
 
 		// fmSCString = FMFactory.setAttributesValues(fmSCString,
 		// FMFactory.extractAttributesValues(fmSPString));
 
 		FeatureModelVariable fmSCFMV = FMBDD.getInstance().FM("fmsc", fmSCString);
-		FeatureModelVariable fmSPFMV = FMBDD.getInstance().FM("fmsp", fmSPString);
 
 		Set<String> set = new HashSet<String>();
 		set.add("PublishSubscribe_2_1");
-		set.add("PublishSubscribe_2_2");
+		set.add("ResponseHandler_1_1");
 		
 		set.add("REST_2_2");
 
