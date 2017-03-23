@@ -136,22 +136,7 @@ public class FMFactory {
 		String result = "OutputData@@: OutputName@@ OutputType@@;";
 		return result.replaceAll("@@", "_" + serviceNumber + "_" + capabilityNumber + "_" + inputNumber);
 	}
-
-	//
-	// public static String addSPCsts(int serviceNumber, int capabilityNumber) {
-	// String result = "!PublishSubscribe@@; !Transactional@@; !Reliability@@;
-	// !StateMessaging@@;";
-	// return result.replaceAll("@@", "_" + serviceNumber + "_" +
-	// capabilityNumber);
-	// }
-
-	// public static String addSPGlobalCsts(int serviceNumber, int
-	// capabilityNumber) {
-	// String result = "Transactional@@ implies !Acknowledgement@@;";
-	// return result.replaceAll("@@", "_" + serviceNumber + "_" +
-	// capabilityNumber);
-	// }
-
+	
 	// SC
 
 	public String setFMSCCapabilityWithOutput(int serviceNumber, int capabilityNumber) {
