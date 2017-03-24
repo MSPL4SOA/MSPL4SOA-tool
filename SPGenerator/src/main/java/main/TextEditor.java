@@ -163,8 +163,8 @@ public class TextEditor {
 						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(
 								fmFactory.updatedAttributedFMSC, hiddenSharedFeatures.featureInserts, true, options);
 						
-						System.out.println(fmFactory.updatedAttributedFMSC);
-						System.exit(-1);
+//						System.out.println(fmFactory.updatedAttributedFMSC);
+//						System.exit(-1);
 						
 						//
 						//////////////////////////

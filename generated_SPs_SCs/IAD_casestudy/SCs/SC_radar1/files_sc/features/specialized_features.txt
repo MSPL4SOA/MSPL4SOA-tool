@@ -1,0 +1,8 @@
+REST
+MOM
+SOAP
+PublishSubscribe
+Durable
+Authentification
+Capability
+Service

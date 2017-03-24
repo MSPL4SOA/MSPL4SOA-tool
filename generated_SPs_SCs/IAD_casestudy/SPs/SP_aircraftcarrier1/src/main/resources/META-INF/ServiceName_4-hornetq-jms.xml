@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+                    <jms-queue name="SP_aircraftcarrier1_in_queue_4_2">
+                <entry name="SP_aircraftcarrier1_in_queue_4_2"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_in_queue_4_2"/>
+            </jms-queue>
+            <jms-queue name="SP_aircraftcarrier1_out_queue_4_2">
+                <entry name="SP_aircraftcarrier1_out_queue_4_2"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_out_queue_4_2"/>
+            </jms-queue>
+                    <jms-queue name="SP_aircraftcarrier1_in_queue_4_3">
+                <entry name="SP_aircraftcarrier1_in_queue_4_3"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_in_queue_4_3"/>
+            </jms-queue>
+            <jms-queue name="SP_aircraftcarrier1_out_queue_4_3">
+                <entry name="SP_aircraftcarrier1_out_queue_4_3"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_out_queue_4_3"/>
+            </jms-queue>
+                    <jms-queue name="SP_aircraftcarrier1_in_queue_4_4">
+                <entry name="SP_aircraftcarrier1_in_queue_4_4"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_in_queue_4_4"/>
+            </jms-queue>
+            <jms-queue name="SP_aircraftcarrier1_out_queue_4_4">
+                <entry name="SP_aircraftcarrier1_out_queue_4_4"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_out_queue_4_4"/>
+            </jms-queue>
+                    <jms-queue name="SP_aircraftcarrier1_in_queue_4_1">
+                <entry name="SP_aircraftcarrier1_in_queue_4_1"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_in_queue_4_1"/>
+            </jms-queue>
+            <jms-queue name="SP_aircraftcarrier1_out_queue_4_1">
+                <entry name="SP_aircraftcarrier1_out_queue_4_1"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_out_queue_4_1"/>
+            </jms-queue>
+                                    <jms-topic name="SP_aircraftcarrier1_topic_4_2">
+                <entry name="SP_aircraftcarrier1_topic_4_2"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_topic_4_2"/>
+            </jms-topic>
+                                    <jms-topic name="SP_aircraftcarrier1_topic_4_3">
+                <entry name="SP_aircraftcarrier1_topic_4_3"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_topic_4_3"/>
+            </jms-topic>
+                                    <jms-topic name="SP_aircraftcarrier1_topic_4_4">
+                <entry name="SP_aircraftcarrier1_topic_4_4"/>
+                <entry name="java:jboss/exported/jms/SP_aircraftcarrier1_topic_4_4"/>
+            </jms-topic>
+                                        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="SP_radar2" targetNamespace="urn:SP_radar2:SP_radar2:1.0">
+  <sca:composite name="SP_radar2" targetNamespace="urn:SP_radar2:SP_radar2:1.0">
+    <sca:service name="DownloadContract" promote="DownloadContractBean/DownloadContract">
+      <sca:interface.java interface="SP_radar2.service.DownloadContract"/>
+      <resteasy:binding.rest name="restContract">
+        <resteasy:interfaces>SP_radar2.resource.ResourceDownloadContract</resteasy:interfaces>
+        <resteasy:contextPath>SP_radar2/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="DownloadContractBean">
+      <bean:implementation.bean class="SP_radar2.service.DownloadContractBean"/>
+      <sca:service name="DownloadContract">
+        <sca:interface.java interface="SP_radar2.service.DownloadContract"/>
+      </sca:service>
+    </sca:component>
+  <sca:component name="ServiceName_4Bean">
+      <bean:implementation.bean class="SP_radar2.service.ServiceName_4Bean"/>
+      <sca:service name="ServiceName_4">
+        <sca:interface.java interface="SP_radar2.service.ServiceName_4"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="ServiceName_3Bean">
+      <bean:implementation.bean class="SP_radar2.service.ServiceName_3Bean"/>
+      <sca:service name="ServiceName_3">
+        <sca:interface.java interface="SP_radar2.service.ServiceName_3"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="ServiceName_2Bean">
+      <bean:implementation.bean class="SP_radar2.service.ServiceName_2Bean"/>
+      <sca:service name="ServiceName_2">
+        <sca:interface.java interface="SP_radar2.service.ServiceName_2"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="ServiceName_1Bean">
+      <bean:implementation.bean class="SP_radar2.service.ServiceName_1Bean"/>
+      <sca:service name="ServiceName_1">
+        <sca:interface.java interface="SP_radar2.service.ServiceName_1"/>
+      </sca:service>
+    </sca:component>
+  </sca:composite>
+</sy:switchyard>

@@ -1,5 +1,0 @@
-projectKey=large11:large11
-serverUrl=http://localhost:9000
-dashboardUrl=http://localhost:9000/dashboard/index/large11:large11
-ceTaskId=AVYAuLCzPK3E9D7HRbCC
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVYAuLCzPK3E9D7HRbCC

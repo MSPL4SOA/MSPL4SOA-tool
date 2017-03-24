@@ -152,6 +152,7 @@ public class MainGui {
 					String className = "SC";
 					String scPkg = scProject.contract.projectName + ".main";
 					String scDir = SCProject.SRC_Dir + scPkg.replaceAll("\\.", "/") + "/";
+//					String projectName = scProject.contract.projectName;
 
 					Functions.mkdirIfExist(scDir);
 
@@ -168,6 +169,7 @@ public class MainGui {
 					context.put("scPkg", scPkg);
 					context.put("dataOutputPkg", scProject.contract.dataOutputPkg);
 					context.put("atLeastOnResponseHandlerAsynchonous", atLeastOnResponseHandlerAsynchonous);
+					context.put("projectName", scProject.contract.projectName);
 
 					/* get the Template */
 					Template t = ve.getTemplate("sc.vm");
@@ -233,13 +235,13 @@ public class MainGui {
 						public void run() {
 							FeatureModelVariable fmvSC;
 							try {
-								fmvSC = FMBDD.getInstance().FM("fm", util.Functions
-										.fileToString(scProject.fmSCUpdateFMLPath));
+								fmvSC = FMBDD.getInstance().FM("fm",
+										util.Functions.fileToString(scProject.fmSCUpdateFMLPath));
 								// System.out.println("GO!!");
 								// int amsCount = fmvSC.configsBDD().size();
-								
-								FeatureModelVariable fmvSCReduce =
-										FMBDD.getInstance().FM("fm",FMFactory.reduceComplexitySP(fmvSC.toString()));
+
+								FeatureModelVariable fmvSCReduce = FMBDD.getInstance().FM("fm",
+										FMFactory.reduceComplexitySP(fmvSC.toString()));
 
 								int amsCount = (int) fmvSCReduce.counting(CountingStrategy.SAT_FML) / 2;
 								// System.out.println(amsCount);
@@ -275,8 +277,7 @@ public class MainGui {
 
 				FeatureModelVariable fmvSC;
 				try {
-					fmvSC = FMBDD.getInstance().FM("fm",
-							util.Functions.fileToString(scProject.fmSCUpdateFMLPath));
+					fmvSC = FMBDD.getInstance().FM("fm", util.Functions.fileToString(scProject.fmSCUpdateFMLPath));
 					// System.out.println("GO!!");
 
 					ArrayList<Variable> configsList = new ArrayList<Variable>(fmvSC.configs());
@@ -327,8 +328,7 @@ public class MainGui {
 
 						S2T2Converter s2t2Converter = new S2T2Converter();
 
-						String xmiS2T2 = s2t2Converter
-								.fmlToS2T2XMI(FMBDD.getInstance().FM("am_sc_update", amsc.am));
+						String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("am_sc_update", amsc.am));
 
 						amsc.amS2T2FilePath = SCProject.AM_S2T2_DIR + amID + ".fmprimitives";
 

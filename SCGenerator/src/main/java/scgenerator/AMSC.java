@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -104,7 +105,7 @@ public class AMSC {
 					textEditor.setTextPane(generateRandomSCAM());
 
 					JOptionPane.showMessageDialog(null, "A random AM SC sync is generated", "OK",
-							JOptionPane.OK_OPTION);
+							JOptionPane.OK_OPTION, new ImageIcon(SCProject.FILE_ICON_OK_PATH));
 
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

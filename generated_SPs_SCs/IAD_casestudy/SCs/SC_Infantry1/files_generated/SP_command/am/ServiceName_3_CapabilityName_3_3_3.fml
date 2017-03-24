@@ -1,0 +1,3 @@
+ServiceContract: "HostName=http://localhost:8080/SP_command" "Service_3" "ProjectName_0=SP_command" ; 
+"Service_3": "Capability_3_3" "ServiceName_3=ServiceName_3" ; 
+"Capability_3_3": "InputValue_3_3_3=134" "Username_3_3=admin" "CapabilityName_3_3=CapabilityName_3_3" "Post_3_3" "InputType_3_3_3=Integer" "InputType_3_3_2=Float" "Authentification_3_3" "InputValue_3_3_2=415" "InputName_3_3_2=InputName_3_3_2" "InputData_3_3_2" "InputDataClassName_3_3=InputDataClassName_3_3" "InputData_3_3_3" "InputValue_3_3_1=251" "CommunicationTechnologie_3_3" "Password_3_3=pass" "InputType_3_3_1=Float" "REST_3_3" "InputName_3_3_1=InputName_3_3_1" "InputData_3_3_1" "InputName_3_3_3=InputName_3_3_3" ;

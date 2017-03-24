@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sy:switchyard xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:jms="urn:switchyard-component-camel-jms:config:2.0" xmlns:resteasy="urn:switchyard-component-resteasy:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" name="SP_helicopter1" targetNamespace="urn:SP_helicopter1:SP_helicopter1:1.0">
+  <sca:composite name="SP_helicopter1" targetNamespace="urn:SP_helicopter1:SP_helicopter1:1.0">
+    <sca:service name="DownloadContract" promote="DownloadContractBean/DownloadContract">
+      <sca:interface.java interface="SP_helicopter1.service.DownloadContract"/>
+      <resteasy:binding.rest name="restContract">
+        <resteasy:interfaces>SP_helicopter1.resource.ResourceDownloadContract</resteasy:interfaces>
+        <resteasy:contextPath>SP_helicopter1/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="DownloadContractBean">
+      <bean:implementation.bean class="SP_helicopter1.service.DownloadContractBean"/>
+      <sca:service name="DownloadContract">
+        <sca:interface.java interface="SP_helicopter1.service.DownloadContract"/>
+      </sca:service>
+    </sca:component>
+  <sca:component name="ServiceName_3Bean">
+      <bean:implementation.bean class="SP_helicopter1.service.ServiceName_3Bean"/>
+      <sca:service name="ServiceName_3">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_3"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="ServiceName_2Bean">
+      <bean:implementation.bean class="SP_helicopter1.service.ServiceName_2Bean"/>
+      <sca:service name="ServiceName_2">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_2"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="ServiceName_1Bean">
+      <bean:implementation.bean class="SP_helicopter1.service.ServiceName_1Bean"/>
+      <sca:service name="ServiceName_1">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_1"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="ServiceName_3PortType" promote="ServiceName_3Bean/ServiceName_3">
+      <sca:interface.wsdl interface="ServiceName_3.wsdl#wsdl.porttype(ServiceName_3PortType)"/>
+      <soap:binding.soap name="soapServiceName_3">
+        <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+        <soap:messageComposer class="SP_helicopter1.composer.Composers_soap_ServiceName_3"/>
+        <soap:wsdl>ServiceName_3.wsdl</soap:wsdl>
+        <soap:contextPath>SP_helicopter1/ServiceName_3</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:service name="ServiceName_3" promote="ServiceName_3Bean/ServiceName_3">
+      <resteasy:binding.rest name="restServiceName_3">
+        <resteasy:contextMapper includes=".*"/>
+        <resteasy:messageComposer class="SP_helicopter1.composer.Composers_rest_ServiceName_3"/>
+        <resteasy:interfaces>SP_helicopter1.resource.Resource_restServiceName_3</resteasy:interfaces>
+        <resteasy:contextPath>SP_helicopter1/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="ServiceName_3JMSCamelRouter">
+      <camel:implementation.camel>
+        <camel:java class="SP_helicopter1.camelrouter.ServiceName_3JMSCamelRouter"/>
+      </camel:implementation.camel>
+      <sca:service name="ServiceName_3JMSInterface">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_3JMSInterface"/>
+      </sca:service>
+      <sca:reference name="ServiceName_3">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_3"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="ServiceName_3JMSInterface" promote="ServiceName_3JMSCamelRouter/ServiceName_3JMSInterface">
+      <sca:interface.java interface="SP_helicopter1.service.ServiceName_3JMSInterface"/>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_3_CapabilityName_3_1">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_3_1</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:deliveryPersistent>true</jms:deliveryPersistent>
+        <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_3_CapabilityName_3_2">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_3_2</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:service name="ServiceName_2PortType" promote="ServiceName_2Bean/ServiceName_2">
+      <sca:interface.wsdl interface="ServiceName_2.wsdl#wsdl.porttype(ServiceName_2PortType)"/>
+      <soap:binding.soap name="soapServiceName_2">
+        <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+        <soap:messageComposer class="SP_helicopter1.composer.Composers_soap_ServiceName_2"/>
+        <soap:wsdl>ServiceName_2.wsdl</soap:wsdl>
+        <soap:contextPath>SP_helicopter1/ServiceName_2</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:service name="ServiceName_2" promote="ServiceName_2Bean/ServiceName_2">
+      <resteasy:binding.rest name="restServiceName_2">
+        <resteasy:contextMapper includes=".*"/>
+        <resteasy:messageComposer class="SP_helicopter1.composer.Composers_rest_ServiceName_2"/>
+        <resteasy:interfaces>SP_helicopter1.resource.Resource_restServiceName_2</resteasy:interfaces>
+        <resteasy:contextPath>SP_helicopter1/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="ServiceName_2JMSCamelRouter">
+      <camel:implementation.camel>
+        <camel:java class="SP_helicopter1.camelrouter.ServiceName_2JMSCamelRouter"/>
+      </camel:implementation.camel>
+      <sca:service name="ServiceName_2JMSInterface">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_2JMSInterface"/>
+      </sca:service>
+      <sca:reference name="ServiceName_2">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_2"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="ServiceName_2JMSInterface" promote="ServiceName_2JMSCamelRouter/ServiceName_2JMSInterface">
+      <sca:interface.java interface="SP_helicopter1.service.ServiceName_2JMSInterface"/>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_2_CapabilityName_2_1">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_2_1</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_2_CapabilityName_2_2">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_2_2</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_2_CapabilityName_2_3">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_2_3</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:deliveryPersistent>true</jms:deliveryPersistent>
+        <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:service name="ServiceName_1PortType" promote="ServiceName_1Bean/ServiceName_1">
+      <sca:interface.wsdl interface="ServiceName_1.wsdl#wsdl.porttype(ServiceName_1PortType)"/>
+      <soap:binding.soap name="soapServiceName_1">
+        <soap:contextMapper includes=".*" soapHeadersType="VALUE"/>
+        <soap:messageComposer class="SP_helicopter1.composer.Composers_soap_ServiceName_1"/>
+        <soap:wsdl>ServiceName_1.wsdl</soap:wsdl>
+        <soap:contextPath>SP_helicopter1/ServiceName_1</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:service name="ServiceName_1" promote="ServiceName_1Bean/ServiceName_1">
+      <resteasy:binding.rest name="restServiceName_1">
+        <resteasy:contextMapper includes=".*"/>
+        <resteasy:messageComposer class="SP_helicopter1.composer.Composers_rest_ServiceName_1"/>
+        <resteasy:interfaces>SP_helicopter1.resource.Resource_restServiceName_1</resteasy:interfaces>
+        <resteasy:contextPath>SP_helicopter1/rest</resteasy:contextPath>
+      </resteasy:binding.rest>
+    </sca:service>
+    <sca:component name="ServiceName_1JMSCamelRouter">
+      <camel:implementation.camel>
+        <camel:java class="SP_helicopter1.camelrouter.ServiceName_1JMSCamelRouter"/>
+      </camel:implementation.camel>
+      <sca:service name="ServiceName_1JMSInterface">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_1JMSInterface"/>
+      </sca:service>
+      <sca:reference name="ServiceName_1">
+        <sca:interface.java interface="SP_helicopter1.service.ServiceName_1"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="ServiceName_1JMSInterface" promote="ServiceName_1JMSCamelRouter/ServiceName_1JMSInterface">
+      <sca:interface.java interface="SP_helicopter1.service.ServiceName_1JMSInterface"/>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_1_CapabilityName_1_1">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_1_1</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:deliveryPersistent>true</jms:deliveryPersistent>
+        <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_1_CapabilityName_1_2">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_1_2</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:deliveryPersistent>true</jms:deliveryPersistent>
+        <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+      <jms:binding.jms name="SP_helicopter1_hornetq_queue_ServiceName_1_CapabilityName_1_3">
+        <sy:operationSelector operationName="invokeMethod"/>
+        <jms:contextMapper includes=".*"/>
+        <jms:queue>SP_helicopter1_in_queue_1_3</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:deliveryPersistent>true</jms:deliveryPersistent>
+        <jms:acknowledgementModeName>AUTO_ACKNOWLEDGE</jms:acknowledgementModeName>
+      </jms:binding.jms>
+    </sca:service>
+  </sca:composite>
+</sy:switchyard>

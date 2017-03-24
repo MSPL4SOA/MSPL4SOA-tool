@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_3</interfaceName>
+        <beanName>ServiceName_3Bean</beanName>
+        <number>3</number>
+        <capability>
+            <name>CapabilityName_3_1</name>
+            <number>1</number>
+            <serviceName>ServiceName_3</serviceName>
+            <dataInputClassName>InputDataClassName_3_1</dataInputClassName>
+            <stateClassName>State_ServiceName_3_CapabilityName_3_1</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>true</soap>
+            <authentification>false</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_3_1_3</name>
+                <type>Float</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">844</value>
+            </input>
+            <input>
+                <name>InputName_3_1_4</name>
+                <type>String</type>
+                <number>4</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">109</value>
+            </input>
+            <input>
+                <name>InputName_3_1_1</name>
+                <type>String</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">908</value>
+            </input>
+            <input>
+                <name>InputName_3_1_2</name>
+                <type>String</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">329</value>
+            </input>
+            <input>
+                <name>InputName_3_1_5</name>
+                <type>Float</type>
+                <number>5</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">108</value>
+            </input>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>SP_aircraftcarrier1</projectName>
+    <hostName>http://localhost:8080/SP_aircraftcarrier1</hostName>
+    <dataInputPkg>SP_aircraftcarrier1.input</dataInputPkg>
+    <dataOutputPkg>SP_aircraftcarrier1.output</dataOutputPkg>
+</contract>

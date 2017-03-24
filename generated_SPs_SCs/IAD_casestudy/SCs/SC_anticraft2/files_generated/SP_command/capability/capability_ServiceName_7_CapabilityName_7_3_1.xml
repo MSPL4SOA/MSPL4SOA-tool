@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_7</interfaceName>
+        <beanName>ServiceName_7Bean</beanName>
+        <number>7</number>
+        <capability>
+            <name>CapabilityName_7_3</name>
+            <number>3</number>
+            <serviceName>ServiceName_7</serviceName>
+            <dataInputClassName>InputDataClassName_7_3</dataInputClassName>
+            <dataOutputClassName>OutputDataClassName_7_3</dataOutputClassName>
+            <stateClassName>State_ServiceName_7_CapabilityName_7_3</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>true</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>true</twoWayState>
+            <rest>true</rest>
+            <restMethod>Get</restMethod>
+            <soap>false</soap>
+            <authentification>false</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_7_3_5</name>
+                <type>Float</type>
+                <number>5</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">926</value>
+            </input>
+            <input>
+                <name>InputName_7_3_6</name>
+                <type>Float</type>
+                <number>6</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">269</value>
+            </input>
+            <input>
+                <name>InputName_7_3_3</name>
+                <type>String</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">753</value>
+            </input>
+            <input>
+                <name>InputName_7_3_4</name>
+                <type>Integer</type>
+                <number>4</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">630</value>
+            </input>
+            <input>
+                <name>InputName_7_3_1</name>
+                <type>String</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">786</value>
+            </input>
+            <input>
+                <name>InputName_7_3_2</name>
+                <type>Integer</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">112</value>
+            </input>
+            <input>
+                <name>InputName_7_3_7</name>
+                <type>Float</type>
+                <number>7</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">442</value>
+            </input>
+            <input>
+                <name>InputName_7_3_8</name>
+                <type>Float</type>
+                <number>8</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">660</value>
+            </input>
+            <output>
+                <name>OutputName_7_3_1</name>
+                <type>Integer</type>
+                <number>1</number>
+            </output>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>true</asynchronous>
+        </capability>
+    </service>
+    <projectName>SP_command</projectName>
+    <hostName>http://localhost:8080/SP_command</hostName>
+    <dataInputPkg>SP_command.input</dataInputPkg>
+    <dataOutputPkg>SP_command.output</dataOutputPkg>
+</contract>

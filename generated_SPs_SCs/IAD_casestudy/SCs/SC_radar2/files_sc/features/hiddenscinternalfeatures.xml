@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<HiddenFeatures>
+    <featureInserts>
+        <featureName>ConnectionFactory</featureName>
+        <featureParent>MOMConfiguration@@1</featureParent>
+        <featureEdgeKind>mand</featureEdgeKind>
+        <fmvToInsert>ConnectionFactory@@1;</fmvToInsert>
+        <featureAttribute>
+            <name>ConnectionFactory@@1</name>
+            <attribute>#ConnectionFactory</attribute>
+        </featureAttribute>
+    </featureInserts>
+</HiddenFeatures>

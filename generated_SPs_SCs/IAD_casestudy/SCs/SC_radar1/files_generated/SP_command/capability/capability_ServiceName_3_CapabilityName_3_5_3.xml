@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_3</interfaceName>
+        <beanName>ServiceName_3Bean</beanName>
+        <number>3</number>
+        <capability>
+            <name>CapabilityName_3_5</name>
+            <number>5</number>
+            <serviceName>ServiceName_3</serviceName>
+            <stateClassName>State_ServiceName_3_CapabilityName_3_5</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>true</soap>
+            <authentification>false</authentification>
+            <jms>false</jms>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>SP_command</projectName>
+    <hostName>http://localhost:8080/SP_command</hostName>
+    <dataInputPkg>SP_command.input</dataInputPkg>
+    <dataOutputPkg>SP_command.output</dataOutputPkg>
+</contract>

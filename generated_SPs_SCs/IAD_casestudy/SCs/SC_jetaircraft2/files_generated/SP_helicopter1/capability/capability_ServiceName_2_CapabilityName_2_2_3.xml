@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_2</interfaceName>
+        <beanName>ServiceName_2Bean</beanName>
+        <number>2</number>
+        <capability>
+            <name>CapabilityName_2_2</name>
+            <number>2</number>
+            <serviceName>ServiceName_2</serviceName>
+            <dataInputClassName>InputDataClassName_2_2</dataInputClassName>
+            <stateClassName>State_ServiceName_2_CapabilityName_2_2</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>false</soap>
+            <broker>
+                <brokerName>HornetQ</brokerName>
+                <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+                <providerUrl>remote://localhost:4447</providerUrl>
+                <securityPrincipal>guest</securityPrincipal>
+                <securityCredentials>jboss@dmin88</securityCredentials>
+                <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+                <queueError>net implemented</queueError>
+                <queueIn>SP_helicopter1_in_queue_2_2</queueIn>
+                <queueOut>SP_helicopter1_out_queue_2_2</queueOut>
+                <transactional>false</transactional>
+                <acknowledgement>true</acknowledgement>
+                <persistentDelivery>true</persistentDelivery>
+                <publishSubscribe>false</publishSubscribe>
+                <durable>false</durable>
+                <serviceName>ServiceName_2</serviceName>
+                <capabilityName>CapabilityName_2_2</capabilityName>
+            </broker>
+            <authentification>false</authentification>
+            <jms>true</jms>
+            <input>
+                <name>InputName_2_2_1</name>
+                <type>Float</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">421</value>
+            </input>
+            <input>
+                <name>InputName_2_2_2</name>
+                <type>Integer</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">821</value>
+            </input>
+            <input>
+                <name>InputName_2_2_3</name>
+                <type>Integer</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">169</value>
+            </input>
+            <input>
+                <name>InputName_2_2_4</name>
+                <type>Float</type>
+                <number>4</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">946</value>
+            </input>
+            <input>
+                <name>InputName_2_2_5</name>
+                <type>Float</type>
+                <number>5</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">91</value>
+            </input>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>SP_helicopter1</projectName>
+    <hostName>http://localhost:8080/SP_helicopter1</hostName>
+    <dataInputPkg>SP_helicopter1.input</dataInputPkg>
+    <dataOutputPkg>SP_helicopter1.output</dataOutputPkg>
+</contract>

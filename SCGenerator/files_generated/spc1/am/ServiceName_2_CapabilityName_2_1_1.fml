@@ -1,3 +1,0 @@
-"ServiceContract": "HostName_eq_http://localhost:8080/spc1" "ProjectName_eq_spc1" "Service_2";
-"Service_2": "ServiceName_2_eq_ServiceName_2" "Capability_2_1";
-Capability_2_1: "OutputName_2_1_1_eq_OutputName_2_1_1" "Authentification_2_1" "StateMessaging_2_1" "CapabilityName_2_1_eq_CapabilityName_2_1" "OutputName_2_1_2_eq_OutputName_2_1_2" "OutputData_2_1_1" "OutputData_2_1_2" "CommunicationTechnologie_2_1" "Synchronous_2_1" "TemporaryMemory_2_1" "TwoWayState_2_1" "OutputDataClassName_2_1_eq_OutputDataClassName_2_1" "OutputType_2_1_1_eq_Float" "Password_2_1=qpsbdkmarifsctrh" "SOAP_2_1" "ResponseHandler_2_1" "OutputType_2_1_2_eq_Float" "Username_2_1=admin" ;

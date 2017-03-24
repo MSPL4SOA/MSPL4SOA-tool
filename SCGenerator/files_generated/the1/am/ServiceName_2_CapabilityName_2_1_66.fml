@@ -1,3 +1,0 @@
-ServiceContract: "HostName=http://localhost:8080/the1" "ProjectName_0=the1" "Service_2" ; 
-"Service_2": "Capability_2_1" "ServiceName_2=ServiceName_2" ; 
-"Capability_2_1": "OutputType_2_1_2=Float" "OutputData_2_1_2" "StateMessaging_2_1" "OutputName_2_1_1=OutputName_2_1_1" "Password_2_1=pass" "Asynchronous_2_1" "OutputDataClassName_2_1=OutputDataClassName_2_1" "TwoWayState_2_1" "ResponseHandler_2_1" "OutputType_2_1_3=Integer" "OutputData_2_1_1" "CommunicationTechnologie_2_1" "Authentification_2_1" "OutputData_2_1_3" "SOAP_2_1" "OutputName_2_1_3=OutputName_2_1_3" "CapabilityName_2_1=CapabilityName_2_1" "OutputType_2_1_1=Float" "OutputName_2_1_2=OutputName_2_1_2" "Username_2_1=hnkqkgdhljlf" ;

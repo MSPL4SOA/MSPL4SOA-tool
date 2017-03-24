@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmprimitives:FeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fmprimitives="http://lero.ie/spl/fmprimitives.ecore" name="Car Feature Model">
+  <features name="Car" featureHasSubfeature="//@primitives.2 //@primitives.0 //@primitives.3 //@primitives.1 //@primitives.4 //@primitives.5" selectedFeature="//@primitives.17"/>
+  <features name="Body" featureHasParent="//@primitives.0"/>
+  <features name="Gear" groupHasParent="//@primitives.11" featureHasParent="//@primitives.1"/>
+  <features name="Manual" groupHasChild="//@primitives.13" undirectedRelationships="//@primitives.16"/>
+  <features name="Automatic" groupHasChild="//@primitives.12"/>
+  <features name="Engine" groupHasParent="//@primitives.7" featureHasParent="//@primitives.2" outgoingDirectedRelationships="//@primitives.15"/>
+  <features name="Gas" groupHasChild="//@primitives.8"/>
+  <features name="Electric" groupHasChild="//@primitives.9" undirectedRelationships="//@primitives.16"/>
+  <features name="Injection" featureHasParent="//@primitives.3" incomingDirectedRelationships="//@primitives.15"/>
+  <features name="KeylessEntry" featureHasParent="//@primitives.4" outgoingDirectedRelationships="//@primitives.14"/>
+  <features name="PowerLocks" featureHasParent="//@primitives.5" incomingDirectedRelationships="//@primitives.14"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" name="Car-must-have-Body" parent="//@features.0" subfeature="//@features.1"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" name="Car-must-have-Gear" parent="//@features.0" subfeature="//@features.2"/>
+  <primitives xsi:type="fmprimitives:FeatureHasMandatorySubfeature" name="Car-must-have-Engine" parent="//@features.0" subfeature="//@features.5"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" name="Car-may-have-Injection" parent="//@features.0" subfeature="//@features.8"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" name="Car-may-have-KeylessEntry" parent="//@features.0" subfeature="//@features.9"/>
+  <primitives xsi:type="fmprimitives:FeatureHasOptionalSubfeature" name="Car-may-have-PowerLocks" parent="//@features.0" subfeature="//@features.10"/>
+  <primitives xsi:type="fmprimitives:OrGroup" name="Gas-OR-Electric" groupHasParent="//@primitives.7" groupHasChild="//@primitives.8 //@primitives.9"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" name="Engine is-parent-of Gas-OR-Electric" parent="//@features.5" group="//@primitives.6"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" name="Gas is-child-of Gas-OR-Electric" child="//@features.6" group="//@primitives.6"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" name="Electric is-child-of Gas-OR-Electric" child="//@features.7" group="//@primitives.6"/>
+  <primitives xsi:type="fmprimitives:AlternativeGroup" name="Automatic-XOR-Manual" groupHasParent="//@primitives.11" groupHasChild="//@primitives.12 //@primitives.13"/>
+  <primitives xsi:type="fmprimitives:GroupHasParent" name="Automatic-XOR-Manual has-parent Gear" parent="//@features.2" group="//@primitives.10"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" name="Automatic-XOR-Manual has-child Automatic " child="//@features.4" group="//@primitives.10"/>
+  <primitives xsi:type="fmprimitives:GroupHasChild" name="Automatic-XOR-Manual has-child Manual" child="//@features.3" group="//@primitives.10"/>
+  <primitives xsi:type="fmprimitives:Requires" name="KeylessEntry requires PowerLocks" sources="//@features.9" targets="//@features.10"/>
+  <primitives xsi:type="fmprimitives:Requires" name="Engine requires Injection" sources="//@features.5" targets="//@features.8"/>
+  <primitives xsi:type="fmprimitives:MutualExclusive" name="MutualExclusive( Manual, Electric )" relatedFeatures="//@features.3 //@features.7"/>
+  <primitives xsi:type="fmprimitives:SelectedFeature" name="Car Selected" feature="//@features.0"/>
+</fmprimitives:FeatureModel>

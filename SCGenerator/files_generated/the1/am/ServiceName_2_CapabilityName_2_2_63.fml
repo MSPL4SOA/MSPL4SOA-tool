@@ -1,3 +1,0 @@
-ServiceContract: "HostName=http://localhost:8080/the1" "ProjectName_0=the1" "Service_2" ; 
-"Service_2": "Capability_2_2" "ServiceName_2=ServiceName_2" ; 
-"Capability_2_2": "SOAP_2_2" "CommunicationTechnologie_2_2" "CapabilityName_2_2=CapabilityName_2_2" ;

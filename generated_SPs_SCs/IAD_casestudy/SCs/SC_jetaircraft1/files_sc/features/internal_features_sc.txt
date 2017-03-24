@@ -1,0 +1,12 @@
+StateRepository
+TemporaryMemory
+Reliability
+Transactional
+PersistentDelivery
+Acknowledgement
+ResponseHandler
+Asynchronous
+Synchronous
+Username
+Password
+InputValue

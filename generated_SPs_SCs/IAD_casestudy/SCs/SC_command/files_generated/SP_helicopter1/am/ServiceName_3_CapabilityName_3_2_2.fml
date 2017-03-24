@@ -1,0 +1,3 @@
+ServiceContract: "ProjectName_0=SP_helicopter1" "Service_3" "HostName=http://localhost:8080/SP_helicopter1" ; 
+"Service_3": "ServiceName_3=ServiceName_3" "Capability_3_2" ; 
+"Capability_3_2": "CommunicationTechnologie_3_2" "InputType_3_2_1=Float" "InputValue_3_2_2=429" "InputData_3_2_2" "SOAP_3_2" "InputValue_3_2_1=680" "InputType_3_2_3=Float" "InputData_3_2_4" "CapabilityName_3_2=CapabilityName_3_2" "InputValue_3_2_3=585" "InputName_3_2_2=InputName_3_2_2" "InputName_3_2_1=InputName_3_2_1" "InputData_3_2_1" "InputName_3_2_4=InputName_3_2_4" "InputDataClassName_3_2=InputDataClassName_3_2" "InputType_3_2_4=Integer" "InputData_3_2_3" "InputName_3_2_3=InputName_3_2_3" "InputType_3_2_2=String" "InputValue_3_2_4=232" ;
