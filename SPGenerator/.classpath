@@ -33,7 +33,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/ca.uwaterloo.gp.fmp_0.6.6.jar"/>
-	<classpathentry kind="lib" path="lib/FML-basic-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.common.ui_2.7.0.v20130125-0826.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
@@ -46,5 +45,6 @@
 	<classpathentry kind="lib" path="lib/org.sat4j.core_2.3.0.v20110329.jar"/>
 	<classpathentry kind="lib" path="lib/org.sat4j.core_2.jar"/>
 	<classpathentry kind="lib" path="lib/org.sat4j.core.jar"/>
+	<classpathentry kind="lib" path="/media/akram/stock/akram/thesis/workspace/mspl4soa/MSPL4SOA-tool/SPGenerator/lib/FML-basic-1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

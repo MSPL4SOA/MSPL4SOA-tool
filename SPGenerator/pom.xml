@@ -128,13 +128,14 @@
 			<version>3.2.1-v3235</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>FML</groupId>
 			<artifactId>FML</artifactId>
 			<version>1.1</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/FML-basic-1.1.jar</systemPath>
 		</dependency>
+		
 		<dependency>
 			<groupId>FMP</groupId>
 			<artifactId>FMP</artifactId>
@@ -225,7 +226,7 @@
 			<version>2.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/org.sat4j.core_2.jar</systemPath>
-		</dependency>
+		</dependency> -->
 
 	</dependencies>
 

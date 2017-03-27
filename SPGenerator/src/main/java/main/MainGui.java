@@ -375,9 +375,9 @@ public class MainGui {
 
 		lblScUpdatedFm = new JLabel("FM SC sync :");
 
-//		lblScUpdatedFm.setVisible(false);
-//		scUpdateFamiliarButton.setVisible(false);
-//		btFMSCUpdateS2T2.setVisible(false);
+		lblScUpdatedFm.setVisible(false);
+		scUpdateFamiliarButton.setVisible(false);
+		btFMSCUpdateS2T2.setVisible(false);
 
 		generateSPButton = new JButton("Generate SP artifacts");
 		generateSPButton.setVisible(false);
