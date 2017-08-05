@@ -69,7 +69,7 @@ public class FMFactory {
 
 	public static String mockMOMWithOutput() {
 		if (Math.random() > 0.3) {
-			return "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);" + "REST@@: Get@@;"
+			return "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);" + "REST@@: (Post@@|Get@@|Put@@|Delete@@);"
 					+ "MOM@@: AsynchronousQueue@@ [PublishSubscribe@@] Reliability@@;"
 					+ "PublishSubscribe@@: [Durable@@];" + "Reliability@@: PersistentDelivery@@ Acknowledgement@@;";
 		}
@@ -91,7 +91,7 @@ public class FMFactory {
 
 		String result = "Capability@@: @InputData@ @OutputData@ CommunicationTechnologie@@ [Authentification@@] "
 				+ "ServiceState@@ CapabilityName@@;" + "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);"
-				+ "REST@@: Post@@;" + "MOM@@: AsynchronousQueue@@ ;" + "ServiceState@@: StatefulService@@;"
+				+ "REST@@: (Post@@|Get@@|Put@@|Delete@@);" + "MOM@@: AsynchronousQueue@@ ;" + "ServiceState@@: StatefulService@@;"
 				+ "StatefulService@@: TemporaryMemory@@;";
 
 		return result.replaceAll("@@", "_" + serviceNumber + "_" + capabilityNumber);
@@ -1791,13 +1791,13 @@ public class FMFactory {
 				capability.rest = fmFMV.features().names().contains("REST" + capabilityFG.id);
 				//
 				if (fmFMV.features().names().contains("Put" + capabilityFG.id))
-					capability.restMethod = "Put";
-				else if (fmFMV.features().names().contains("Get" + capabilityFG.id))
-					capability.restMethod = "Get";
-				else if (fmFMV.features().names().contains("Post" + capabilityFG.id))
-					capability.restMethod = "Post";
-				else if (fmFMV.features().names().contains("Delete" + capabilityFG.id))
-					capability.restMethod = "Delete";
+					capability.restPut = true;
+				if (fmFMV.features().names().contains("Get" + capabilityFG.id))
+					capability.restGet = true;
+				if (fmFMV.features().names().contains("Post" + capabilityFG.id))
+					capability.restPost = true;
+				if (fmFMV.features().names().contains("Delete" + capabilityFG.id))
+					capability.restDelete = true;
 				//
 				capability.jms = fmFMV.features().names().contains("MOM" + capabilityFG.id);
 				//

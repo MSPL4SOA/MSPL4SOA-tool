@@ -66,7 +66,7 @@ public class FMFactoryOld {
 	public String setMockSPSpecCapabilityWithOutput(int serviceNumber, int capabilityNumber) {
 
 		String result = "Capability@@: @InputData@ @OutputData@ CommunicationTechnologie@@ [Authentification@@] ServiceState@@ CapabilityName@@;"
-				+ "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);" + "REST@@: Get@@;"
+				+ "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);" + "REST@@: (Post@@|Get@@|Put@@|Delete@@);"
 				+ "MOM@@: AsynchronousQueue@@ [PublishSubscribe@@] Reliability@@;" + "PublishSubscribe@@: [Durable@@];"
 				+ "Reliability@@: PersistentDelivery@@ Acknowledgement@@;"
 				+ "ServiceState@@: StateMessaging@@ StatefulService@@;" + "StateMessaging@@: TwoWayState@@;"
@@ -79,7 +79,7 @@ public class FMFactoryOld {
 
 		String result = "Capability@@: @InputData@ @OutputData@ CommunicationTechnologie@@ [Authentification@@] "
 				+ "ServiceState@@ CapabilityName@@;" + "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);"
-				+ "REST@@: Post@@;" + "MOM@@: AsynchronousQueue@@ ;" + "ServiceState@@: StatefulService@@;"
+				+ "REST@@: (Post@@|Get@@|Put@@|Delete@@);" + "MOM@@: AsynchronousQueue@@ ;" + "ServiceState@@: StatefulService@@;"
 				+ "StatefulService@@: TemporaryMemory@@;";
 
 		return result.replaceAll("@@", "_" + serviceNumber + "_" + capabilityNumber);
@@ -1793,14 +1793,14 @@ public class FMFactoryOld {
 				capability.soap = featuresFM.contains("SOAP" + capabilityFG.id);
 				capability.rest = featuresFM.contains("REST" + capabilityFG.id);
 				//
-				if (featuresFM.contains("Put" + capabilityFG.id))
-					capability.restMethod = "Put";
-				else if (featuresFM.contains("Get" + capabilityFG.id))
-					capability.restMethod = "Get";
-				else if (featuresFM.contains("Post" + capabilityFG.id))
-					capability.restMethod = "Post";
-				else if (featuresFM.contains("Delete" + capabilityFG.id))
-					capability.restMethod = "Delete";
+				if (fmFMV.features().names().contains("Put" + capabilityFG.id))
+					capability.restPut = true;
+				if (fmFMV.features().names().contains("Get" + capabilityFG.id))
+					capability.restGet = true;
+				if (fmFMV.features().names().contains("Post" + capabilityFG.id))
+					capability.restPost = true;
+				if (fmFMV.features().names().contains("Delete" + capabilityFG.id))
+					capability.restDelete = true;
 				//
 				capability.jms = featuresFM.contains("MOM" + capabilityFG.id);
 				//

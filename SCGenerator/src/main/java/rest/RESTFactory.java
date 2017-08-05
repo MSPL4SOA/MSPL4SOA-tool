@@ -2,7 +2,6 @@ package rest;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
@@ -13,9 +12,9 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
-import jms.GeneratingJMSException;
-import scfactory.SCGenerator;
+import features.bean.Capability;
 import scfactory.InputFactory;
+import scfactory.SCGenerator;
 import state.StateMessagingDP;
 
 public class RESTFactory {
@@ -28,9 +27,14 @@ public class RESTFactory {
 	public HashMap<String, String> headerHashMap = new HashMap<String, String>();
 
 	Future<Response> futrureResponse;
+	
+	Capability capability;
 
 	public RESTFactory(SCGenerator amGenerator) {
 		this.amGenerator = amGenerator;
+		
+		
+		capability = amGenerator.extractCapabilityFromContract();
 
 		//
 		// this.fieldNameInList = restParameter.getParameterList();
@@ -68,39 +72,44 @@ public class RESTFactory {
 		// }
 
 		// System.out.println(InputFactory.getDataRest(configurationGenerating));
+		
 
-		target = target.path(amGenerator.extractCapabilityFromContract().serviceName + "/" + amGenerator.extractCapabilityFromContract().name
+		target = target.path(capability.serviceName + "/" + capability.name
 				+ InputFactory.getDataRest(amGenerator));
 
-		String methodRest = amGenerator.extractCapabilityFromContract().restMethod.toUpperCase();
+		String methodRest = "";
+		
+		
 		
 		
 		//
-		// if (featuresList.contains("Post"))
-		// methodRest = "POST";
-		// else if (featuresList.contains("Get"))
-		// methodRest = "GET";
-		// else if (featuresList.contains("Put"))
-		// methodRest = "PUT";
-		// else if (featuresList.contains("Delete"))
-		// methodRest = "DELETE";
-		// else
-		// throw new GenRESTException("Rest method is not found");
+		 if (capability.isRestGet())
+		 methodRest = "GET";
+		 else if (capability.isRestPost())
+			 methodRest = "POST";
+		 else if (capability.isRestPut())
+			 methodRest = "PUT";
+		 else if (capability.isRestDelete())
+			 methodRest = "DELETE";
+		 else
+		 throw new GeneratingRESTException("Rest method is not found");
+		 
+		 System.out.println(methodRest);
 
 		// System.out.println(configurationGenerating.extractCapabilityFromContract().restMethod);
 
 		Invocation.Builder builder = target.request();
 
-		if (amGenerator.extractCapabilityFromContract().authentification == true) {
+		if (capability.authentification == true) {
 
-			builder.header("username", amGenerator.extractCapabilityFromContract().username);
-			builder.header("password", amGenerator.extractCapabilityFromContract().password);
+			builder.header("username", capability.username);
+			builder.header("password", capability.password);
 		}
 
-		if (amGenerator.extractCapabilityFromContract().twoWayState == true)
+		if (capability.twoWayState == true)
 			builder.header(StateMessagingDP.HeaderName, amGenerator.stateMessagingDP.getState());
 
-		if (amGenerator.extractCapabilityFromContract().synchronous == true) {
+		if (capability.synchronous == true) {
 			Response response = builder.method(methodRest);
 			try {
 				getResponse(response);
@@ -116,7 +125,7 @@ public class RESTFactory {
 
 		}
 
-		if (amGenerator.extractCapabilityFromContract().asynchronous == true) {
+		if (capability.asynchronous == true) {
 			futrureResponse = builder.async().method(methodRest);
 
 			// System.out.println("async1");
@@ -142,21 +151,21 @@ public class RESTFactory {
 		Object resp = null;
 		String state;
 
-		if (amGenerator.extractCapabilityFromContract().stateMessaging == true) {
+		if (capability.stateMessaging == true) {
 			state = response.getHeaderString(StateMessagingDP.HeaderName) + "\n";
 			//
 			// System.out.println("StateHeader: " + state);
 
-			if (amGenerator.extractCapabilityFromContract().stateRepository == true)
+			if (capability.stateRepository == true)
 				amGenerator.stateMessagingDP.setStateInDisk(state);
 
-			if (amGenerator.extractCapabilityFromContract().temporaryMemory == true)
+			if (capability.temporaryMemory == true)
 				amGenerator.stateMessagingDP.setStateInMemory(state);
 		}
 
-		if (amGenerator.extractCapabilityFromContract().getOutputs().size() != 0) {
+		if (capability.getOutputs().size() != 0) {
 
-			String className = amGenerator.contractCapability.dataOutputPkg + "." + amGenerator.extractCapabilityFromContract().dataOutputClassName;
+			String className = amGenerator.contractCapability.dataOutputPkg + "." + capability.dataOutputClassName;
 
 			className = className.trim();
 			Class<?> typeout;

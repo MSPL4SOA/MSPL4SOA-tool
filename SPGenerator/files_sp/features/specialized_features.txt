@@ -6,3 +6,7 @@ Durable
 Authentification
 Capability
 Service
+Post
+Get
+Delete
+Put

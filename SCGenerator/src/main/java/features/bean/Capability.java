@@ -32,7 +32,10 @@ public class Capability {
 
 	// rest
 	public boolean rest;
-	public String restMethod;
+	public boolean restGet;
+	public boolean restPost;
+	public boolean restPut;
+	public boolean restDelete;
 
 	// soap
 	public boolean soap;
@@ -141,8 +144,20 @@ public class Capability {
 		return rest;
 	}
 
-	public String getRestMethod() {
-		return restMethod;
+	public boolean isRestGet() {
+		return restGet;
+	}
+
+	public boolean isRestPost() {
+		return restPost;
+	}
+
+	public boolean isRestPut() {
+		return restPut;
+	}
+	
+	public boolean isRestDelete() {
+		return restDelete;
 	}
 
 	public boolean isSoap() {

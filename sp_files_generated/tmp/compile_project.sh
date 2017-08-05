@@ -1,2 +1,2 @@
-cd ./../sp_files_generated/projects//test/
+cd ./../sp_files_generated/projects//rest3/
 mvn compile

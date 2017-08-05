@@ -20,6 +20,7 @@ import SP_command.output.OutputDataClassName_1_4;
 public interface Resource_restServiceName_1 {
 
 	@POST
+	@GET
 	@Path("/CapabilityName_1_5/{InputName_1_5_1}/{InputName_1_5_2}/")
 	@Produces({ "text/xml" })
 	public Response CapabilityName_1_5(

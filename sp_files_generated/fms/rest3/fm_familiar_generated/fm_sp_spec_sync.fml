@@ -1,0 +1,16 @@
+"ServiceContract": "HostName=http://localhost:8080/rest3" "ProjectName_0=rest3" "Service_1" ;
+Service_1: "Capability_1_1" "ServiceName_1=ServiceName_1" ;
+"Capability_1_1": "StateMessaging_1_1" "InputData_1_1_2" "OutputData_1_1_2" "InputData_1_1_1" "CommunicationTechnologie_1_1" ["Authentification_1_1"] "CapabilityName_1_1=CapabilityName_1_1" "InputDataClassName_1_1=InputDataClassName_1_1" "OutputData_1_1_1" "OutputDataClassName_1_1=OutputDataClassName_1_1" ; 
+"StateMessaging_1_1": "TwoWayState_1_1" ; 
+"InputData_1_1_2": "InputType_1_1_2=Integer" "InputName_1_1_2=InputName_1_1_2" ; 
+"OutputData_1_1_2": "OutputName_1_1_2=OutputName_1_1_2" "OutputType_1_1_2=String" ; 
+"InputData_1_1_1": "InputType_1_1_1=Float" "InputName_1_1_1=InputName_1_1_1" ; 
+"CommunicationTechnologie_1_1": ("SOAP_1_1"|"REST_1_1"|"MOM_1_1") ; 
+"OutputData_1_1_1": "OutputType_1_1_1=String" "OutputName_1_1_1=OutputName_1_1_1" ; 
+"REST_1_1": ("Get_1_1"|"Delete_1_1"|"Put_1_1"|"Post_1_1") ; 
+"MOM_1_1": "AsynchronousQueue_1_1" ["PublishSubscribe_1_1"] "MOMConfiguration_1_1" ; 
+"AsynchronousQueue_1_1": "QueueConfiguration_1_1" ; 
+"PublishSubscribe_1_1": "TopicConfiguration_1_1" ["Durable_1_1"] ; 
+"MOMConfiguration_1_1": "SecurityPrincipal_1_1=guest" "SecurityCredentials_1_1=jboss@dmin88" "ConnectionConsumerFactory_1_1=jms/RemoteConnectionFactory" "InitialContextFactory_1_1=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_1_1=remote://localhost:4447" ; 
+"QueueConfiguration_1_1": "QueueOutJNDI_1_1=rest3_out_queue_1_1" "QueueInJNDI_1_1=rest3_in_queue_1_1" ; 
+"TopicConfiguration_1_1": "TopicJNDI_1_1=rest3_topic_1_1" ;

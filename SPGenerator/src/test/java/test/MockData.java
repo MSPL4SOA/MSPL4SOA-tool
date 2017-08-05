@@ -191,7 +191,7 @@ public class MockData {
 		capability1.stateRepository = true;
 		capability1.soap = true;
 		capability1.rest = true;
-		capability1.restMethod = "Put";
+		capability1.restPut = true;
 		capability1.jms = false;
 		// capability1.broker.capability = capability1;
 		capability1.broker.serviceName = service.interfaceName;
@@ -220,7 +220,7 @@ public class MockData {
 		capability2.stateRepository = false;
 		capability2.soap = true;
 		capability2.rest = true;
-		capability2.restMethod = "Post";
+		capability2.restPost = true;
 		capability2.jms = false;
 		capability2.broker.serviceName = service.interfaceName;
 		capability2.broker.capabilityName = capability2.name;
@@ -294,7 +294,7 @@ public class MockData {
 		capability1.stateRepository = false;
 		capability1.soap = false;
 		capability1.rest = false;
-		capability1.restMethod = "Post";
+		capability1.restPost = true;
 		capability1.jms = true;
 		// capability1.broker.capability = capability1;
 		capability1.broker.serviceName = service.interfaceName;
@@ -324,7 +324,7 @@ public class MockData {
 		capability2.stateRepository = true;
 		capability2.soap = false;
 		capability2.rest = false;
-		capability2.restMethod = "Post";
+		capability2.restPost = true;
 		capability2.jms = true;
 		capability2.broker.serviceName = service.interfaceName;
 		capability2.broker.capabilityName = capability2.name;

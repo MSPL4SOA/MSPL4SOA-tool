@@ -26,9 +26,18 @@ public interface $resourceFileName{
 	#end
 	
 
-	
-	
-	@$capability.restMethod.toUpperCase()
+	#if($capability.restGet == true)
+	@GET
+	#end
+	#if($capability.restPost == true)
+	@POST
+	#end
+	#if($capability.restPut == true)
+	@PUT
+	#end
+	#if($capability.restDelete == true)
+	@DELETE
+	#end
 	@Path("/$capability.name/$inputString")
 	@Produces({ "text/xml" })
 	public 	

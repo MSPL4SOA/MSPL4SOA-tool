@@ -1,10 +1,6 @@
 Root
 CommunicationTechnologie
 AsynchronousQueue
-Post
-Get
-Delete
-Put
 TwoWayState
 StateMessaging
 CapabilityName
