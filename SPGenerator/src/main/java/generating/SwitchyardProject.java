@@ -59,8 +59,11 @@ public class SwitchyardProject {
 	public static final String ATTRIBUTES_SP_CONTENT = util.Functions.readResourceToString(ATTRIBUTES_SP);
 	public static final String REDUCE_COMPLEXITY_FEATURES_SP_CONTENT = util.Functions
 			.readResourceToString(REDUCE_COMPLEXITY_FEATURES_SP);
+	
+	
 	public static final byte[] FILE_ICON_OK_PATH_CONTENT = util.Functions.readResourceToByteArray(FILE_ICON_OK_PATH);
 
+	
 	// // //content
 	// public static final String SPECIALIZED_FEATURES_CONTENT =
 	// util.Functions.fileToString(SPECIALIZED_FEATURES);
@@ -318,8 +321,8 @@ public class SwitchyardProject {
 
 	public void writeConfFiles() {
 		VelocityEngine ve = new VelocityEngine();
-		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
-		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+//		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
+//		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 		ve.init();
 
 		/* add that list to a VelocityContext */

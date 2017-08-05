@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+                    <jms-queue name="test_in_queue_3_3">
+                <entry name="test_in_queue_3_3"/>
+                <entry name="java:jboss/exported/jms/test_in_queue_3_3"/>
+            </jms-queue>
+            <jms-queue name="test_out_queue_3_3">
+                <entry name="test_out_queue_3_3"/>
+                <entry name="java:jboss/exported/jms/test_out_queue_3_3"/>
+            </jms-queue>
+                    <jms-queue name="test_in_queue_3_4">
+                <entry name="test_in_queue_3_4"/>
+                <entry name="java:jboss/exported/jms/test_in_queue_3_4"/>
+            </jms-queue>
+            <jms-queue name="test_out_queue_3_4">
+                <entry name="test_out_queue_3_4"/>
+                <entry name="java:jboss/exported/jms/test_out_queue_3_4"/>
+            </jms-queue>
+                    <jms-queue name="test_in_queue_3_5">
+                <entry name="test_in_queue_3_5"/>
+                <entry name="java:jboss/exported/jms/test_in_queue_3_5"/>
+            </jms-queue>
+            <jms-queue name="test_out_queue_3_5">
+                <entry name="test_out_queue_3_5"/>
+                <entry name="java:jboss/exported/jms/test_out_queue_3_5"/>
+            </jms-queue>
+                    <jms-queue name="test_in_queue_3_6">
+                <entry name="test_in_queue_3_6"/>
+                <entry name="java:jboss/exported/jms/test_in_queue_3_6"/>
+            </jms-queue>
+            <jms-queue name="test_out_queue_3_6">
+                <entry name="test_out_queue_3_6"/>
+                <entry name="java:jboss/exported/jms/test_out_queue_3_6"/>
+            </jms-queue>
+                    <jms-queue name="test_in_queue_3_1">
+                <entry name="test_in_queue_3_1"/>
+                <entry name="java:jboss/exported/jms/test_in_queue_3_1"/>
+            </jms-queue>
+            <jms-queue name="test_out_queue_3_1">
+                <entry name="test_out_queue_3_1"/>
+                <entry name="java:jboss/exported/jms/test_out_queue_3_1"/>
+            </jms-queue>
+                                                    <jms-topic name="test_topic_3_4">
+                <entry name="test_topic_3_4"/>
+                <entry name="java:jboss/exported/jms/test_topic_3_4"/>
+            </jms-topic>
+                                    <jms-topic name="test_topic_3_5">
+                <entry name="test_topic_3_5"/>
+                <entry name="java:jboss/exported/jms/test_topic_3_5"/>
+            </jms-topic>
+                                    <jms-topic name="test_topic_3_6">
+                <entry name="test_topic_3_6"/>
+                <entry name="java:jboss/exported/jms/test_topic_3_6"/>
+            </jms-topic>
+                                    <jms-topic name="test_topic_3_1">
+                <entry name="test_topic_3_1"/>
+                <entry name="java:jboss/exported/jms/test_topic_3_1"/>
+            </jms-topic>
+                        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>

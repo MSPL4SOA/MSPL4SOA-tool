@@ -30,8 +30,8 @@ public class UtilStateFeature {
 
 	public void addState() {
 		VelocityEngine ve = new VelocityEngine();
-		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
-		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+//		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
+//		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 		ve.init();
 
 		/* add that list to a VelocityContext */

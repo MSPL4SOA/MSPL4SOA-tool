@@ -1,0 +1,14 @@
+QueueConfiguration
+QueueInJNDI
+QueueOutJNDI
+MOMConfiguration
+InitialContextFactory
+ProviderUrl
+SecurityPrincipal
+SecurityCredentials
+ConnectionConsumerFactory
+ProjectName_0
+HostName
+ConnectionFactory
+TopicConfiguration
+TopicJNDI

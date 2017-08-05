@@ -2,11 +2,12 @@ package scfactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.ws.rs.client.Client;
@@ -19,23 +20,24 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 
+import familiar.ContractFG;
+import familiar.FMBDD;
+import familiar.FMFactory;
 import familiar.FMFactory;
 import features.bean.Capability;
 import features.bean.Contract;
 import features.bean.Service;
+import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
+import fr.unice.polytech.modalis.familiar.operations.CountingStrategy;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
+import generating.SwitchyardProject;
 import util.FileSearch;
 import util.Functions;
 import util.JavaCodeFormatter;
 
 public class SCProject {
 
-	public Contract contract;
-
-	public String fmSCUpdateFML;
-
-	public String fmSCUpdateFML_eq_;
-
+	
 	public String host;
 
 	public static final ClassLoader SC_PROJECT_CLASS_LOADER = SCProject.class.getClassLoader();
@@ -74,13 +76,29 @@ public class SCProject {
 	public static final String AM_S2T2_DIR_NAME = "am_s2t2/";
 	public static final String CAPABILITY_DIR_NAME = "capability/";
 
+	public Contract contract;
 	public static final String CONTRACT_NAME = "contract.xml";
-	public static final String FM_SC_UPDATE_FML_NAME = "fm_sc_update.fml";
-	public static final String FM_SC_UPDATE_S2T2_NAME = "fm_sc_update.fmprimitives";
-
 	public static String CONTRACT_PATH;
+	
+	public static final String FM_SP_SPEC_SYNC_FML_NAME = "fm_sp_spec_sync.fml";
+	public static final String FM_SP_SPEC_SYNC_S2T2_NAME = "fm_sp_spec_sync.fmprimitives";
+	public String fmSPSpecSyncFML;
+	public String fmSPSpecSyncFMLPath;
+	public String fmSPSpecSyncS2T2Path;
+	
+	
+	public static final String FM_SC_UPDATE_FML_NAME = "fm_sc_sync.fml";
+	public static final String FM_SC_UPDATE_S2T2_NAME = "fm_sc_sync.fmprimitives";
+	public String fmSCUpdateFML;
 	public String fmSCUpdateFMLPath;
-	public static String FM_SC_UPDATE_S2T2_PATH;
+	public String fmSCUpdateS2T2Path;
+
+	public static final String FM_SC_FML_NAME = "fm_sc.fml";
+	public static final String FM_SC_S2T2_NAME = "fm_sc.fmprimitives";
+	public String fmSCFML;
+	public String fmSCFMLPath;
+	public String fmSCS2T2Path;
+	
 
 	// public static String CONTRACT_CONTENT;
 	// public static String FM_SC_UPDATE_FML_CONTENT;
@@ -89,12 +107,10 @@ public class SCProject {
 	public String soapPkg;
 	public String soapDir;
 
-	public FMBDD fmbdd;
-	public FeatureModelVariable fmvFMSCUpdate;
 
 	public static void main(String args[]) {
 		try {
-			SCProject scProject = new SCProject("http://localhost:8080");
+			SCProject scProject = new SCProject("http://localhost:8080/SP_command");
 			scProject.downloadFiles();
 			scProject.configureSC();
 		} catch (Exception e) {
@@ -106,7 +122,6 @@ public class SCProject {
 
 		// http://localhost:8080
 		this.host = host;
-		fmbdd = FMBDD.getInstance();
 
 		// contractPath = FILES_Dir + "contract.xml";
 		// fmSCUpdateFMLPath = FILES_Dir + "fm_sc_update.fml";
@@ -126,6 +141,11 @@ public class SCProject {
 	// }
 
 	public void downloadFiles() {
+		
+		S2T2Converter s2t2Converter = new S2T2Converter();
+		String xmiS2T2 = "";
+
+		
 
 		ClientBuilder.newBuilder();
 		Client client = ClientBuilder.newClient();
@@ -135,70 +155,185 @@ public class SCProject {
 		// target.path("DownloadContract/contract.xml").request().method("GET")
 		// .readEntity(String.class);
 
-		String responseString = target.path("DownloadContract/fm_sc_update.fml").request().method("GET")
+		String responseString = target.path("DownloadContract/" + FM_SP_SPEC_SYNC_FML_NAME).request().method("GET")
 				.readEntity(String.class);
 
-		fmSCUpdateFML = responseString.replaceAll(";", ";\n");
+		// Synchronize FM_SC
 
-		fmSCUpdateFML_eq_ = fmSCUpdateFML;
+		fmSPSpecSyncFML = responseString.replaceAll(";", ";\n");
 
 		try {
-			contract = FMFactory.convertFMSCUpdateToContractXML(fmSCUpdateFML_eq_);
+			ContractFG contractFGFmSPSpecSync = FMFactory.extractContractFG(fmSPSpecSyncFML);
+
+//			int idService = 1;
+//			int idCapability = 1;
+//			System.out.println(contractFGFmSPSpecSync.serviceFGs.get(idService).id);
+//			System.out.println(contractFGFmSPSpecSync.serviceFGs.get(idService).name);
+//			System.out.println(contractFGFmSPSpecSync.serviceFGs.get(idService).capabilityFGs.get(idCapability).id);
+//			System.out.println(contractFGFmSPSpecSync.serviceFGs.get(idService).capabilityFGs.get(idCapability).name);
+//
+//			System.out.println(
+//					contractFGFmSPSpecSync.serviceFGs.get(idService).capabilityFGs.get(idCapability).inputDataCount);
+//			System.out.println(
+//					contractFGFmSPSpecSync.serviceFGs.get(idService).capabilityFGs.get(idCapability).outputDataCount);
+
+			FMFactory fmFactory = new FMFactory();
+			fmFactory.contractFG = contractFGFmSPSpecSync;
+			fmFactory.buildFMs();
+
+//			System.out.println("**************");
+//
+//			ContractFG contractFGFmSC = FMFactoryTODO.extractContractFG(fmFactory._fmSC);
+//			System.out.println(contractFGFmSC.serviceFGs.get(idService).id);
+//			System.out.println(contractFGFmSC.serviceFGs.get(idService).name);
+//			System.out.println(contractFGFmSC.serviceFGs.get(idService).capabilityFGs.get(idCapability).id);
+//			System.out.println(contractFGFmSC.serviceFGs.get(idService).capabilityFGs.get(idCapability).name);
+//
+//			System.out.println(contractFGFmSC.serviceFGs.get(idService).capabilityFGs.get(idCapability).inputDataCount);
+//			System.out
+//					.println(contractFGFmSC.serviceFGs.get(idService).capabilityFGs.get(idCapability).outputDataCount);
+
+			// System.out.println(fmFactory._fmSC);
+			// System.exit(-1);
+
+			fmFactory.specializedAttributedFMSP = fmSPSpecSyncFML;
+
+			fmFactory.specializedFMSP = FMFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP);
+
+			fmSCFML = fmFactory._fmSC;
+
+			Set<String> fmSCFMVSharedFeatureSet = FMFactory
+					.getSharedFeatures(FMBDD.getInstance().FM("fmc", fmFactory._fmSC));
+
+			FeatureModelVariable fmSPSpecDeleteAttributeFMV = FMBDD.getInstance().FM("fmspd",
+					FMFactory.deleteAttributesValues(fmFactory.specializedFMSP.toString()));
+
+			// System.out.println(fmSPSpecDeleteAttributeFMV.toString());
+			// System.out.println(fmSCFMVSharedFeatureSet);
+			// System.exit(-1);
+
+			Set<String> omittedSharedFeatures = com.google.common.collect.Sets.difference(fmSCFMVSharedFeatureSet,
+					fmSPSpecDeleteAttributeFMV.features().names());
+
+			// System.out.println(omittedSharedFeatures);
+			// System.out.println(fmSPSpecDeleteAttributeFMV.toString());
+			// System.out.println(fmSCFMVSharedFeatureSet);
+			// System.exit(-1);
+
+			// System.out.println("**************** to delete
+			// ****************");
+			// System.out.println(omittedSharedFeatures);
+
+			// Set<String> featureSetToSlice = com.google.common.collect.Sets
+			// .difference(fmSPSpecDeleteAttributeFMV.features().names(),
+			// fmSCFMVSharedFeatureSet);
+
+			// Set<String> featureSetToSlice = Collections.<String>emptySet();
+
+			Set<String> featureSetToSlice = FMFactory.getCorrespondingFeatures(
+					fmSPSpecDeleteAttributeFMV.features().names(), SwitchyardProject.INTERNAL_FEATURES_SC_CONTENT);
+
+			// System.out.println("**************** to slice ****************");
+			// System.out.println(featureSetToSlice);
+
+			System.out.println("\n\n*********** Creating fm_sc_sync ***************\n\n");
+
+			fmFactory.updatedAttributedFMSC = FMFactory.updateAndDelete2(fmFactory._fmSC,
+					fmFactory.specializedAttributedFMSP, omittedSharedFeatures, true, featureSetToSlice);
+
+			fmSCUpdateFML = fmFactory.updatedAttributedFMSC;
+
+			// fmSCUpdateFMLPath = FILES_GENERATED_DIR + FM_SC_UPDATE_FML_NAME;
+			// Functions.stringToFile(fmSCUpdateFML, fmSCUpdateFMLPath, false);
+
+			 
+			
+//			 FeatureModelVariable fmvSCReduce = FMBDD.getInstance().FM("fm",
+//			 FMFactory.reduceComplexitySP(fmSCUpdateFML.toString()));
+//			 int amsCount = (int)
+//			 fmvSCReduce.counting(CountingStrategy.SAT_FML) / 2;
+//			 System.out.println(amsCount);
+			
+	
+
+			// System.exit(-1);
+
+			//
+
+			// System.out.println(fmSCUpdateFML_eq_);
+
+			contract = FMFactory.convertFMSCUpdateToContractXML(fmSCUpdateFML);
+
+			// format file
+
+
+			// contract.host = this.host;
+			// CONTRACT_PATH = TMP_DIR + "/" + CONTRACT_NAME;
+			// Functions.stringToFile(responseString, CONTRACT_PATH, false);
+
+			// contract = (Contract) util.JAXBUtil.unmarshall(CONTRACT_PATH,
+			// Contract.class);
+			// contract.host = this.host;
+
+			System.out.println(contract.projectName);
+
+			//
+			FILES_GENERATED_DIR += contract.projectName + "/";
+			AM_DIR = FILES_GENERATED_DIR + AM_DIR_NAME;
+			AM_S2T2_DIR = FILES_GENERATED_DIR + AM_S2T2_DIR_NAME;
+			CAPABILITY_DIR = FILES_GENERATED_DIR + CAPABILITY_DIR_NAME;
+			CONTRACT_PATH = FILES_GENERATED_DIR + CONTRACT_NAME;
+			
+			System.out.println(CONTRACT_PATH);
+
+			Functions.mkdirIfExist(FILES_GENERATED_DIR);
+			Functions.mkdirIfExist(AM_DIR);
+			Functions.mkdirIfExist(AM_S2T2_DIR);
+			Functions.mkdirIfExist(CAPABILITY_DIR);
+			//
+
+			//FM_SC_sync
+			fmSCUpdateFMLPath = FILES_GENERATED_DIR + FM_SC_UPDATE_FML_NAME;
+			fmSCUpdateS2T2Path = FILES_GENERATED_DIR + FM_SC_UPDATE_S2T2_NAME;
+			Functions.stringToFile(fmSCUpdateFML, fmSCUpdateFMLPath, false);
+			xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update", fmSCUpdateFML));
+			Functions.stringToFile(xmiS2T2, fmSCUpdateS2T2Path, false);
+			//
+			
+			//FM_SC
+			fmSCFMLPath = FILES_GENERATED_DIR + FM_SC_FML_NAME;
+			fmSCS2T2Path = FILES_GENERATED_DIR + FM_SC_S2T2_NAME;
+			Functions.stringToFile(fmSCFML, fmSCFMLPath, false);
+			xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc", fmSCFML));
+			Functions.stringToFile(xmiS2T2, fmSCS2T2Path, false);
+			//
+			
+			//FM_SP_sync
+			fmSPSpecSyncFMLPath = FILES_GENERATED_DIR + FM_SP_SPEC_SYNC_FML_NAME;
+			fmSPSpecSyncS2T2Path = FILES_GENERATED_DIR + FM_SP_SPEC_SYNC_S2T2_NAME;
+			Functions.stringToFile(fmSPSpecSyncFML, fmSPSpecSyncFMLPath, false);
+			xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec_sync", fmSPSpecSyncFML));
+			Functions.stringToFile(xmiS2T2, fmSPSpecSyncS2T2Path, false);
+			//
+			
+			util.JAXBUtil.marshall(contract, CONTRACT_PATH);
+
+			// ----------------------//
+
+			// Functions.stringToFile(
+			// fmBDD.FM("fm_sc_update", responseString).toString(),
+			// fmSCUpdateFMLPath, false);
+
+			// ----------------------//
+
+//			responseString = target.path("DownloadContract/" + FM_SC_UPDATE_S2T2_NAME).request().method("GET")
+//					.readEntity(String.class);
+//			Functions.stringToFile(responseString, fmSCUpdateS2T2Path, false);
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		// format file
-
-		try {
-			fmvFMSCUpdate = fmbdd.FM("fmscupdate", fmSCUpdateFML_eq_);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// contract.host = this.host;
-		// CONTRACT_PATH = TMP_DIR + "/" + CONTRACT_NAME;
-		// Functions.stringToFile(responseString, CONTRACT_PATH, false);
-
-		// contract = (Contract) util.JAXBUtil.unmarshall(CONTRACT_PATH,
-		// Contract.class);
-		// contract.host = this.host;
-
-		System.out.println(contract.projectName);
-
-		//
-		FILES_GENERATED_DIR += contract.projectName + "/";
-		AM_DIR = FILES_GENERATED_DIR + AM_DIR_NAME;
-		AM_S2T2_DIR = FILES_GENERATED_DIR + AM_S2T2_DIR_NAME;
-		CAPABILITY_DIR = FILES_GENERATED_DIR + CAPABILITY_DIR_NAME;
-		CONTRACT_PATH = FILES_GENERATED_DIR + CONTRACT_NAME;
-		fmSCUpdateFMLPath = FILES_GENERATED_DIR + FM_SC_UPDATE_FML_NAME;
-		FM_SC_UPDATE_S2T2_PATH = FILES_GENERATED_DIR + FM_SC_UPDATE_S2T2_NAME;
-
-		System.out.println(CONTRACT_PATH);
-
-		Functions.mkdirIfExist(FILES_GENERATED_DIR);
-		Functions.mkdirIfExist(AM_DIR);
-		Functions.mkdirIfExist(AM_S2T2_DIR);
-		Functions.mkdirIfExist(CAPABILITY_DIR);
-		//
-
-		Functions.stringToFile(fmSCUpdateFML, fmSCUpdateFMLPath, false);
-		util.JAXBUtil.marshall(contract, CONTRACT_PATH);
-
-		// ----------------------//
-
-		// Functions.stringToFile(
-		// fmBDD.FM("fm_sc_update", responseString).toString(),
-		// fmSCUpdateFMLPath, false);
-
-		// ----------------------//
-
-		responseString = target.path("DownloadContract/fm_sc_update.fmprimitives").request().method("GET")
-				.readEntity(String.class);
-		Functions.stringToFile(responseString, FM_SC_UPDATE_S2T2_PATH, false);
 
 	}
 

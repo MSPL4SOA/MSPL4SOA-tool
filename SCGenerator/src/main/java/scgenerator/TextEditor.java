@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -20,19 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import familiar.FMBDD;
 import familiar.FMFactory;
-import features.bean.Capability;
-import features.bean.Input;
-import features.bean.Service;
 import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
-import fr.unice.polytech.modalis.familiar.operations.Mode;
 import fr.unice.polytech.modalis.familiar.variable.Comparison;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
-import fr.unice.polytech.modalis.familiar.variable.SetVariable;
 import gsd.synthesis.FeatureModel;
 import scfactory.SCGenerator;
-import scfactory.SCGeneratorException;
-import scfactory.FMBDD;
 import scfactory.SCProject;
 
 public class TextEditor {

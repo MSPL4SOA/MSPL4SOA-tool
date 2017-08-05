@@ -29,6 +29,10 @@ import javax.swing.SwingUtilities;
 
 import org.apache.commons.io.IOUtils;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+
 /**
  *
  * @author akram
@@ -50,29 +54,40 @@ public class Functions {
 	}
 
 	public static String readResourceToString(String filePath) {
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		InputStream is = classloader.getResourceAsStream(filePath);
-		try {
-			return IOUtils.toString(is, "UTF-8");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// ClassLoader classloader =
+		// Thread.currentThread().getContextClassLoader();
+		// InputStream is = classloader.getResourceAsStream(filePath);
+		// try {
+		// return IOUtils.toString(is, "UTF-8");
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+		// return null;
 
-		return null;
+		return fileToString(filePath);
 	}
 
 	public static byte[] readResourceToByteArray(String filePath) {
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		InputStream is = classloader.getResourceAsStream(filePath);
+//		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+//		InputStream is = classloader.getResourceAsStream(filePath);
+//		try {
+//			return IOUtils.toByteArray(is);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		byte[] data = null;
+		Path path = Paths.get(filePath);
 		try {
-			return IOUtils.toByteArray(is);
+			data = Files.readAllBytes(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return null;
+		return data;
 	}
 
 	public static void copyFile(String fileInPath, String fileOutPath) {

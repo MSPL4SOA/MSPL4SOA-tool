@@ -26,15 +26,14 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 
+import familiar.FMBDD;
 import familiar.FMFactory;
 import fr.unice.polytech.modalis.familiar.fm.converter.S2T2Converter;
 import fr.unice.polytech.modalis.familiar.operations.CountingStrategy;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
-import gsd.synthesis.FeatureModel;
 import mock.MockData;
 import scfactory.SCGenerator;
-import scfactory.FMBDD;
 import scfactory.SCProject;
 import util.Functions;
 
@@ -44,8 +43,6 @@ public class MainGui {
 	private JTextField hostTextField;
 
 	private SCProject scProject;
-
-	private FMBDD fmbdd;
 
 	/**
 	 * Launch the application.
@@ -68,7 +65,6 @@ public class MainGui {
 	 */
 	public MainGui() {
 
-		fmbdd = FMBDD.getInstance();
 		initialize();
 	}
 
@@ -94,7 +90,7 @@ public class MainGui {
 		scAMbtnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				AMSC scam = new AMSC(frame, scProject, fmbdd);
+				AMSC scam = new AMSC(frame, scProject);
 				scam.createSCAM();
 				scamArray.add(scam);
 
@@ -268,7 +264,7 @@ public class MainGui {
 			public void actionPerformed(ActionEvent e) {
 
 				util.Functions
-						.execExtProg("java -jar " + SCProject.S2T2_JAR_PATH + " " + SCProject.FM_SC_UPDATE_S2T2_PATH);
+						.execExtProg("java -jar " + SCProject.S2T2_JAR_PATH + " " + scProject.fmSCUpdateS2T2Path);
 			}
 		});
 
@@ -306,7 +302,7 @@ public class MainGui {
 
 						String confResult = MockData.setAttributes(conf);
 
-						AMSC amsc = new AMSC(frame, scProject, FMBDD.getInstance());
+						AMSC amsc = new AMSC(frame, scProject);
 						amsc.createSCAM();
 
 						amsc.valid = true;
@@ -315,7 +311,7 @@ public class MainGui {
 						// FeatureModelVariable fmvAM = amsc.fmbdd.FM("am",
 						// confResult);
 
-						FeatureModelVariable fmvAM = amsc.fmbdd.FM("am", confResult);
+						FeatureModelVariable fmvAM = FMBDD.getInstance().FM("am", confResult);
 
 						String amID = SCGenerator.getFeatureValue(fmvAM, "ServiceName") + "_"
 								+ SCGenerator.getFeatureValue(fmvAM, "CapabilityName") + "_" + AMSC.amSCValidNumber++;
@@ -323,8 +319,6 @@ public class MainGui {
 						amsc.amFilePath = SCProject.AM_DIR + amID + ".fml";
 						util.Functions.stringToFile(confResult, amsc.amFilePath, false);
 
-						// amsc.capabilityPath = SCProject.CAPABILITY_Dir +
-						// "capability_" + amID + ".xml";
 
 						S2T2Converter s2t2Converter = new S2T2Converter();
 

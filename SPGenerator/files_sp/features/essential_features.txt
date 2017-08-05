@@ -18,7 +18,7 @@ OutputData
 OutputName
 OutputType
 MOMConfiguration
-InitialContextFactor
+InitialContextFactory
 ProviderUrl
 SecurityCredentials
 SecurityPrincipal

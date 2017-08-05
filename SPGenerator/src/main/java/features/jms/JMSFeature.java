@@ -125,8 +125,8 @@ public class JMSFeature {
 
 	public void addCamelRouterJava() {
 		VelocityEngine ve = new VelocityEngine();
-		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
-		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+//		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
+//		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 		ve.init();
 
 		/* add that list to a VelocityContext */
@@ -160,8 +160,8 @@ public class JMSFeature {
 
 	public void addJMSInterface() {
 		VelocityEngine ve = new VelocityEngine();
-		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
-		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+//		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
+//		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 		ve.init();
 
 		/* add that list to a VelocityContext */
@@ -278,8 +278,8 @@ public class JMSFeature {
 
 	public void addJMSXML() {
 		VelocityEngine ve = new VelocityEngine();
-		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
-		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+//		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath"); 
+//		ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 		ve.init();
 
 		/* add that list to a VelocityContext */

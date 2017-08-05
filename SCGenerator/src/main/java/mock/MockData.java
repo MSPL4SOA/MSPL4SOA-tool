@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang.RandomStringUtils;
 
+import familiar.FMBDD;
 import familiar.FMFactory;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.SetVariable;
-import scfactory.FMBDD;
 import scfactory.SCProject;
 import util.Functions;
 

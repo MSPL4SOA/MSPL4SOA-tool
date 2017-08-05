@@ -18,7 +18,7 @@ OutputData
 OutputName
 OutputType
 MOMConfiguration
-InitialContextFactor
+InitialContextFactory
 ProviderUrl
 SecurityCredentials
 SecurityPrincipal
@@ -28,3 +28,5 @@ QueueConfiguration
 QueueInJNDI
 QueueOutJNDI
 ConnectionConsumerFactory
+ProjectName_0
+HostName

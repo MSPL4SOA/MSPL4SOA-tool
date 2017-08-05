@@ -2,3 +2,6 @@ InputData
 OutputData
 ServiceName
 CapabilityName
+MOMConfiguration
+TopicConfiguration
+MOMConfiguration

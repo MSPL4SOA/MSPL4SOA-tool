@@ -58,7 +58,7 @@ public class MainGui {
 	
 	public static String PROJECT_NAME = "";
 
-	public static final String FILES_GENERATED_PATH = "./files_generated/";
+	public static final String FILES_GENERATED_PATH = "./../sp_files_generated/";
 
 	public static String projectsDirPath = FILES_GENERATED_PATH + "projects/";
 
@@ -70,12 +70,13 @@ public class MainGui {
 
 	private String filesContractPath = "contract_generated/";
 
-	private String fmSPFileName = "fm_sp";
+	public static final String fmSPFileName = "fm_sp";
 
-	private String fmSCFileName = "fm_sc";
-	private String fmSPSpecFileName = "fm_sp_spec";
+	public static final String fmSCFileName = "fm_sc";
+	public static final String fmSPSpecFileName = "fm_sp_spec";
+	public static final String fmSPSpecSyncFileName = "fm_sp_spec_sync";
 
-	private String fmSCUpdatedFileName = "fm_sc_update";
+	public static final String fmSCUpdatedFileName = "fm_sc_sync";
 
 	private JLabel lblScUpdatedFm;
 
@@ -327,6 +328,9 @@ public class MainGui {
 				textEditor.setSpSpecializedFMFamiliarFilePath(filesFMLPath + fmSPSpecFileName + ".fml");
 				textEditor.setSpSpecializedFMS2T2FilePath(filesS2T2Path + fmSPSpecFileName + ".fmprimitives");
 
+				textEditor.setFmSPSpecSyncFamiliarFilePath(filesFMLPath + fmSPSpecSyncFileName + ".fml");
+				textEditor.setFmSPSpecSyncS2T2FilePath(filesS2T2Path + fmSPSpecSyncFileName + ".fmprimitives");
+				
 				textEditor.setScUpdatedFMFamiliarFilePath(filesFMLPath + fmSCUpdatedFileName + ".fml");
 				textEditor.setScUpdatedFMS2T2FilePath(filesS2T2Path + fmSCUpdatedFileName + ".fmprimitives");
 
@@ -353,7 +357,7 @@ public class MainGui {
 			public void actionPerformed(ActionEvent e) {
 
 				util.Functions.execExtProg("java -jar " + SwitchyardProject.S2T2_JAR_PATH + " " + filesS2T2Path
-						+ fmSCUpdatedFileName + ".fmprimitives");
+						+ fmSPSpecSyncFileName + ".fmprimitives");
 			}
 		});
 
@@ -363,17 +367,17 @@ public class MainGui {
 
 				TextEditor textEditor = new TextEditor();
 
-				System.out.println(filesFMLPath + fmSCUpdatedFileName + ".fml");
+				System.out.println(filesFMLPath + fmSPSpecSyncFileName + ".fml");
 				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSCUpdatedFileName + ".fml"));
-				textEditor.setTitle("FM SC sync in " + filesFMLPath + fmSCUpdatedFileName + ".fml");
+						util.Functions.fileToString(filesFMLPath + fmSPSpecSyncFileName + ".fml"));
+				textEditor.setTitle("FM SP spec-sync in " + filesFMLPath + fmSPSpecSyncFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
 				textEditor.getFrame().setVisible(true);
 			}
 		});
 
-		lblScUpdatedFm = new JLabel("FM SC sync :");
+		lblScUpdatedFm = new JLabel("FM SP spec-sync :");
 
 		lblScUpdatedFm.setVisible(false);
 		scUpdateFamiliarButton.setVisible(false);
@@ -500,14 +504,34 @@ public class MainGui {
 					//
 					// Contract is exported above
 					util.Functions.stringToFile(fmFactory.updatedAttributedFMSC,
-							switchyardProject.contractDirPath + "fm_sc_update.fml", false);
-
+							switchyardProject.contractDirPath + fmSCUpdatedFileName + ".fml", false);
+					//
+					util.Functions.stringToFile(fmFactory.fmSPSpecSync,
+							switchyardProject.contractDirPath + fmSPSpecSyncFileName + ".fml", false);
+					//
+					util.Functions.stringToFile(fmFactory.specializedAttributedFMSP,
+							switchyardProject.contractDirPath + fmSPSpecFileName + ".fml", false);
+					//
+					util.Functions.stringToFile(fmFactory._fmSP,
+							switchyardProject.contractDirPath + fmSPFileName + ".fml", false);
+					//
+					util.Functions.stringToFile(fmFactory._fmSC,
+							switchyardProject.contractDirPath + fmSCFileName + ".fml", false);
+					
 					S2T2Converter s2t2Converter = new S2T2Converter();
+					
+					//fm_sc_update
 					String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("updatedAttributedFMSC",
 							fmFactory.updatedAttributedFMSC));
 					util.Functions.stringToFile(xmiS2T2,
 							switchyardProject.contractDirPath + fmSCUpdatedFileName + ".fmprimitives", false);
 
+					//fm_sp_spec_sync
+					s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec_sync",
+							fmFactory.fmSPSpecSync));
+					util.Functions.stringToFile(xmiS2T2,
+							switchyardProject.contractDirPath + fmSPSpecSyncFileName + ".fmprimitives", false);
+					
 					// ok dialog
 					System.out.println("The SP artifacts are generated");
 					JOptionPane.showMessageDialog(null, "The SP artifacts have been generated", "OK",
@@ -777,6 +801,12 @@ public class MainGui {
 								JOptionPane.showMessageDialog(null, "Error: Please enter number bigger than 0",
 										"Error Massage", JOptionPane.ERROR_MESSAGE);
 							} else {
+								
+								
+//								final JButton autoFillInputOutputJButton = new JButton("Auto fill input output");
+//								autoFillInputOutputJButton.setBounds(25 + xAbs, yAbs, 140, 25);
+//								autoFillInputOutputJButton.setEnabled(true);
+//								panel1.add(autoFillInputOutputJButton);
 
 								// int serviceCount = Integer.parseInt(in);
 
@@ -821,6 +851,9 @@ public class MainGui {
 										inputJTextField.setBounds(110 + xAbsCapability, yAbsCapability + 20, 29, 19);
 										panel1.add(inputJTextField);
 										inputJTextField.setColumns(10);
+//										inputJTextField.setText("" + (int) (Math.random()*10));
+										
+										
 
 										inputCountTempJTextField.add(inputJTextField);
 
@@ -833,6 +866,7 @@ public class MainGui {
 										outputJTextField.setBounds(110 + xAbsCapability, yAbsCapability + 50, 29, 19);
 										panel1.add(outputJTextField);
 										outputJTextField.setColumns(10);
+//										outputJTextField.setText("" + (int) (Math.random()*10));
 
 										outputCountTempJTextField.add(outputJTextField);
 

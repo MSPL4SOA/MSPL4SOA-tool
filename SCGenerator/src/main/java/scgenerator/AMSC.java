@@ -12,18 +12,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import familiar.FMBDD;
 import familiar.FMFactory;
 import fr.unice.polytech.modalis.familiar.fm.FMLUtils;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import fr.unice.polytech.modalis.familiar.variable.Variable;
 import gsd.synthesis.FeatureModel;
 import mock.MockData;
-import scfactory.FMBDD;
 import scfactory.SCGenerator;
 import scfactory.SCProject;
 import util.Functions;
 
-public class AMSC {
+public class AMSC { 
 
 	public JLabel lblScAm;
 	public JButton scFamiliarBtn;
@@ -32,8 +32,6 @@ public class AMSC {
 
 	public JFrame frame;
 	public SCProject scProject;
-
-	public FMBDD fmbdd;
 
 	public String amFilePath;
 	public boolean valid;
@@ -52,17 +50,24 @@ public class AMSC {
 	// public Capability capability;
 	// public String capabilityPath;
 
-	public AMSC(JFrame frame, final SCProject scProject, final FMBDD fmbdd) {
+//	public AMSC(final SCProject scProject, final FMBDD fmbdd) {
+//		
+//		this.scProject = scProject;
+//		this.fmbdd = fmbdd;
+//		this.amS2T2FilePath = SCProject.FM_SC_UPDATE_S2T2_PATH;
+//		scAMNumber++;
+//	}
+	
+	public AMSC(JFrame frame, final SCProject scProject) {
 
 		this.scProject = scProject;
 		this.frame = frame;
-		this.fmbdd = fmbdd;
 		lblScAm = new JLabel("AM SC sync " + scAMNumber + " :");
 		scFamiliarBtn = new JButton("Familiar");
 		generateBtn = new JButton("Generate a random AM SC sync");
 		s2t2Btn = new JButton("S2T2");
 
-		this.amS2T2FilePath = SCProject.FM_SC_UPDATE_S2T2_PATH;
+		this.amS2T2FilePath = scProject.fmSCUpdateS2T2Path;
 
 		final String fmToConfigure;
 		if (valid == false)
@@ -141,7 +146,7 @@ public class AMSC {
 
 		String capabilityFeature = "Capability_" + (serviceNumber + 1) + "_" + (capabilityNumber + 1);
 
-		FeatureModelVariable fmvFM = FMBDD.getInstance().FM("fm", scProject.fmSCUpdateFML_eq_);
+		FeatureModelVariable fmvFM = FMBDD.getInstance().FM("fm", scProject.fmSCUpdateFML);
 
 		FeatureModel<String> capabilityFM = fmvFM.extract(capabilityFeature);
 
@@ -204,7 +209,7 @@ public class AMSC {
 				+ FMFactory.getServiceFeatures(fmvFM, serviceFeature) + FMFactory.addQuote(capabilityFeature) + ";\n"
 				+ FMFactory.addQuote(capabilityFeature) + ": " + confCapability + ";";
 
-		String confResult = MockData.setAttributes(conf);
+		String confResult = MockData.setAttributes(conf); 
 
 		return confResult;
 	}

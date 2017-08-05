@@ -59,18 +59,28 @@ public class FMFactory {
 	public String updatedFMSC;
 	public String updatedAttributedFMSC;
 
+	public String fmSPSpecSync;
+
 	public String mockSPSpec = "";
 
 	// public Contract contract;
 
 	/// MockSPSpec
 
+	public static String mockMOMWithOutput() {
+		if (Math.random() > 0.3) {
+			return "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);" + "REST@@: Get@@;"
+					+ "MOM@@: AsynchronousQueue@@ [PublishSubscribe@@] Reliability@@;"
+					+ "PublishSubscribe@@: [Durable@@];" + "Reliability@@: PersistentDelivery@@ Acknowledgement@@;";
+		}
+
+		return "CommunicationTechnologie@@: (SOAP@@|REST@@);" + "REST@@: Post@@;";
+	}
+
 	public String setMockSPSpecCapabilityWithOutput(int serviceNumber, int capabilityNumber) {
 
 		String result = "Capability@@: @InputData@ @OutputData@ CommunicationTechnologie@@ [Authentification@@] ServiceState@@ CapabilityName@@;"
-				+ "CommunicationTechnologie@@: (SOAP@@|REST@@|MOM@@);" + "REST@@: Get@@;"
-				+ "MOM@@: AsynchronousQueue@@ [PublishSubscribe@@] Reliability@@;" + "PublishSubscribe@@: [Durable@@];"
-				+ "Reliability@@: PersistentDelivery@@ Acknowledgement@@;"
+				+ mockMOMWithOutput()
 				+ "ServiceState@@: StateMessaging@@ StatefulService@@;" + "StateMessaging@@: TwoWayState@@;"
 				+ "StatefulService@@: StateRepository@@;";
 
@@ -799,7 +809,9 @@ public class FMFactory {
 
 		}
 
-		result += ").*";
+		result += ")";
+		
+		result += "|" + result + "_.*";
 
 		return result;
 	}
@@ -1078,7 +1090,6 @@ public class FMFactory {
 
 				capabilityFGResult.id = capabilityFGToUpdate.name.substring(capabilityFGToUpdate.name.indexOf("_"));
 
-				
 				// toupdate
 				FeatureModelVariable capabilityFGToUpdateFMV = FMBDD.getInstance().FM("capabilityFGToUpdate",
 						capabilityFGToUpdate.capabilityFM);
@@ -1113,8 +1124,7 @@ public class FMFactory {
 
 				System.out.println(capabilitySliced);
 
-
-				//to avoid inserting the features to slice
+				// to avoid inserting the features to slice
 				for (FeatureInsert featureInsert : featuresReducedToUpdate) {
 
 					for (String feature : featureInsert.fmvToInsert.features().names()) {
@@ -1123,7 +1133,7 @@ public class FMFactory {
 							featureInsert.fmvToInsert.removeFeature(feature);
 					}
 				}
-				
+
 				capabilityFGResult.capabilityFM = capabilitySliced.toString();
 
 				capabilityFGResult.capabilityFM = insertFeatures(capabilitySliced.toString(), featuresReducedToUpdate);
@@ -1325,20 +1335,26 @@ public class FMFactory {
 
 								// String cst = "";
 
-//								if (capabilityUpdatedFMV.features().names()
-//										.contains("Acknowledgement" + capabilityFGToUpdate.id)
-//										&& capabilityUpdatedFMV.features().names()
-//												.contains("Transactional" + capabilityFGToUpdate.id)) {
-//									
-//									contractFGResult.csts += "MOM@@ implies (Transactional@@ or Acknowledgement@@)".
-//											 replaceAll("@@", capabilityFGToUpdate.id) + ";\n";
-//
-//									contractFGResult.csts += "(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@",
-//									 capabilityFGToUpdate.id) + ";\n";
-//
-//								}
-								
-//								addPropositionalConstraints(capabilityUpdatedFMV, capabilityFGToUpdate, contractFGResult);
+								// if (capabilityUpdatedFMV.features().names()
+								// .contains("Acknowledgement" +
+								// capabilityFGToUpdate.id)
+								// && capabilityUpdatedFMV.features().names()
+								// .contains("Transactional" +
+								// capabilityFGToUpdate.id)) {
+								//
+								// contractFGResult.csts += "MOM@@ implies
+								// (Transactional@@ or Acknowledgement@@)".
+								// replaceAll("@@", capabilityFGToUpdate.id) +
+								// ";\n";
+								//
+								// contractFGResult.csts += "(Acknowledgement@@
+								// -> !Transactional@@)".replaceAll("@@",
+								// capabilityFGToUpdate.id) + ";\n";
+								//
+								// }
+
+								// addPropositionalConstraints(capabilityUpdatedFMV,
+								// capabilityFGToUpdate, contractFGResult);
 
 								System.out.println(capabilityUpdatedFMV + "\n");
 
@@ -1873,7 +1889,7 @@ public class FMFactory {
 	public static String buildFMV(ContractFG contractFG, String fm) throws Exception {
 
 		String result = SC_ROOT + ": ";
-//		String csts = "";
+		// String csts = "";
 
 		FeatureModelVariable fmv = FMBDD.getInstance().FM("fmi", fm);
 
@@ -1922,26 +1938,24 @@ public class FMFactory {
 
 				FeatureModelVariable fmvCapability = FMBDD.getInstance().FM("fmv", capabilityFG.capabilityFM);
 
-//				for (Expression<String> constraint : fmvCapability.getFm().getConstraints()) {
-//
-//					csts += constraint + ";\n";
-//				}
-//
+				// for (Expression<String> constraint :
+				// fmvCapability.getFm().getConstraints()) {
+				//
+				// csts += constraint + ";\n";
+				// }
+				//
 				fmvCapability.removeAllConstraints();
-				
 
-				
 				addPropositionalConstraints(fmvCapability, capabilityFG, contractFG);
-
 
 				result += fmvCapability.toString();
 
 			}
 		}
-		
+
 		System.out.println("ezaea: " + contractFG.csts);
 
-//		result += csts + contractFG.csts;
+		// result += csts + contractFG.csts;
 		result += "\n" + contractFG.csts;
 		return result;
 
@@ -2082,7 +2096,8 @@ public class FMFactory {
 							options);
 				}
 
-//				addPropositionalConstraints(fmCapabilityFMV, capabilityFG, contractFG);
+				// addPropositionalConstraints(fmCapabilityFMV, capabilityFG,
+				// contractFG);
 
 				capabilityFG.capabilityFM = fmCapabilityFMV.toString();
 
@@ -2091,29 +2106,24 @@ public class FMFactory {
 		}
 		return buildFMV(contractFG, fmv.toString());
 	}
-	
-	
-	public static void addPropositionalConstraints(FeatureModelVariable fmCapabilityFMV, CapabilityFG capabilityFG,
-			ContractFG contractFG)
-	{
-		
-//		System.out.println();
-//		System.out.println();
-//		System.out.println(fmCapabilityFMV.features().names());
-//		System.out.println(capabilityFG.id);
-//		
-//		System.exit(-1);
-		
-		if (fmCapabilityFMV.features().names()
-				.contains("Acknowledgement" + capabilityFG.id)
-				&& fmCapabilityFMV.features().names()
-						.contains("Transactional" + capabilityFG.id)) {
-			
-			contractFG.csts += "MOM@@ implies (Transactional@@ or Acknowledgement@@)".
-					 replaceAll("@@", capabilityFG.id) + ";\n";
 
-			contractFG.csts += "(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@",
-					capabilityFG.id) + ";\n";
+	public static void addPropositionalConstraints(FeatureModelVariable fmCapabilityFMV, CapabilityFG capabilityFG,
+			ContractFG contractFG) {
+
+		// System.out.println();
+		// System.out.println();
+		// System.out.println(fmCapabilityFMV.features().names());
+		// System.out.println(capabilityFG.id);
+		//
+		// System.exit(-1);
+
+		if (fmCapabilityFMV.features().names().contains("Acknowledgement" + capabilityFG.id)
+				&& fmCapabilityFMV.features().names().contains("Transactional" + capabilityFG.id)) {
+
+			contractFG.csts += "MOM@@ implies (Transactional@@ or Acknowledgement@@)".replaceAll("@@", capabilityFG.id)
+					+ ";\n";
+
+			contractFG.csts += "(Acknowledgement@@ -> !Transactional@@)".replaceAll("@@", capabilityFG.id) + ";\n";
 
 		}
 	}

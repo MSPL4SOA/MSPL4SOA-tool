@@ -4,11 +4,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
+import familiar.FMBDD;
 import familiar.FMFactory;
 import features.bean.Capability;
 import features.bean.Contract;
-import features.bean.Input;
-import features.bean.Service;
 import fr.unice.polytech.modalis.familiar.variable.FeatureModelVariable;
 import jms.JMSFactory;
 import rest.RESTFactory;

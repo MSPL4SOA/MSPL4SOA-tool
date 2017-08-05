@@ -1,0 +1,3 @@
+ServiceContract: "HostName=http://localhost:8080/SP_aircraftcarrier1" "Service_5" "ProjectName_0=SP_aircraftcarrier1" ; 
+"Service_5": "ServiceName_5=ServiceName_5" "Capability_5_4" ; 
+"Capability_5_4": "OutputData_5_4_1" "OutputName_5_4_3=OutputName_5_4_3" "OutputType_5_4_1=Integer" "CommunicationTechnologie_5_4" "ResponseHandler_5_4" "Asynchronous_5_4" "OutputType_5_4_2=Integer" "OutputName_5_4_2=OutputName_5_4_2" "CapabilityName_5_4=CapabilityName_5_4" "OutputData_5_4_2" "SOAP_5_4" "OutputData_5_4_3"  "OutputName_5_4_1=OutputName_5_4_1"  "OutputDataClassName_5_4=OutputDataClassName_5_4" "OutputType_5_4_3=String" ;

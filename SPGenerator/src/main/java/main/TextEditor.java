@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import org.xtext.example.mydsl.fML.SliceMode;
+
 import familiar.FMBDD;
 import familiar.FMFactory;
 import familiar.FeatureInsertForXML;
@@ -35,6 +37,9 @@ public class TextEditor {
 
 	private String spSpecializedFMFamiliarFilePath;
 	private String spSpecializedFMS2T2FilePath;
+
+	private String fmSPSpecSyncFamiliarFilePath;
+	private String fmSPSpecSyncS2T2FilePath;
 
 	private String scUpdatedFMFamiliarFilePath;
 	private String scUpdatedFMS2T2FilePath;
@@ -135,6 +140,8 @@ public class TextEditor {
 								fmSPSpecDeleteAttributeFMV.features().names(),
 								SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT);
 
+						System.out.println("\n\n*********** Creating fm_sc_sync ***************\n\n");
+
 						fmFactory.updatedAttributedFMSC = FMFactory.updateAndDelete2(fmFactory._fmSC,
 								fmFactory.specializedAttributedFMSP, omittedSharedFeatures, true, featureSetToSlice);
 
@@ -159,36 +166,54 @@ public class TextEditor {
 						fmFactory.specializedAttributedFMSP = FMFactory.insertFeatureFromXML(
 								fmFactory.specializedAttributedFMSP, featureHiddenSharedSP, true, options);
 
-						
 						fmFactory.updatedAttributedFMSC = FMFactory.insertFeatureFromXML(
 								fmFactory.updatedAttributedFMSC, hiddenSharedFeatures.featureInserts, true, options);
+
+						// Create FMSPSpecSync
+						// fm_sp_spec_sync
+						System.out.println("\n\n*********** Creating fm_sp_spec_sync ***************\n\n");
+
+						FeatureModelVariable specializedAttributedFMSPSyncFMV = FMBDD.getInstance().FM("fmspd",
+								FMFactory.deleteAttributesValues(fmFactory.specializedAttributedFMSP.toString()));
 						
-//						System.out.println(fmFactory.updatedAttributedFMSC);
-//						System.exit(-1);
-						
+						Set<String> featureSetToSliceSpec = FMFactory.getCorrespondingFeatures(
+								specializedAttributedFMSPSyncFMV.features().names(),
+								SwitchyardProject.INTERNAL_FEATURES_SP_CONTENT);
+
+						fmFactory.fmSPSpecSync = FMFactory.slice(fmFactory.specializedAttributedFMSP,
+								featureSetToSliceSpec, SliceMode.EXCLUDING);
+						//
+						util.Functions.stringToFile(fmFactory.fmSPSpecSync, fmSPSpecSyncFamiliarFilePath, false);
+						//
+						xmiS2T2 = s2t2Converter
+								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec_sync", fmFactory.fmSPSpecSync));
+						util.Functions.stringToFile(xmiS2T2, fmSPSpecSyncS2T2FilePath, false);
+						/////////////////////
+
+						// System.out.println(fmFactory.updatedAttributedFMSC);
+						// System.exit(-1);
+
 						//
 						//////////////////////////
 
 						// fmFactory.updateAndDelete(fmFactory.specializedFMSP,
 						// fmFactory._fmSC);
 
-						// specialized
+						// fm_sp_spec
 						util.Functions.stringToFile(fmFactory.specializedAttributedFMSP,
 								spSpecializedFMFamiliarFilePath, false);
-						// util.Functions.stringToFile(
-						// fmFactory.specializedAttributedFMSP,
-						// spSpecializedFMS2T2FilePath, false);
-
+						//
 						xmiS2T2 = s2t2Converter.fmlToS2T2XMI(
 								FMBDD.getInstance().FM("fm_sp_spec", fmFactory.specializedAttributedFMSP));
 						util.Functions.stringToFile(xmiS2T2, spSpecializedFMS2T2FilePath, false);
 
-						// util.Functions.stringToFile(
-						// fmFactory.fmUpdateBDD.FM("fm_sp_spec",
-						// fmFactory.specializedAttributedFMSP).toString(),
-						// "./fm_familiar_generated/fm_sp_spec.fml", false);
+						// fm_sc_update
 						util.Functions.stringToFile(fmFactory.updatedAttributedFMSC, scUpdatedFMFamiliarFilePath,
 								false);
+						//
+						xmiS2T2 = s2t2Converter
+								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update", fmFactory.updatedAttributedFMSC));
+						util.Functions.stringToFile(xmiS2T2, scUpdatedFMS2T2FilePath, false);
 
 						System.out.println();
 
@@ -196,16 +221,11 @@ public class TextEditor {
 
 						System.out.println();
 
-						xmiS2T2 = s2t2Converter
-								.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sc_update", fmFactory.updatedAttributedFMSC));
-						util.Functions.stringToFile(xmiS2T2, scUpdatedFMS2T2FilePath, false);
+						// TODO (they have been invisible in the thesis report)
+						 lblScUpdatedFm.setVisible(true);
+						 scUpdateFamiliarButton.setVisible(true);
+						 scUpdateS2T2Button.setVisible(true);
 
-						//TODO (they have been invisible in the thesis report)
-//						lblScUpdatedFm.setVisible(true);
-//						scUpdateFamiliarButton.setVisible(true);
-//						scUpdateS2T2Button.setVisible(true);
-						
-						
 						generateSPButton.setVisible(true);
 
 						JOptionPane.showMessageDialog(null,
@@ -322,5 +342,13 @@ public class TextEditor {
 
 	public void setGenerateSPButton(JButton generateSPButton) {
 		this.generateSPButton = generateSPButton;
+	}
+
+	public void setFmSPSpecSyncFamiliarFilePath(String fmSPSpecSyncFamiliarFilePath) {
+		this.fmSPSpecSyncFamiliarFilePath = fmSPSpecSyncFamiliarFilePath;
+	}
+
+	public void setFmSPSpecSyncS2T2FilePath(String fmSPSpecSyncS2T2FilePath) {
+		this.fmSPSpecSyncS2T2FilePath = fmSPSpecSyncS2T2FilePath;
 	}
 }
