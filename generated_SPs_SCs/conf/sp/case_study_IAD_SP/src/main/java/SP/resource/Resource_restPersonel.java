@@ -15,6 +15,7 @@ import SP.output.SessionResponse;
 public interface Resource_restPersonel {
 
 	@GET
+	@POST
 	@Path("/login/{id}/")
 	@Produces({ "text/xml" })
 	public Response login(
