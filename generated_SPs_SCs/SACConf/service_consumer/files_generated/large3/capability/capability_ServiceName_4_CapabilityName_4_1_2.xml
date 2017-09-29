@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_4</interfaceName>
+        <beanName>ServiceName_4Bean</beanName>
+        <number>4</number>
+        <capability>
+            <name>CapabilityName_4_1</name>
+            <number>1</number>
+            <serviceName>ServiceName_4</serviceName>
+            <dataInputClassName>InputDataClassName_4_1</dataInputClassName>
+            <dataOutputClassName>OutputDataClassName_4_1</dataOutputClassName>
+            <stateClassName>State_ServiceName_4_CapabilityName_4_1</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>true</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>true</stateRepository>
+            <twoWayState>true</twoWayState>
+            <rest>false</rest>
+            <soap>false</soap>
+            <broker>
+                <brokerName>HornetQ</brokerName>
+                <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+                <providerUrl>remote://localhost:4447</providerUrl>
+                <securityPrincipal>guest</securityPrincipal>
+                <securityCredentials>jboss@dmin88</securityCredentials>
+                <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+                <queueError>net implemented</queueError>
+                <queueIn>large3_in_queue_4_1</queueIn>
+                <queueOut>large3_out_queue_4_1</queueOut>
+                <transactional>true</transactional>
+                <acknowledgement>false</acknowledgement>
+                <persistentDelivery>true</persistentDelivery>
+                <publishSubscribe>false</publishSubscribe>
+                <durable>false</durable>
+                <serviceName>ServiceName_4</serviceName>
+                <capabilityName>CapabilityName_4_1</capabilityName>
+            </broker>
+            <authentification>false</authentification>
+            <jms>true</jms>
+            <input>
+                <name>InputName_4_1_8</name>
+                <type>Float</type>
+                <number>8</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">33</value>
+            </input>
+            <input>
+                <name>InputName_4_1_4</name>
+                <type>String</type>
+                <number>4</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">50</value>
+            </input>
+            <input>
+                <name>InputName_4_1_5</name>
+                <type>Integer</type>
+                <number>5</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">444</value>
+            </input>
+            <input>
+                <name>InputName_4_1_6</name>
+                <type>String</type>
+                <number>6</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">737</value>
+            </input>
+            <input>
+                <name>InputName_4_1_7</name>
+                <type>String</type>
+                <number>7</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">605</value>
+            </input>
+            <input>
+                <name>InputName_4_1_1</name>
+                <type>Float</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">321</value>
+            </input>
+            <input>
+                <name>InputName_4_1_2</name>
+                <type>String</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">629</value>
+            </input>
+            <input>
+                <name>InputName_4_1_3</name>
+                <type>Float</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">898</value>
+            </input>
+            <output>
+                <name>OutputName_4_1_5</name>
+                <type>Float</type>
+                <number>5</number>
+            </output>
+            <output>
+                <name>OutputName_4_1_6</name>
+                <type>Integer</type>
+                <number>6</number>
+            </output>
+            <output>
+                <name>OutputName_4_1_7</name>
+                <type>Float</type>
+                <number>7</number>
+            </output>
+            <output>
+                <name>OutputName_4_1_1</name>
+                <type>Float</type>
+                <number>1</number>
+            </output>
+            <output>
+                <name>OutputName_4_1_2</name>
+                <type>Integer</type>
+                <number>2</number>
+            </output>
+            <output>
+                <name>OutputName_4_1_3</name>
+                <type>Integer</type>
+                <number>3</number>
+            </output>
+            <output>
+                <name>OutputName_4_1_4</name>
+                <type>Integer</type>
+                <number>4</number>
+            </output>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>true</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>large3</projectName>
+    <hostName>http://localhost:8080/large3</hostName>
+    <dataInputPkg>large3.input</dataInputPkg>
+    <dataOutputPkg>large3.output</dataOutputPkg>
+</contract>

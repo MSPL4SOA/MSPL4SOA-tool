@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_2</interfaceName>
+        <beanName>ServiceName_2Bean</beanName>
+        <number>2</number>
+        <capability>
+            <name>CapabilityName_2_1</name>
+            <number>1</number>
+            <serviceName>ServiceName_2</serviceName>
+            <dataInputClassName>InputDataClassName_2_1</dataInputClassName>
+            <dataOutputClassName>OutputDataClassName_2_1</dataOutputClassName>
+            <stateClassName>State_ServiceName_2_CapabilityName_2_1</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>true</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>true</stateRepository>
+            <twoWayState>true</twoWayState>
+            <rest>false</rest>
+            <soap>true</soap>
+            <authentification>false</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_2_1_10</name>
+                <type>Float</type>
+                <number>10</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">694</value>
+            </input>
+            <input>
+                <name>InputName_2_1_1</name>
+                <type>Integer</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">897</value>
+            </input>
+            <input>
+                <name>InputName_2_1_2</name>
+                <type>String</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">325</value>
+            </input>
+            <input>
+                <name>InputName_2_1_3</name>
+                <type>Integer</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">913</value>
+            </input>
+            <input>
+                <name>InputName_2_1_4</name>
+                <type>Float</type>
+                <number>4</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">171</value>
+            </input>
+            <input>
+                <name>InputName_2_1_5</name>
+                <type>Float</type>
+                <number>5</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">540</value>
+            </input>
+            <input>
+                <name>InputName_2_1_6</name>
+                <type>String</type>
+                <number>6</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">208</value>
+            </input>
+            <input>
+                <name>InputName_2_1_7</name>
+                <type>String</type>
+                <number>7</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">50</value>
+            </input>
+            <input>
+                <name>InputName_2_1_8</name>
+                <type>String</type>
+                <number>8</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">274</value>
+            </input>
+            <input>
+                <name>InputName_2_1_9</name>
+                <type>Integer</type>
+                <number>9</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">247</value>
+            </input>
+            <output>
+                <name>OutputName_2_1_1</name>
+                <type>String</type>
+                <number>1</number>
+            </output>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>true</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>large3</projectName>
+    <hostName>http://localhost:8080/large3</hostName>
+    <dataInputPkg>large3.input</dataInputPkg>
+    <dataOutputPkg>large3.output</dataOutputPkg>
+</contract>

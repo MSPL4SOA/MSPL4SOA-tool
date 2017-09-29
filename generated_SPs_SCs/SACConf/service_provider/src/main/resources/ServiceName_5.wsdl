@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="urn:large3:large3:1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:large3:large3:1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceName_5" targetNamespace="urn:large3:large3:1.0">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:large3:large3:1.0">
+  <xs:element name="InputDataClassName_5_1" type="tns:inputDataClassName_5_1"/>
+  <xs:element name="InputDataClassName_5_2" type="tns:inputDataClassName_5_2"/>
+  <xs:element name="InputDataClassName_5_3" type="tns:inputDataClassName_5_3"/>
+  <xs:element name="InputDataClassName_5_4" type="tns:inputDataClassName_5_4"/>
+  <xs:element name="InputDataClassName_5_5" type="tns:inputDataClassName_5_5"/>
+  <xs:element name="InputDataClassName_5_6" type="tns:inputDataClassName_5_6"/>
+  <xs:element name="OutputDataClassName_5_1" type="tns:outputDataClassName_5_1"/>
+  <xs:element name="OutputDataClassName_5_2" type="tns:outputDataClassName_5_2"/>
+  <xs:element name="OutputDataClassName_5_3" type="tns:outputDataClassName_5_3"/>
+  <xs:element name="OutputDataClassName_5_4" type="tns:outputDataClassName_5_4"/>
+  <xs:element name="OutputDataClassName_5_5" type="tns:outputDataClassName_5_5"/>
+  <xs:element name="OutputDataClassName_5_6" type="tns:outputDataClassName_5_6"/>
+  <xs:complexType name="inputDataClassName_5_6">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_5_6_1" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_6_4" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_6_5" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_6_2" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_6_3" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_5_6">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_5_6_5" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_6_3" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_6_4" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_6_1" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_6_2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inputDataClassName_5_1">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_5_1_1" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_1_2" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_1_5" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_1_6" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_1_3" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_1_4" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_1_9" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_1_7" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_1_8" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_5_1">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_5_1_2" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_1_3" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_1_1" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_1_6" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_1_4" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_1_5" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inputDataClassName_5_3">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_5_3_3" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_3_4" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_3_1" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_3_2" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_3_7" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_3_8" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_3_5" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_3_6" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_5_3">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_5_3_1" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_8" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_6" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_7" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_4" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_5" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_2" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_3_3" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inputDataClassName_5_2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_5_2_1" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_2_4" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_2_5" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_2_2" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_2_3" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_5_2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_5_2_1" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_2_2" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_2_7" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_2_5" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_2_6" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_2_3" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_2_4" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inputDataClassName_5_5">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_5_5_1" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_5_2" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_5_5" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_5_6" type="xs:int"/>
+      <xs:element minOccurs="0" name="InputName_5_5_3" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_5_4" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_5_5">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_5_5_6" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_5_4" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_5_5" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_5_2" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_5_3" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_5_1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inputDataClassName_5_4">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InputName_5_4_8" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_4_9" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_4_2" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_4_3" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_4_1" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_4_6" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_4_7" type="xs:string"/>
+      <xs:element minOccurs="0" name="InputName_5_4_4" type="xs:float"/>
+      <xs:element minOccurs="0" name="InputName_5_4_5" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="outputDataClassName_5_4">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OutputName_5_4_9" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_7" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_8" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_5" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_6" type="xs:float"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_3" type="xs:string"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_4" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_1" type="xs:int"/>
+      <xs:element minOccurs="0" name="OutputName_5_4_2" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_6" type="tns:CapabilityName_5_6"/>
+  <xs:complexType name="CapabilityName_5_6">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_5_6"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_6Response" type="tns:CapabilityName_5_6Response"/>
+  <xs:complexType name="CapabilityName_5_6Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_5_6"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_1" type="tns:CapabilityName_5_1"/>
+  <xs:complexType name="CapabilityName_5_1">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_5_1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_1Response" type="tns:CapabilityName_5_1Response"/>
+  <xs:complexType name="CapabilityName_5_1Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_5_1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_3" type="tns:CapabilityName_5_3"/>
+  <xs:complexType name="CapabilityName_5_3">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_5_3"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_3Response" type="tns:CapabilityName_5_3Response"/>
+  <xs:complexType name="CapabilityName_5_3Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_5_3"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_2" type="tns:CapabilityName_5_2"/>
+  <xs:complexType name="CapabilityName_5_2">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_5_2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_2Response" type="tns:CapabilityName_5_2Response"/>
+  <xs:complexType name="CapabilityName_5_2Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_5_2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_5" type="tns:CapabilityName_5_5"/>
+  <xs:complexType name="CapabilityName_5_5">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_5_5"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_5Response" type="tns:CapabilityName_5_5Response"/>
+  <xs:complexType name="CapabilityName_5_5Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_5_5"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_4" type="tns:CapabilityName_5_4"/>
+  <xs:complexType name="CapabilityName_5_4">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="arg0" type="tns:inputDataClassName_5_4"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CapabilityName_5_4Response" type="tns:CapabilityName_5_4Response"/>
+  <xs:complexType name="CapabilityName_5_4Response">
+    <xs:sequence>
+      <xs:element form="qualified" minOccurs="0" name="return" type="tns:outputDataClassName_5_4"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CapabilityName_5_6">
+    <wsdl:part element="ns1:CapabilityName_5_6" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_1Response">
+    <wsdl:part element="ns1:CapabilityName_5_1Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_2Response">
+    <wsdl:part element="ns1:CapabilityName_5_2Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_3Response">
+    <wsdl:part element="ns1:CapabilityName_5_3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_6Response">
+    <wsdl:part element="ns1:CapabilityName_5_6Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_1">
+    <wsdl:part element="ns1:CapabilityName_5_1" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_3">
+    <wsdl:part element="ns1:CapabilityName_5_3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_2">
+    <wsdl:part element="ns1:CapabilityName_5_2" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_5Response">
+    <wsdl:part element="ns1:CapabilityName_5_5Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_5">
+    <wsdl:part element="ns1:CapabilityName_5_5" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_4Response">
+    <wsdl:part element="ns1:CapabilityName_5_4Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CapabilityName_5_4">
+    <wsdl:part element="ns1:CapabilityName_5_4" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServiceName_5PortType">
+    <wsdl:operation name="CapabilityName_5_6">
+      <wsdl:input message="ns1:CapabilityName_5_6" name="CapabilityName_5_6">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_5_6Response" name="CapabilityName_5_6Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_1">
+      <wsdl:input message="ns1:CapabilityName_5_1" name="CapabilityName_5_1">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_5_1Response" name="CapabilityName_5_1Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_3">
+      <wsdl:input message="ns1:CapabilityName_5_3" name="CapabilityName_5_3">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_5_3Response" name="CapabilityName_5_3Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_2">
+      <wsdl:input message="ns1:CapabilityName_5_2" name="CapabilityName_5_2">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_5_2Response" name="CapabilityName_5_2Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_5">
+      <wsdl:input message="ns1:CapabilityName_5_5" name="CapabilityName_5_5">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_5_5Response" name="CapabilityName_5_5Response">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_4">
+      <wsdl:input message="ns1:CapabilityName_5_4" name="CapabilityName_5_4">
+    </wsdl:input>
+      <wsdl:output message="ns1:CapabilityName_5_4Response" name="CapabilityName_5_4Response">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceName_5SoapBinding" type="ns1:ServiceName_5PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CapabilityName_5_6">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_5_6">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_5_6Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_1">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_5_1">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_5_1Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_3">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_5_3">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_5_3Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_2">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_5_2">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_5_2Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_5">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_5_5">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_5_5Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CapabilityName_5_4">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="CapabilityName_5_4">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CapabilityName_5_4Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceName_5">
+    <wsdl:port binding="ns1:ServiceName_5SoapBinding" name="ServiceName_5Port">
+      <soap:address location="http://localhost:8080/ServiceName_5/ServiceName_5"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

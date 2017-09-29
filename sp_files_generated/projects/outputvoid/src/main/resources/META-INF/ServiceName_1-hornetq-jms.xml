@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+                    <jms-queue name="outputvoid_in_queue_1_1">
+                <entry name="outputvoid_in_queue_1_1"/>
+                <entry name="java:jboss/exported/jms/outputvoid_in_queue_1_1"/>
+            </jms-queue>
+            <jms-queue name="outputvoid_out_queue_1_1">
+                <entry name="outputvoid_out_queue_1_1"/>
+                <entry name="java:jboss/exported/jms/outputvoid_out_queue_1_1"/>
+            </jms-queue>
+                                        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>
