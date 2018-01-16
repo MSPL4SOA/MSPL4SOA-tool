@@ -109,7 +109,7 @@ public class FMStatistics4 {
 
 	public static void stat1() throws Exception {
 
-		String projectName = "SP_aircraftcarrier1";
+		String projectName = "SP_all";
 
 		String projectDir = MainGui.projectsFilesGeneratedPath + projectName + "/fm_familiar_generated/";
 
@@ -150,7 +150,7 @@ public class FMStatistics4 {
 //		System.exit(-1);
 
 		ArrayList<String> fms = new ArrayList<String>();
-		// fms.add(fmSPPath);
+		 fms.add(fmSPPath);
 		fms.add(fmSPSyncFeaturesPath);
 		fms.add(fmSPSpecializeSyncFeaturesPath);
 		fms.add(fmSPSpecializeSyncSyncFeaturesPath);
@@ -158,7 +158,7 @@ public class FMStatistics4 {
 //		fms.add(fmSPSpecializeInternalFeaturesPath);
 		// fms.add(fmSPSpecializePath);
 		// fms.add(fmSPSpecializeSyncPath);
-		// fms.add(fmSCPath);
+		 fms.add(fmSCPath);
 		fms.add(fmSCSyncFeaturesPath);
 		fms.add(fmSCUpdateSyncFeaturesPath);
 		// fms.add(fmSCUpdatePath);

@@ -55,7 +55,7 @@ public class MainGui {
 	int yAbs = 100;
 	private JTextField projectNameTextField;
 	private JTextField serviceTextField;
-	
+
 	public static String PROJECT_NAME = "";
 
 	public static final String FILES_GENERATED_PATH = "./../sp_files_generated/";
@@ -86,6 +86,8 @@ public class MainGui {
 
 	private JButton generateSPButton;
 	private JTextField projectPathTextField;
+
+	private boolean randomIO = true;
 
 	/**
 	 * Launch the application.
@@ -251,8 +253,7 @@ public class MainGui {
 				TextEditor textEditor = new TextEditor();
 
 				// System.out.println(filesFMLPath + fmSPFileName + ".fml");
-				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSPFileName + ".fml"));
+				textEditor.setTextPane(util.Functions.fileToString(filesFMLPath + fmSPFileName + ".fml"));
 				textEditor.setTitle("FM SP in " + filesFMLPath + fmSPFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
@@ -272,10 +273,10 @@ public class MainGui {
 		});
 
 		JButton btFMSCS2T2 = new JButton("S2T2");
-		
-		//TODO invisible in thesis report
+
+		// TODO invisible in thesis report
 		btFMSCS2T2.setVisible(false);
-		
+
 		btFMSCS2T2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -285,18 +286,17 @@ public class MainGui {
 		});
 
 		JButton button_1 = new JButton("Familiar");
-		
-		//TODO invisible in thesis report
+
+		// TODO invisible in thesis report
 		button_1.setVisible(false);
-		
+
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				TextEditor textEditor = new TextEditor();
 
 				System.out.println(filesFMLPath + fmSCFileName + ".fml");
-				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSCFileName + ".fml"));
+				textEditor.setTextPane(util.Functions.fileToString(filesFMLPath + fmSCFileName + ".fml"));
 				textEditor.setTitle("FM SC in " + filesFMLPath + fmSCFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
@@ -305,10 +305,9 @@ public class MainGui {
 		});
 
 		JLabel lblScFm = new JLabel("FM SC :");
-		
-		//TODO invisible in thesis report
+
+		// TODO invisible in thesis report
 		lblScFm.setVisible(false);
-		
 
 		JLabel lblSpecializedSpFm = new JLabel("FM SP spec :");
 
@@ -319,8 +318,7 @@ public class MainGui {
 				TextEditor textEditor = new TextEditor();
 
 				// System.out.println(filesFMLPath + fmSPSpecFileName + ".fml");
-				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSPSpecFileName + ".fml"));
+				textEditor.setTextPane(util.Functions.fileToString(filesFMLPath + fmSPSpecFileName + ".fml"));
 				textEditor.setTitle("FM SP spec in " + filesFMLPath + fmSPSpecFileName + ".fml");
 
 				textEditor.setFmFactory(fmFactory);
@@ -330,7 +328,7 @@ public class MainGui {
 
 				textEditor.setFmSPSpecSyncFamiliarFilePath(filesFMLPath + fmSPSpecSyncFileName + ".fml");
 				textEditor.setFmSPSpecSyncS2T2FilePath(filesS2T2Path + fmSPSpecSyncFileName + ".fmprimitives");
-				
+
 				textEditor.setScUpdatedFMFamiliarFilePath(filesFMLPath + fmSCUpdatedFileName + ".fml");
 				textEditor.setScUpdatedFMS2T2FilePath(filesS2T2Path + fmSCUpdatedFileName + ".fmprimitives");
 
@@ -368,8 +366,7 @@ public class MainGui {
 				TextEditor textEditor = new TextEditor();
 
 				System.out.println(filesFMLPath + fmSPSpecSyncFileName + ".fml");
-				textEditor.setTextPane(
-						util.Functions.fileToString(filesFMLPath + fmSPSpecSyncFileName + ".fml"));
+				textEditor.setTextPane(util.Functions.fileToString(filesFMLPath + fmSPSpecSyncFileName + ".fml"));
 				textEditor.setTitle("FM SP spec-sync in " + filesFMLPath + fmSPSpecSyncFileName + ".fml");
 				textEditor.getTextPane().setEditable(false);
 				textEditor.getBtnSaveSpSpecialized().setVisible(false);
@@ -392,15 +389,13 @@ public class MainGui {
 				Contract contract;
 				try {
 
-					
-
 					contract = FMFactory.convertFMSCUpdateToContractXML(fmFactory.specializedAttributedFMSP);
 
 					SwitchyardProject switchyardProject = new SwitchyardProject(projectsDirPath, contract.projectName,
 							contract.projectName);
 
-//					contract.dataInputPkg = switchyardProject.inputDataPkg;
-//					contract.dataOutputPkg = switchyardProject.outputDataPkg;
+					// contract.dataInputPkg = switchyardProject.inputDataPkg;
+					// contract.dataOutputPkg = switchyardProject.outputDataPkg;
 
 					switchyardProject.generateMavenProject();
 					switchyardProject.configureSwitchyardProject();// mandatory
@@ -517,21 +512,20 @@ public class MainGui {
 					//
 					util.Functions.stringToFile(fmFactory._fmSC,
 							switchyardProject.contractDirPath + fmSCFileName + ".fml", false);
-					
+
 					S2T2Converter s2t2Converter = new S2T2Converter();
-					
-					//fm_sc_update
-					String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("updatedAttributedFMSC",
-							fmFactory.updatedAttributedFMSC));
+
+					// fm_sc_update
+					String xmiS2T2 = s2t2Converter.fmlToS2T2XMI(
+							FMBDD.getInstance().FM("updatedAttributedFMSC", fmFactory.updatedAttributedFMSC));
 					util.Functions.stringToFile(xmiS2T2,
 							switchyardProject.contractDirPath + fmSCUpdatedFileName + ".fmprimitives", false);
 
-					//fm_sp_spec_sync
-					s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec_sync",
-							fmFactory.fmSPSpecSync));
+					// fm_sp_spec_sync
+					s2t2Converter.fmlToS2T2XMI(FMBDD.getInstance().FM("fm_sp_spec_sync", fmFactory.fmSPSpecSync));
 					util.Functions.stringToFile(xmiS2T2,
 							switchyardProject.contractDirPath + fmSPSpecSyncFileName + ".fmprimitives", false);
-					
+
 					// ok dialog
 					System.out.println("The SP artifacts are generated");
 					JOptionPane.showMessageDialog(null, "The SP artifacts have been generated", "OK",
@@ -561,14 +555,13 @@ public class MainGui {
 					///// ///////
 					S2T2Converter s2t2Converter = new S2T2Converter();
 					String xmiS2T2;
-					xmiS2T2 = s2t2Converter
-							.fmlToS2T2XMI(FMBDD.getInstance().FM(fmSPSpecFileName,
-									fmFactory.specializedAttributedFMSP));
+					xmiS2T2 = s2t2Converter.fmlToS2T2XMI(
+							FMBDD.getInstance().FM(fmSPSpecFileName, fmFactory.specializedAttributedFMSP));
 
 					util.Functions.stringToFile(xmiS2T2, filesS2T2Path + fmSPSpecFileName + ".fmprimitives", false);
 
-					JOptionPane.showMessageDialog(null, "A FM SP spec have been generated", "OK",
-							JOptionPane.OK_OPTION, new ImageIcon(SwitchyardProject.FILE_ICON_OK_PATH_CONTENT));
+					JOptionPane.showMessageDialog(null, "A FM SP spec have been generated", "OK", JOptionPane.OK_OPTION,
+							new ImageIcon(SwitchyardProject.FILE_ICON_OK_PATH_CONTENT));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -728,7 +721,7 @@ public class MainGui {
 					contractFG.projectName = projectNameTextField.getText();
 
 					projectsDirPath = projectPathTextField.getText();
-					
+
 					PROJECT_NAME = projectNameTextField.getText();
 					SwitchyardProject.HOST_NAME += PROJECT_NAME;
 
@@ -784,6 +777,7 @@ public class MainGui {
 					yAbs += 40;
 
 					capabilityJButton.addActionListener(new ActionListener() {
+
 						public void actionPerformed(ActionEvent e) {
 
 							boolean ok = true;
@@ -801,12 +795,13 @@ public class MainGui {
 								JOptionPane.showMessageDialog(null, "Error: Please enter number bigger than 0",
 										"Error Massage", JOptionPane.ERROR_MESSAGE);
 							} else {
-								
-								
-//								final JButton autoFillInputOutputJButton = new JButton("Auto fill input output");
-//								autoFillInputOutputJButton.setBounds(25 + xAbs, yAbs, 140, 25);
-//								autoFillInputOutputJButton.setEnabled(true);
-//								panel1.add(autoFillInputOutputJButton);
+
+								// final JButton autoFillInputOutputJButton =
+								// new JButton("Auto fill input output");
+								// autoFillInputOutputJButton.setBounds(25 +
+								// xAbs, yAbs, 140, 25);
+								// autoFillInputOutputJButton.setEnabled(true);
+								// panel1.add(autoFillInputOutputJButton);
 
 								// int serviceCount = Integer.parseInt(in);
 
@@ -851,9 +846,9 @@ public class MainGui {
 										inputJTextField.setBounds(110 + xAbsCapability, yAbsCapability + 20, 29, 19);
 										panel1.add(inputJTextField);
 										inputJTextField.setColumns(10);
-//										inputJTextField.setText("" + (int) (Math.random()*10));
-										
-										
+
+										if (randomIO == true)
+											inputJTextField.setText("" + (int) (Math.random() * 10));
 
 										inputCountTempJTextField.add(inputJTextField);
 
@@ -866,7 +861,9 @@ public class MainGui {
 										outputJTextField.setBounds(110 + xAbsCapability, yAbsCapability + 50, 29, 19);
 										panel1.add(outputJTextField);
 										outputJTextField.setColumns(10);
-//										outputJTextField.setText("" + (int) (Math.random()*10));
+
+										if (randomIO == true)
+											outputJTextField.setText("" + (int) (Math.random() * 10));
 
 										outputCountTempJTextField.add(outputJTextField);
 
