@@ -1,2 +1,2 @@
-cd ./../sp_files_generated/projects//outputvoid/
+cd ./../sp_files_generated/projects//SP_all/
 mvn compile

@@ -1,2 +1,2 @@
 cd ./../sp_files_generated/projects//
-mvn archetype:generate -DarchetypeGroupId=org.switchyard.archetypes -DarchetypeArtifactId=switchyard-application -DarchetypeVersion=2.0.1.redhat-620133 -DgroupId=outputvoid -DartifactId=outputvoid -DinteractiveMode=false
+mvn archetype:generate -DarchetypeGroupId=org.switchyard.archetypes -DarchetypeArtifactId=switchyard-application -DarchetypeVersion=2.0.1.redhat-620133 -DgroupId=SP_all -DartifactId=SP_all -DinteractiveMode=false

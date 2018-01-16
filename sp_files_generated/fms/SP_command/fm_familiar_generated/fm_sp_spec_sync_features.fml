@@ -10,7 +10,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_7_3": ["PublishSubscribe_7_3"] "MOMConfiguration_7_3" "AsynchronousQueue_7_3" ; 
 "REST_7_3": "Get_7_3" ; 
 "PublishSubscribe_7_3": "TopicConfiguration_7_3" ["Durable_7_3"] ; 
-"MOMConfiguration_7_3": "SecurityCredentials_7_3=jboss@dmin88" "InitialContextFactory_7_3=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_7_3=jms/RemoteConnectionFactory" "SecurityPrincipal_7_3=guest" "ProviderUrl_7_3=remote://localhost:4447" ; 
+"MOMConfiguration_7_3": "SecurityCredentials_7_3=jboss@dmin88" "ConnectionFactory_7_3=#ConnectionFactory" "InitialContextFactory_7_3=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_7_3=jms/RemoteConnectionFactory" "SecurityPrincipal_7_3=guest" "ProviderUrl_7_3=remote://localhost:4447" ; 
 "AsynchronousQueue_7_3": "QueueConfiguration_7_3" ; 
 "TopicConfiguration_7_3": "TopicJNDI_7_3=SP_command_topic_7_3" ; 
 "QueueConfiguration_7_3": "QueueOutJNDI_7_3=SP_command_out_queue_7_3" "QueueInJNDI_7_3=SP_command_in_queue_7_3" ;"Capability_7_4": "OutputData_7_4_4" "OutputData_7_4_5" "CapabilityName_7_4=CapabilityName_7_4" "OutputData_7_4_6" "OutputDataClassName_7_4=OutputDataClassName_7_4" "StateMessaging_7_4" "OutputData_7_4_1" "OutputData_7_4_2" ["Authentification_7_4"] "CommunicationTechnologie_7_4" "OutputData_7_4_3" ; 
@@ -24,7 +24,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "OutputData_7_4_3": "OutputName_7_4_3=OutputName_7_4_3" "OutputType_7_4_3=Float" ; 
 "MOM_7_4": "MOMConfiguration_7_4" "AsynchronousQueue_7_4" ["PublishSubscribe_7_4"] ; 
 "REST_7_4": "Get_7_4" ; 
-"MOMConfiguration_7_4": "ProviderUrl_7_4=remote://localhost:4447" "SecurityPrincipal_7_4=guest" "InitialContextFactory_7_4=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_7_4=jms/RemoteConnectionFactory" "SecurityCredentials_7_4=jboss@dmin88" ; 
+"MOMConfiguration_7_4": "ProviderUrl_7_4=remote://localhost:4447" "SecurityPrincipal_7_4=guest" "InitialContextFactory_7_4=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_7_4=jms/RemoteConnectionFactory" "SecurityCredentials_7_4=jboss@dmin88" "ConnectionFactory_7_4=#ConnectionFactory" ; 
 "AsynchronousQueue_7_4": "QueueConfiguration_7_4" ; 
 "PublishSubscribe_7_4": "TopicConfiguration_7_4" ["Durable_7_4"] ; 
 "QueueConfiguration_7_4": "QueueOutJNDI_7_4=SP_command_out_queue_7_4" "QueueInJNDI_7_4=SP_command_in_queue_7_4" ; 
@@ -47,7 +47,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_7_5": ["PublishSubscribe_7_5"] "AsynchronousQueue_7_5" "MOMConfiguration_7_5" ; 
 "PublishSubscribe_7_5": ["Durable_7_5"] "TopicConfiguration_7_5" ; 
 "AsynchronousQueue_7_5": "QueueConfiguration_7_5" ; 
-"MOMConfiguration_7_5": "ProviderUrl_7_5=remote://localhost:4447" "InitialContextFactory_7_5=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_7_5=jboss@dmin88" "SecurityPrincipal_7_5=guest" "ConnectionConsumerFactory_7_5=jms/RemoteConnectionFactory" ; 
+"MOMConfiguration_7_5": "ConnectionFactory_7_5=#ConnectionFactory" "ProviderUrl_7_5=remote://localhost:4447" "InitialContextFactory_7_5=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_7_5=jboss@dmin88" "SecurityPrincipal_7_5=guest" "ConnectionConsumerFactory_7_5=jms/RemoteConnectionFactory" ; 
 "TopicConfiguration_7_5": "TopicJNDI_7_5=SP_command_topic_7_5" ; 
 "QueueConfiguration_7_5": "QueueOutJNDI_7_5=SP_command_out_queue_7_5" "QueueInJNDI_7_5=SP_command_in_queue_7_5" ;"Capability_7_1": "InputData_7_1_4" "CommunicationTechnologie_7_1" ["Authentification_7_1"] "InputData_7_1_1" "InputData_7_1_6" "OutputData_7_1_3" "OutputData_7_1_4" "InputData_7_1_3" "InputData_7_1_5" "OutputData_7_1_1" "CapabilityName_7_1=CapabilityName_7_1" "OutputData_7_1_2" "StateMessaging_7_1" "OutputDataClassName_7_1=OutputDataClassName_7_1" "InputDataClassName_7_1=InputDataClassName_7_1" "InputData_7_1_2" ; 
 "InputData_7_1_4": "InputName_7_1_4=InputName_7_1_4" "InputType_7_1_4=String" ; 
@@ -76,7 +76,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "REST_7_2": "Get_7_2" ; 
 "PublishSubscribe_7_2": "TopicConfiguration_7_2" ["Durable_7_2"] ; 
 "AsynchronousQueue_7_2": "QueueConfiguration_7_2" ; 
-"MOMConfiguration_7_2": "ProviderUrl_7_2=remote://localhost:4447" "InitialContextFactory_7_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_7_2=jboss@dmin88" "SecurityPrincipal_7_2=guest" "ConnectionConsumerFactory_7_2=jms/RemoteConnectionFactory" ; 
+"MOMConfiguration_7_2": "ProviderUrl_7_2=remote://localhost:4447" "ConnectionFactory_7_2=#ConnectionFactory" "InitialContextFactory_7_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_7_2=jboss@dmin88" "SecurityPrincipal_7_2=guest" "ConnectionConsumerFactory_7_2=jms/RemoteConnectionFactory" ; 
 "TopicConfiguration_7_2": "TopicJNDI_7_2=SP_command_topic_7_2" ; 
 "QueueConfiguration_7_2": "QueueInJNDI_7_2=SP_command_in_queue_7_2" "QueueOutJNDI_7_2=SP_command_out_queue_7_2" ;Service_6: ("Capability_6_4"|"Capability_6_5"|"Capability_6_1"|"Capability_6_2"|"Capability_6_3") "ServiceName_6=ServiceName_6" ;
 "Capability_6_4": "CapabilityName_6_4=CapabilityName_6_4" "StateMessaging_6_4" "InputData_6_4_6" "OutputData_6_4_5" "InputData_6_4_9" "InputData_6_4_4" "OutputData_6_4_7" "OutputDataClassName_6_4=OutputDataClassName_6_4" "OutputData_6_4_2" "OutputData_6_4_4" "InputDataClassName_6_4=InputDataClassName_6_4" "InputData_6_4_7" "InputData_6_4_2" "OutputData_6_4_9" "InputData_6_4_5" "OutputData_6_4_6" "CommunicationTechnologie_6_4" "OutputData_6_4_1" ["Authentification_6_4"] "OutputData_6_4_8" "InputData_6_4_8" "OutputData_6_4_3" "InputData_6_4_3" "InputData_6_4_1" ; 
@@ -107,7 +107,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_6_5_1": "InputName_6_5_1=InputName_6_5_1" "InputType_6_5_1=String" ; 
 "CommunicationTechnologie_6_5": ("REST_6_5"|"SOAP_6_5") ; 
 "StateMessaging_6_5": "TwoWayState_6_5" ; 
-"REST_6_5": "Post_6_5" ;"Capability_6_1": ["Authentification_6_1"] "CommunicationTechnologie_6_1" "InputData_6_1_1" "InputData_6_1_6" "CapabilityName_6_1=CapabilityName_6_1" "InputData_6_1_4" "InputData_6_1_5" "InputData_6_1_3" "InputData_6_1_8" "InputData_6_1_7" "InputDataClassName_6_1=InputDataClassName_6_1" "InputData_6_1_2" ; 
+"REST_6_5": "Post_6_5" ;"Capability_6_1": "CommunicationTechnologie_6_1" ["Authentification_6_1"] "InputData_6_1_1" "InputData_6_1_6" "CapabilityName_6_1=CapabilityName_6_1" "InputData_6_1_4" "InputData_6_1_5" "InputData_6_1_3" "InputData_6_1_8" "InputData_6_1_7" "InputDataClassName_6_1=InputDataClassName_6_1" "InputData_6_1_2" ; 
 "CommunicationTechnologie_6_1": ("MOM_6_1"|"REST_6_1"|"SOAP_6_1") ; 
 "InputData_6_1_1": "InputType_6_1_1=String" "InputName_6_1_1=InputName_6_1_1" ; 
 "InputData_6_1_6": "InputType_6_1_6=String" "InputName_6_1_6=InputName_6_1_6" ; 
@@ -119,7 +119,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_6_1_2": "InputType_6_1_2=Float" "InputName_6_1_2=InputName_6_1_2" ; 
 "MOM_6_1": "MOMConfiguration_6_1" "AsynchronousQueue_6_1" ; 
 "REST_6_1": "Post_6_1" ; 
-"MOMConfiguration_6_1": "ConnectionConsumerFactory_6_1=jms/RemoteConnectionFactory" "SecurityPrincipal_6_1=guest" "ProviderUrl_6_1=remote://localhost:4447" "SecurityCredentials_6_1=jboss@dmin88" "InitialContextFactory_6_1=org.jboss.naming.remote.client.InitialContextFactory" ; 
+"MOMConfiguration_6_1": "ConnectionConsumerFactory_6_1=jms/RemoteConnectionFactory" "SecurityPrincipal_6_1=guest" "ConnectionFactory_6_1=#ConnectionFactory" "ProviderUrl_6_1=remote://localhost:4447" "SecurityCredentials_6_1=jboss@dmin88" "InitialContextFactory_6_1=org.jboss.naming.remote.client.InitialContextFactory" ; 
 "AsynchronousQueue_6_1": "QueueConfiguration_6_1" ; 
 "QueueConfiguration_6_1": "QueueOutJNDI_6_1=SP_command_out_queue_6_1" "QueueInJNDI_6_1=SP_command_in_queue_6_1" ;"Capability_6_2": "InputData_6_2_2" "CapabilityName_6_2=CapabilityName_6_2" "StateMessaging_6_2" "OutputData_6_2_3" "InputData_6_2_5" "OutputDataClassName_6_2=OutputDataClassName_6_2" "InputData_6_2_3" "CommunicationTechnologie_6_2" "OutputData_6_2_2" "InputData_6_2_6" "InputData_6_2_1" "InputDataClassName_6_2=InputDataClassName_6_2" "OutputData_6_2_4" "OutputData_6_2_1" ["Authentification_6_2"] "InputData_6_2_4" ; 
 "InputData_6_2_2": "InputName_6_2_2=InputName_6_2_2" "InputType_6_2_2=Integer" ; 
@@ -136,7 +136,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_6_2_4": "InputType_6_2_4=String" "InputName_6_2_4=InputName_6_2_4" ; 
 "MOM_6_2": "MOMConfiguration_6_2" ["PublishSubscribe_6_2"] "AsynchronousQueue_6_2" ; 
 "REST_6_2": "Get_6_2" ; 
-"MOMConfiguration_6_2": "ConnectionConsumerFactory_6_2=jms/RemoteConnectionFactory" "ProviderUrl_6_2=remote://localhost:4447" "InitialContextFactory_6_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_6_2=jboss@dmin88" "SecurityPrincipal_6_2=guest" ; 
+"MOMConfiguration_6_2": "ConnectionConsumerFactory_6_2=jms/RemoteConnectionFactory" "ProviderUrl_6_2=remote://localhost:4447" "InitialContextFactory_6_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_6_2=jboss@dmin88" "ConnectionFactory_6_2=#ConnectionFactory" "SecurityPrincipal_6_2=guest" ; 
 "PublishSubscribe_6_2": "TopicConfiguration_6_2" ["Durable_6_2"] ; 
 "AsynchronousQueue_6_2": "QueueConfiguration_6_2" ; 
 "TopicConfiguration_6_2": "TopicJNDI_6_2=SP_command_topic_6_2" ; 
@@ -161,7 +161,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "REST_6_3": "Get_6_3" ; 
 "PublishSubscribe_6_3": ["Durable_6_3"] "TopicConfiguration_6_3" ; 
 "AsynchronousQueue_6_3": "QueueConfiguration_6_3" ; 
-"MOMConfiguration_6_3": "SecurityPrincipal_6_3=guest" "SecurityCredentials_6_3=jboss@dmin88" "ConnectionConsumerFactory_6_3=jms/RemoteConnectionFactory" "InitialContextFactory_6_3=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_6_3=remote://localhost:4447" ; 
+"MOMConfiguration_6_3": "SecurityPrincipal_6_3=guest" "SecurityCredentials_6_3=jboss@dmin88" "ConnectionFactory_6_3=#ConnectionFactory" "ConnectionConsumerFactory_6_3=jms/RemoteConnectionFactory" "InitialContextFactory_6_3=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_6_3=remote://localhost:4447" ; 
 "TopicConfiguration_6_3": "TopicJNDI_6_3=SP_command_topic_6_3" ; 
 "QueueConfiguration_6_3": "QueueInJNDI_6_3=SP_command_in_queue_6_3" "QueueOutJNDI_6_3=SP_command_out_queue_6_3" ;Service_5: ("Capability_5_5"|"Capability_5_1"|"Capability_5_2"|"Capability_5_3"|"Capability_5_4") "ServiceName_5=ServiceName_5" ;
 "Capability_5_5": "InputData_5_5_2" "InputData_5_5_7" "InputDataClassName_5_5=InputDataClassName_5_5" "StateMessaging_5_5" "InputData_5_5_6" "InputData_5_5_4" "CapabilityName_5_5=CapabilityName_5_5" "OutputData_5_5_1" ["Authentification_5_5"] "OutputData_5_5_2" "InputData_5_5_3" "InputData_5_5_1" "InputData_5_5_5" "OutputDataClassName_5_5=OutputDataClassName_5_5" "CommunicationTechnologie_5_5" ; 
@@ -179,7 +179,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_5_5": ["PublishSubscribe_5_5"] "MOMConfiguration_5_5" "AsynchronousQueue_5_5" ; 
 "REST_5_5": "Get_5_5" ; 
 "PublishSubscribe_5_5": "TopicConfiguration_5_5" ["Durable_5_5"] ; 
-"MOMConfiguration_5_5": "ProviderUrl_5_5=remote://localhost:4447" "SecurityPrincipal_5_5=guest" "SecurityCredentials_5_5=jboss@dmin88" "ConnectionConsumerFactory_5_5=jms/RemoteConnectionFactory" "InitialContextFactory_5_5=org.jboss.naming.remote.client.InitialContextFactory" ; 
+"MOMConfiguration_5_5": "ConnectionFactory_5_5=#ConnectionFactory" "ProviderUrl_5_5=remote://localhost:4447" "SecurityPrincipal_5_5=guest" "SecurityCredentials_5_5=jboss@dmin88" "ConnectionConsumerFactory_5_5=jms/RemoteConnectionFactory" "InitialContextFactory_5_5=org.jboss.naming.remote.client.InitialContextFactory" ; 
 "AsynchronousQueue_5_5": "QueueConfiguration_5_5" ; 
 "TopicConfiguration_5_5": "TopicJNDI_5_5=SP_command_topic_5_5" ; 
 "QueueConfiguration_5_5": "QueueOutJNDI_5_5=SP_command_out_queue_5_5" "QueueInJNDI_5_5=SP_command_in_queue_5_5" ;"Capability_5_1": "OutputData_5_1_2" "InputData_5_1_1" "CommunicationTechnologie_5_1" "OutputData_5_1_3" "CapabilityName_5_1=CapabilityName_5_1" "StateMessaging_5_1" "OutputData_5_1_1" "OutputDataClassName_5_1=OutputDataClassName_5_1" ["Authentification_5_1"] "InputDataClassName_5_1=InputDataClassName_5_1" "OutputData_5_1_4" ; 
@@ -193,7 +193,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_5_1": "AsynchronousQueue_5_1" "MOMConfiguration_5_1" ["PublishSubscribe_5_1"] ; 
 "REST_5_1": "Get_5_1" ; 
 "AsynchronousQueue_5_1": "QueueConfiguration_5_1" ; 
-"MOMConfiguration_5_1": "ProviderUrl_5_1=remote://localhost:4447" "InitialContextFactory_5_1=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_5_1=jboss@dmin88" "SecurityPrincipal_5_1=guest" "ConnectionConsumerFactory_5_1=jms/RemoteConnectionFactory" ; 
+"MOMConfiguration_5_1": "ProviderUrl_5_1=remote://localhost:4447" "InitialContextFactory_5_1=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_5_1=jboss@dmin88" "SecurityPrincipal_5_1=guest" "ConnectionFactory_5_1=#ConnectionFactory" "ConnectionConsumerFactory_5_1=jms/RemoteConnectionFactory" ; 
 "PublishSubscribe_5_1": "TopicConfiguration_5_1" ["Durable_5_1"] ; 
 "QueueConfiguration_5_1": "QueueOutJNDI_5_1=SP_command_out_queue_5_1" "QueueInJNDI_5_1=SP_command_in_queue_5_1" ; 
 "TopicConfiguration_5_1": "TopicJNDI_5_1=SP_command_topic_5_1" ;"Capability_5_2": "StateMessaging_5_2" "OutputData_5_2_9" "OutputData_5_2_4" "InputData_5_2_8" "InputData_5_2_3" "InputData_5_2_6" "OutputData_5_2_1" ["Authentification_5_2"] "InputData_5_2_1" "OutputDataClassName_5_2=OutputDataClassName_5_2" "InputData_5_2_4" "OutputData_5_2_6" "InputData_5_2_9" "CapabilityName_5_2=CapabilityName_5_2" "InputData_5_2_2" "OutputData_5_2_8" "CommunicationTechnologie_5_2" "OutputData_5_2_3" "InputData_5_2_7" "InputDataClassName_5_2=InputDataClassName_5_2" "OutputData_5_2_7" "OutputData_5_2_2" "OutputData_5_2_5" "InputData_5_2_5" ; 
@@ -221,7 +221,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_5_2": "AsynchronousQueue_5_2" ["PublishSubscribe_5_2"] "MOMConfiguration_5_2" ; 
 "AsynchronousQueue_5_2": "QueueConfiguration_5_2" ; 
 "PublishSubscribe_5_2": ["Durable_5_2"] "TopicConfiguration_5_2" ; 
-"MOMConfiguration_5_2": "ProviderUrl_5_2=remote://localhost:4447" "SecurityPrincipal_5_2=guest" "SecurityCredentials_5_2=jboss@dmin88" "InitialContextFactory_5_2=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_5_2=jms/RemoteConnectionFactory" ; 
+"MOMConfiguration_5_2": "ProviderUrl_5_2=remote://localhost:4447" "SecurityPrincipal_5_2=guest" "ConnectionFactory_5_2=#ConnectionFactory" "SecurityCredentials_5_2=jboss@dmin88" "InitialContextFactory_5_2=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_5_2=jms/RemoteConnectionFactory" ; 
 "QueueConfiguration_5_2": "QueueInJNDI_5_2=SP_command_in_queue_5_2" "QueueOutJNDI_5_2=SP_command_out_queue_5_2" ; 
 "TopicConfiguration_5_2": "TopicJNDI_5_2=SP_command_topic_5_2" ;"Capability_5_3": "OutputData_5_3_1" "InputData_5_3_5" "InputData_5_3_3" "InputData_5_3_2" "InputData_5_3_7" "OutputData_5_3_2" "CapabilityName_5_3=CapabilityName_5_3" "StateMessaging_5_3" "InputDataClassName_5_3=InputDataClassName_5_3" "InputData_5_3_9" ["Authentification_5_3"] "InputData_5_3_4" "OutputDataClassName_5_3=OutputDataClassName_5_3" "CommunicationTechnologie_5_3" "InputData_5_3_8" "InputData_5_3_1" "InputData_5_3_6" ; 
 "OutputData_5_3_1": "OutputType_5_3_1=Float" "OutputName_5_3_1=OutputName_5_3_1" ; 
@@ -239,7 +239,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_5_3_6": "InputName_5_3_6=InputName_5_3_6" "InputType_5_3_6=String" ; 
 "MOM_5_3": "MOMConfiguration_5_3" "AsynchronousQueue_5_3" ["PublishSubscribe_5_3"] ; 
 "REST_5_3": "Get_5_3" ; 
-"MOMConfiguration_5_3": "SecurityCredentials_5_3=jboss@dmin88" "ConnectionConsumerFactory_5_3=jms/RemoteConnectionFactory" "InitialContextFactory_5_3=org.jboss.naming.remote.client.InitialContextFactory" "SecurityPrincipal_5_3=guest" "ProviderUrl_5_3=remote://localhost:4447" ; 
+"MOMConfiguration_5_3": "ConnectionFactory_5_3=#ConnectionFactory" "SecurityCredentials_5_3=jboss@dmin88" "ConnectionConsumerFactory_5_3=jms/RemoteConnectionFactory" "InitialContextFactory_5_3=org.jboss.naming.remote.client.InitialContextFactory" "SecurityPrincipal_5_3=guest" "ProviderUrl_5_3=remote://localhost:4447" ; 
 "AsynchronousQueue_5_3": "QueueConfiguration_5_3" ; 
 "PublishSubscribe_5_3": "TopicConfiguration_5_3" ["Durable_5_3"] ; 
 "QueueConfiguration_5_3": "QueueOutJNDI_5_3=SP_command_out_queue_5_3" "QueueInJNDI_5_3=SP_command_in_queue_5_3" ; 
@@ -249,7 +249,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_5_4": "AsynchronousQueue_5_4" "MOMConfiguration_5_4" ; 
 "REST_5_4": "Post_5_4" ; 
 "AsynchronousQueue_5_4": "QueueConfiguration_5_4" ; 
-"MOMConfiguration_5_4": "InitialContextFactory_5_4=org.jboss.naming.remote.client.InitialContextFactory" "SecurityPrincipal_5_4=guest" "SecurityCredentials_5_4=jboss@dmin88" "ConnectionConsumerFactory_5_4=jms/RemoteConnectionFactory" "ProviderUrl_5_4=remote://localhost:4447" ; 
+"MOMConfiguration_5_4": "InitialContextFactory_5_4=org.jboss.naming.remote.client.InitialContextFactory" "SecurityPrincipal_5_4=guest" "SecurityCredentials_5_4=jboss@dmin88" "ConnectionConsumerFactory_5_4=jms/RemoteConnectionFactory" "ProviderUrl_5_4=remote://localhost:4447" "ConnectionFactory_5_4=#ConnectionFactory" ; 
 "QueueConfiguration_5_4": "QueueOutJNDI_5_4=SP_command_out_queue_5_4" "QueueInJNDI_5_4=SP_command_in_queue_5_4" ;Service_4: ("Capability_4_2"|"Capability_4_3"|"Capability_4_4"|"Capability_4_5"|"Capability_4_1") "ServiceName_4=ServiceName_4" ;
 "Capability_4_2": "OutputData_4_2_5" "InputData_4_2_4" ["Authentification_4_2"] "InputData_4_2_2" "OutputData_4_2_2" "StateMessaging_4_2" "InputData_4_2_3" "OutputData_4_2_4" "InputDataClassName_4_2=InputDataClassName_4_2" "OutputDataClassName_4_2=OutputDataClassName_4_2" "OutputData_4_2_3" "CommunicationTechnologie_4_2" "InputData_4_2_1" "OutputData_4_2_1" "CapabilityName_4_2=CapabilityName_4_2" "OutputData_4_2_6" ; 
 "OutputData_4_2_5": "OutputName_4_2_5=OutputName_4_2_5" "OutputType_4_2_5=Integer" ; 
@@ -267,7 +267,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "REST_4_2": "Get_4_2" ; 
 "MOM_4_2": "AsynchronousQueue_4_2" "MOMConfiguration_4_2" ["PublishSubscribe_4_2"] ; 
 "AsynchronousQueue_4_2": "QueueConfiguration_4_2" ; 
-"MOMConfiguration_4_2": "SecurityPrincipal_4_2=guest" "ConnectionConsumerFactory_4_2=jms/RemoteConnectionFactory" "InitialContextFactory_4_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_4_2=jboss@dmin88" "ProviderUrl_4_2=remote://localhost:4447" ; 
+"MOMConfiguration_4_2": "SecurityPrincipal_4_2=guest" "ConnectionConsumerFactory_4_2=jms/RemoteConnectionFactory" "InitialContextFactory_4_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_4_2=jboss@dmin88" "ProviderUrl_4_2=remote://localhost:4447" "ConnectionFactory_4_2=#ConnectionFactory" ; 
 "PublishSubscribe_4_2": "TopicConfiguration_4_2" ["Durable_4_2"] ; 
 "QueueConfiguration_4_2": "QueueOutJNDI_4_2=SP_command_out_queue_4_2" "QueueInJNDI_4_2=SP_command_in_queue_4_2" ; 
 "TopicConfiguration_4_2": "TopicJNDI_4_2=SP_command_topic_4_2" ;"Capability_4_3": "InputData_4_3_1" "InputData_4_3_6" "OutputData_4_3_2" "InputData_4_3_4" "InputData_4_3_3" "InputData_4_3_8" "CommunicationTechnologie_4_3" "OutputData_4_3_3" ["Authentification_4_3"] "OutputData_4_3_1" "InputDataClassName_4_3=InputDataClassName_4_3" "InputData_4_3_5" "StateMessaging_4_3" "InputData_4_3_9" "OutputDataClassName_4_3=OutputDataClassName_4_3" "InputData_4_3_2" "CapabilityName_4_3=CapabilityName_4_3" "InputData_4_3_7" ; 
@@ -303,7 +303,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_4_4_3": "InputType_4_4_3=Float" "InputName_4_4_3=InputName_4_4_3" ; 
 "MOM_4_4": "MOMConfiguration_4_4" "AsynchronousQueue_4_4" ["PublishSubscribe_4_4"] ; 
 "REST_4_4": "Get_4_4" ; 
-"MOMConfiguration_4_4": "ConnectionConsumerFactory_4_4=jms/RemoteConnectionFactory" "ProviderUrl_4_4=remote://localhost:4447" "InitialContextFactory_4_4=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_4_4=jboss@dmin88" "SecurityPrincipal_4_4=guest" ; 
+"MOMConfiguration_4_4": "ConnectionConsumerFactory_4_4=jms/RemoteConnectionFactory" "ProviderUrl_4_4=remote://localhost:4447" "InitialContextFactory_4_4=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_4_4=jboss@dmin88" "ConnectionFactory_4_4=#ConnectionFactory" "SecurityPrincipal_4_4=guest" ; 
 "AsynchronousQueue_4_4": "QueueConfiguration_4_4" ; 
 "PublishSubscribe_4_4": "TopicConfiguration_4_4" ["Durable_4_4"] ; 
 "QueueConfiguration_4_4": "QueueOutJNDI_4_4=SP_command_out_queue_4_4" "QueueInJNDI_4_4=SP_command_in_queue_4_4" ; 
@@ -330,7 +330,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "REST_4_5": "Get_4_5" ; 
 "AsynchronousQueue_4_5": "QueueConfiguration_4_5" ; 
 "PublishSubscribe_4_5": ["Durable_4_5"] "TopicConfiguration_4_5" ; 
-"MOMConfiguration_4_5": "ConnectionConsumerFactory_4_5=jms/RemoteConnectionFactory" "SecurityPrincipal_4_5=guest" "ProviderUrl_4_5=remote://localhost:4447" "InitialContextFactory_4_5=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_4_5=jboss@dmin88" ; 
+"MOMConfiguration_4_5": "ConnectionConsumerFactory_4_5=jms/RemoteConnectionFactory" "SecurityPrincipal_4_5=guest" "ProviderUrl_4_5=remote://localhost:4447" "InitialContextFactory_4_5=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_4_5=jboss@dmin88" "ConnectionFactory_4_5=#ConnectionFactory" ; 
 "QueueConfiguration_4_5": "QueueOutJNDI_4_5=SP_command_out_queue_4_5" "QueueInJNDI_4_5=SP_command_in_queue_4_5" ; 
 "TopicConfiguration_4_5": "TopicJNDI_4_5=SP_command_topic_4_5" ;"Capability_4_1": "OutputData_4_1_3" "InputData_4_1_2" "InputData_4_1_7" "CommunicationTechnologie_4_1" "OutputData_4_1_6" "OutputData_4_1_1" "InputData_4_1_4" "InputData_4_1_3" "OutputData_4_1_4" "OutputData_4_1_2" "OutputData_4_1_7" "InputData_4_1_1" ["Authentification_4_1"] "InputData_4_1_6" "OutputDataClassName_4_1=OutputDataClassName_4_1" "InputData_4_1_5" "InputDataClassName_4_1=InputDataClassName_4_1" "StateMessaging_4_1" "CapabilityName_4_1=CapabilityName_4_1" "OutputData_4_1_5" ; 
 "OutputData_4_1_3": "OutputName_4_1_3=OutputName_4_1_3" "OutputType_4_1_3=String" ; 
@@ -351,7 +351,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "OutputData_4_1_5": "OutputType_4_1_5=String" "OutputName_4_1_5=OutputName_4_1_5" ; 
 "REST_4_1": "Get_4_1" ; 
 "MOM_4_1": "MOMConfiguration_4_1" ["PublishSubscribe_4_1"] "AsynchronousQueue_4_1" ; 
-"MOMConfiguration_4_1": "InitialContextFactory_4_1=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_4_1=remote://localhost:4447" "SecurityPrincipal_4_1=guest" "SecurityCredentials_4_1=jboss@dmin88" "ConnectionConsumerFactory_4_1=jms/RemoteConnectionFactory" ; 
+"MOMConfiguration_4_1": "InitialContextFactory_4_1=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionFactory_4_1=#ConnectionFactory" "ProviderUrl_4_1=remote://localhost:4447" "SecurityPrincipal_4_1=guest" "SecurityCredentials_4_1=jboss@dmin88" "ConnectionConsumerFactory_4_1=jms/RemoteConnectionFactory" ; 
 "PublishSubscribe_4_1": "TopicConfiguration_4_1" ["Durable_4_1"] ; 
 "AsynchronousQueue_4_1": "QueueConfiguration_4_1" ; 
 "TopicConfiguration_4_1": "TopicJNDI_4_1=SP_command_topic_4_1" ; 
@@ -373,7 +373,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_3_3_1": "InputType_3_3_1=Integer" "InputName_3_3_1=InputName_3_3_1" ; 
 "MOM_3_3": "MOMConfiguration_3_3" "AsynchronousQueue_3_3" ["PublishSubscribe_3_3"] ; 
 "REST_3_3": "Get_3_3" ; 
-"MOMConfiguration_3_3": "SecurityPrincipal_3_3=guest" "InitialContextFactory_3_3=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_3_3=jboss@dmin88" "ConnectionConsumerFactory_3_3=jms/RemoteConnectionFactory" "ProviderUrl_3_3=remote://localhost:4447" ; 
+"MOMConfiguration_3_3": "ConnectionFactory_3_3=#ConnectionFactory" "SecurityPrincipal_3_3=guest" "InitialContextFactory_3_3=org.jboss.naming.remote.client.InitialContextFactory" "SecurityCredentials_3_3=jboss@dmin88" "ConnectionConsumerFactory_3_3=jms/RemoteConnectionFactory" "ProviderUrl_3_3=remote://localhost:4447" ; 
 "AsynchronousQueue_3_3": "QueueConfiguration_3_3" ; 
 "PublishSubscribe_3_3": ["Durable_3_3"] "TopicConfiguration_3_3" ; 
 "QueueConfiguration_3_3": "QueueInJNDI_3_3=SP_command_in_queue_3_3" "QueueOutJNDI_3_3=SP_command_out_queue_3_3" ; 
@@ -389,7 +389,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_3_4": "AsynchronousQueue_3_4" ["PublishSubscribe_3_4"] "MOMConfiguration_3_4" ; 
 "AsynchronousQueue_3_4": "QueueConfiguration_3_4" ; 
 "PublishSubscribe_3_4": "TopicConfiguration_3_4" ["Durable_3_4"] ; 
-"MOMConfiguration_3_4": "SecurityPrincipal_3_4=guest" "ProviderUrl_3_4=remote://localhost:4447" "InitialContextFactory_3_4=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_4=jms/RemoteConnectionFactory" "SecurityCredentials_3_4=jboss@dmin88" ; 
+"MOMConfiguration_3_4": "SecurityPrincipal_3_4=guest" "ProviderUrl_3_4=remote://localhost:4447" "InitialContextFactory_3_4=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_4=jms/RemoteConnectionFactory" "ConnectionFactory_3_4=#ConnectionFactory" "SecurityCredentials_3_4=jboss@dmin88" ; 
 "QueueConfiguration_3_4": "QueueInJNDI_3_4=SP_command_in_queue_3_4" "QueueOutJNDI_3_4=SP_command_out_queue_3_4" ; 
 "TopicConfiguration_3_4": "TopicJNDI_3_4=SP_command_topic_3_4" ;"Capability_3_5": "InputData_3_5_1" "InputDataClassName_3_5=InputDataClassName_3_5" "InputData_3_5_2" ["Authentification_3_5"] "CapabilityName_3_5=CapabilityName_3_5" "InputData_3_5_3" "CommunicationTechnologie_3_5" ; 
 "InputData_3_5_1": "InputType_3_5_1=Integer" "InputName_3_5_1=InputName_3_5_1" ; 
@@ -398,7 +398,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "CommunicationTechnologie_3_5": ("REST_3_5"|"MOM_3_5"|"SOAP_3_5") ; 
 "REST_3_5": "Post_3_5" ; 
 "MOM_3_5": "MOMConfiguration_3_5" "AsynchronousQueue_3_5" ; 
-"MOMConfiguration_3_5": "InitialContextFactory_3_5=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_5=jms/RemoteConnectionFactory" "SecurityPrincipal_3_5=guest" "ProviderUrl_3_5=remote://localhost:4447" "SecurityCredentials_3_5=jboss@dmin88" ; 
+"MOMConfiguration_3_5": "InitialContextFactory_3_5=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_5=jms/RemoteConnectionFactory" "SecurityPrincipal_3_5=guest" "ConnectionFactory_3_5=#ConnectionFactory" "ProviderUrl_3_5=remote://localhost:4447" "SecurityCredentials_3_5=jboss@dmin88" ; 
 "AsynchronousQueue_3_5": "QueueConfiguration_3_5" ; 
 "QueueConfiguration_3_5": "QueueInJNDI_3_5=SP_command_in_queue_3_5" "QueueOutJNDI_3_5=SP_command_out_queue_3_5" ;"Capability_3_6": "OutputData_3_6_2" "InputDataClassName_3_6=InputDataClassName_3_6" "InputData_3_6_1" "OutputData_3_6_7" "InputData_3_6_6" "CapabilityName_3_6=CapabilityName_3_6" "OutputDataClassName_3_6=OutputDataClassName_3_6" "InputData_3_6_4" "StateMessaging_3_6" "OutputData_3_6_4" "InputData_3_6_2" "InputData_3_6_7" ["Authentification_3_6"] "InputData_3_6_5" "OutputData_3_6_1" "OutputData_3_6_6" "OutputData_3_6_5" "CommunicationTechnologie_3_6" "InputData_3_6_3" "OutputData_3_6_3" ; 
 "OutputData_3_6_2": "OutputType_3_6_2=Integer" "OutputName_3_6_2=OutputName_3_6_2" ; 
@@ -421,7 +421,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_3_6": "AsynchronousQueue_3_6" ["PublishSubscribe_3_6"] "MOMConfiguration_3_6" ; 
 "AsynchronousQueue_3_6": "QueueConfiguration_3_6" ; 
 "PublishSubscribe_3_6": ["Durable_3_6"] "TopicConfiguration_3_6" ; 
-"MOMConfiguration_3_6": "SecurityPrincipal_3_6=guest" "InitialContextFactory_3_6=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_6=jms/RemoteConnectionFactory" "ProviderUrl_3_6=remote://localhost:4447" "SecurityCredentials_3_6=jboss@dmin88" ; 
+"MOMConfiguration_3_6": "SecurityPrincipal_3_6=guest" "InitialContextFactory_3_6=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_6=jms/RemoteConnectionFactory" "ConnectionFactory_3_6=#ConnectionFactory" "ProviderUrl_3_6=remote://localhost:4447" "SecurityCredentials_3_6=jboss@dmin88" ; 
 "QueueConfiguration_3_6": "QueueInJNDI_3_6=SP_command_in_queue_3_6" "QueueOutJNDI_3_6=SP_command_out_queue_3_6" ; 
 "TopicConfiguration_3_6": "TopicJNDI_3_6=SP_command_topic_3_6" ;"Capability_3_1": "OutputData_3_1_4" "OutputDataClassName_3_1=OutputDataClassName_3_1" "OutputData_3_1_2" "StateMessaging_3_1" "InputData_3_1_3" "CapabilityName_3_1=CapabilityName_3_1" "OutputData_3_1_5" ["Authentification_3_1"] "OutputData_3_1_3" "InputData_3_1_1" "InputData_3_1_2" "InputDataClassName_3_1=InputDataClassName_3_1" "OutputData_3_1_1" "CommunicationTechnologie_3_1" "OutputData_3_1_6" ; 
 "OutputData_3_1_4": "OutputName_3_1_4=OutputName_3_1_4" "OutputType_3_1_4=Integer" ; 
@@ -439,7 +439,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_3_1": "AsynchronousQueue_3_1" ["PublishSubscribe_3_1"] "MOMConfiguration_3_1" ; 
 "AsynchronousQueue_3_1": "QueueConfiguration_3_1" ; 
 "PublishSubscribe_3_1": ["Durable_3_1"] "TopicConfiguration_3_1" ; 
-"MOMConfiguration_3_1": "SecurityPrincipal_3_1=guest" "SecurityCredentials_3_1=jboss@dmin88" "InitialContextFactory_3_1=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionConsumerFactory_3_1=jms/RemoteConnectionFactory" "ProviderUrl_3_1=remote://localhost:4447" ; 
+"MOMConfiguration_3_1": "SecurityPrincipal_3_1=guest" "SecurityCredentials_3_1=jboss@dmin88" "InitialContextFactory_3_1=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionFactory_3_1=#ConnectionFactory" "ConnectionConsumerFactory_3_1=jms/RemoteConnectionFactory" "ProviderUrl_3_1=remote://localhost:4447" ; 
 "QueueConfiguration_3_1": "QueueOutJNDI_3_1=SP_command_out_queue_3_1" "QueueInJNDI_3_1=SP_command_in_queue_3_1" ; 
 "TopicConfiguration_3_1": "TopicJNDI_3_1=SP_command_topic_3_1" ;"Capability_3_2": "CommunicationTechnologie_3_2" "OutputData_3_2_1" "OutputData_3_2_6" "OutputData_3_2_3" "OutputDataClassName_3_2=OutputDataClassName_3_2" "CapabilityName_3_2=CapabilityName_3_2" "OutputData_3_2_8" "OutputData_3_2_5" "StateMessaging_3_2" "OutputData_3_2_4" "OutputData_3_2_9" "OutputData_3_2_2" ["Authentification_3_2"] "OutputData_3_2_7" ; 
 "CommunicationTechnologie_3_2": ("MOM_3_2"|"SOAP_3_2"|"REST_3_2") ; 
@@ -455,7 +455,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "OutputData_3_2_7": "OutputType_3_2_7=String" "OutputName_3_2_7=OutputName_3_2_7" ; 
 "MOM_3_2": "MOMConfiguration_3_2" "AsynchronousQueue_3_2" ["PublishSubscribe_3_2"] ; 
 "REST_3_2": "Get_3_2" ; 
-"MOMConfiguration_3_2": "ProviderUrl_3_2=remote://localhost:4447" "ConnectionConsumerFactory_3_2=jms/RemoteConnectionFactory" "SecurityCredentials_3_2=jboss@dmin88" "SecurityPrincipal_3_2=guest" "InitialContextFactory_3_2=org.jboss.naming.remote.client.InitialContextFactory" ; 
+"MOMConfiguration_3_2": "ProviderUrl_3_2=remote://localhost:4447" "ConnectionConsumerFactory_3_2=jms/RemoteConnectionFactory" "ConnectionFactory_3_2=#ConnectionFactory" "SecurityCredentials_3_2=jboss@dmin88" "SecurityPrincipal_3_2=guest" "InitialContextFactory_3_2=org.jboss.naming.remote.client.InitialContextFactory" ; 
 "AsynchronousQueue_3_2": "QueueConfiguration_3_2" ; 
 "PublishSubscribe_3_2": ["Durable_3_2"] "TopicConfiguration_3_2" ; 
 "QueueConfiguration_3_2": "QueueOutJNDI_3_2=SP_command_out_queue_3_2" "QueueInJNDI_3_2=SP_command_in_queue_3_2" ; 
@@ -470,7 +470,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "OutputData_2_4_1": "OutputType_2_4_1=String" "OutputName_2_4_1=OutputName_2_4_1" ; 
 "REST_2_4": "Get_2_4" ; 
 "MOM_2_4": "MOMConfiguration_2_4" "AsynchronousQueue_2_4" ["PublishSubscribe_2_4"] ; 
-"MOMConfiguration_2_4": "SecurityCredentials_2_4=jboss@dmin88" "ProviderUrl_2_4=remote://localhost:4447" "ConnectionConsumerFactory_2_4=jms/RemoteConnectionFactory" "SecurityPrincipal_2_4=guest" "InitialContextFactory_2_4=org.jboss.naming.remote.client.InitialContextFactory" ; 
+"MOMConfiguration_2_4": "SecurityCredentials_2_4=jboss@dmin88" "ProviderUrl_2_4=remote://localhost:4447" "ConnectionFactory_2_4=#ConnectionFactory" "ConnectionConsumerFactory_2_4=jms/RemoteConnectionFactory" "SecurityPrincipal_2_4=guest" "InitialContextFactory_2_4=org.jboss.naming.remote.client.InitialContextFactory" ; 
 "AsynchronousQueue_2_4": "QueueConfiguration_2_4" ; 
 "PublishSubscribe_2_4": ["Durable_2_4"] "TopicConfiguration_2_4" ; 
 "QueueConfiguration_2_4": "QueueInJNDI_2_4=SP_command_in_queue_2_4" "QueueOutJNDI_2_4=SP_command_out_queue_2_4" ; 
@@ -483,7 +483,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "REST_2_5": "Get_2_5" ; 
 "MOM_2_5": ["PublishSubscribe_2_5"] "MOMConfiguration_2_5" "AsynchronousQueue_2_5" ; 
 "PublishSubscribe_2_5": ["Durable_2_5"] "TopicConfiguration_2_5" ; 
-"MOMConfiguration_2_5": "SecurityPrincipal_2_5=guest" "InitialContextFactory_2_5=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_2_5=remote://localhost:4447" "ConnectionConsumerFactory_2_5=jms/RemoteConnectionFactory" "SecurityCredentials_2_5=jboss@dmin88" ; 
+"MOMConfiguration_2_5": "SecurityPrincipal_2_5=guest" "InitialContextFactory_2_5=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_2_5=remote://localhost:4447" "ConnectionConsumerFactory_2_5=jms/RemoteConnectionFactory" "ConnectionFactory_2_5=#ConnectionFactory" "SecurityCredentials_2_5=jboss@dmin88" ; 
 "AsynchronousQueue_2_5": "QueueConfiguration_2_5" ; 
 "TopicConfiguration_2_5": "TopicJNDI_2_5=SP_command_topic_2_5" ; 
 "QueueConfiguration_2_5": "QueueInJNDI_2_5=SP_command_in_queue_2_5" "QueueOutJNDI_2_5=SP_command_out_queue_2_5" ;"Capability_2_6": "OutputDataClassName_2_6=OutputDataClassName_2_6" "OutputData_2_6_3" "StateMessaging_2_6" "InputData_2_6_1" "OutputData_2_6_5" "CommunicationTechnologie_2_6" ["Authentification_2_6"] "InputData_2_6_3" "CapabilityName_2_6=CapabilityName_2_6" "OutputData_2_6_2" "OutputData_2_6_7" "OutputData_2_6_1" "OutputData_2_6_6" "InputData_2_6_2" "InputDataClassName_2_6=InputDataClassName_2_6" "OutputData_2_6_4" ; 
@@ -502,10 +502,10 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_2_6": "AsynchronousQueue_2_6" "MOMConfiguration_2_6" ["PublishSubscribe_2_6"] ; 
 "REST_2_6": "Get_2_6" ; 
 "AsynchronousQueue_2_6": "QueueConfiguration_2_6" ; 
-"MOMConfiguration_2_6": "ConnectionConsumerFactory_2_6=jms/RemoteConnectionFactory" "SecurityPrincipal_2_6=guest" "SecurityCredentials_2_6=jboss@dmin88" "InitialContextFactory_2_6=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_2_6=remote://localhost:4447" ; 
+"MOMConfiguration_2_6": "ConnectionConsumerFactory_2_6=jms/RemoteConnectionFactory" "SecurityPrincipal_2_6=guest" "SecurityCredentials_2_6=jboss@dmin88" "InitialContextFactory_2_6=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_2_6=remote://localhost:4447" "ConnectionFactory_2_6=#ConnectionFactory" ; 
 "PublishSubscribe_2_6": ["Durable_2_6"] "TopicConfiguration_2_6" ; 
 "QueueConfiguration_2_6": "QueueInJNDI_2_6=SP_command_in_queue_2_6" "QueueOutJNDI_2_6=SP_command_out_queue_2_6" ; 
-"TopicConfiguration_2_6": "TopicJNDI_2_6=SP_command_topic_2_6" ;"Capability_2_1": "InputData_2_1_6" "InputData_2_1_1" "OutputData_2_1_2" "StateMessaging_2_1" "InputData_2_1_9" "OutputDataClassName_2_1=OutputDataClassName_2_1" "InputData_2_1_4" "OutputData_2_1_1" ["Authentification_2_1"] "CommunicationTechnologie_2_1" "InputData_2_1_2" "InputData_2_1_7" "CapabilityName_2_1=CapabilityName_2_1" "InputData_2_1_8" "InputData_2_1_3" "InputDataClassName_2_1=InputDataClassName_2_1" "InputData_2_1_5" ; 
+"TopicConfiguration_2_6": "TopicJNDI_2_6=SP_command_topic_2_6" ;"Capability_2_1": "InputData_2_1_6" "InputData_2_1_1" "OutputData_2_1_2" "StateMessaging_2_1" "InputData_2_1_9" "OutputDataClassName_2_1=OutputDataClassName_2_1" "InputData_2_1_4" "OutputData_2_1_1" "CommunicationTechnologie_2_1" ["Authentification_2_1"] "InputData_2_1_2" "InputData_2_1_7" "CapabilityName_2_1=CapabilityName_2_1" "InputData_2_1_8" "InputData_2_1_3" "InputDataClassName_2_1=InputDataClassName_2_1" "InputData_2_1_5" ; 
 "InputData_2_1_6": "InputName_2_1_6=InputName_2_1_6" "InputType_2_1_6=Float" ; 
 "InputData_2_1_1": "InputType_2_1_1=Float" "InputName_2_1_1=InputName_2_1_1" ; 
 "OutputData_2_1_2": "OutputType_2_1_2=String" "OutputName_2_1_2=OutputName_2_1_2" ; 
@@ -519,7 +519,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "InputData_2_1_8": "InputType_2_1_8=Float" "InputName_2_1_8=InputName_2_1_8" ; 
 "InputData_2_1_3": "InputName_2_1_3=InputName_2_1_3" "InputType_2_1_3=String" ; 
 "InputData_2_1_5": "InputName_2_1_5=InputName_2_1_5" "InputType_2_1_5=Float" ; 
-"REST_2_1": "Post_2_1" ;"Capability_2_2": "StateMessaging_2_2" "InputData_2_2_2" "InputDataClassName_2_2=InputDataClassName_2_2" "CommunicationTechnologie_2_2" ["Authentification_2_2"] "InputData_2_2_4" "OutputDataClassName_2_2=OutputDataClassName_2_2" "InputData_2_2_3" "CapabilityName_2_2=CapabilityName_2_2" "OutputData_2_2_1" "InputData_2_2_1" ; 
+"REST_2_1": "Post_2_1" ;"Capability_2_2": "StateMessaging_2_2" "InputData_2_2_2" "InputDataClassName_2_2=InputDataClassName_2_2" ["Authentification_2_2"] "CommunicationTechnologie_2_2" "InputData_2_2_4" "OutputDataClassName_2_2=OutputDataClassName_2_2" "InputData_2_2_3" "CapabilityName_2_2=CapabilityName_2_2" "OutputData_2_2_1" "InputData_2_2_1" ; 
 "StateMessaging_2_2": "TwoWayState_2_2" ; 
 "InputData_2_2_2": "InputName_2_2_2=InputName_2_2_2" "InputType_2_2_2=Integer" ; 
 "CommunicationTechnologie_2_2": ("SOAP_2_2"|"REST_2_2"|"MOM_2_2") ; 
@@ -531,7 +531,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_2_2": "AsynchronousQueue_2_2" ["PublishSubscribe_2_2"] "MOMConfiguration_2_2" ; 
 "AsynchronousQueue_2_2": "QueueConfiguration_2_2" ; 
 "PublishSubscribe_2_2": "TopicConfiguration_2_2" ["Durable_2_2"] ; 
-"MOMConfiguration_2_2": "SecurityPrincipal_2_2=guest" "ProviderUrl_2_2=remote://localhost:4447" "SecurityCredentials_2_2=jboss@dmin88" "ConnectionConsumerFactory_2_2=jms/RemoteConnectionFactory" "InitialContextFactory_2_2=org.jboss.naming.remote.client.InitialContextFactory" ; 
+"MOMConfiguration_2_2": "SecurityPrincipal_2_2=guest" "ProviderUrl_2_2=remote://localhost:4447" "SecurityCredentials_2_2=jboss@dmin88" "ConnectionConsumerFactory_2_2=jms/RemoteConnectionFactory" "InitialContextFactory_2_2=org.jboss.naming.remote.client.InitialContextFactory" "ConnectionFactory_2_2=#ConnectionFactory" ; 
 "QueueConfiguration_2_2": "QueueOutJNDI_2_2=SP_command_out_queue_2_2" "QueueInJNDI_2_2=SP_command_in_queue_2_2" ; 
 "TopicConfiguration_2_2": "TopicJNDI_2_2=SP_command_topic_2_2" ;"Capability_2_3": "OutputData_2_3_1" "InputData_2_3_5" ["Authentification_2_3"] "InputData_2_3_1" "InputData_2_3_6" "InputData_2_3_8" "OutputData_2_3_3" "StateMessaging_2_3" "InputData_2_3_3" "InputDataClassName_2_3=InputDataClassName_2_3" "InputData_2_3_4" "OutputDataClassName_2_3=OutputDataClassName_2_3" "CapabilityName_2_3=CapabilityName_2_3" "CommunicationTechnologie_2_3" "InputData_2_3_7" "OutputData_2_3_2" "InputData_2_3_2" ; 
 "OutputData_2_3_1": "OutputName_2_3_1=OutputName_2_3_1" "OutputType_2_3_1=String" ; 
@@ -578,7 +578,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_1_6": "AsynchronousQueue_1_6" ["PublishSubscribe_1_6"] "MOMConfiguration_1_6" ; 
 "AsynchronousQueue_1_6": "QueueConfiguration_1_6" ; 
 "PublishSubscribe_1_6": "TopicConfiguration_1_6" ["Durable_1_6"] ; 
-"MOMConfiguration_1_6": "SecurityCredentials_1_6=jboss@dmin88" "ConnectionConsumerFactory_1_6=jms/RemoteConnectionFactory" "InitialContextFactory_1_6=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_1_6=remote://localhost:4447" "SecurityPrincipal_1_6=guest" ; 
+"MOMConfiguration_1_6": "ConnectionFactory_1_6=#ConnectionFactory" "SecurityCredentials_1_6=jboss@dmin88" "ConnectionConsumerFactory_1_6=jms/RemoteConnectionFactory" "InitialContextFactory_1_6=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_1_6=remote://localhost:4447" "SecurityPrincipal_1_6=guest" ; 
 "QueueConfiguration_1_6": "QueueInJNDI_1_6=SP_command_in_queue_1_6" "QueueOutJNDI_1_6=SP_command_out_queue_1_6" ; 
 "TopicConfiguration_1_6": "TopicJNDI_1_6=SP_command_topic_1_6" ;"Capability_1_1": "StateMessaging_1_1" "OutputData_1_1_2" "CommunicationTechnologie_1_1" ["Authentification_1_1"] "CapabilityName_1_1=CapabilityName_1_1" "OutputData_1_1_1" "OutputDataClassName_1_1=OutputDataClassName_1_1" ; 
 "StateMessaging_1_1": "TwoWayState_1_1" ; 
@@ -589,7 +589,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_1_1": "AsynchronousQueue_1_1" ["PublishSubscribe_1_1"] "MOMConfiguration_1_1" ; 
 "AsynchronousQueue_1_1": "QueueConfiguration_1_1" ; 
 "PublishSubscribe_1_1": "TopicConfiguration_1_1" ["Durable_1_1"] ; 
-"MOMConfiguration_1_1": "SecurityPrincipal_1_1=guest" "SecurityCredentials_1_1=jboss@dmin88" "ConnectionConsumerFactory_1_1=jms/RemoteConnectionFactory" "InitialContextFactory_1_1=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_1_1=remote://localhost:4447" ; 
+"MOMConfiguration_1_1": "SecurityPrincipal_1_1=guest" "SecurityCredentials_1_1=jboss@dmin88" "ConnectionFactory_1_1=#ConnectionFactory" "ConnectionConsumerFactory_1_1=jms/RemoteConnectionFactory" "InitialContextFactory_1_1=org.jboss.naming.remote.client.InitialContextFactory" "ProviderUrl_1_1=remote://localhost:4447" ; 
 "QueueConfiguration_1_1": "QueueInJNDI_1_1=SP_command_in_queue_1_1" "QueueOutJNDI_1_1=SP_command_out_queue_1_1" ; 
 "TopicConfiguration_1_1": "TopicJNDI_1_1=SP_command_topic_1_1" ;"Capability_1_2": "InputData_1_2_3" "InputData_1_2_5" "InputDataClassName_1_2=InputDataClassName_1_2" "CapabilityName_1_2=CapabilityName_1_2" "InputData_1_2_4" "InputData_1_2_1" "OutputData_1_2_1" ["Authentification_1_2"] "CommunicationTechnologie_1_2" "OutputDataClassName_1_2=OutputDataClassName_1_2" "StateMessaging_1_2" "InputData_1_2_2" ; 
 "InputData_1_2_3": "InputName_1_2_3=InputName_1_2_3" "InputType_1_2_3=Float" ; 
@@ -604,7 +604,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_1_2": "AsynchronousQueue_1_2" ["PublishSubscribe_1_2"] "MOMConfiguration_1_2" ; 
 "AsynchronousQueue_1_2": "QueueConfiguration_1_2" ; 
 "PublishSubscribe_1_2": ["Durable_1_2"] "TopicConfiguration_1_2" ; 
-"MOMConfiguration_1_2": "SecurityCredentials_1_2=jboss@dmin88" "ProviderUrl_1_2=remote://localhost:4447" "InitialContextFactory_1_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityPrincipal_1_2=guest" "ConnectionConsumerFactory_1_2=jms/RemoteConnectionFactory" ; 
+"MOMConfiguration_1_2": "SecurityCredentials_1_2=jboss@dmin88" "ConnectionFactory_1_2=#ConnectionFactory" "ProviderUrl_1_2=remote://localhost:4447" "InitialContextFactory_1_2=org.jboss.naming.remote.client.InitialContextFactory" "SecurityPrincipal_1_2=guest" "ConnectionConsumerFactory_1_2=jms/RemoteConnectionFactory" ; 
 "QueueConfiguration_1_2": "QueueOutJNDI_1_2=SP_command_out_queue_1_2" "QueueInJNDI_1_2=SP_command_in_queue_1_2" ; 
 "TopicConfiguration_1_2": "TopicJNDI_1_2=SP_command_topic_1_2" ;"Capability_1_3": "CapabilityName_1_3=CapabilityName_1_3" "InputData_1_3_1" "InputData_1_3_6" "OutputData_1_3_2" "InputData_1_3_2" "InputData_1_3_7" "CommunicationTechnologie_1_3" "InputData_1_3_4" "OutputData_1_3_4" "InputDataClassName_1_3=InputDataClassName_1_3" "InputData_1_3_5" "OutputData_1_3_1" "OutputDataClassName_1_3=OutputDataClassName_1_3" "InputData_1_3_8" "OutputData_1_3_3" "StateMessaging_1_3" ["Authentification_1_3"] "OutputData_1_3_5" "InputData_1_3_3" ; 
 "InputData_1_3_1": "InputName_1_3_1=InputName_1_3_1" "InputType_1_3_1=String" ; 
@@ -638,7 +638,7 @@ Service_7: ("Capability_7_3"|"Capability_7_4"|"Capability_7_5"|"Capability_7_1"|
 "MOM_1_4": "AsynchronousQueue_1_4" "MOMConfiguration_1_4" ["PublishSubscribe_1_4"] ; 
 "REST_1_4": "Get_1_4" ; 
 "AsynchronousQueue_1_4": "QueueConfiguration_1_4" ; 
-"MOMConfiguration_1_4": "ProviderUrl_1_4=remote://localhost:4447" "SecurityCredentials_1_4=jboss@dmin88" "ConnectionConsumerFactory_1_4=jms/RemoteConnectionFactory" "SecurityPrincipal_1_4=guest" "InitialContextFactory_1_4=org.jboss.naming.remote.client.InitialContextFactory" ; 
+"MOMConfiguration_1_4": "ProviderUrl_1_4=remote://localhost:4447" "SecurityCredentials_1_4=jboss@dmin88" "ConnectionConsumerFactory_1_4=jms/RemoteConnectionFactory" "SecurityPrincipal_1_4=guest" "ConnectionFactory_1_4=#ConnectionFactory" "InitialContextFactory_1_4=org.jboss.naming.remote.client.InitialContextFactory" ; 
 "PublishSubscribe_1_4": ["Durable_1_4"] "TopicConfiguration_1_4" ; 
 "QueueConfiguration_1_4": "QueueInJNDI_1_4=SP_command_in_queue_1_4" "QueueOutJNDI_1_4=SP_command_out_queue_1_4" ; 
 "TopicConfiguration_1_4": "TopicJNDI_1_4=SP_command_topic_1_4" ;

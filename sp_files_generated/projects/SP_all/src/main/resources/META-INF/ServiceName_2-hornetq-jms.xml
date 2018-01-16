@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+                    <jms-queue name="SP_all_in_queue_2_4">
+                <entry name="SP_all_in_queue_2_4"/>
+                <entry name="java:jboss/exported/jms/SP_all_in_queue_2_4"/>
+            </jms-queue>
+            <jms-queue name="SP_all_out_queue_2_4">
+                <entry name="SP_all_out_queue_2_4"/>
+                <entry name="java:jboss/exported/jms/SP_all_out_queue_2_4"/>
+            </jms-queue>
+                    <jms-queue name="SP_all_in_queue_2_1">
+                <entry name="SP_all_in_queue_2_1"/>
+                <entry name="java:jboss/exported/jms/SP_all_in_queue_2_1"/>
+            </jms-queue>
+            <jms-queue name="SP_all_out_queue_2_1">
+                <entry name="SP_all_out_queue_2_1"/>
+                <entry name="java:jboss/exported/jms/SP_all_out_queue_2_1"/>
+            </jms-queue>
+                    <jms-queue name="SP_all_in_queue_2_3">
+                <entry name="SP_all_in_queue_2_3"/>
+                <entry name="java:jboss/exported/jms/SP_all_in_queue_2_3"/>
+            </jms-queue>
+            <jms-queue name="SP_all_out_queue_2_3">
+                <entry name="SP_all_out_queue_2_3"/>
+                <entry name="java:jboss/exported/jms/SP_all_out_queue_2_3"/>
+            </jms-queue>
+                                    <jms-topic name="SP_all_topic_2_4">
+                <entry name="SP_all_topic_2_4"/>
+                <entry name="java:jboss/exported/jms/SP_all_topic_2_4"/>
+            </jms-topic>
+                                    <jms-topic name="SP_all_topic_2_1">
+                <entry name="SP_all_topic_2_1"/>
+                <entry name="java:jboss/exported/jms/SP_all_topic_2_1"/>
+            </jms-topic>
+                                    <jms-topic name="SP_all_topic_2_3">
+                <entry name="SP_all_topic_2_3"/>
+                <entry name="java:jboss/exported/jms/SP_all_topic_2_3"/>
+            </jms-topic>
+                        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>
