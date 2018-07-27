@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_2</interfaceName>
+        <beanName>ServiceName_2Bean</beanName>
+        <number>2</number>
+        <capability>
+            <name>CapabilityName_2_1</name>
+            <number>1</number>
+            <serviceName>ServiceName_2</serviceName>
+            <stateClassName>State_ServiceName_2_CapabilityName_2_1</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>true</rest>
+            <restMethod>Post</restMethod>
+            <soap>false</soap>
+            <authentification>true</authentification>
+            <jms>false</jms>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+            <username>admin</username>
+            <password>kpjganfbessmejsl</password>
+        </capability>
+    </service>
+    <projectName>SP_helicopter1</projectName>
+    <hostName>http://localhost:8080/SP_helicopter1</hostName>
+    <dataInputPkg>SP_helicopter1.input</dataInputPkg>
+    <dataOutputPkg>SP_helicopter1.output</dataOutputPkg>
+</contract>

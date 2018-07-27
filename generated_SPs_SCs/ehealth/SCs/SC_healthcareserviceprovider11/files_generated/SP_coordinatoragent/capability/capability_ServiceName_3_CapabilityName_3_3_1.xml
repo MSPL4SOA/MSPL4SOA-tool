@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_3</interfaceName>
+        <beanName>ServiceName_3Bean</beanName>
+        <number>3</number>
+        <capability>
+            <name>CapabilityName_3_3</name>
+            <number>3</number>
+            <serviceName>ServiceName_3</serviceName>
+            <dataInputClassName>InputDataClassName_3_3</dataInputClassName>
+            <stateClassName>State_ServiceName_3_CapabilityName_3_3</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>true</soap>
+            <authentification>false</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_3_3_1</name>
+                <type>Float</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">813</value>
+            </input>
+            <input>
+                <name>InputName_3_3_2</name>
+                <type>Float</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">147</value>
+            </input>
+            <input>
+                <name>InputName_3_3_3</name>
+                <type>Integer</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">591</value>
+            </input>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+        </capability>
+    </service>
+    <projectName>SP_command</projectName>
+    <hostName>http://localhost:8080/SP_command</hostName>
+    <dataInputPkg>SP_command.input</dataInputPkg>
+    <dataOutputPkg>SP_command.output</dataOutputPkg>
+</contract>

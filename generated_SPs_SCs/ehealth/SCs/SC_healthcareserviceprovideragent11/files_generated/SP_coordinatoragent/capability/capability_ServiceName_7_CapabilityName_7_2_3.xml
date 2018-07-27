@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_7</interfaceName>
+        <beanName>ServiceName_7Bean</beanName>
+        <number>7</number>
+        <capability>
+            <name>CapabilityName_7_2</name>
+            <number>2</number>
+            <serviceName>ServiceName_7</serviceName>
+            <dataInputClassName>InputDataClassName_7_2</dataInputClassName>
+            <stateClassName>State_ServiceName_7_CapabilityName_7_2</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>true</rest>
+            <restMethod>Post</restMethod>
+            <soap>false</soap>
+            <authentification>true</authentification>
+            <jms>false</jms>
+            <input>
+                <name>InputName_7_2_6</name>
+                <type>Float</type>
+                <number>6</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">873</value>
+            </input>
+            <input>
+                <name>InputName_7_2_7</name>
+                <type>String</type>
+                <number>7</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">69</value>
+            </input>
+            <input>
+                <name>InputName_7_2_4</name>
+                <type>Float</type>
+                <number>4</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">742</value>
+            </input>
+            <input>
+                <name>InputName_7_2_5</name>
+                <type>Float</type>
+                <number>5</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">379</value>
+            </input>
+            <input>
+                <name>InputName_7_2_2</name>
+                <type>String</type>
+                <number>2</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">987</value>
+            </input>
+            <input>
+                <name>InputName_7_2_3</name>
+                <type>Integer</type>
+                <number>3</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">759</value>
+            </input>
+            <input>
+                <name>InputName_7_2_1</name>
+                <type>Float</type>
+                <number>1</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">509</value>
+            </input>
+            <input>
+                <name>InputName_7_2_8</name>
+                <type>String</type>
+                <number>8</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">218</value>
+            </input>
+            <input>
+                <name>InputName_7_2_9</name>
+                <type>String</type>
+                <number>9</number>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">894</value>
+            </input>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+            <username>admin</username>
+            <password>encajakefsjjgcif</password>
+        </capability>
+    </service>
+    <projectName>SP_command</projectName>
+    <hostName>http://localhost:8080/SP_command</hostName>
+    <dataInputPkg>SP_command.input</dataInputPkg>
+    <dataOutputPkg>SP_command.output</dataOutputPkg>
+</contract>

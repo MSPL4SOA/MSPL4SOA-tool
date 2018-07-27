@@ -1,0 +1,3 @@
+ServiceContract: "HostName=http://localhost:8080/SP_command" "ProjectName_0=SP_command" "Service_2" ; 
+"Service_2": "Capability_2_2" "ServiceName_2=ServiceName_2" ; 
+"Capability_2_2": "SOAP_2_2" "CommunicationTechnologie_2_2" "CapabilityName_2_2=CapabilityName_2_2" ;

@@ -1,0 +1,3 @@
+ServiceContract: "ProjectName_0=SP_helicopter1" "HostName=http://localhost:8080/SP_helicopter1" "Service_2" ; 
+"Service_2": "Capability_2_1" "ServiceName_2=ServiceName_2" ; 
+"Capability_2_1": "Username_2_1=admin" "Password_2_1=kpjganfbessmejsl" "CommunicationTechnologie_2_1" "Authentification_2_1" "Post_2_1" "CapabilityName_2_1=CapabilityName_2_1" "REST_2_1" ;

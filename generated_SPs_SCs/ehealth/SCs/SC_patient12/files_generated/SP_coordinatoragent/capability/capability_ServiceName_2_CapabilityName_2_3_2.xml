@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contract>
+    <service>
+        <interfaceName>ServiceName_2</interfaceName>
+        <beanName>ServiceName_2Bean</beanName>
+        <number>2</number>
+        <capability>
+            <name>CapabilityName_2_3</name>
+            <number>3</number>
+            <serviceName>ServiceName_2</serviceName>
+            <stateClassName>State_ServiceName_2_CapabilityName_2_3</stateClassName>
+            <serviceState>false</serviceState>
+            <stateMessaging>false</stateMessaging>
+            <statefullService>false</statefullService>
+            <stateRepository>false</stateRepository>
+            <twoWayState>false</twoWayState>
+            <rest>false</rest>
+            <soap>false</soap>
+            <broker>
+                <brokerName>HornetQ</brokerName>
+                <initialContextFactory>org.jboss.naming.remote.client.InitialContextFactory</initialContextFactory>
+                <providerUrl>remote://localhost:4447</providerUrl>
+                <securityPrincipal>guest</securityPrincipal>
+                <securityCredentials>jboss@dmin88</securityCredentials>
+                <connectionConsumerFactory>jms/RemoteConnectionFactory</connectionConsumerFactory>
+                <queueError>net implemented</queueError>
+                <queueIn>SP_command_in_queue_2_3</queueIn>
+                <queueOut>SP_command_out_queue_2_3</queueOut>
+                <transactional>false</transactional>
+                <acknowledgement>true</acknowledgement>
+                <persistentDelivery>true</persistentDelivery>
+                <publishSubscribe>false</publishSubscribe>
+                <durable>false</durable>
+                <serviceName>ServiceName_2</serviceName>
+                <capabilityName>CapabilityName_2_3</capabilityName>
+            </broker>
+            <authentification>true</authentification>
+            <jms>true</jms>
+            <temporaryMemory>false</temporaryMemory>
+            <synchronous>false</synchronous>
+            <asynchronous>false</asynchronous>
+            <username>bciffbiohtss</username>
+            <password>oebijtkmdqdofcgq</password>
+        </capability>
+    </service>
+    <projectName>SP_command</projectName>
+    <hostName>http://localhost:8080/SP_command</hostName>
+    <dataInputPkg>SP_command.input</dataInputPkg>
+    <dataOutputPkg>SP_command.output</dataOutputPkg>
+</contract>

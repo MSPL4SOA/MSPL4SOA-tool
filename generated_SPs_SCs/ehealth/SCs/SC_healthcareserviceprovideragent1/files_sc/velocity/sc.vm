@@ -1,0 +1,59 @@
+package $scPkg;
+
+import scfactory.SCGenerator;
+import scfactory.SCGeneratorException;
+
+public class $className {
+
+	public static void main(String[] args) {
+	
+		#set($compt = 1)
+		#foreach($amsc in $amscList)
+		#set($id = "_" + $amsc.amGenerator.capability.serviceName + "_" + $amsc.amGenerator.capability.name + "_am" + $compt)
+		#set($compt = $compt + 1)
+		#set ($instanceAMGenerator = "scGenerator" + $id)
+		#set ($instanceState = "state" + $id)
+		#set ($instanceResult = "result" + $id)
+		
+		//************* Begin of $amsc.amGenerator.amFilePath *************//
+		//
+		SCGenerator $instanceAMGenerator = new SCGenerator("$amsc.amGenerator.fmFilePath");
+		try {
+			$instanceAMGenerator#[[.]]#setAmFilePath("$amsc.amGenerator.amFilePath");
+			$instanceAMGenerator#[[.]]#start();
+			#if($amsc.amGenerator.capability.asynchronous == true)
+			// The response handler in your AM is asynchronous. 
+			// Hence, the business logic code here is executed in parallel with the capability invocation.
+			Thread.sleep(1000);
+			#end
+			$instanceAMGenerator#[[.]]#stop();
+		} catch (SCGeneratorException e) {
+			e.printStackTrace();
+		}
+		#if($amsc.amGenerator.capability.asynchronous == true)
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		#end
+		System.out.println("\\\\***************The output of $amsc.amGenerator.amFilePath :***************//");
+		
+		#if($amsc.amGenerator.capability.outputs.size() !=0)
+		$dataOutputPkg#[[.]]#$amsc.amGenerator.capability.dataOutputClassName $instanceResult = ($dataOutputPkg#[[.]]#$amsc.amGenerator.capability.dataOutputClassName) $instanceAMGenerator#[[.]]#getResponse();
+		#end
+			
+		#if($amsc.amGenerator.capability.stateMessaging == true)
+		String $instanceState = $instanceAMGenerator#[[.]]#getState#[[(]]#);
+		#end
+			
+		#foreach($output in $amsc.amGenerator.capability.outputs)
+		System.out.println("$output.name : " + $instanceResult#[[.]]#get$output.name.substring(0,1).toUpperCase()$output.name.substring(1)());
+		#end
+			
+		#if($amsc.amGenerator.capability.stateMessaging == true)
+		System.out.println("State : " + $instanceState);
+		#end
+		//
+		//************* End of $amsc.amGenerator.amFilePath *************//
+		#end
+	}
+}

@@ -1,0 +1,3 @@
+ServiceContract: "HostName=http://localhost:8080/SP_command" "ProjectName_0=SP_command" "Service_2" ; 
+"Service_2": "Capability_2_3" "ServiceName_2=ServiceName_2" ; 
+"Capability_2_3": "MOMConfiguration_2_3" "PersistentDelivery_2_3" "MOM_2_3" "InitialContextFactory_2_3=org.jboss.naming.remote.client.InitialContextFactory" "Reliability_2_3" "ProviderUrl_2_3=remote://localhost:4447" "AsynchronousQueue_2_3" "SecurityPrincipal_2_3=guest" "CapabilityName_2_3=CapabilityName_2_3" "CommunicationTechnologie_2_3" "Transactional_2_3" "SecurityCredentials_2_3=jboss@dmin88" "QueueConfiguration_2_3" "ConnectionConsumerFactory_2_3=jms/RemoteConnectionFactory" "QueueOutJNDI_2_3=SP_command_out_queue_2_3" "QueueInJNDI_2_3=SP_command_in_queue_2_3" ;
